@@ -1,0 +1,33 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/dental-spa.html" },
+    { "source": "/dental-spa", "destination": "/dental-spa.html" },
+    { "source": "/spa", "destination": "/dental-spa.html" },
+    { "source": "/admin", "destination": "/spa-admin.html" },
+    { "source": "/spa-admin", "destination": "/spa-admin.html" }
+  ],
+  "headers": [
+    {
+      "source": "**/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Virtual Smile Architect &amp; Shade Studio | SmileCare VIP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Clinic Top Announcement Bar -->
+  <div class="clinic-top-bar">
+    <div class="top-left">
+      <span><i class="fa fa-hospital" style="color: var(--accent-cyan); margin-right: 6px;"></i> <strong>Flagship Hospital:</strong> Gulberg III &bull; <strong>Boutique:</strong> DHA Phase 5, Lahore</span>
+      <span>&bull;</span>
+      <span><i class="fa fa-clock" style="color: var(--accent-uv); margin-right: 6px;"></i> Mon &ndash; Sat: 09:00 AM &ndash; 09:00 PM</span>
+    </div>
+    <div class="top-right">
+      <span><i class="fa fa-shield-halved" style="color: var(--accent-cyan); margin-right: 6px;"></i> PMC Licensed &bull; ISO 9001:2015</span>
+      <span>&bull;</span>
+      <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> 24/7 Dental Trauma SOS: <strong>+92 300 1234567</strong>
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="logo-badge">🦷</div>
+        <div>
+          <span style="font-size: 1.35rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Laser Hospital &amp; Implants</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="treatments.html" class="nav-link">Treatments &amp; 3D</a></li>
+        <li><a href="smile-studio.html" class="nav-link active">Smile Studio <span class="nav-badge-pill">3D</span></a></li>
+        <li><a href="symptom-checker.html" class="nav-link">Symptom Triage</a></li>
+        <li><a href="doctors.html" class="nav-link">Specialists</a></li>
+        <li><a href="gallery.html" class="nav-link">Transformations</a></li>
+        <li><a href="contact.html" class="nav-link">Clinics</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+        <a href="admin.html" class="btn-admin-portal"><i class="fa fa-lock"></i> Staff Portal</a>
+        <a href="booking.html" class="btn-header-book"><i class="fa fa-calendar-check"></i> Book VIP Suite</a>
+        <div class="nav-hamburger"><i class="fa fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="treatments.html" class="nav-link">🦷 Treatments &amp; 3D Simulator</a>
+    <a href="smile-studio.html" class="nav-link active">✨ 3D Virtual Smile Studio</a>
+    <a href="symptom-checker.html" class="nav-link">🩺 3D Symptom Triage</a>
+    <a href="doctors.html" class="nav-link">👨‍⚕️ Our Dental Specialists</a>
+    <a href="gallery.html" class="nav-link">📸 Smile Transformations Vault</a>
+    <a href="contact.html" class="nav-link">📍 Branches &amp; Contact</a>
+    <a href="booking.html" class="nav-link">📅 Online VIP Booking</a>
+    <a href="admin.html" class="nav-link" style="color: var(--accent-cyan);"><i class="fa fa-lock"></i> Staff Admin Portal</a>
+  </div>
+
+  <!-- Studio Main Section -->
+  <main class="page-container section-padding" style="padding-top: 50px;">
+    <div style="text-align: center; margin-bottom: 3.5rem;">
+      <div class="tag-badge"><i class="fa fa-wand-magic-sparkles"></i> Proprietary Cosmetic Technology</div>
+      <h1 class="section-title">3D Virtual <span>Smile Architect</span></h1>
+      <p class="section-desc" style="margin: 0 auto;">
+        Design your bespoke smile in real-time. Test international Vita enamel shades, choose your smile contour shape, and send your custom blueprint directly to our laboratory.
+      </p>
+    </div>
+
+    <div class="studio-layout">
+      <!-- 3D Interactive Tooth & Shade View -->
+      <div class="studio-canvas-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan);">
+            ● Photorealistic 3D Specimen &bull; Real-time Reflection
+          </span>
+          <span id="current-shade-tag" style="background: var(--surface-2); border: 1px solid var(--card-border); padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; color: var(--text-main);">
+            SHADE: B1 (HOLLYWOOD BLEACH)
+          </span>
+        </div>
+
+        <div id="studio-3d-canvas" style="width: 100%; height: 460px;"></div>
+
+        <div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">
+          <i class="fa fa-hand-pointer"></i> Rotate 360&deg; with mouse to inspect ceramic enamel luster
+        </div>
+      </div>
+
+      <!-- Controls & Customizer -->
+      <div>
+        <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; padding: 2.2rem; box-shadow: var(--shadow-card);">
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">
+            1. Select Vita Enamel Shade
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">
+            The global dental standard for porcelain crowns and veneers.
+          </p>
+
+          <div class="shade-palette-group">
+            <button class="shade-chip active" data-shade="B1" data-hex="#ffffff" onclick="updateToothShade(this, '#ffffff', 'B1 (Hollywood Bleach)')">
+              <span class="shade-chip-dot" style="background: #ffffff;"></span>
+              <span>B1 Bleach White</span>
+            </button>
+            <button class="shade-chip" data-shade="A1" data-hex="#fafafa" onclick="updateToothShade(this, '#f8fafc', 'A1 (Pearl Natural)')">
+              <span class="shade-chip-dot" style="background: #f8fafc;"></span>
+              <span>A1 Pearl Natural</span>
+            </button>
+            <button class="shade-chip" data-shade="A2" data-hex="#f5efdb" onclick="updateToothShade(this, '#f5efdb', 'A2 (Classic Warm)')">
+              <span class="shade-chip-dot" style="background: #f5efdb;"></span>
+              <span>A2 Classic Warm</span>
+            </button>
+            <button class="shade-chip" data-shade="A3" data-hex="#ebe1c5" onclick="updateToothShade(this, '#ede3cb', 'A3 (Soft Muted)')">
+              <span class="shade-chip-dot" style="background: #ede3cb;"></span>
+              <span>A3 Soft Muted</span>
+            </button>
+          </div>
+
+          <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">
+            2. Choose Smile Contour Style
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">
+            Contour geometry harmonized to your facial bone structure.
+          </p>
+
+          <div class="shape-selector-group">
+            <div class="shape-card-btn active" onclick="updateToothShape(this, 'Hollywood Square')">
+              <div style="font-size: 1.6rem; margin-bottom: 4px;">⬛</div>
+              <strong style="display: block; font-size: 0.88rem;">Hollywood Square</strong>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Bold &amp; Symmetrical</span>
+            </div>
+            <div class="shape-card-btn" onclick="updateToothShape(this, 'Natural Oval')">
+              <div style="font-size: 1.6rem; margin-bottom: 4px;">🥚</div>
+              <strong style="display: block; font-size: 0.88rem;">Natural Oval</strong>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Soft &amp; Harmonious</span>
+            </div>
+            <div class="shape-card-btn" onclick="updateToothShape(this, 'Youthful Rounded')">
+              <div style="font-size: 1.6rem; margin-bottom: 4px;">⚪</div>
+              <strong style="display: block; font-size: 0.88rem;">Youthful Rounded</strong>
+              <span style="font-size: 0.72rem; color: var(--text-muted);">Gentle Lateral Curve</span>
+            </div>
+          </div>
+
+          <!-- Blueprint Summary Card -->
+          <div class="blueprint-summary-box">
+            <div style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: var(--accent-cyan); letter-spacing: 1px; margin-bottom: 6px;">
+              Your Custom Smile Blueprint
+            </div>
+            <div id="blueprint-details" style="font-size: 0.95rem; font-weight: 700; margin-bottom: 1.2rem;">
+              Shade: B1 Hollywood Bleach &bull; Style: Hollywood Square &bull; Material: E-Max German Ceramic
+            </div>
+            <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="saveBlueprintAndBook();">
+              <i class="fa fa-paper-plane"></i> Lock In Blueprint &amp; Book Consultation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div style="max-width: 1350px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+      &copy; 2026 SmileCare Dental Clinic. All Rights Reserved. ISO 9001:2015 Certified Healthcare Facility.
+    </div>
+  </footer>
+
+  <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="emergency-float-trigger">
+    <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i>
+    <span>Emergency? WhatsApp SOS</span>
+  </a>
+
+  <!-- Scripts -->
+  <script type="module" src="js/master.js"></script>
+  <script type="module">
+    import * as THREE from './vendor/three.module.js';
+
+    let toothMesh = null;
+    let toothMaterial = null;
+
+    function initStudio3D() {
+      const container = document.getElementById('studio-3d-canvas');
+      if (!container) return;
+
+      const width = container.clientWidth || 450;
+      const height = container.clientHeight || 460;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+      camera.position.set(0, 0, 7.2);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const rootGroup = new THREE.Group();
+      scene.add(rootGroup);
+
+      // Enamel Material
+      toothMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        roughness: 0.08,
+        metalness: 0.05,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.04,
+        reflectivity: 0.98,
+        transmission: 0.08,
+      });
+
+      // Molar Crown Geometry
+      const crownGeo = new THREE.CylinderGeometry(1.4, 1.15, 1.6, 32, 16);
+      const pos = crownGeo.attributes.position;
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i);
+        const y = pos.getY(i);
+        const z = pos.getZ(i);
+        if (y > 0.4) {
+          const angle = Math.atan2(z, x);
+          pos.setY(i, y + Math.sin(angle * 4) * 0.18 - (1 - Math.sqrt(x*x+z*z)/1.4)*0.25);
+        }
+      }
+      crownGeo.computeVertexNormals();
+      toothMesh = new THREE.Mesh(crownGeo, toothMaterial);
+      toothMesh.position.y = 0.5;
+      rootGroup.add(toothMesh);
+
+      // Lights
+      scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+      const keyLight = new THREE.DirectionalLight(0x00f5d4, 1.8);
+      keyLight.position.set(5, 6, 4);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      fillLight.position.set(-5, -2, -3);
+      scene.add(fillLight);
+
+      // Interaction
+      let isDragging = false;
+      let prevX = 0, prevY = 0;
+      let rotY = 0.3, rotX = 0.1;
+
+      container.addEventListener('mousedown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('mousemove', e => {
+        if (isDragging) {
+          rotY += (e.clientX - prevX) * 0.009;
+          rotX += (e.clientY - prevY) * 0.009;
+          prevX = e.clientX;
+          prevY = e.clientY;
+        }
+      });
+
+      // Mobile Touch
+      container.addEventListener('touchstart', e => {
+        if (e.touches.length === 1) { isDragging = true; prevX = e.touches[0].clientX; prevY = e.touches[0].clientY; }
+      }, { passive: true });
+      window.addEventListener('touchend', () => isDragging = false);
+      window.addEventListener('touchmove', e => {
+        if (isDragging && e.touches.length === 1) {
+          rotY += (e.touches[0].clientX - prevX) * 0.01;
+          rotX += (e.touches[0].clientY - prevY) * 0.01;
+          prevX = e.touches[0].clientX;
+          prevY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!isDragging) rotY += 0.004;
+        rootGroup.rotation.y = THREE.MathUtils.lerp(rootGroup.rotation.y, rotY, 0.08);
+        rootGroup.rotation.x = THREE.MathUtils.lerp(rootGroup.rotation.x, rotX, 0.08);
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+    }
+
+    window.selectedShade = 'B1 (Hollywood Bleach)';
+    window.selectedShape = 'Hollywood Square';
+
+    window.updateToothShade = function(btn, hexColor, shadeName) {
+      document.querySelectorAll('.shade-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      window.selectedShade = shadeName;
+      document.getElementById('current-shade-tag').textContent = 'SHADE: ' + shadeName.toUpperCase();
+      if (toothMaterial) {
+        toothMaterial.color.set(hexColor);
+      }
+      updateBlueprintText();
+    };
+
+    window.updateToothShape = function(card, shapeName) {
+      document.querySelectorAll('.shape-card-btn').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      window.selectedShape = shapeName;
+      updateBlueprintText();
+    };
+
+    function updateBlueprintText() {
+      document.getElementById('blueprint-details').textContent = 
+        `Shade: ${window.selectedShade} • Style: ${window.selectedShape} • Material: E-Max German Ceramic`;
+    }
+
+    window.saveBlueprintAndBook = function() {
+      const spec = {
+        shade: window.selectedShade,
+        shape: window.selectedShape,
+        timestamp: new Date().toISOString()
+      };
+      localStorage.setItem('smilecare_user_blueprint', JSON.stringify(spec));
+      window.location.href = 'booking.html?treatment=' + encodeURIComponent('Veneers (' + window.selectedShade + ')');
+    };
+
+    window.addEventListener('load', initStudio3D);
+  </script>
+</body>
+</html>

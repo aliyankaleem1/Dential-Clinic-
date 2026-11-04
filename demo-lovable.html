@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA 3D • Next-Gen Maxillofacial &amp; Robotic Dentistry</title>
+  <meta name="description" content="Cinematic 3D dental hospital experience. Interactive 3D tooth anatomy, robotic implantology, and zero-pain Swiss dentistry." />
+
+  <!-- Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Lovable Obsidian 3D Clinical Stylesheet -->
+  <link rel="stylesheet" href="css/lovable-demo.css" />
+
+  <!-- Three.js -->
+  <script src="vendor/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Demo Switcher Ribbon -->
+  <div class="top-ribbon">
+    <div class="ribbon-tag">
+      <i class="fa fa-sparkles"></i> <strong>AURA LOVABLE 3D</strong> — CINEMATIC MEDICAL EXPERIENCE
+    </div>
+    <div class="ribbon-nav">
+      <a href="/" class="ribbon-pill"><i class="fa fa-arrow-left"></i> Classic Demo</a>
+      <a href="/smile-studio" class="ribbon-pill"><i class="fa fa-cube"></i> Smile Studio</a>
+      <a href="/symptom-checker" class="ribbon-pill"><i class="fa fa-stethoscope"></i> Symptom Triage</a>
+      <a href="/admin" class="ribbon-pill"><i class="fa fa-chart-line"></i> Admin Portal</a>
+    </div>
+  </div>
+
+  <!-- Floating Glass Navbar -->
+  <nav class="lovable-nav">
+    <a href="#" class="nav-brand">
+      <div class="brand-gem">
+        <i class="fa fa-tooth"></i>
+      </div>
+      <div>AURA<span>3D</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#hero-3d">3D Studio</a></li>
+      <li><a href="#tooth-map">Interactive Jaw Map</a></li>
+      <li><a href="#bento-tech">Precision Tech</a></li>
+      <li><a href="#smile-slider">Smile Simulator</a></li>
+      <li><a href="#booking-dock">Express Booking</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="live-badge">
+        <span class="live-dot"></span> 4 Operating Suites Live
+      </div>
+      <a href="#booking-dock" class="btn-glow">
+        <i class="fa fa-bolt"></i> Instant Visit
+      </a>
+    </div>
+  </nav>
+
+  <!-- ========================================================
+       HERO: 3D DENTAL CINEMATIC STUDIO
+       ======================================================== -->
+  <section class="hero-stage" id="hero-3d">
+    <div class="container">
+      <div class="hero-layout">
+
+        <!-- Left: Punchy Headline & Fast CTA -->
+        <div class="hero-punch">
+          <div class="glow-pill">
+            <i class="fa fa-shield-halved"></i> SWISS DENTAL STANDARDS • ZERO-PAIN
+          </div>
+
+          <h1 class="hero-headline">
+            Dentistry Re-Imagined In <span class="gradient-glow">Interactive 3D.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            CBCT guided robotic implants, 810nm cold diode laser sculpting, and Swiss porcelain veneers engineered with zero discomfort.
+          </p>
+
+          <div class="hero-cta-bar">
+            <a href="#booking-dock" class="btn-glow">
+              <i class="fa fa-calendar-check"></i> Book VIP Suite
+            </a>
+            <a href="#tooth-map" class="btn-glass">
+              <i class="fa fa-network-wired"></i> Inspect Tooth Map
+            </a>
+          </div>
+
+          <!-- Micro Metrics Strip -->
+          <div class="hero-micro-metrics">
+            <div class="micro-stat">
+              <h4>99.8<span>%</span></h4>
+              <p>Tooth Preservation</p>
+            </div>
+            <div class="micro-stat">
+              <h4>15<span>-Yr</span></h4>
+              <p>Titanium Warranty</p>
+            </div>
+            <div class="micro-stat">
+              <h4>0.0<span>mm</span></h4>
+              <p>Surgical Margin</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: 3D Interactive Viewport -->
+        <div class="viewport-frame">
+          <div class="viewport-head">
+            <div class="viewport-tabs">
+              <button class="tab-pill active" data-mode="natural">
+                <i class="fa fa-tooth"></i> Anatomy
+              </button>
+              <button class="tab-pill" data-mode="xray">
+                <i class="fa fa-x-ray"></i> X-Ray Pulp
+              </button>
+              <button class="tab-pill" data-mode="implant">
+                <i class="fa fa-screwdriver-wrench"></i> 3D Implant
+              </button>
+              <button class="tab-pill" data-mode="whitening">
+                <i class="fa fa-wand-magic-sparkles"></i> VITA Shade
+              </button>
+            </div>
+
+            <div class="live-badge" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;">
+              <span class="live-dot"></span> 60 FPS
+            </div>
+          </div>
+
+          <!-- WebGL Canvas Container -->
+          <div class="canvas-scene" id="lovableCanvas">
+            <!-- Three.js scene mounted here -->
+          </div>
+
+          <!-- Floating Camera Presets Dock -->
+          <div class="floating-angle-dock">
+            <button class="angle-btn" id="btnPresetCrown" title="Focus Crown">
+              <i class="fa fa-crown"></i>
+            </button>
+            <button class="angle-btn" id="btnPresetRoot" title="Focus Root Apex">
+              <i class="fa fa-crosshairs"></i>
+            </button>
+            <button class="angle-btn" id="btnPresetReset" title="Reset View">
+              <i class="fa fa-rotate-right"></i>
+            </button>
+          </div>
+
+          <!-- Floating Telemetry Badge -->
+          <div class="floating-telemetry-badge">
+            <div class="telemetry-tag">
+              <i class="fa fa-wave-square"></i> Real-time Telemetry
+            </div>
+            <div class="telemetry-val" id="telVal">
+              Enamel Hardness: 96.2% Hydroxyapatite
+            </div>
+          </div>
+
+          <!-- VITA Shade Selector Bar -->
+          <div class="shade-strip" id="shadeStrip">
+            <span style="font-size: 0.78rem; font-weight: 700; color: var(--cyan-neon);">
+              <i class="fa fa-palette"></i> VITA Enamel:
+            </span>
+            <div class="shade-swatches">
+              <button class="shade-swatch active" data-shade="OM1">
+                <span class="color-dot" style="background: #ffffff;"></span> OM1 Bleach
+              </button>
+              <button class="shade-swatch" data-shade="OM3">
+                <span class="color-dot" style="background: #f8f9fa;"></span> OM3 White
+              </button>
+              <button class="shade-swatch" data-shade="B1">
+                <span class="color-dot" style="background: #f4f7fa;"></span> B1 Pearl
+              </button>
+              <button class="shade-swatch" data-shade="A1">
+                <span class="color-dot" style="background: #eff2ea;"></span> A1 Natural
+              </button>
+              <button class="shade-swatch" data-shade="A3">
+                <span class="color-dot" style="background: #dbd1ad;"></span> A3 Stained
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       INTERACTIVE JAW ARCH MAP (ODONTOGRAM)
+       ======================================================== -->
+  <section class="section-gap" id="tooth-map" style="background: rgba(0,0,0,0.25);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-label"><i class="fa fa-network-wired"></i> Interactive Odontogram</span>
+        <h2 class="section-heading">Tap Any Tooth to Inspect Diagnostics</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          Select a dental location to instantly transform the 3D model, angle, and surgical protocol.
+        </p>
+      </div>
+
+      <div class="odontogram-box">
+        <!-- Arch Selector Strip -->
+        <div class="arch-teeth-strip">
+          <button class="tooth-arch-btn active" data-tooth="molar-implant">
+            <i class="fa fa-screwdriver-wrench"></i>
+            <span>#19 Molar</span>
+            <span>Titanium Implant</span>
+          </button>
+
+          <button class="tooth-arch-btn" data-tooth="incisor-veneer">
+            <i class="fa fa-gem"></i>
+            <span>#8 Incisor</span>
+            <span>Swiss Veneer</span>
+          </button>
+
+          <button class="tooth-arch-btn" data-tooth="endodontic-root">
+            <i class="fa fa-microscope"></i>
+            <span>#14 Molar</span>
+            <span>Micro-Endo</span>
+          </button>
+
+          <button class="tooth-arch-btn" data-tooth="laser-whitening">
+            <i class="fa fa-wand-magic-sparkles"></i>
+            <span>#11 Canine</span>
+            <span>Cold Laser</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Outcome Card -->
+        <div class="arch-detail-card">
+          <div class="arch-detail-content">
+            <span class="bento-badge" id="archBadge">SURGICAL IMPLANTOLOGY</span>
+            <h3 id="archTitle">Tooth #19 • 3D Guided Titanium Fixture</h3>
+            <p id="archDesc">
+              Missing lower molar restored with a Grade-5 titanium fixture and custom screw-retained monolithic zirconia crown. Zero bone loss, instant chewing stability.
+            </p>
+            <div class="arch-metric-pills">
+              <span class="arch-pill" id="archP1" style="color: var(--cyan-neon);"><i class="fa fa-bolt"></i> 20-Min Keyhole</span>
+              <span class="arch-pill" id="archP2" style="color: var(--mint-bio);"><i class="fa fa-check"></i> 15-Yr Warranty</span>
+              <span class="arch-pill" id="archP3"><i class="fa fa-shield"></i> 0 Stitches</span>
+            </div>
+          </div>
+
+          <div style="text-align: right;">
+            <a href="#booking-dock" class="btn-glow" style="display: inline-flex;">
+              <i class="fa fa-calendar-plus"></i> Book This Treatment
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SIGNATURE BENTO GRID: PRECISION TECH SHOWCASE
+       ======================================================== -->
+  <section class="section-gap" id="bento-tech">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-label"><i class="fa fa-cubes"></i> Medical Robotics</span>
+        <h2 class="section-heading">Surgical Precision. Zero Compromise.</h2>
+      </div>
+
+      <div class="bento-grid">
+
+        <!-- Bento 1: Large (Span 2) -->
+        <div class="bento-box span-2">
+          <div>
+            <span class="bento-badge">3D CBCT ROBOTICS</span>
+            <h3>Sub-Millimeter Guided Navigation</h3>
+            <p>
+              Pre-operative 3D surgical templating maps bone density down to 0.05mm, placing titanium fixtures without incisions or scalpel sutures.
+            </p>
+          </div>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+            <span class="arch-pill"><i class="fa fa-crosshairs" style="color: var(--cyan-neon);"></i> Dynamic Tracking</span>
+            <span class="arch-pill"><i class="fa fa-radiation" style="color: var(--mint-bio);"></i> 90% Lower Dose</span>
+            <span class="arch-pill"><i class="fa fa-clock"></i> Same-Day Crown</span>
+          </div>
+        </div>
+
+        <!-- Bento 2: Zero Pain Radar Index -->
+        <div class="bento-box">
+          <div>
+            <span class="bento-badge">COMFORT PROTOCOL</span>
+            <h3>Zero-Pain Index</h3>
+            <p>Computer-assisted local anesthesia delivery ensures 100% painless care.</p>
+          </div>
+          <div class="radar-pulse-wrap">
+            <div class="radar-circle">
+              <span class="radar-number">0</span>
+            </div>
+          </div>
+          <div style="text-align: center; font-size: 0.78rem; color: var(--mint-bio); font-weight: 700;">
+            100% Sensation-Free Guarantee
+          </div>
+        </div>
+
+        <!-- Bento 3: Laser Whitening -->
+        <div class="bento-box">
+          <div>
+            <span class="bento-badge">COLD DIODE 810nm</span>
+            <h3>Photo-Activated Whitening</h3>
+            <p>Non-thermal wavelength lifts deep fluorosis and tetracycline stains in 45 minutes.</p>
+          </div>
+          <div style="margin-top: 1rem; padding: 1rem; background: rgba(0, 242, 254, 0.06); border-radius: var(--radius-md); border: 1px solid var(--glass-border);">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Shade Lift:</span>
+              <span style="color: var(--cyan-neon);">+8 VITA Tones</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-top: 0.4rem;">
+              <span>Sensitivity:</span>
+              <span style="color: var(--mint-bio);">0% Zero</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 4: Swiss Porcelain Veneers (Span 2) -->
+        <div class="bento-box span-2">
+          <div>
+            <span class="bento-badge">SWISS E.MAX PORCELAIN</span>
+            <h3>Handcrafted Micro-Thin Veneers</h3>
+            <p>
+              Individually layered 0.3mm ceramic laminates replicated with natural enamel opalescence and optical depth.
+            </p>
+          </div>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+            <span class="arch-pill"><i class="fa fa-gem" style="color: var(--cyan-neon);"></i> 0.3mm Prep</span>
+            <span class="arch-pill"><i class="fa fa-shield-halved" style="color: var(--mint-bio);"></i> Stain Impervious</span>
+            <span class="arch-pill"><i class="fa fa-award"></i> 20-Year Lifespan</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CINEMATIC BEFORE & AFTER SMILE SIMULATOR
+       ======================================================== -->
+  <section class="section-gap" id="smile-slider">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-label"><i class="fa fa-sliders"></i> Interactive Outcome</span>
+        <h2 class="section-heading">Drag to Inspect Smile Architecture</h2>
+      </div>
+
+      <div class="slider-cinematic-wrap" id="sliderCinematic">
+        <div class="slider-screen">
+          <!-- After (Pristine Veneers) -->
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80" alt="After Transformation" class="slider-base-img" />
+
+          <!-- Before (Stained/Misaligned) -->
+          <div class="slider-over-layer" id="sliderOverLayer">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=80" alt="Before Treatment" />
+          </div>
+
+          <!-- Scrubber Divider & Knob -->
+          <div class="slider-scrubber" id="sliderScrubber">
+            <div class="scrubber-handle">
+              <i class="fa fa-arrows-left-right"></i>
+            </div>
+          </div>
+
+          <div class="tag-overlay-left">Pre-Treatment (Shade A3.5)</div>
+          <div class="tag-overlay-right">Swiss E.max Veneers (OM1)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       EXPRESS 30-SECOND VIP BOOKING DOCK
+       ======================================================== -->
+  <section class="section-gap" id="booking-dock">
+    <div class="container">
+      <div class="booking-dock-box">
+        <div class="section-title-wrap" style="margin-bottom: 1.5rem;">
+          <span class="section-label"><i class="fa fa-bolt"></i> Instant Confirmation</span>
+          <h2 class="section-heading" style="font-size: 2.2rem;">Reserve Your Clinical Suite</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Direct sync with hospital operating theater schedules. Confirmed in 30 seconds.
+          </p>
+        </div>
+
+        <form id="expressBookingForm">
+          <div class="dock-form-grid">
+            <div class="dock-field">
+              <label><i class="fa fa-user"></i> Full Name</label>
+              <input type="text" id="dockName" class="dock-input" placeholder="e.g. Tariq Mehmood" required />
+            </div>
+
+            <div class="dock-field">
+              <label><i class="fa fa-phone"></i> Mobile / WhatsApp</label>
+              <input type="tel" id="dockPhone" class="dock-input" placeholder="+92 300 1234567" required />
+            </div>
+
+            <div class="dock-field">
+              <label><i class="fa fa-user-doctor"></i> Specialist</label>
+              <select id="dockDoctor" class="dock-input">
+                <option value="Dr. Ahmed Khan">Dr. Ahmed Khan (Implantologist)</option>
+                <option value="Dr. Elena Rostova">Dr. Elena Rostova (Aesthetic Prosthodontics)</option>
+                <option value="Dr. Sara Malik">Dr. Sara Malik (Invisalign Orthodontics)</option>
+              </select>
+            </div>
+
+            <div class="dock-field">
+              <label><i class="fa fa-tooth"></i> Treatment Suite</label>
+              <select id="dockTreatment" class="dock-input">
+                <option value="3D Guided Titanium Implant ($1,250)">3D Guided Titanium Implant ($1,250)</option>
+                <option value="Swiss E.max Porcelain Veneers ($480)">Swiss E.max Porcelain Veneers ($480)</option>
+                <option value="810nm Cold Laser Whitening ($290)">810nm Cold Laser Whitening ($290)</option>
+                <option value="Invisalign SmartTrack Aligners ($2,400)">Invisalign SmartTrack Aligners ($2,400)</option>
+                <option value="Microscopic Root Canal Therapy ($380)">Microscopic Root Canal Therapy ($380)</option>
+              </select>
+            </div>
+
+            <div class="dock-field">
+              <label><i class="fa fa-calendar-days"></i> Preferred Date</label>
+              <input type="date" id="dockDate" class="dock-input" required />
+            </div>
+
+            <div class="dock-field">
+              <label><i class="fa fa-clock"></i> Time Window</label>
+              <select id="dockTime" class="dock-input">
+                <option value="10:30 AM (Suite 1)">10:30 AM (Morning VIP)</option>
+                <option value="02:15 PM (Suite 2)">02:15 PM (Afternoon VIP)</option>
+                <option value="05:00 PM (Suite 3)">05:00 PM (Evening VIP)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-dock-submit">
+              <i class="fa fa-check-double"></i> Confirm VIP Reservation Instantly
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       MODAL VOUCHER POPUP
+       ======================================================== -->
+  <div class="modal-dimmer" id="modalDimmer">
+    <div class="voucher-popup">
+      <div style="font-size: 2.2rem; color: var(--mint-bio); margin-bottom: 0.5rem;">
+        <i class="fa fa-circle-check"></i>
+      </div>
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem;">VIP Suite Reserved</h3>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.35rem;">
+        Your appointment is locked in the operating schedule:
+      </p>
+
+      <div class="voucher-code-chip" id="voucherCode">SC-99841</div>
+
+      <div style="background: rgba(0,0,0,0.5); border-radius: var(--radius-md); padding: 1rem; text-align: left; font-size: 0.82rem; margin-bottom: 1.5rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;">
+          <span style="color:var(--text-muted);">Patient:</span>
+          <strong id="vName">Tariq Mehmood</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;">
+          <span style="color:var(--text-muted);">Clinician:</span>
+          <strong id="vDoc">Dr. Ahmed Khan</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="color:var(--text-muted);">Suite:</span>
+          <strong id="vSlot">Tomorrow, 10:30 AM</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="btn-glow" style="flex:1; justify-content:center;" onclick="closeModal()">
+          Done
+        </button>
+        <a href="/admin" class="btn-glass" style="flex:1; justify-content:center;">
+          Admin View
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minimalist Footer -->
+  <footer class="lovable-footer">
+    <div class="container">
+      <div class="brand-gem" style="margin: 0 auto 1rem; width: 44px; height: 44px;">
+        <i class="fa fa-tooth"></i>
+      </div>
+      <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;">AURA 3D MAXILLOFACIAL</h3>
+      <p class="footer-copy" style="margin-top: 0.5rem;">
+        Zurich &bull; London &bull; Lahore &bull; ISO 13485:2016 Surgical Robotics Certified
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       INTERACTIVE APP LOGIC
+       ======================================================== -->
+  <script type="module">
+    import { LovableToothEngine } from './js/lovable-3d-tooth.js';
+    import { ClinicStore } from './js/master.js';
+
+    window.ClinicStore = ClinicStore;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize 3D Tooth Engine
+      let engine = null;
+      try {
+        engine = new LovableToothEngine('lovableCanvas', {
+          mode: 'natural',
+          shade: 'OM1',
+          autoRotate: true
+        });
+      } catch (e) {
+        console.error('3D Engine failed:', e);
+      }
+
+      // 2. Tab Mode Switching
+      const tabs = document.querySelectorAll('.tab-pill');
+      const shadeStrip = document.getElementById('shadeStrip');
+      const telVal = document.getElementById('telVal');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const mode = tab.dataset.mode;
+          if (engine) engine.setMode(mode);
+
+          if (mode === 'whitening') {
+            shadeStrip.classList.add('visible');
+          } else {
+            shadeStrip.classList.remove('visible');
+          }
+
+          if (mode === 'natural') {
+            telVal.textContent = 'Enamel Hardness: 96.2% Hydroxyapatite';
+          } else if (mode === 'xray') {
+            telVal.textContent = 'Internal Nerve Canal: Clear & Vital (100%)';
+          } else if (mode === 'implant') {
+            telVal.textContent = 'Titanium Stability: ISQ 84 (Immediate Loading)';
+          } else if (mode === 'whitening') {
+            telVal.textContent = 'Surface Optical Polish: VITA OM1 Ultra-Luminous';
+          }
+        });
+      });
+
+      // 3. VITA Shade Swatches
+      const swatches = document.querySelectorAll('.shade-swatch');
+      swatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+          swatches.forEach(s => s.classList.remove('active'));
+          swatch.classList.add('active');
+          const shade = swatch.dataset.shade;
+          if (engine) engine.setShade(shade);
+        });
+      });
+
+      // 4. Camera Angle Presets
+      document.getElementById('btnPresetCrown')?.addEventListener('click', () => {
+        if (engine) engine.focusPreset('crown');
+      });
+      document.getElementById('btnPresetRoot')?.addEventListener('click', () => {
+        if (engine) engine.focusPreset('root');
+      });
+      document.getElementById('btnPresetReset')?.addEventListener('click', () => {
+        if (engine) engine.reset();
+      });
+
+      // 5. Interactive Odontogram (Tooth Arch Selector)
+      const archButtons = document.querySelectorAll('.tooth-arch-btn');
+      const archBadge = document.getElementById('archBadge');
+      const archTitle = document.getElementById('archTitle');
+      const archDesc = document.getElementById('archDesc');
+      const archP1 = document.getElementById('archP1');
+      const archP2 = document.getElementById('archP2');
+      const archP3 = document.getElementById('archP3');
+
+      const toothData = {
+        'molar-implant': {
+          badge: 'SURGICAL IMPLANTOLOGY',
+          title: 'Tooth #19 • 3D Guided Titanium Fixture',
+          desc: 'Missing lower molar restored with Grade-5 titanium fixture and custom screw-retained monolithic zirconia crown. Zero bone resorption.',
+          p1: '<i class="fa fa-bolt"></i> 20-Min Keyhole',
+          p2: '<i class="fa fa-check"></i> 15-Yr Warranty',
+          p3: '<i class="fa fa-shield"></i> 0 Stitches',
+          mode: 'implant'
+        },
+        'incisor-veneer': {
+          badge: 'SWISS AESTHETIC VENEER',
+          title: 'Tooth #8 • Handcrafted Porcelain Laminate',
+          desc: 'Front maxillary central incisor restored with ultra-thin 0.3mm Swiss E.max ceramic. Perfect optical light refraction matching natural enamel.',
+          p1: '<i class="fa fa-gem"></i> 0.3mm Ultra-Thin',
+          p2: '<i class="fa fa-palette"></i> VITA OM1 Bleach',
+          p3: '<i class="fa fa-sparkles"></i> 2 Visits',
+          mode: 'whitening'
+        },
+        'endodontic-root': {
+          badge: 'MICROSCOPIC ENDODONTICS',
+          title: 'Tooth #14 • 3D Warm Vertical Root Preservation',
+          desc: 'Preserved under Zeiss 25x magnification. Automated rotary titanium canal debridement with bio-ceramic seal. 99.8% tooth salvage rate.',
+          p1: '<i class="fa fa-microscope"></i> Zeiss 25x Optics',
+          p2: '<i class="fa fa-heart-pulse"></i> 0 Pain Protocol',
+          p3: '<i class="fa fa-lock"></i> Bio-Ceramic Seal',
+          mode: 'xray'
+        },
+        'laser-whitening': {
+          badge: 'COLD DIODE WHITENING',
+          title: 'Tooth #11 • Cold Laser Canine Enamel Lift',
+          desc: '810nm cold diode beam photo-activates hydrogen peroxide molecules, lifting deep tetracycline discoloration without thermal pulp stress.',
+          p1: '<i class="fa fa-bolt-lightning"></i> 45-Min Single Visit',
+          p2: '<i class="fa fa-sparkles"></i> +8 Shades Lighter',
+          p3: '<i class="fa fa-shield"></i> 0 Sensitivity',
+          mode: 'whitening'
+        }
+      };
+
+      archButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          archButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const key = btn.dataset.tooth;
+          const info = toothData[key];
+          if (info) {
+            archBadge.textContent = info.badge;
+            archTitle.textContent = info.title;
+            archDesc.textContent = info.desc;
+            archP1.innerHTML = info.p1;
+            archP2.innerHTML = info.p2;
+            archP3.innerHTML = info.p3;
+
+            // Trigger 3D view change
+            if (engine) {
+              engine.setMode(info.mode);
+              tabs.forEach(t => t.classList.toggle('active', t.dataset.mode === info.mode));
+            }
+          }
+        });
+      });
+
+      // 6. Before / After Scrubber
+      const wrap = document.getElementById('sliderCinematic');
+      const over = document.getElementById('sliderOverLayer');
+      const scrub = document.getElementById('sliderScrubber');
+
+      if (wrap && over && scrub) {
+        let sliding = false;
+        const updateSlider = (clientX) => {
+          const rect = wrap.getBoundingClientRect();
+          let pos = ((clientX - rect.left) / rect.width) * 100;
+          pos = Math.max(0, Math.min(100, pos));
+          over.style.width = pos + '%';
+          scrub.style.left = pos + '%';
+        };
+
+        scrub.addEventListener('mousedown', () => sliding = true);
+        wrap.addEventListener('mousedown', (e) => {
+          sliding = true;
+          updateSlider(e.clientX);
+        });
+        window.addEventListener('mouseup', () => sliding = false);
+        window.addEventListener('mousemove', (e) => {
+          if (sliding) updateSlider(e.clientX);
+        });
+
+        // Touch
+        scrub.addEventListener('touchstart', () => sliding = true, { passive: true });
+        wrap.addEventListener('touchstart', (e) => {
+          if (e.touches.length === 1) {
+            sliding = true;
+            updateSlider(e.touches[0].clientX);
+          }
+        }, { passive: true });
+        window.addEventListener('touchend', () => sliding = false);
+        window.addEventListener('touchmove', (e) => {
+          if (sliding && e.touches.length === 1) {
+            updateSlider(e.touches[0].clientX);
+          }
+        }, { passive: true });
+      }
+
+      // 7. Express 30-Second Booking
+      const bookingForm = document.getElementById('expressBookingForm');
+      const dimmer = document.getElementById('modalDimmer');
+
+      // Default date to tomorrow
+      const d = new Date();
+      d.setDate(d.getDate() + 1);
+      const dateEl = document.getElementById('dockDate');
+      if (dateEl) {
+        dateEl.value = d.toISOString().split('T')[0];
+        dateEl.min = new Date().toISOString().split('T')[0];
+      }
+
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('dockName').value;
+        const phone = document.getElementById('dockPhone').value;
+        const doctor = document.getElementById('dockDoctor').value;
+        const treatment = document.getElementById('dockTreatment').value;
+        const date = document.getElementById('dockDate').value;
+        const timeSlot = document.getElementById('dockTime').value;
+
+        const code = 'SC-' + Math.floor(10000 + Math.random() * 90000);
+
+        if (window.ClinicStore) {
+          window.ClinicStore.addAppointment({
+            id: code,
+            name: name,
+            phone: phone,
+            doctor: doctor,
+            treatment: treatment,
+            date: date,
+            time: timeSlot,
+            status: 'Confirmed',
+            urgency: 'Normal',
+            notes: 'Express 3D Dock Reservation',
+            cost: treatment.includes('$') ? treatment.split('(')[1]?.replace(')', '') : '$480'
+          });
+        }
+
+        document.getElementById('voucherCode').textContent = code;
+        document.getElementById('vName').textContent = name;
+        document.getElementById('vDoc').textContent = doctor;
+        document.getElementById('vSlot').textContent = `${date}, ${timeSlot}`;
+
+        dimmer.classList.add('open');
+        bookingForm.reset();
+      });
+
+      window.closeModal = () => {
+        dimmer.classList.remove('open');
+      };
+    });
+  </script>
+</body>
+</html>

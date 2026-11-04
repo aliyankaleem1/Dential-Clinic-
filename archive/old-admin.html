@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinic Operations &amp; Doctor Admin Portal | SmileCare VIP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .admin-filter-pill {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
+      background: var(--surface-2);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .admin-filter-pill.active {
+      background: linear-gradient(135deg, var(--accent-uv), var(--accent-cyan));
+      color: #040714;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 2px 10px var(--glow-cyan);
+    }
+  </style>
+</head>
+<body style="background: var(--bg);">
+
+  <!-- Fixed Top Header -->
+  <header class="site-header">
+    <div class="header-container" style="max-width: 1550px;">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="index.html" class="header-logo">
+          <div class="logo-badge">🦷</div>
+          <div>
+            <span style="font-size: 1.25rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">STAFF OPS</strong></span>
+            <span style="font-size: 0.65rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Reception &amp; Surgical Suites</span>
+          </div>
+        </a>
+        <span style="background: rgba(16,185,129,0.15); color: #10b981; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;">
+          ● LIVE HOSPITAL DESK ACTIVE
+        </span>
+      </div>
+
+      <div class="header-actions">
+        <a href="/spa-admin" class="btn-primary" style="background: linear-gradient(135deg, #0d9488, #0f766e); padding: 8px 18px; font-size: 0.85rem; border-color: #0d9488;">
+          <i class="fa fa-sparkles"></i> Aura Dental Spa Admin
+        </a>
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+        <button class="btn-primary" style="padding: 8px 18px; font-size: 0.85rem;" onclick="openWalkinModal();">
+          <i class="fa fa-plus"></i> New Patient Walk-In
+        </button>
+        <a href="index.html" class="btn-outline" style="padding: 8px 18px; font-size: 0.85rem;">
+          <i class="fa fa-arrow-left"></i> View Patient Website
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Body -->
+  <main class="admin-wrapper" style="max-width: 1550px; margin: 0 auto;">
+    
+    <!-- KPI Row -->
+    <div class="admin-stats-grid">
+      <div class="admin-stat-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <p>TODAY'S APPOINTMENTS</p>
+          <i class="fa fa-calendar-check" style="color: var(--accent-cyan); font-size: 1.2rem;"></i>
+        </div>
+        <h3 id="stat-total-count">5</h3>
+        <span style="font-size: 0.78rem; color: var(--accent-emerald);">● All 3 Surgical Suites booked</span>
+      </div>
+
+      <div class="admin-stat-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <p>PATIENTS IN-CHAIR NOW</p>
+          <i class="fa fa-user-doctor" style="color: var(--accent-blue); font-size: 1.2rem;"></i>
+        </div>
+        <h3 id="stat-inchair-count" style="color: var(--accent-blue);">1</h3>
+        <span style="font-size: 0.78rem; color: var(--text-muted);">Suite 2: Dr. Usman (Implant)</span>
+      </div>
+
+      <div class="admin-stat-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <p>EMERGENCY TRIAGE LEADS</p>
+          <i class="fa fa-heart-pulse" style="color: var(--accent-rose); font-size: 1.2rem;"></i>
+        </div>
+        <h3 id="stat-emergency-count" style="color: var(--accent-rose);">1</h3>
+        <span style="font-size: 0.78rem; color: var(--accent-rose);">● Tooth #14 Acute Pulpitis lead</span>
+      </div>
+
+      <div class="admin-stat-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <p>ESTIMATED REVENUE TODAY</p>
+          <i class="fa fa-wallet" style="color: var(--accent-emerald); font-size: 1.2rem;"></i>
+        </div>
+        <h3 id="stat-revenue" style="color: var(--accent-emerald);">$6,880</h3>
+        <span style="font-size: 0.78rem; color: var(--text-muted);">+18% vs Yesterday</span>
+      </div>
+    </div>
+
+    <!-- Active Doctor Suites Panel -->
+    <div style="margin: 0 2.5rem 2rem; background: var(--surface); border: 1px solid var(--card-border); border-radius: 20px; padding: 1.5rem 2rem;">
+      <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem;">
+        Active Surgical Suites Status:
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+        <div style="background: var(--surface-2); padding: 1rem 1.2rem; border-radius: 14px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Suite 1 &bull; Dr. Ahmed Khan</strong>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">Aesthetic CAD/CAM Veneers</span>
+          </div>
+          <span style="background: rgba(16,185,129,0.15); color: #10b981; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;">AVAILABLE</span>
+        </div>
+
+        <div style="background: var(--surface-2); padding: 1rem 1.2rem; border-radius: 14px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Suite 2 &bull; Dr. Usman Ali</strong>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">Titanium Implant Surgery</span>
+          </div>
+          <span style="background: rgba(0,245,212,0.15); color: #00f5d4; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;">IN-SURGERY</span>
+        </div>
+
+        <div style="background: var(--surface-2); padding: 1rem 1.2rem; border-radius: 14px; border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <strong style="display: block; font-size: 0.95rem;">Suite 3 &bull; Dr. Sara Malik</strong>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">3D Invisalign Scanning</span>
+          </div>
+          <span style="background: rgba(16,185,129,0.15); color: #10b981; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 800;">AVAILABLE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Appointments Table -->
+    <div class="admin-table-container">
+      <div class="admin-table-header">
+        <div>
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main);">Live Patient Queue &amp; VIP Bookings</h2>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 3px;">
+            Synchronized in real-time with online patient submissions from booking engine and triage.
+          </p>
+        </div>
+
+        <!-- Filter Chips & Search -->
+        <div style="display: flex; gap: 0.8rem; align-items: center;">
+          <input
+            id="admin-search"
+            type="text"
+            placeholder="Search patient, phone, doctor..."
+            oninput="renderAppointmentsTable();"
+            style="padding: 7px 14px; border-radius: 20px; border: 1px solid var(--card-border); background: var(--surface-2); color: var(--text-main); font-size: 0.85rem;"
+          />
+          <button class="admin-filter-pill active" onclick="setFilter('all', this)">All (Live)</button>
+          <button class="admin-filter-pill" onclick="setFilter('Today', this)">Today</button>
+          <button class="admin-filter-pill" onclick="setFilter('In-Chair', this)">In-Chair</button>
+          <button class="admin-filter-pill" onclick="setFilter('Emergency', this)">Emergency</button>
+        </div>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Patient Details</th>
+            <th>Treatment &amp; Blueprint Notes</th>
+            <th>Specialist</th>
+            <th>Slot &amp; Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="appointments-tbody">
+          <!-- Rendered dynamically via JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Walk-In Patient Modal -->
+  <div id="walkin-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center;">
+    <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; padding: 2.5rem; max-width: 520px; width: 90%; box-shadow: var(--shadow-card);">
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">
+        New Walk-In Patient Registration
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+        Directly assign an urgent or walk-in patient to an active suite.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.8rem;">
+        <input id="walkin-name" type="text" placeholder="Patient Full Name" style="padding: 0.85rem; border: 1px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.9rem;" />
+        <input id="walkin-phone" type="tel" placeholder="Phone Number" style="padding: 0.85rem; border: 1px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.9rem;" />
+        <select id="walkin-treatment" style="padding: 0.85rem; border: 1px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.9rem;">
+          <option>Porcelain Veneers (Cosmetic)</option>
+          <option>Dental Implants (Titanium)</option>
+          <option>Invisalign® Clear Aligners</option>
+          <option>Emergency Root Canal Relief</option>
+          <option>Laser Enamel Whitening</option>
+        </select>
+        <select id="walkin-doc" style="padding: 0.85rem; border: 1px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.9rem;">
+          <option>Dr. Ahmed Khan (Aesthetic &amp; Veneers)</option>
+          <option>Dr. Sara Malik (Invisalign &amp; Ortho)</option>
+          <option>Dr. Usman Ali (Surgeon &amp; Implants)</option>
+        </select>
+      </div>
+
+      <div style="display: flex; gap: 1rem;">
+        <button class="btn-primary" style="flex: 1; justify-content: center;" onclick="saveWalkinPatient();">
+          Save &amp; Check-In
+        </button>
+        <button class="btn-outline" style="flex: 1; justify-content: center;" onclick="closeWalkinModal();">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/master.js"></script>
+  <script type="module">
+    import { ClinicStore } from './js/master.js';
+
+    let currentFilter = 'all';
+
+    function renderAppointmentsTable() {
+      const tbody = document.getElementById('appointments-tbody');
+      if (!tbody) return;
+
+      const list = ClinicStore.getAppointments();
+      const searchQuery = (document.getElementById('admin-search')?.value || '').toLowerCase();
+
+      let filtered = list;
+      if (currentFilter === 'Today') {
+        filtered = filtered.filter(a => a.date === 'Today');
+      } else if (currentFilter === 'In-Chair') {
+        filtered = filtered.filter(a => a.status === 'In-Chair');
+      } else if (currentFilter === 'Emergency') {
+        filtered = filtered.filter(a => a.urgency === 'Emergency' || a.treatment.toLowerCase().includes('emergency'));
+      }
+
+      if (searchQuery) {
+        filtered = filtered.filter(a => 
+          a.name.toLowerCase().includes(searchQuery) ||
+          a.phone.includes(searchQuery) ||
+          a.doctor.toLowerCase().includes(searchQuery) ||
+          a.treatment.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      // Update KPI counters
+      document.getElementById('stat-total-count').textContent = list.length;
+      document.getElementById('stat-inchair-count').textContent = list.filter(a => a.status === 'In-Chair').length;
+      document.getElementById('stat-emergency-count').textContent = list.filter(a => a.urgency === 'Emergency').length;
+
+      tbody.innerHTML = '';
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">No appointments found matching this filter.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(apt => {
+        let statusBadgeClass = 'status-confirmed';
+        if (apt.status === 'In-Chair') statusBadgeClass = 'status-inchair';
+        if (apt.status === 'Pending') statusBadgeClass = 'status-pending';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong style="color: var(--accent-cyan); font-family: monospace;">${apt.id}</strong></td>
+          <td>
+            <strong style="display: block; font-size: 0.95rem;">${apt.name}</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">${apt.phone}</span>
+          </td>
+          <td>
+            <strong>${apt.treatment}</strong>
+            <span style="display: block; font-size: 0.78rem; color: var(--text-muted);">${apt.notes || 'No special notes'}</span>
+          </td>
+          <td><span style="font-weight: 700;">${apt.doctor}</span></td>
+          <td>
+            <strong>${apt.time}</strong>
+            <span style="display: block; font-size: 0.78rem; color: var(--text-muted);">${apt.date}</span>
+          </td>
+          <td>
+            <span class="status-badge ${statusBadgeClass}">
+              ● ${apt.status}
+            </span>
+          </td>
+          <td>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn-action-wa" onclick="sendWhatsAppMessage('${apt.phone}', '${apt.name}', '${apt.doctor}', '${apt.time}')" title="Send WhatsApp Confirmation">
+                <i class="fab fa-whatsapp"></i> Chat
+              </button>
+              <button class="btn-outline" style="padding: 4px 10px; font-size: 0.75rem; border-radius: 14px;" onclick="cycleStatus('${apt.id}')">
+                Status
+              </button>
+              <button class="btn-outline" style="padding: 4px 8px; font-size: 0.75rem; border-radius: 14px; color: var(--accent-rose);" onclick="removeAppointment('${apt.id}')" title="Delete">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    window.renderAppointmentsTable = renderAppointmentsTable;
+
+    window.setFilter = function(filterVal, btn) {
+      document.querySelectorAll('.admin-filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = filterVal;
+      renderAppointmentsTable();
+    };
+
+    window.cycleStatus = function(id) {
+      const list = ClinicStore.getAppointments();
+      const item = list.find(a => a.id === id);
+      if (item) {
+        if (item.status === 'Confirmed') ClinicStore.updateStatus(id, 'In-Chair');
+        else if (item.status === 'In-Chair') ClinicStore.updateStatus(id, 'Completed');
+        else ClinicStore.updateStatus(id, 'Confirmed');
+        renderAppointmentsTable();
+      }
+    };
+
+    window.removeAppointment = function(id) {
+      if (confirm('Delete this appointment record?')) {
+        ClinicStore.deleteAppointment(id);
+        renderAppointmentsTable();
+      }
+    };
+
+    window.sendWhatsAppMessage = function(phone, name, doctor, time) {
+      const cleanPhone = phone.replace(/[^0-9]/g, '');
+      const msg = encodeURIComponent(`Hello ${name}, this is SmileCare VIP Clinic. Your private suite with ${doctor} is confirmed for ${time}. Our valet team will be ready for your arrival.`);
+      window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
+    };
+
+    window.openWalkinModal = function() {
+      document.getElementById('walkin-modal').style.display = 'flex';
+    };
+
+    window.closeWalkinModal = function() {
+      document.getElementById('walkin-modal').style.display = 'none';
+    };
+
+    window.saveWalkinPatient = function() {
+      const name = document.getElementById('walkin-name').value.trim() || 'Walk-In Patient';
+      const phone = document.getElementById('walkin-phone').value.trim() || '+92 300 0000000';
+      const treatment = document.getElementById('walkin-treatment').value;
+      const doctor = document.getElementById('walkin-doc').value;
+
+      ClinicStore.addAppointment({
+        name: name,
+        phone: phone,
+        treatment: treatment,
+        doctor: doctor,
+        date: "Today",
+        time: "Just Now",
+        status: "In-Chair",
+        urgency: "Normal",
+        notes: "Direct Walk-In Arrival at Reception",
+        cost: "$450"
+      });
+
+      closeWalkinModal();
+      renderAppointmentsTable();
+    };
+
+    window.addEventListener('load', renderAppointmentsTable);
+  </script>
+</body>
+</html>
+

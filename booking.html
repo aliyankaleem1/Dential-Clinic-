@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIP Online Booking &amp; Digital Pass | SmileCare VIP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .digital-vip-pass {
+      background: linear-gradient(135deg, #0d1527 0%, #1e293b 100%);
+      border: 2px solid var(--accent-cyan);
+      border-radius: 24px;
+      padding: 2.5rem;
+      max-width: 520px;
+      margin: 2rem auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px var(--glow-cyan);
+      position: relative;
+      overflow: hidden;
+    }
+    .pass-notch-l, .pass-notch-r {
+      position: absolute;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      background: var(--bg);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .pass-notch-l { left: -14px; }
+    .pass-notch-r { right: -14px; }
+  </style>
+</head>
+<body>
+
+  <!-- Clinic Top Announcement Bar -->
+  <div class="clinic-top-bar">
+    <div class="top-left">
+      <span><i class="fa fa-hospital" style="color: var(--accent-cyan); margin-right: 6px;"></i> <strong>Flagship Hospital:</strong> Gulberg III &bull; <strong>Boutique:</strong> DHA Phase 5, Lahore</span>
+      <span>&bull;</span>
+      <span><i class="fa fa-clock" style="color: var(--accent-uv); margin-right: 6px;"></i> Mon &ndash; Sat: 09:00 AM &ndash; 09:00 PM</span>
+    </div>
+    <div class="top-right">
+      <span><i class="fa fa-shield-halved" style="color: var(--accent-cyan); margin-right: 6px;"></i> PMC Licensed &bull; ISO 9001:2015</span>
+      <span>&bull;</span>
+      <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> 24/7 Dental Trauma SOS: <strong>+92 300 1234567</strong>
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="logo-badge">🦷</div>
+        <div>
+          <span style="font-size: 1.35rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Laser Hospital &amp; Implants</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="treatments.html" class="nav-link">Treatments &amp; 3D</a></li>
+        <li><a href="smile-studio.html" class="nav-link">Smile Studio <span class="nav-badge-pill">3D</span></a></li>
+        <li><a href="symptom-checker.html" class="nav-link">Symptom Triage</a></li>
+        <li><a href="doctors.html" class="nav-link">Specialists</a></li>
+        <li><a href="gallery.html" class="nav-link">Transformations</a></li>
+        <li><a href="contact.html" class="nav-link">Clinics</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+        <a href="admin.html" class="btn-admin-portal"><i class="fa fa-lock"></i> Staff Portal</a>
+        <a href="booking.html" class="btn-header-book" style="background: linear-gradient(135deg, var(--accent-uv), var(--accent-cyan)); color: #040714; font-weight: 800;">
+          <i class="fa fa-calendar-check"></i> VIP Suite Active
+        </a>
+        <div class="nav-hamburger"><i class="fa fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="treatments.html" class="nav-link">🦷 Treatments &amp; 3D Simulator</a>
+    <a href="smile-studio.html" class="nav-link">✨ 3D Virtual Smile Studio</a>
+    <a href="symptom-checker.html" class="nav-link">🩺 3D Symptom Triage</a>
+    <a href="doctors.html" class="nav-link">👨‍⚕️ Our Dental Specialists</a>
+    <a href="gallery.html" class="nav-link">📸 Smile Transformations Vault</a>
+    <a href="contact.html" class="nav-link">📍 Branches &amp; Contact</a>
+    <a href="booking.html" class="nav-link active">📅 Online VIP Booking</a>
+    <a href="admin.html" class="nav-link" style="color: var(--accent-cyan);"><i class="fa fa-lock"></i> Staff Admin Portal</a>
+  </div>
+
+  <main class="page-container section-padding" style="padding-top: 50px;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <div class="tag-badge"><i class="fa fa-calendar-check"></i> Direct Suite Reservation</div>
+      <h1 class="section-title">Reserve Your <span>VIP Suite</span></h1>
+      <p class="section-desc" style="margin: 0 auto;">
+        Zero waiting queue. Select your preferred specialist, choose your live arrival slot, and receive an instant digital appointment pass.
+      </p>
+    </div>
+
+    <!-- Booking Form Card -->
+    <div id="booking-form-wrap" style="max-width: 850px; margin: 0 auto; background: var(--surface); border: 1px solid var(--card-border); border-radius: 28px; padding: 3rem; box-shadow: var(--shadow-card);">
+      
+      <!-- Step 1: Treatment -->
+      <div style="margin-bottom: 2rem;">
+        <label style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); display: block; margin-bottom: 0.8rem;">
+          1. Select Treatment / Service:
+        </label>
+        <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+          <button type="button" class="slot-pill active" data-treatment="Porcelain Veneers" onclick="setTreatment(this, 'Porcelain Veneers')">💎 Porcelain Veneers</button>
+          <button type="button" class="slot-pill" data-treatment="Dental Implants" onclick="setTreatment(this, 'Dental Implants')">🔩 Dental Implants</button>
+          <button type="button" class="slot-pill" data-treatment="Invisalign Aligners" onclick="setTreatment(this, 'Invisalign Aligners')">ðŸ˜ Invisalign® Aligners</button>
+          <button type="button" class="slot-pill" data-treatment="Laser Whitening" onclick="setTreatment(this, 'Laser Whitening')">✨ Laser Whitening</button>
+          <button type="button" class="slot-pill" data-treatment="Painless Root Canal" onclick="setTreatment(this, 'Painless Root Canal')">🦷 Painless Root Canal</button>
+          <button type="button" class="slot-pill" data-treatment="Emergency Care" onclick="setTreatment(this, 'Emergency Care')">ðŸš¨ Emergency Relief</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Doctor -->
+      <div style="margin-bottom: 2rem;">
+        <label style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); display: block; margin-bottom: 0.8rem;">
+          2. Assigned Specialist:
+        </label>
+        <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+          <button type="button" class="slot-pill active" data-doc="Dr. Ahmed Khan" onclick="setDoctor(this, 'Dr. Ahmed Khan')">ðŸ‘¨â€âš•ï¸ Dr. Ahmed Khan (Aesthetic &amp; Veneers)</button>
+          <button type="button" class="slot-pill" data-doc="Dr. Sara Malik" onclick="setDoctor(this, 'Dr. Sara Malik')">ðŸ‘©â€âš•ï¸ Dr. Sara Malik (Invisalign &amp; Ortho)</button>
+          <button type="button" class="slot-pill" data-doc="Dr. Usman Ali" onclick="setDoctor(this, 'Dr. Usman Ali')">ðŸ‘¨â€âš•ï¸ Dr. Usman Ali (Surgeon &amp; Implants)</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Day & Slot -->
+      <div style="margin-bottom: 2rem;">
+        <label style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); display: block; margin-bottom: 0.8rem;">
+          3. Select Arrival Date &amp; Available Slot:
+        </label>
+        <div style="display: flex; gap: 0.8rem; margin-bottom: 1rem; flex-wrap: wrap;">
+          <button type="button" class="slot-pill active" onclick="setDay(this, 'Today')">Today (Priority Slot)</button>
+          <button type="button" class="slot-pill" onclick="setDay(this, 'Tomorrow')">Tomorrow</button>
+          <button type="button" class="slot-pill" onclick="setDay(this, 'Friday')">Friday</button>
+          <button type="button" class="slot-pill" onclick="setDay(this, 'Saturday')">Saturday</button>
+        </div>
+
+        <div style="display: flex; gap: 0.7rem; flex-wrap: wrap;">
+          <button type="button" class="slot-pill active" onclick="setTime(this, '09:30 AM')">🌅 09:30 AM</button>
+          <button type="button" class="slot-pill" onclick="setTime(this, '11:00 AM')">🌅 11:00 AM</button>
+          <button type="button" class="slot-pill" onclick="setTime(this, '02:30 PM')">â˜€ï¸ 02:30 PM</button>
+          <button type="button" class="slot-pill" onclick="setTime(this, '04:45 PM')">â˜€ï¸ 04:45 PM</button>
+          <button type="button" class="slot-pill" onclick="setTime(this, '06:15 PM')">🌙 06:15 PM</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Patient Info -->
+      <div style="margin-bottom: 2.5rem;">
+        <label style="font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); display: block; margin-bottom: 0.8rem;">
+          4. Patient Information:
+        </label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <input id="input-name" type="text" placeholder="Your Full Name" required style="width: 100%; padding: 0.95rem; border: 1.5px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.92rem;" />
+          <input id="input-phone" type="tel" placeholder="WhatsApp Number (+92...)" required style="width: 100%; padding: 0.95rem; border: 1.5px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.92rem;" />
+        </div>
+        <input id="input-notes" type="text" placeholder="Special Requests or Dental Notes (Optional)" style="width: 100%; padding: 0.95rem; border: 1.5px solid var(--card-border); background: var(--surface-2); color: var(--text-main); border-radius: 12px; font-size: 0.92rem;" />
+      </div>
+
+      <button type="button" class="btn-primary" style="width: 100%; justify-content: center; font-size: 1.05rem;" onclick="processBookingSubmission();">
+        <i class="fa fa-qrcode"></i> Confirm VIP Reservation &amp; Generate Pass
+      </button>
+    </div>
+
+    <!-- DIGITAL VIP PASS RESULT (Shows after booking) -->
+    <div id="booking-pass-wrap" style="display: none;">
+      <div class="digital-vip-pass">
+        <div class="pass-notch-l"></div>
+        <div class="pass-notch-r"></div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 1.2rem; margin-bottom: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 36px; height: 36px; background: var(--accent-cyan); color: #060b14; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800;">🦷</div>
+            <div>
+              <strong style="color: #fff; font-size: 1.1rem;">SmileCare VIP Pass</strong>
+              <span style="display: block; font-size: 0.75rem; color: var(--accent-cyan);">PRIORITY SUITE ACCESS</span>
+            </div>
+          </div>
+          <div id="pass-ref-id" style="font-family: monospace; font-size: 1.1rem; font-weight: 800; color: var(--accent-cyan);">
+            SC-84920
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; font-size: 0.9rem;">
+          <div>
+            <span style="color: #94a3b8; font-size: 0.78rem; display: block;">PATIENT NAME</span>
+            <strong id="pass-patient-name" style="color: #fff; font-size: 1.05rem;">Ayesha Tariq</strong>
+          </div>
+          <div>
+            <span style="color: #94a3b8; font-size: 0.78rem; display: block;">SPECIALIST</span>
+            <strong id="pass-doctor" style="color: #fff;">Dr. Ahmed Khan</strong>
+          </div>
+          <div>
+            <span style="color: #94a3b8; font-size: 0.78rem; display: block;">TREATMENT</span>
+            <strong id="pass-treatment" style="color: var(--accent-cyan);">Porcelain Veneers</strong>
+          </div>
+          <div>
+            <span style="color: #94a3b8; font-size: 0.78rem; display: block;">DATE &amp; TIME</span>
+            <strong id="pass-datetime" style="color: #10b981;">Today at 09:30 AM</strong>
+          </div>
+        </div>
+
+        <div style="background: rgba(0,0,0,0.3); border-radius: 14px; padding: 1.2rem; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.1);">
+          <div>
+            <div style="color: #10b981; font-weight: 800; font-size: 0.85rem;"><i class="fa fa-circle-check"></i> SYNCED WITH CLINIC PORTAL</div>
+            <div style="color: #94a3b8; font-size: 0.76rem; margin-top: 2px;">Your appointment has been pushed to the clinic reception live queue.</div>
+          </div>
+          <div style="width: 50px; height: 50px; background: #fff; padding: 4px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+            <i class="fa fa-qrcode" style="font-size: 2.2rem; color: #060b14;"></i>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <a href="admin.html" class="btn-primary" style="flex: 1; justify-content: center; font-size: 0.88rem;">
+            <i class="fa fa-lock"></i> View In Staff Admin Portal
+          </a>
+          <button class="btn-outline" style="flex: 1; justify-content: center; font-size: 0.88rem;" onclick="window.print();">
+            <i class="fa fa-print"></i> Print / Save Pass
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div style="max-width: 1350px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+      &copy; 2026 SmileCare Dental Clinic. All Rights Reserved. ISO 9001:2015 Certified Healthcare Facility.
+    </div>
+  </footer>
+
+  <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="emergency-float-trigger">
+    <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i>
+    <span>Emergency? WhatsApp SOS</span>
+  </a>
+
+  <script type="module" src="js/master.js"></script>
+  <script type="module">
+    import { ClinicStore } from './js/master.js';
+
+    let bookingState = {
+      treatment: "Porcelain Veneers",
+      doctor: "Dr. Ahmed Khan",
+      date: "Today",
+      time: "09:30 AM"
+    };
+
+    // Pre-fill from URL params if any
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('treatment')) {
+        bookingState.treatment = params.get('treatment');
+      }
+      if (params.has('doctor')) {
+        bookingState.doctor = params.get('doctor');
+      }
+
+      // Check for saved blueprint in localStorage
+      const bp = localStorage.getItem('smilecare_user_blueprint');
+      if (bp) {
+        try {
+          const parsed = JSON.parse(bp);
+          const notesInput = document.getElementById('input-notes');
+          if (notesInput) {
+            notesInput.value = `3D Smile Studio Blueprint: Shade ${parsed.shade}, Shape: ${parsed.shape}`;
+          }
+        } catch(e){}
+      }
+    });
+
+    window.setTreatment = function(btn, val) {
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      bookingState.treatment = val;
+    };
+
+    window.setDoctor = function(btn, val) {
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      bookingState.doctor = val;
+    };
+
+    window.setDay = function(btn, val) {
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      bookingState.date = val;
+    };
+
+    window.setTime = function(btn, val) {
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      bookingState.time = val;
+    };
+
+    window.processBookingSubmission = function() {
+      const name = document.getElementById('input-name').value.trim() || 'Ayesha Tariq';
+      const phone = document.getElementById('input-phone').value.trim() || '+92 300 1234567';
+      const notes = document.getElementById('input-notes').value.trim() || 'Booked via Online VIP Engine';
+
+      const created = ClinicStore.addAppointment({
+        name: name,
+        phone: phone,
+        treatment: bookingState.treatment,
+        doctor: bookingState.doctor,
+        date: bookingState.date,
+        time: bookingState.time,
+        notes: notes,
+        urgency: "Normal",
+        cost: "$650"
+      });
+
+      // Update Pass UI
+      document.getElementById('pass-ref-id').textContent = created.id;
+      document.getElementById('pass-patient-name').textContent = created.name;
+      document.getElementById('pass-doctor').textContent = created.doctor;
+      document.getElementById('pass-treatment').textContent = created.treatment;
+      document.getElementById('pass-datetime').textContent = `${created.date} at ${created.time}`;
+
+      // Switch views
+      document.getElementById('booking-form-wrap').style.display = 'none';
+      document.getElementById('booking-pass-wrap').style.display = 'block';
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    };
+  </script>
+</body>
+</html>
+

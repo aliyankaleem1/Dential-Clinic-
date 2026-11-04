@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Treatments &amp; 3D Procedure Simulator | SmileCare VIP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="vendor/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Clinic Top Announcement Bar -->
+  <div class="clinic-top-bar">
+    <div class="top-left">
+      <span><i class="fa fa-hospital" style="color: var(--accent-cyan); margin-right: 6px;"></i> <strong>Flagship Hospital:</strong> Gulberg III &bull; <strong>Boutique:</strong> DHA Phase 5, Lahore</span>
+      <span>&bull;</span>
+      <span><i class="fa fa-clock" style="color: var(--accent-uv); margin-right: 6px;"></i> Mon &ndash; Sat: 09:00 AM &ndash; 09:00 PM</span>
+    </div>
+    <div class="top-right">
+      <span><i class="fa fa-shield-halved" style="color: var(--accent-cyan); margin-right: 6px;"></i> PMC Licensed &bull; ISO 9001:2015</span>
+      <span>&bull;</span>
+      <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> 24/7 Dental Trauma SOS: <strong>+92 300 1234567</strong>
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="logo-badge">🦷</div>
+        <div>
+          <span style="font-size: 1.35rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Laser Hospital &amp; Implants</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="treatments.html" class="nav-link active">Treatments &amp; 3D</a></li>
+        <li><a href="smile-studio.html" class="nav-link">Smile Studio <span class="nav-badge-pill">3D</span></a></li>
+        <li><a href="symptom-checker.html" class="nav-link">Symptom Triage</a></li>
+        <li><a href="doctors.html" class="nav-link">Specialists</a></li>
+        <li><a href="gallery.html" class="nav-link">Transformations</a></li>
+        <li><a href="contact.html" class="nav-link">Clinics</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+        <a href="admin.html" class="btn-admin-portal"><i class="fa fa-lock"></i> Staff Portal</a>
+        <a href="booking.html" class="btn-header-book"><i class="fa fa-calendar-check"></i> Book VIP Suite</a>
+        <div class="nav-hamburger"><i class="fa fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="treatments.html" class="nav-link active">🦷 Treatments &amp; 3D Simulator</a>
+    <a href="smile-studio.html" class="nav-link">✨ 3D Virtual Smile Studio</a>
+    <a href="symptom-checker.html" class="nav-link">🩺 3D Symptom Triage</a>
+    <a href="doctors.html" class="nav-link">👨‍⚕️ Our Dental Specialists</a>
+    <a href="gallery.html" class="nav-link">📸 Smile Transformations Vault</a>
+    <a href="contact.html" class="nav-link">📍 Branches &amp; Contact</a>
+    <a href="booking.html" class="nav-link">📅 Online VIP Booking</a>
+    <a href="admin.html" class="nav-link" style="color: var(--accent-cyan);"><i class="fa fa-lock"></i> Staff Admin Portal</a>
+  </div>
+
+  <!-- Page Hero & 3D Procedure Simulator -->
+  <main class="page-container section-padding" style="padding-top: 50px;">
+    <div style="text-align: center; margin-bottom: 3.5rem;">
+      <div class="tag-badge"><i class="fa fa-cube"></i> Interactive Patient Education</div>
+      <h1 class="section-title">Virtual 3D <span>Procedure Simulator</span></h1>
+      <p class="section-desc" style="margin: 0 auto;">
+        Inspect how titanium implants, zirconia crowns, and root canals are engineered. Drag to rotate in 360&deg; and explode the anatomy.
+      </p>
+    </div>
+
+    <!-- 3D Explorer Viewer Box -->
+    <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 28px; padding: 2.5rem; box-shadow: var(--shadow-card); max-width: 1000px; margin: 0 auto 5rem;">
+      <!-- Mode Tabs -->
+      <div style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button id="tab-implant" class="btn-primary" style="padding: 9px 20px; font-size: 0.88rem;" onclick="setProcedureMode('implant')">
+          🔩 Dental Implant (Exploded View)
+        </button>
+        <button id="tab-whitening" class="btn-outline" style="padding: 9px 20px; font-size: 0.88rem;" onclick="setProcedureMode('whitening')">
+          ✨ Laser Enamel Whitening
+        </button>
+        <button id="tab-rootcanal" class="btn-outline" style="padding: 9px 20px; font-size: 0.88rem;" onclick="setProcedureMode('rootcanal')">
+          🦷 Root Canal Anatomy
+        </button>
+      </div>
+
+      <!-- 3D Canvas -->
+      <div id="explorer-canvas-container" style="width: 100%; height: 480px; position: relative;"></div>
+
+      <!-- Controls -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--card-border); padding-top: 1.2rem; margin-top: 1rem; flex-wrap: wrap; gap: 1rem;">
+        <div id="procedure-desc-box" style="color: var(--text-muted); font-size: 0.9rem; max-width: 550px; line-height: 1.6;">
+          <strong>Titanium Grade-5 Implant:</strong> Separates into Diamond-milled Zirconia Crown, Medical-Grade Gold-Nitride Abutment, and Osseointegrated Root Screw.
+        </div>
+        <button id="explode-btn" class="btn-primary" style="padding: 8px 18px; font-size: 0.85rem;" onclick="toggleExplode();">
+          ⚡ Assemble 3D Model
+        </button>
+      </div>
+    </div>
+
+    <!-- Anxiety & Pain Compass Section -->
+    <section style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 28px; padding: 3.5rem; margin-bottom: 5rem; box-shadow: var(--shadow-card);">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div class="tag-badge"><i class="fa fa-heart-pulse"></i> Fear-Elimination Protocol</div>
+        <h2 class="section-title">Anxiety &amp; <span>Pain Compass</span></h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          We eliminated the 3 things patients fear most: needle pain, vibrating drill sounds, and unpredictable healing.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <div style="background: var(--surface-2); padding: 2rem; border-radius: 20px; border: 1px solid var(--card-border); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-emerald); margin-bottom: 0.5rem;">0 / 10</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.6rem;">Clinical Pain Rating</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
+            With our WaterLase Cold Laser and twilight sedation options, 99.4% of patients report feeling zero pain during treatments.
+          </p>
+        </div>
+
+        <div style="background: var(--surface-2); padding: 2rem; border-radius: 20px; border: 1px solid var(--card-border); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 0.5rem;">0 Vibration</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.6rem;">Sensory Sensation</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
+            No high-pitched turbine drill screams. You only feel a soothing, cool fine-water mist energized by laser photon light.
+          </p>
+        </div>
+
+        <div style="background: var(--surface-2); padding: 2rem; border-radius: 20px; border: 1px solid var(--card-border); text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 0.5rem;">Day 1</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.6rem;">Immediate Normal Diet</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
+            Laser treatments cause zero soft-tissue bleeding, allowing you to return to work and eat your favorite meals the exact same day.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transparent Multi-Tier Investment Table -->
+    <section>
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div class="tag-badge"><i class="fa fa-scale-balanced"></i> Zero Hidden Fees</div>
+        <h2 class="section-title">Transparent <span>Treatment Packages</span></h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          Every procedure includes digital 3D scans, hospital-grade sterilization, and a lifetime warranty certificate.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <!-- Tier 1 -->
+        <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; padding: 2.5rem; box-shadow: var(--shadow-card);">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Essential Care</span>
+          <div style="font-size: 2.5rem; font-weight: 800; margin: 0.8rem 0; color: var(--text-main);">$180 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">/ tooth</span></div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">Ultrasonic Deep Scaling &bull; Laser Whitening &bull; Composite Aesthetic Fillings</p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-main);">
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Free 3D Digital Diagnostic Scan</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> 1-Year Enamel Warranty</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Painless Cold Laser Cleaning</li>
+          </ul>
+          <a href="booking.html" class="btn-outline" style="width: 100%; justify-content: center;">Select Essential</a>
+        </div>
+
+        <!-- Tier 2 (Highlighted) -->
+        <div style="background: var(--surface); border: 2px solid var(--accent-cyan); border-radius: 24px; padding: 2.5rem; box-shadow: 0 10px 40px var(--glow-cyan); position: relative;">
+          <div style="position: absolute; top: -14px; right: 25px; background: var(--accent-cyan); color: #060b14; font-weight: 800; font-size: 0.76rem; padding: 4px 12px; border-radius: 20px;">MOST POPULAR</div>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">Zirconia Cosmetic</span>
+          <div style="font-size: 2.5rem; font-weight: 800; margin: 0.8rem 0; color: var(--text-main);">$450 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">/ unit</span></div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">German CAD/CAM Veneers &bull; Titanium Root Implants &bull; Clear Aligners</p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-main);">
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Custom Vita Enamel Shade Match</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> 10-Year Comprehensive Warranty</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> 0% APR Financing (Up to 12 mo)</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Private VIP Suite Access</li>
+          </ul>
+          <a href="booking.html" class="btn-primary" style="width: 100%; justify-content: center;">Reserve Zirconia</a>
+        </div>
+
+        <!-- Tier 3 -->
+        <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; padding: 2.5rem; box-shadow: var(--shadow-card);">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Master Celebrity</span>
+          <div style="font-size: 2.5rem; font-weight: 800; margin: 0.8rem 0; color: var(--text-main);">$1,450 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">/ arch</span></div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.5rem;">All-on-4Â® Full Arch Implants &bull; Beverly Hills Smile Makeover &bull; Twilight Sleep</p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-main);">
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Board Anesthesiologist Twilight Sleep</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Lifetime Titanium Warranty</li>
+            <li><i class="fa fa-check" style="color: var(--accent-emerald); margin-right: 8px;"></i> Dedicated 24/7 Dental Concierge</li>
+          </ul>
+          <a href="booking.html" class="btn-outline" style="width: 100%; justify-content: center;">Consult Master Team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div style="max-width: 1350px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+      &copy; 2026 SmileCare Dental Clinic. All Rights Reserved. ISO 9001:2015 Certified Healthcare Facility.
+    </div>
+  </footer>
+
+  <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="emergency-float-trigger">
+    <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i>
+    <span>Emergency? WhatsApp SOS</span>
+  </a>
+
+  <!-- Scripts -->
+  <script type="module" src="js/master.js"></script>
+  <script type="module">
+    import { initExplorer3D } from './js/three-explorer.js';
+    window.addEventListener('load', () => {
+      initExplorer3D('explorer-canvas-container');
+    });
+
+    window.setProcedureMode = function(mode) {
+      document.querySelectorAll('#tab-implant, #tab-whitening, #tab-rootcanal').forEach(b => {
+        b.className = 'btn-outline';
+      });
+      document.getElementById('tab-' + mode).className = 'btn-primary';
+      if (window.setExplorerMode) window.setExplorerMode(mode);
+
+      const descBox = document.getElementById('procedure-desc-box');
+      const explodeBtn = document.getElementById('explode-btn');
+      if (mode === 'implant') {
+        descBox.innerHTML = '<strong>Titanium Grade-5 Implant:</strong> Separates into Diamond-milled Zirconia Crown, Medical-Grade Gold-Nitride Abutment, and Osseointegrated Root Screw.';
+        explodeBtn.style.display = 'inline-flex';
+      } else if (mode === 'whitening') {
+        descBox.innerHTML = '<strong>Laser Enamel Whitening:</strong> Zoom 32% hydrogen peroxide activated by cold laser photon light, lifting 8 shades of deep stains in 45 minutes.';
+        explodeBtn.style.display = 'none';
+      } else if (mode === 'rootcanal') {
+        descBox.innerHTML = '<strong>Microscopic Root Canal:</strong> Translucent enamel chamber reveals gutta-percha apex canal seal, saving the natural tooth root with 0 pain.';
+        explodeBtn.style.display = 'none';
+      }
+    };
+
+    window.toggleExplode = function() {
+      if (window.toggleImplantExplode) {
+        const state = window.toggleImplantExplode();
+        document.getElementById('explode-btn').textContent = state ? '⚡ Assemble 3D Model' : '🔬 Explode 3D Anatomy';
+      }
+    };
+  </script>
+</body>
+</html>
+

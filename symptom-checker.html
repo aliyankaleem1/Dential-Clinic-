@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Dental Symptom Checker &amp; Emergency Triage | SmileCare VIP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Clinic Top Announcement Bar -->
+  <div class="clinic-top-bar">
+    <div class="top-left">
+      <span><i class="fa fa-hospital" style="color: var(--accent-cyan); margin-right: 6px;"></i> <strong>Flagship Hospital:</strong> Gulberg III &bull; <strong>Boutique:</strong> DHA Phase 5, Lahore</span>
+      <span>&bull;</span>
+      <span><i class="fa fa-clock" style="color: var(--accent-uv); margin-right: 6px;"></i> Mon &ndash; Sat: 09:00 AM &ndash; 09:00 PM</span>
+    </div>
+    <div class="top-right">
+      <span><i class="fa fa-shield-halved" style="color: var(--accent-cyan); margin-right: 6px;"></i> PMC Licensed &bull; ISO 9001:2015</span>
+      <span>&bull;</span>
+      <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> 24/7 Dental Trauma SOS: <strong>+92 300 1234567</strong>
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="logo-badge">🦷</div>
+        <div>
+          <span style="font-size: 1.35rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Laser Hospital &amp; Implants</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="treatments.html" class="nav-link">Treatments &amp; 3D</a></li>
+        <li><a href="smile-studio.html" class="nav-link">Smile Studio <span class="nav-badge-pill">3D</span></a></li>
+        <li><a href="symptom-checker.html" class="nav-link active">Symptom Triage</a></li>
+        <li><a href="doctors.html" class="nav-link">Specialists</a></li>
+        <li><a href="gallery.html" class="nav-link">Transformations</a></li>
+        <li><a href="contact.html" class="nav-link">Clinics</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+        <a href="admin.html" class="btn-admin-portal"><i class="fa fa-lock"></i> Staff Portal</a>
+        <a href="booking.html" class="btn-header-book"><i class="fa fa-calendar-check"></i> Book VIP Suite</a>
+        <div class="nav-hamburger"><i class="fa fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="treatments.html" class="nav-link">🦷 Treatments &amp; 3D Simulator</a>
+    <a href="smile-studio.html" class="nav-link">✨ 3D Virtual Smile Studio</a>
+    <a href="symptom-checker.html" class="nav-link active">🩺 3D Symptom Triage</a>
+    <a href="doctors.html" class="nav-link">👨‍⚕️ Our Dental Specialists</a>
+    <a href="gallery.html" class="nav-link">📸 Smile Transformations Vault</a>
+    <a href="contact.html" class="nav-link">📍 Branches &amp; Contact</a>
+    <a href="booking.html" class="nav-link">📅 Online VIP Booking</a>
+    <a href="admin.html" class="nav-link" style="color: var(--accent-cyan);"><i class="fa fa-lock"></i> Staff Admin Portal</a>
+  </div>
+
+  <!-- Page Main -->
+  <main class="page-container section-padding" style="padding-top: 50px;">
+    <div style="text-align: center; margin-bottom: 3.5rem;">
+      <div class="tag-badge"><i class="fa fa-stethoscope"></i> AI Dental Triage Engine</div>
+      <h1 class="section-title">Interactive <span>Dental Symptom Checker</span></h1>
+      <p class="section-desc" style="margin: 0 auto;">
+        Click on the affected tooth on the anatomical jaw map below and describe your symptoms to receive an instant clinical urgency triage.
+      </p>
+    </div>
+
+    <div class="triage-grid">
+      <!-- Left: Interactive Jaw Map -->
+      <div class="jaw-map-container">
+        <div style="font-size: 0.85rem; font-weight: 800; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 1px;">
+          Anatomical Dental Arch Map
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 4px;">
+          Click the tooth where you feel discomfort
+        </p>
+
+        <div class="jaw-arch-interactive">
+          <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">UPPER ARCH (MAXILLA)</span>
+          <div class="arch-teeth-row">
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 1)">1</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 2)">2</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 3)">3</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 4)">4</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 5)">5</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 6)">6</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 7)">7</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 8)">8</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 9)">9</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 10)">10</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 11)">11</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 12)">12</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 13)">13</div>
+            <div class="interactive-tooth-pin pain" onclick="selectTooth(this, 14)">14</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 15)">15</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 16)">16</div>
+          </div>
+
+          <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; margin-top: 1rem;">LOWER ARCH (MANDIBLE)</span>
+          <div class="arch-teeth-row">
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 17)">17</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 18)">18</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 19)">19</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 20)">20</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 21)">21</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 22)">22</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 23)">23</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 24)">24</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 25)">25</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 26)">26</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 27)">27</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 28)">28</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 29)">29</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 30)">30</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 31)">31</div>
+            <div class="interactive-tooth-pin" onclick="selectTooth(this, 32)">32</div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.85rem; color: var(--text-main); font-weight: 700;">
+          Selected: <span id="selected-tooth-label" style="color: var(--accent-rose);">Tooth #14 (Upper Left First Molar)</span>
+        </div>
+
+        <!-- Symptoms Selection -->
+        <div style="margin-top: 2rem; text-align: left;">
+          <h4 style="font-size: 0.95rem; font-weight: 800; margin-bottom: 0.5rem;">Select Discomfort Symptoms:</h4>
+          <div class="symptom-chips-row">
+            <div class="symptom-chip active" onclick="toggleSymptom(this)">⚡ Severe Throbbing at Night</div>
+            <div class="symptom-chip active" onclick="toggleSymptom(this)">â„ï¸ Sensitivity to Cold/Sweet</div>
+            <div class="symptom-chip" onclick="toggleSymptom(this)">ðŸ©¸ Bleeding or Swollen Gum</div>
+            <div class="symptom-chip" onclick="toggleSymptom(this)">ðŸ”¨ Chipped or Cracked Enamel</div>
+            <div class="symptom-chip" onclick="toggleSymptom(this)">🦷 Loose Tooth / Impact Trauma</div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <label style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px;">
+              <span>Pain Intensity Level (1 - 10):</span>
+              <span id="pain-level-val" style="color: var(--accent-rose); font-weight: 800;">8 / 10 (Severe)</span>
+            </label>
+            <input type="range" class="custom-range" min="1" max="10" value="8" oninput="updatePainLevel(this.value);" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Triage Output Report Card -->
+      <div class="triage-output-card">
+        <div id="triage-urgency-badge" class="urgency-badge urgency-emergency">
+          <i class="fa fa-triangle-exclamation"></i> URGENCY: HIGH (EMERGENCY FAST-TRACK)
+        </div>
+
+        <h3 id="triage-diagnosis-title" style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--text-main);">
+          Suspected Acute Pulpitis (Nerve Irritation)
+        </h3>
+
+        <p id="triage-diagnosis-desc" style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Throbbing nocturnal pain on Tooth #14 indicates deep decay that has penetrated the enamel into the pulp nerve chamber. 
+          Without immediate cold-laser therapy or micro-root canal, the infection may progress into an abscess.
+        </p>
+
+        <div style="background: var(--surface-2); border-radius: 16px; padding: 1.5rem; border: 1px solid var(--card-border); margin-bottom: 2rem;">
+          <div style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 8px;">
+            Recommended Clinical Protocol:
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
+            <li><i class="fa fa-circle-check" style="color: var(--accent-emerald); margin-right: 6px;"></i> High-Definition 3D Cone Beam Scan of Tooth #14</li>
+            <li><i class="fa fa-circle-check" style="color: var(--accent-emerald); margin-right: 6px;"></i> WaterLase Cold-Laser Nerve Decompression</li>
+            <li><i class="fa fa-circle-check" style="color: var(--accent-emerald); margin-right: 6px;"></i> Assigned Specialist: <strong>Dr. Usman Ali (Surgeon)</strong></li>
+          </ul>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="bookEmergencyFastTrack();">
+          <i class="fa fa-bolt"></i> Claim Priority Same-Day Emergency Slot
+        </button>
+
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.78rem; margin-top: 1rem;">
+          * Automated preliminary triage for guidance. An in-person clinical diagnostic scan will confirm exact status.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div style="max-width: 1350px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+      &copy; 2026 SmileCare Dental Clinic. All Rights Reserved. ISO 9001:2015 Certified Healthcare Facility.
+    </div>
+  </footer>
+
+  <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="emergency-float-trigger">
+    <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i>
+    <span>Emergency? WhatsApp SOS</span>
+  </a>
+
+  <!-- Scripts -->
+  <script type="module" src="js/master.js"></script>
+  <script>
+    let activeToothNum = 14;
+
+    function selectTooth(el, num) {
+      document.querySelectorAll('.interactive-tooth-pin').forEach(p => p.classList.remove('pain', 'selected'));
+      el.classList.add('pain');
+      activeToothNum = num;
+      document.getElementById('selected-tooth-label').textContent = `Tooth #${num} (${getToothName(num)})`;
+      updateTriageOutput();
+    }
+
+    function toggleSymptom(el) {
+      el.classList.toggle('active');
+      updateTriageOutput();
+    }
+
+    function updatePainLevel(val) {
+      const label = document.getElementById('pain-level-val');
+      if (val >= 8) label.textContent = `${val} / 10 (Severe)`;
+      else if (val >= 5) label.textContent = `${val} / 10 (Moderate)`;
+      else label.textContent = `${val} / 10 (Mild)`;
+      updateTriageOutput();
+    }
+
+    function getToothName(num) {
+      if (num >= 1 && num <= 3) return 'Upper Right Molars';
+      if (num >= 4 && num <= 5) return 'Upper Right Premolars';
+      if (num >= 6 && num <= 11) return 'Upper Anterior Smile Zone';
+      if (num >= 12 && num <= 13) return 'Upper Left Premolars';
+      if (num >= 14 && num <= 16) return 'Upper Left Molars';
+      return 'Lower Arch Mandibular Tooth';
+    }
+
+    function updateTriageOutput() {
+      // Dynamic triage calculation
+      const badge = document.getElementById('triage-urgency-badge');
+      const title = document.getElementById('triage-diagnosis-title');
+      const desc = document.getElementById('triage-diagnosis-desc');
+
+      const activeSymptoms = document.querySelectorAll('.symptom-chip.active').length;
+      if (activeSymptoms >= 2) {
+        badge.className = 'urgency-badge urgency-emergency';
+        badge.innerHTML = '<i class="fa fa-triangle-exclamation"></i> URGENCY: HIGH (EMERGENCY FAST-TRACK)';
+        title.textContent = `Acute Deep Pulpitis on Tooth #${activeToothNum}`;
+        desc.textContent = `Multiple active symptoms indicate high inflammation in the pulp canal of Tooth #${activeToothNum}. Same-day clinical relief is strongly advised to prevent facial swelling.`;
+      } else {
+        badge.className = 'urgency-badge urgency-urgent';
+        badge.innerHTML = '<i class="fa fa-clock"></i> URGENCY: PRIORITY (WITHIN 24-48 HOURS)';
+        title.textContent = `Dentin Hypersensitivity / Early Enamel Decay`;
+        desc.textContent = `Tooth #${activeToothNum} shows signs of micro-fracture or enamel erosion. Laser bonding or desensitization seal will restore comfortable chewing.`;
+      }
+    }
+
+    function bookEmergencyFastTrack() {
+      window.location.href = `booking.html?treatment=Emergency%20Triage%20(Tooth%20%23${activeToothNum})&urgency=Emergency`;
+    }
+  </script>
+</body>
+</html>
+

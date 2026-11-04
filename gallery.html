@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smile Transformation Vault &amp; Before-After | SmileCare VIP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .case-slider-wrap {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: ew-resize;
+      user-select: none;
+      box-shadow: var(--shadow-card);
+    }
+    .case-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .case-after {
+      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+    }
+    .case-handle {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: #fff;
+      transform: translateX(-50%);
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    .case-knob {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px;
+      background: var(--accent-cyan);
+      color: #060b14;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Clinic Top Announcement Bar -->
+  <div class="clinic-top-bar">
+    <div class="top-left">
+      <span><i class="fa fa-hospital" style="color: var(--accent-cyan); margin-right: 6px;"></i> <strong>Flagship Hospital:</strong> Gulberg III &bull; <strong>Boutique:</strong> DHA Phase 5, Lahore</span>
+      <span>&bull;</span>
+      <span><i class="fa fa-clock" style="color: var(--accent-uv); margin-right: 6px;"></i> Mon &ndash; Sat: 09:00 AM &ndash; 09:00 PM</span>
+    </div>
+    <div class="top-right">
+      <span><i class="fa fa-shield-halved" style="color: var(--accent-cyan); margin-right: 6px;"></i> PMC Licensed &bull; ISO 9001:2015</span>
+      <span>&bull;</span>
+      <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> 24/7 Dental Trauma SOS: <strong>+92 300 1234567</strong>
+      </a>
+    </div>
+  </div>
+
+  <!-- Master Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="logo-badge">🦷</div>
+        <div>
+          <span style="font-size: 1.35rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Laser Hospital &amp; Implants</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="treatments.html" class="nav-link">Treatments &amp; 3D</a></li>
+        <li><a href="smile-studio.html" class="nav-link">Smile Studio <span class="nav-badge-pill">3D</span></a></li>
+        <li><a href="symptom-checker.html" class="nav-link">Symptom Triage</a></li>
+        <li><a href="doctors.html" class="nav-link">Specialists</a></li>
+        <li><a href="gallery.html" class="nav-link active">Transformations</a></li>
+        <li><a href="contact.html" class="nav-link">Clinics</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+        <a href="admin.html" class="btn-admin-portal"><i class="fa fa-lock"></i> Staff Portal</a>
+        <a href="booking.html" class="btn-header-book"><i class="fa fa-calendar-check"></i> Book VIP Suite</a>
+        <div class="nav-hamburger"><i class="fa fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="treatments.html" class="nav-link">🦷 Treatments &amp; 3D Simulator</a>
+    <a href="smile-studio.html" class="nav-link">✨ 3D Virtual Smile Studio</a>
+    <a href="symptom-checker.html" class="nav-link">🩺 3D Symptom Triage</a>
+    <a href="doctors.html" class="nav-link">👨‍⚕️ Our Dental Specialists</a>
+    <a href="gallery.html" class="nav-link active">📸 Smile Transformations Vault</a>
+    <a href="contact.html" class="nav-link">📍 Branches &amp; Contact</a>
+    <a href="booking.html" class="nav-link">📅 Online VIP Booking</a>
+    <a href="admin.html" class="nav-link" style="color: var(--accent-cyan);"><i class="fa fa-lock"></i> Staff Admin Portal</a>
+  </div>
+
+  <main class="page-container section-padding" style="padding-top: 50px;">
+    <div style="text-align: center; margin-bottom: 3.5rem;">
+      <div class="tag-badge"><i class="fa fa-images"></i> Clinical Case Vault</div>
+      <h1 class="section-title">Verified Smile <span>Transformations</span></h1>
+      <p class="section-desc" style="margin: 0 auto;">
+        Real patients. Real clinical photography. Drag the sliders to witness the transformative power of our digital aesthetic protocols.
+      </p>
+    </div>
+
+    <!-- Case 1: Hollywood Veneers -->
+    <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 28px; padding: 2.5rem; margin-bottom: 3.5rem; box-shadow: var(--shadow-card);">
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
+        <div class="case-slider-wrap" id="slider-case-1">
+          <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=900&q=80" alt="Before" class="case-img" style="filter: contrast(0.9) brightness(0.9);" />
+          <span class="slider-label label-before">Before (Stained &amp; Worn)</span>
+          <img id="after-img-1" src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&q=90" alt="After" class="case-img case-after" />
+          <span class="slider-label label-after">After (8 E-Max Veneers)</span>
+          <div class="case-handle" id="handle-1"><div class="case-knob"><i class="fa fa-arrows-left-right"></i></div></div>
+        </div>
+
+        <div>
+          <div class="tag-badge" style="background: rgba(0,245,212,0.1);"><i class="fa fa-gem"></i> Cosmetic Case #4921</div>
+          <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin: 0.5rem 0 1rem;">
+            Full Arch Hollywood Veneers
+          </h3>
+          <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.5rem;">
+            Patient presented with severe fluorosis discoloration and chipped enamel edges. Dr. Ahmed Khan designed 8 handcrafted E-Max ceramic veneers in Vita Shade B1 Bleach, restoring youthful proportions with zero pain.
+          </p>
+          <div style="background: var(--surface-2); border-radius: 16px; padding: 1.2rem; border: 1px solid var(--card-border); margin-bottom: 1.5rem; font-size: 0.88rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span style="color: var(--text-muted);">Lead Specialist:</span>
+              <strong>Dr. Ahmed Khan</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span style="color: var(--text-muted);">Total Treatment Time:</span>
+              <strong>2 Visits (Same-Week Delivery)</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">Ceramic Material:</span>
+              <strong>German Monolithic Zirconia</strong>
+            </div>
+          </div>
+          <a href="booking.html?treatment=Veneers" class="btn-primary">
+            <i class="fa fa-calendar-check"></i> Book Similar Transformation
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 2: Adult Orthodontic Realignment -->
+    <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 28px; padding: 2.5rem; margin-bottom: 3.5rem; box-shadow: var(--shadow-card);">
+      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
+        <div>
+          <div class="tag-badge" style="background: rgba(168,85,247,0.1); color: #a855f7; border-color: #a855f7;"><i class="fa fa-teeth"></i> Ortho Case #2810</div>
+          <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin: 0.5rem 0 1rem;">
+            Non-Extraction Invisalign® Aligners
+          </h3>
+          <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.5rem;">
+            Severe lower crowding and deep anterior overbite corrected in 6 months using digital 3D SmartTrack aligners without extracting any healthy premolars.
+          </p>
+          <div style="background: var(--surface-2); border-radius: 16px; padding: 1.2rem; border: 1px solid var(--card-border); margin-bottom: 1.5rem; font-size: 0.88rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span style="color: var(--text-muted);">Lead Specialist:</span>
+              <strong>Dr. Sara Malik</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span style="color: var(--text-muted);">Duration:</span>
+              <strong>6 Months (14 Trays)</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">Extractions:</span>
+              <strong>0 Teeth Extracted</strong>
+            </div>
+          </div>
+          <a href="booking.html?treatment=Invisalign" class="btn-primary" style="background: linear-gradient(135deg, #a855f7, #6366f1);">
+            <i class="fa fa-calendar-check"></i> Book Invisalign Scan
+          </a>
+        </div>
+
+        <div class="case-slider-wrap" id="slider-case-2">
+          <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=900&q=80" alt="Before" class="case-img" style="filter: contrast(0.9) brightness(0.9);" />
+          <span class="slider-label label-before">Before (Crowded &amp; Overbite)</span>
+          <img id="after-img-2" src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=900&q=90" alt="After" class="case-img case-after" />
+          <span class="slider-label label-after">After (Perfect Alignment)</span>
+          <div class="case-handle" id="handle-2"><div class="case-knob"><i class="fa fa-arrows-left-right"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div style="max-width: 1350px; margin: 0 auto; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+      &copy; 2026 SmileCare Dental Clinic. All Rights Reserved. ISO 9001:2015 Certified Healthcare Facility.
+    </div>
+  </footer>
+
+  <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="emergency-float-trigger">
+    <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i>
+    <span>Emergency? WhatsApp SOS</span>
+  </a>
+
+  <script type="module" src="js/master.js"></script>
+  <script>
+    function setupSlider(containerId, handleId, afterImgId) {
+      const container = document.getElementById(containerId);
+      const handle = document.getElementById(handleId);
+      const afterImg = document.getElementById(afterImgId);
+      if (!container || !handle || !afterImg) return;
+
+      let isSliding = false;
+      function updatePos(clientX) {
+        const rect = container.getBoundingClientRect();
+        let posX = clientX - rect.left;
+        if (posX < 0) posX = 0;
+        if (posX > rect.width) posX = rect.width;
+        const pct = (posX / rect.width) * 100;
+        handle.style.left = pct + '%';
+        afterImg.style.clipPath = `polygon(${pct}% 0, 100% 0, 100% 100%, ${pct}% 100%)`;
+      }
+
+      container.addEventListener('mousedown', e => { isSliding = true; updatePos(e.clientX); });
+      window.addEventListener('mouseup', () => isSliding = false);
+      window.addEventListener('mousemove', e => { if (isSliding) { e.preventDefault(); updatePos(e.clientX); } });
+
+      container.addEventListener('touchstart', e => {
+        if (e.touches.length === 1) { isSliding = true; updatePos(e.touches[0].clientX); }
+      }, { passive: true });
+      window.addEventListener('touchend', () => isSliding = false);
+      window.addEventListener('touchmove', e => {
+        if (isSliding && e.touches.length === 1) { updatePos(e.touches[0].clientX); }
+      }, { passive: true });
+    }
+
+    setupSlider('slider-case-1', 'handle-1', 'after-img-1');
+    setupSlider('slider-case-2', 'handle-2', 'after-img-2');
+  </script>
+</body>
+</html>
+

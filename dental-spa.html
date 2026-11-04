@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA DENTAL SPA • Clinical Luxury &amp; Holistic Smile Architecture</title>
+  <meta name="description" content="A modern, clinical luxury dental spa. Clean, hygienic, trustworthy, and heavily reliant on whitespace. Handcrafted Swiss veneers, robotic implants, and EMS Airflow." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: {
+              medical: '#0d9488',
+              hover: '#0f766e',
+              surface: '#f0fdfa',
+              subtle: '#ccfbf1'
+            },
+            slate: {
+              heading: '#0f172a',
+              body: '#475569',
+              muted: '#64748b',
+              alabaster: '#f8fafc',
+              border: '#f1f5f9'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif']
+          },
+          boxShadow: {
+            'diffuse': '0 8px 30px rgba(0, 0, 0, 0.04)',
+            'diffuse-lg': '0 20px 40px rgba(0, 0, 0, 0.06)',
+            'glass': '0 8px 32px 0 rgba(13, 148, 136, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Standalone React 18 Application Bundle -->
+
+  <style>
+    /* Continuous Horizontal CSS Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 28s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Glassmorphism utility */
+    .glass-frosted {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    ::selection {
+      background-color: #ccfbf1;
+      color: #0f766e;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-body font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
+
+  <!-- Root React App Container -->
+  <div id="root">
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #0d9488; font-weight: 600;">
+      Loading Aura Dental Spa Experience...
+    </div>
+  </div>
+
+  <!-- Master Clinic Store API for live appointment sync -->
+  <script type="module">
+    import { ClinicStore } from './js/master.js';
+    window.ClinicStore = ClinicStore;
+  </script>
+
+  <!-- Pre-compiled Native React Bundle (Instant Execution) -->
+  <script src="js/dental-spa.bundle.js"></script>
+</body>
+</html>

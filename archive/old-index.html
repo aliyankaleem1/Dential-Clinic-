@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmileCare Laser Dental Hospital | Aesthetic Dentistry &amp; Robotic Implants</title>
+  <meta name="description" content="Pakistan's premier digital dental hospital. Painless 810nm laser whitening, 3D guided titanium implants, handcrafted German porcelain veneers, and 24/7 dental trauma triage." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* ========================================================
+       DEMO 4 SIGNATURE CYBER-MEDICAL LASER LUXURY THEME
+       ======================================================== */
+    :root {
+      --bg: #040714;
+      --bg-gradient: radial-gradient(circle at 80% 12%, rgba(168, 85, 247, 0.18) 0%, transparent 50%),
+                     radial-gradient(circle at 12% 80%, rgba(0, 245, 212, 0.15) 0%, transparent 45%),
+                     radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 70%),
+                     #040714;
+      --surface: #0a0f24;
+      --surface-2: #101836;
+      --card-bg: rgba(10, 15, 36, 0.88);
+      --card-border: rgba(168, 85, 247, 0.25);
+      --card-border-glow: rgba(0, 245, 212, 0.6);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-uv: #a855f7;
+      --accent-cyan: #00f5d4;
+      --accent-blue: #00b4d8;
+      --glow-uv: rgba(168, 85, 247, 0.35);
+      --shadow-card: 0 25px 60px rgba(0, 0, 0, 0.6);
+      --font-mono: 'Space Grotesk', monospace;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-gradient: radial-gradient(circle at 80% 12%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+                     radial-gradient(circle at 12% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 45%),
+                     #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: #e2e8f0;
+      --card-border-glow: rgba(168, 85, 247, 0.4);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-uv: #9333ea;
+      --accent-cyan: #0284c7;
+      --shadow-card: 0 20px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      background: var(--bg-gradient) !important;
+      color: var(--text-main) !important;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Laser Studio Hero Grid */
+    .laser-hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1.15fr;
+      gap: 3.5rem;
+      align-items: center;
+      padding: 3rem 0 4.5rem;
+    }
+
+    /* Laser Simulator Viewport Frame */
+    .laser-simulator-frame {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 1.25rem;
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.6), 0 0 40px var(--glow-uv);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+      backdrop-filter: blur(20px);
+    }
+
+    .laser-simulator-frame:hover {
+      border-color: var(--card-border-glow);
+    }
+
+    /* Canvas Screen */
+    .laser-canvas-box {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.12) 0%, rgba(4, 7, 20, 0.95) 85%);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      cursor: crosshair;
+    }
+
+    #laser-whitening-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* HUD Banner Overlays */
+    .laser-hud-top {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    .laser-badge {
+      background: rgba(10, 15, 36, 0.92);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .laser-hud-bottom {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 15, 36, 0.94);
+      border: 1px solid var(--card-border-glow);
+      backdrop-filter: blur(12px);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    /* Live Telemetry Progress Bar */
+    .laser-telemetry-panel {
+      margin-top: 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-2);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .progress-fill {
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #a855f7, #00f5d4);
+      border-radius: 10px;
+      transition: width 0.25s ease;
+      box-shadow: 0 0 15px rgba(0, 245, 212, 0.5);
+    }
+
+    .laser-btn-row {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .laser-btn {
+      flex: 1;
+      min-width: 130px;
+      background: var(--surface-2);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 9px 14px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .laser-btn:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .laser-btn.active {
+      background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(0,245,212,0.25));
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* Real Dental Service Cards */
+    .dental-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow-card);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dental-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--card-border-glow);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.6), 0 0 30px var(--glow-uv);
+    }
+
+    .dental-card-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(0,245,212,0.2));
+      border: 1px solid var(--card-border);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Before / After Slider */
+    .case-slider-wrap {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      cursor: ew-resize;
+      user-select: none;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--card-border);
+    }
+
+    .case-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .case-after {
+      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+    }
+
+    .case-handle {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: #fff;
+      transform: translateX(-50%);
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .case-knob {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--accent-uv), var(--accent-cyan));
+      color: #040714;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    /* Review Card */
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    @media (max-width: 992px) {
+      .laser-hero-grid {
+        grid-template-columns: 1fr;
+        padding-top: 1.5rem;
+      }
+      .laser-canvas-box {
+        height: 380px;
+      }
+      .clinic-top-bar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================
+       CLINIC TOP NOTICE & EMERGENCY STRIP
+       ======================================================== -->
+  <div class="clinic-top-bar">
+    <div class="top-left">
+      <span><i class="fa fa-hospital" style="color: var(--accent-cyan); margin-right: 6px;"></i> <strong>Flagship Hospital:</strong> Gulberg III &bull; <strong>Boutique:</strong> DHA Phase 5, Lahore</span>
+      <span>&bull;</span>
+      <span><i class="fa fa-clock" style="color: var(--accent-uv); margin-right: 6px;"></i> Mon &ndash; Sat: 09:00 AM &ndash; 09:00 PM</span>
+    </div>
+    <div class="top-right">
+      <span><i class="fa fa-shield-halved" style="color: var(--accent-cyan); margin-right: 6px;"></i> PMC Licensed &bull; ISO 9001:2015</span>
+      <span>&bull;</span>
+      <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i> 24/7 Dental Trauma SOS: <strong>+92 300 1234567</strong>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       UNIVERSAL MASTER SITE HEADER
+       ======================================================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="header-logo">
+        <div class="logo-badge">🦷</div>
+        <div>
+          <span style="font-size: 1.35rem; display: block; line-height: 1.1;">SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+          <span style="font-size: 0.68rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase; letter-spacing: 1.5px; display: block;">Laser Hospital &amp; Implants</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="demo-lovable.html" class="nav-link" style="color: #00f5d4; font-weight: 700;"><i class="fa fa-sparkles"></i> Lovable 3D Demo</a></li>
+        <li><a href="treatments.html" class="nav-link">Treatments &amp; 3D</a></li>
+        <li><a href="smile-studio.html" class="nav-link">Smile Studio <span class="nav-badge-pill">3D</span></a></li>
+        <li><a href="symptom-checker.html" class="nav-link">Symptom Triage</a></li>
+        <li><a href="doctors.html" class="nav-link">Specialists</a></li>
+        <li><a href="gallery.html" class="nav-link">Transformations</a></li>
+        <li><a href="contact.html" class="nav-link">Clinics</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle Dark/Light Mode">
+          <i class="fa fa-sun" data-theme-icon></i>
+        </button>
+
+        <!-- Staff Portal -->
+        <a href="admin.html" class="btn-admin-portal" title="Open Clinic Staff Dashboard">
+          <i class="fa fa-lock"></i> Staff Portal
+        </a>
+
+        <!-- Fast Booking CTA -->
+        <button class="btn-header-book" id="header-book-btn">
+          <i class="fa fa-calendar-check"></i> Book VIP Suite
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <div class="nav-hamburger"><i class="fa fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer">
+    <a href="index.html" class="nav-link active">🏠 Home</a>
+    <a href="demo-lovable.html" class="nav-link" style="color: #00f5d4; font-weight: 700;">✨ Lovable 3D Medical Demo</a>
+    <a href="treatments.html" class="nav-link">🦷 Treatments &amp; 3D Simulator</a>
+    <a href="smile-studio.html" class="nav-link">✨ 3D Virtual Smile Studio</a>
+    <a href="symptom-checker.html" class="nav-link">🩺 3D Symptom Triage</a>
+    <a href="doctors.html" class="nav-link">👨‍⚕️ Our Dental Specialists</a>
+    <a href="gallery.html" class="nav-link">📸 Smile Transformations Vault</a>
+    <a href="contact.html" class="nav-link">📍 Branches &amp; Contact</a>
+    <a href="booking.html" class="nav-link">📅 Online VIP Booking</a>
+    <a href="admin.html" class="nav-link" style="color: var(--accent-cyan);"><i class="fa fa-lock"></i> Staff Admin Portal</a>
+  </div>
+
+  <!-- ========================================================
+       MAIN PAGE HERO SECTION (DENTAL CLINIC + LASER SIMULATOR)
+       ======================================================== -->
+  <main>
+    <section class="page-container" style="padding-top: 2rem;">
+      <div class="laser-hero-grid">
+        
+        <!-- Left Column: Dental Healthcare Clinical Authority -->
+        <div class="hero-left-content">
+          <div class="tag-badge" style="background: rgba(168,85,247,0.12); border-color: rgba(168,85,247,0.4); color: var(--accent-cyan);">
+            <i class="fa fa-certificate"></i> PMC Licensed &bull; ISO 9001:2015 Hospital
+          </div>
+
+          <h1 class="section-title" style="margin-top: 0.5rem; line-height: 1.15;">
+            Painless Laser Dentistry &amp; <span>Bespoke Smile Design</span>
+          </h1>
+
+          <p class="section-desc" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.75;">
+            Pakistan's premier digital dental surgery hospital. Combining painless <strong>810nm cold diode lasers</strong>, sub-millimeter 3D guided titanium implants, and handcrafted German porcelain veneers with <strong>0% sensitivity guarantee</strong>.
+          </p>
+
+          <!-- Clinical Checklist -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 2.2rem;">
+            <div style="display: flex; align-items: center; gap: 9px; font-size: 0.88rem; font-weight: 700;">
+              <i class="fa fa-circle-check" style="color: var(--accent-cyan);"></i> 0% Pain Hydro-Laser
+            </div>
+            <div style="display: flex; align-items: center; gap: 9px; font-size: 0.88rem; font-weight: 700;">
+              <i class="fa fa-circle-check" style="color: var(--accent-uv);"></i> Same-Day E-Max Veneers
+            </div>
+            <div style="display: flex; align-items: center; gap: 9px; font-size: 0.88rem; font-weight: 700;">
+              <i class="fa fa-circle-check" style="color: var(--accent-cyan);"></i> MDS &amp; FRCS Oral Surgeons
+            </div>
+            <div style="display: flex; align-items: center; gap: 9px; font-size: 0.88rem; font-weight: 700;">
+              <i class="fa fa-circle-check" style="color: var(--accent-uv);"></i> 15,200+ Verified Smiles
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button class="btn-primary" id="hero-book-trigger">
+              <i class="fa fa-calendar-check"></i> Book VIP Suite Appointment
+            </button>
+            <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="btn-outline" style="border-color: rgba(16,185,129,0.5); color: #10b981;">
+              <i class="fab fa-whatsapp"></i> 24/7 Dental Emergency SOS
+            </a>
+          </div>
+
+          <!-- Stats Row -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; padding-top: 1.8rem; border-top: 1px solid var(--card-border);">
+            <div class="stat-box" style="padding: 1rem 0.5rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--card-border); text-align: center;">
+              <strong style="font-size: 1.5rem; color: var(--accent-cyan); display: block; font-family: var(--font-mono);">15,200+</strong>
+              <span style="font-size: 0.74rem; color: var(--text-muted);">Smiles Crafted</span>
+            </div>
+            <div class="stat-box" style="padding: 1rem 0.5rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--card-border); text-align: center;">
+              <strong style="font-size: 1.5rem; color: var(--accent-uv); display: block; font-family: var(--font-mono);">45 Mins</strong>
+              <span style="font-size: 0.74rem; color: var(--text-muted);">Laser Whitening</span>
+            </div>
+            <div class="stat-box" style="padding: 1rem 0.5rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--card-border); text-align: center;">
+              <strong style="font-size: 1.5rem; color: #10b981; display: block; font-family: var(--font-mono);">0% Pain</strong>
+              <span style="font-size: 0.74rem; color: var(--text-muted);">Cold Laser Tech</span>
+            </div>
+            <div class="stat-box" style="padding: 1rem 0.5rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--card-border); text-align: center;">
+              <strong style="font-size: 1.5rem; color: #fbbf24; display: block; font-family: var(--font-mono);">4.99 ★</strong>
+              <span style="font-size: 0.74rem; color: var(--text-muted);">3,400+ Reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Clinical Whitening Simulator -->
+        <div class="hero-right-laser">
+          <div class="laser-simulator-frame">
+            
+            <div class="laser-canvas-box" id="laser-box">
+              <!-- HUD Overlays -->
+              <div class="laser-hud-top">
+                <div class="laser-badge">
+                  <i class="fa fa-wand-magic-sparkles"></i>
+                  <span>810nm PHOTON LASER</span>
+                </div>
+                <div class="laser-badge" style="color: var(--accent-uv); border-color: rgba(168,85,247,0.4);">
+                  <span id="purity-index">PURITY: 45%</span>
+                </div>
+                <button id="laser-sound-toggle" class="laser-badge" style="cursor: pointer; background: rgba(10,15,36,0.92); border-color: rgba(168,85,247,0.4); color: var(--accent-cyan); transition: all 0.2s;" title="Toggle Laser Sound Feedback">
+                  <i class="fa fa-volume-high" id="laser-audio-icon"></i> <span id="laser-audio-lbl">AUDIO: ON</span>
+                </button>
+              </div>
+
+              <!-- Canvas Element -->
+              <canvas id="laser-whitening-canvas"></canvas>
+
+              <!-- Drag Guidance -->
+              <div class="laser-hud-bottom">
+                <i class="fa fa-hand-pointer" style="color: var(--accent-cyan);"></i>
+                <span>Drag laser wand over yellow teeth to whiten!</span>
+              </div>
+            </div>
+
+            <!-- Controls & Progress HUD -->
+            <div class="laser-telemetry-panel">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem;">
+                <span style="color: var(--text-muted); font-weight: 700;">
+                  Live Tooth Whiteness Shade:
+                </span>
+                <strong id="shade-tag-label" style="color: var(--accent-cyan); font-family: var(--font-mono);">
+                  Shade A3 (Standard) &rarr; BL1 (Hollywood Target)
+                </strong>
+              </div>
+
+              <div class="progress-track">
+                <div class="progress-fill" id="whiteness-progress-bar"></div>
+              </div>
+
+              <!-- Target Shade Selector -->
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+                  Target Shade:
+                </span>
+                <button class="laser-btn active shade-pick-btn" data-target="BL1" style="flex: 0 0 auto; padding: 4px 12px; font-size: 0.74rem;">
+                  ✨ Hollywood BL1 (Most Popular)
+                </button>
+                <button class="laser-btn shade-pick-btn" data-target="B1" style="flex: 0 0 auto; padding: 4px 12px; font-size: 0.74rem;">
+                  🦷 Natural B1 Soft White
+                </button>
+                <button class="laser-btn shade-pick-btn" data-target="BL0" style="flex: 0 0 auto; padding: 4px 12px; font-size: 0.74rem;">
+                  💎 Diamond Ultra BL0
+                </button>
+              </div>
+
+              <div class="laser-btn-row">
+                <button class="laser-btn" id="btn-auto-clean">
+                  <span>⚡</span> Auto-Laser Clean
+                </button>
+                <button class="laser-btn" id="btn-reset-simulation">
+                  <span>🔄</span> Reset Teeth
+                </button>
+                <button class="laser-btn active" id="btn-lock-whitening" style="background: linear-gradient(135deg, rgba(168,85,247,0.4), rgba(0,245,212,0.4)); color: #fff;">
+                  <span>📅</span> Book This Result
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         COMPREHENSIVE DENTAL CLINICAL SERVICES
+         ======================================================== -->
+    <section id="clinical-services" class="page-container section-padding">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="tag-badge"><i class="fa fa-stethoscope"></i> Clinical Dental Treatments</div>
+        <h2 class="section-title">World-Class <span>Dental Surgery &amp; Aesthetics</span></h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          Every procedure is performed in sterile private surgical suites using German optics, 3D intraoral digital scanners, and painless laser technology.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 2rem;">
+        
+        <!-- Service 1: Laser Whitening -->
+        <div class="dental-card">
+          <div>
+            <div class="dental-card-icon"><i class="fa fa-wand-magic-sparkles"></i></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">Aesthetic Whitening</span>
+              <span style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent-uv);">45 Mins</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem;">810nm Cold Laser Whitening</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              Lifts up to 8 shades of deep coffee, nicotine, and age discoloration in a single comfortable session without damaging tooth enamel.
+            </p>
+          </div>
+          <div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">From</span>
+                <strong style="color: var(--accent-cyan); font-size: 1.25rem;">$320</strong>
+              </div>
+              <a href="booking.html?treatment=Laser%20Whitening" class="laser-btn active" style="flex: 0 0 auto;">Book Suite</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Porcelain Veneers -->
+        <div class="dental-card">
+          <div>
+            <div class="dental-card-icon" style="color: var(--accent-uv); border-color: rgba(168,85,247,0.4);"><i class="fa fa-teeth-open"></i></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-uv); text-transform: uppercase;">German E-Max</span>
+              <span style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent-cyan);">Same Week</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem;">Handcrafted Porcelain Veneers</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              0.2mm contact-lens-thin ceramic shells designed to correct gaps, chips, and tooth shape while preserving 98% of natural enamel.
+            </p>
+          </div>
+          <div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Per Tooth</span>
+                <strong style="color: var(--accent-cyan); font-size: 1.25rem;">$450</strong>
+              </div>
+              <a href="booking.html?treatment=Porcelain%20Veneers" class="laser-btn active" style="flex: 0 0 auto;">Book Suite</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: 3D Guided Implants -->
+        <div class="dental-card">
+          <div>
+            <div class="dental-card-icon" style="color: #38bdf8; border-color: rgba(56,189,248,0.4);"><i class="fa fa-screw"></i></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #38bdf8; text-transform: uppercase;">Straumann® Titanium</span>
+              <span style="font-size: 0.8rem; font-family: var(--font-mono); color: #10b981;">Lifetime Warr.</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem;">Robotic 3D Guided Implants</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              Flapless keyhole computer-guided surgery. Sub-millimeter accuracy without scalpels or stitches, with permanent teeth fitted same day.
+            </p>
+          </div>
+          <div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Complete Unit</span>
+                <strong style="color: var(--accent-cyan); font-size: 1.25rem;">$1,350</strong>
+              </div>
+              <a href="booking.html?treatment=Dental%20Implant" class="laser-btn active" style="flex: 0 0 auto;">Book Suite</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4: Invisalign -->
+        <div class="dental-card">
+          <div>
+            <div class="dental-card-icon" style="color: #10b981; border-color: rgba(16,185,129,0.4);"><i class="fa fa-smile-beam"></i></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #10b981; text-transform: uppercase;">Invisalign Platinum</span>
+              <span style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent-cyan);">3D iTero Scan</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem;">Invisalign® Clear Aligners</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              Virtually invisible medical-grade aligners that straighten crooked teeth and correct bite misalignments comfortably without metal wires.
+            </p>
+          </div>
+          <div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Full Plan</span>
+                <strong style="color: var(--accent-cyan); font-size: 1.25rem;">$2,400</strong>
+              </div>
+              <a href="booking.html?treatment=Invisalign" class="laser-btn active" style="flex: 0 0 auto;">Book Suite</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 5: Microscopic Root Canal -->
+        <div class="dental-card">
+          <div>
+            <div class="dental-card-icon" style="color: #f43f5e; border-color: rgba(244,63,94,0.4);"><i class="fa fa-microscope"></i></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #f43f5e; text-transform: uppercase;">Zeiss Microscope</span>
+              <span style="font-size: 0.8rem; font-family: var(--font-mono); color: #10b981;">100% Painless</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem;">Laser-Sterilized Root Canal</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              High-magnification apex disinfection using cold diode laser light. Eliminates acute toothache immediately while saving your natural tooth root.
+            </p>
+          </div>
+          <div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Starting at</span>
+                <strong style="color: var(--accent-cyan); font-size: 1.25rem;">$280</strong>
+              </div>
+              <a href="booking.html?treatment=Root%20Canal" class="laser-btn active" style="flex: 0 0 auto;">Book Suite</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 6: All-on-4 / Full Arch -->
+        <div class="dental-card">
+          <div>
+            <div class="dental-card-icon" style="color: #fbbf24; border-color: rgba(251,191,36,0.4);"><i class="fa fa-crown"></i></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #fbbf24; text-transform: uppercase;">Full Arch Rehab</span>
+              <span style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent-cyan);">Same-Day Teeth</span>
+            </div>
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.8rem;">All-on-4® Permanent Smile</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.5rem;">
+              Permanent full-arch fixed bridges for patients with missing or failing teeth. Restore full chewing power and radiant facial volume in 24 hours.
+            </p>
+          </div>
+          <div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Full Arch</span>
+                <strong style="color: var(--accent-cyan); font-size: 1.25rem;">$4,800</strong>
+              </div>
+              <a href="booking.html?treatment=All-on-4" class="laser-btn active" style="flex: 0 0 auto;">Book Suite</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         REAL BEFORE & AFTER SMILE TRANSFORMATIONS
+         ======================================================== -->
+    <section class="page-container section-padding" style="padding-top: 1rem;">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="tag-badge"><i class="fa fa-camera-retro"></i> Clinical Evidence</div>
+        <h2 class="section-title">Verified Smile <span>Transformations</span></h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          Drag the clinical slider below to see real patient results achieved with our 810nm cold laser whitening and German E-Max porcelain veneers.
+        </p>
+      </div>
+
+      <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 28px; padding: 2.5rem; box-shadow: var(--shadow-card);">
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
+          
+          <div class="case-slider-wrap" id="slider-case-1">
+            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=900&q=80" alt="Before Laser Whitening" class="case-img" style="filter: contrast(0.9) brightness(0.9);" />
+            <span class="slider-label label-before">Before (Shade A3.5 Worn Enamel)</span>
+            <img id="after-img-1" src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&q=90" alt="After Laser Whitening" class="case-img case-after" />
+            <span class="slider-label label-after" style="background: linear-gradient(135deg, var(--accent-uv), var(--accent-cyan)); color: #040714;">After (Hollywood White BL1)</span>
+            <div class="case-handle" id="handle-1"><div class="case-knob"><i class="fa fa-arrows-left-right"></i></div></div>
+          </div>
+
+          <div>
+            <div class="tag-badge" style="background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4);"><i class="fa fa-gem"></i> Cosmetic Case #4921</div>
+            <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin: 0.5rem 0 1rem;">
+              Full Arch Laser Brightening &amp; 8 German E-Max Veneers
+            </h3>
+            <p style="color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.5rem;">
+              Patient presented with heavy fluorosis discoloration, enamel edge wear, and bite asymmetry. Dr. Ahmed Khan completed deep 810nm photon laser stain decontamination followed by 8 custom E-Max veneers in Vita Shade BL1.
+            </p>
+            <div style="background: var(--surface-2); border-radius: 16px; padding: 1.2rem; border: 1px solid var(--card-border); margin-bottom: 1.5rem; font-size: 0.88rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span style="color: var(--text-muted);">Lead Surgeon:</span>
+                <strong>Dr. Ahmed Khan (BDS, MSc London)</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span style="color: var(--text-muted);">Treatment Duration:</span>
+                <strong>2 Clinic Sessions (5 Days Total)</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Patient Post-Op Pain:</span>
+                <strong style="color: #10b981;">0% (Zero Sensitivity Reported)</strong>
+              </div>
+            </div>
+            <a href="gallery.html" class="btn-primary">
+              <i class="fa fa-images"></i> Explore 50+ Real Transformation Cases
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         MEET OUR SENIOR DENTAL SURGEONS & SPECIALISTS
+         ======================================================== -->
+    <section class="page-container section-padding" style="padding-top: 1rem;">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="tag-badge"><i class="fa fa-user-doctor"></i> Medical Faculty</div>
+        <h2 class="section-title">Board-Certified <span>Dental Specialists</span></h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          Our hospital faculty holds fellowships from the Royal College of Surgeons (UK), King's College London, and New York University.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+        
+        <!-- Dr. Ahmed Khan -->
+        <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-card);">
+          <div style="height: 310px; overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&h=700&fit=crop&q=90" alt="Dr. Ahmed Khan" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; bottom: 14px; left: 14px; background: rgba(4,7,20,0.88); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; color: var(--accent-cyan); font-weight: 700; border: 1px solid var(--card-border);">
+              ★ 4.99 &bull; 5,400+ Aesthetic Smiles
+            </div>
+          </div>
+          <div style="padding: 2rem;">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 4px;">Dr. Ahmed Khan</h3>
+            <p style="color: var(--accent-cyan); font-size: 0.88rem; font-weight: 700; margin-bottom: 0.8rem;">Head of Aesthetic Dentistry (King's College London)</p>
+            <div style="background: var(--surface-2); padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+              <strong>Specialty:</strong> German E-Max Veneers, 810nm Laser Whitening, Digital Smile Architecture.
+            </div>
+            <button class="btn-primary direct-doc-book-btn" data-doctor="Dr. Ahmed Khan" style="width: 100%; justify-content: center;">
+              <i class="fa fa-calendar-check"></i> Consult With Dr. Ahmed
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Sara Malik -->
+        <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-card);">
+          <div style="height: 310px; overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&h=700&fit=crop&q=90" alt="Dr. Sara Malik" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; bottom: 14px; left: 14px; background: rgba(4,7,20,0.88); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; color: var(--accent-uv); font-weight: 700; border: 1px solid var(--card-border);">
+              ★ 4.98 &bull; 3,800+ Invisalign Aligners
+            </div>
+          </div>
+          <div style="padding: 2rem;">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 4px;">Dr. Sara Malik</h3>
+            <p style="color: var(--accent-uv); font-size: 0.88rem; font-weight: 700; margin-bottom: 0.8rem;">Chief Orthodontist &amp; Invisalign® Platinum Elite</p>
+            <div style="background: var(--surface-2); padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+              <strong>Specialty:</strong> 3D Intraoral Scans, Invisible Aligners, Teen &amp; Adult Orthodontics.
+            </div>
+            <button class="btn-primary direct-doc-book-btn" data-doctor="Dr. Sara Malik" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #a855f7, #6366f1);">
+              <i class="fa fa-calendar-check"></i> Consult With Dr. Sara
+            </button>
+          </div>
+        </div>
+
+        <!-- Dr. Usman Ali -->
+        <div style="background: var(--surface); border: 1px solid var(--card-border); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-card);">
+          <div style="height: 310px; overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&h=700&fit=crop&q=90" alt="Dr. Usman Ali" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; bottom: 14px; left: 14px; background: rgba(4,7,20,0.88); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; color: #38bdf8; font-weight: 700; border: 1px solid var(--card-border);">
+              ★ 5.0 &bull; 4,200+ Guided Implants
+            </div>
+          </div>
+          <div style="padding: 2rem;">
+            <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 4px;">Dr. Usman Ali</h3>
+            <p style="color: #38bdf8; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.8rem;">Oral &amp; Maxillofacial Surgeon (FRCS Edinburgh)</p>
+            <div style="background: var(--surface-2); padding: 0.7rem 1rem; border-radius: 12px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+              <strong>Specialty:</strong> All-on-4® Full Arch Implants, Bone Grafting, Twilight Sedation Surgery.
+            </div>
+            <button class="btn-primary direct-doc-book-btn" data-doctor="Dr. Usman Ali" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #0284c7, #38bdf8);">
+              <i class="fa fa-calendar-check"></i> Consult With Dr. Usman
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         24/7 DENTAL EMERGENCY SOS STRIP
+         ======================================================== -->
+    <section class="page-container" style="padding: 2rem 0 4rem;">
+      <div style="background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(0,245,212,0.15)); border: 1px solid var(--card-border-glow); border-radius: 28px; padding: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; box-shadow: var(--shadow-card);">
+        <div style="max-width: 650px;">
+          <span style="background: rgba(244,63,94,0.2); color: #f43f5e; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">
+            🚨 24-Hour Dental Trauma On Call
+          </span>
+          <h3 style="font-size: 1.8rem; font-weight: 800; margin: 0.8rem 0 0.5rem;">
+            Severe Toothache or Chipped Front Tooth?
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+            Our trauma team provides same-day walk-in pain relief, emergency nerve pulpotomy, and repair in soundproof sedation suites.
+          </p>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="symptom-checker.html" class="btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+            <i class="fa fa-stethoscope"></i> Online Symptom Triage
+          </a>
+          <a href="https://wa.me/923001234567" target="_blank" class="btn-primary" style="background: #10b981; color: #fff;">
+            <i class="fab fa-whatsapp"></i> WhatsApp On-Call Doctor
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PATIENT REVIEWS
+         ======================================================== -->
+    <section class="page-container section-padding" style="padding-top: 1rem;">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <div class="tag-badge"><i class="fa fa-star"></i> Patient Experiences</div>
+        <h2 class="section-title">Verified Patient <span>Smile Stories</span></h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <div class="review-card">
+          <div style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.1rem;">★★★★★</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            "I had a severe fear of the dentist after painful childhood extractions. Dr. Ahmed and his team performed laser whitening and 6 veneers with 0 pain. I didn't even feel the numbing gel!"
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-uv), var(--accent-cyan)); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #040714;">AT</div>
+            <div>
+              <strong style="display: block; font-size: 0.95rem;">Ayesha Tariq</strong>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">Porcelain Veneers &bull; Gulberg Branch</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.1rem;">★★★★★</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            "Dr. Usman placed 2 titanium implants using 3D surgical keyhole navigation. It took less than 30 minutes and I was back at my office meetings the exact same afternoon without swelling."
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #040714;">HF</div>
+            <div>
+              <strong style="display: block; font-size: 0.95rem;">Hamza Farooq</strong>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">Straumann Implants &bull; DHA Boutique</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div style="color: #fbbf24; margin-bottom: 1rem; font-size: 1.1rem;">★★★★★</div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            "Completed my Invisalign treatment with Dr. Sara Malik. The 3D simulator let me see my teeth moving before we even printed tray 1. Truly the most high-tech medical clinic in Lahore."
+          </p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #f43f5e); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #040714;">ZN</div>
+            <div>
+              <strong style="display: block; font-size: 0.95rem;">Zainab Noor</strong>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">Invisalign Treatment &bull; Gulberg Branch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       RESERVATION MODAL
+       ======================================================== -->
+  <div id="booking-modal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(4, 7, 20, 0.88); backdrop-filter: blur(14px); z-index: 999999; align-items: center; justify-content: center; padding: 1.5rem;">
+    <div style="background: var(--surface); border: 1px solid var(--card-border-glow); border-radius: 28px; max-width: 560px; width: 100%; padding: 2.5rem; box-shadow: var(--shadow-card); position: relative;">
+      
+      <button id="modal-close" style="position: absolute; top: 22px; right: 22px; background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer;">
+        &times;
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1.8rem;">
+        <div style="width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(0,245,212,0.25)); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+          <i class="fa fa-calendar-check"></i>
+        </div>
+        <div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; margin: 0;">Reserve Private Dental Suite</h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Synced instantly with Hospital Staff Dashboard</p>
+        </div>
+      </div>
+
+      <form id="suite-booking-form" style="display: flex; flex-direction: column; gap: 1.1rem;">
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Patient Full Name</label>
+          <input type="text" id="patient-name" required placeholder="e.g. Aliyan Khan" style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Phone / WhatsApp</label>
+            <input type="tel" id="patient-phone" required placeholder="+92 300 1234567" style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;" />
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Lead Specialist</label>
+            <select id="patient-doc" style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;">
+              <option value="Dr. Ahmed Khan">Dr. Ahmed Khan (Aesthetic &amp; Veneers)</option>
+              <option value="Dr. Sara Malik">Dr. Sara Malik (Ortho &amp; Invisalign)</option>
+              <option value="Dr. Usman Ali">Dr. Usman Ali (Surgeon &amp; Implants)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Procedure</label>
+          <select id="patient-treat" style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;">
+            <option value="810nm Cold Laser Whitening Suite ($320)">810nm Cold Laser Whitening Suite ($320)</option>
+            <option value="Handcrafted German E-Max Veneers">Handcrafted German E-Max Veneers</option>
+            <option value="Robotic 3D Guided Dental Implant">Robotic 3D Guided Dental Implant</option>
+            <option value="Invisalign® Clear Aligners">Invisalign® Clear Aligners</option>
+            <option value="Laser-Sterilized Painless Root Canal">Laser-Sterilized Painless Root Canal</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Preferred Date</label>
+            <input type="date" id="patient-date" required style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;" />
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Preferred Branch</label>
+            <select id="patient-branch" style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;">
+              <option value="Gulberg III Flagship">Gulberg III Flagship Hospital</option>
+              <option value="DHA Phase 5 Boutique">DHA Phase 5 Boutique Lounge</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">Clinical Notes or Target Shade</label>
+          <input type="text" id="patient-notes" placeholder="e.g. Target Shade Hollywood BL1 via Laser Simulator" style="width: 100%; background: var(--surface-2); border: 1px solid var(--card-border); border-radius: 12px; padding: 11px 16px; color: var(--text-main); font-family: inherit;" />
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+          <i class="fa fa-lock"></i> Confirm Private Suite Booking
+        </button>
+      </form>
+
+      <div id="booking-success" style="display: none; text-align: center; padding: 2rem 0;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(0, 245, 212, 0.2); color: var(--accent-cyan); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem;">
+          <i class="fa fa-check"></i>
+        </div>
+        <h4 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;">Private Suite Confirmed!</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          Your appointment code is <strong id="res-ref-id" style="color: var(--accent-cyan); font-family: var(--font-mono);">SC-89211</strong>. Our VIP valet and clinical concierge will reach out to you via WhatsApp with suite directions.
+        </p>
+        <button id="modal-done" class="btn-primary" style="margin: 0 auto;">
+          Done
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MASTER HOSPITAL FOOTER
+       ======================================================== -->
+  <footer class="site-footer" style="background: rgba(4, 7, 20, 0.98); border-top: 1px solid var(--card-border); padding: 4.5rem 0 2.5rem; margin-top: 5rem;">
+    <div class="page-container" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 3.5rem; margin-bottom: 3.5rem;">
+      <div>
+        <div class="header-logo" style="margin-bottom: 1rem;">
+          <div class="logo-badge">🦷</div>
+          <span>SmileCare <strong style="color: var(--accent-cyan);">DENTAL</strong></span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem;">
+          Pakistan's flagship hospital for painless laser dentistry, cosmetic veneers, and 3D robotic implantology. Certified by the Pakistan Medical Commission and ISO 9001:2015.
+        </p>
+        <div style="display: flex; gap: 12px;">
+          <a href="#" style="width: 38px; height: 38px; border-radius: 50%; background: var(--surface); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="width: 38px; height: 38px; border-radius: 50%; background: var(--surface); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-facebook"></i></a>
+          <a href="#" style="width: 38px; height: 38px; border-radius: 50%; background: var(--surface); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; color: var(--text-muted);"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--text-main);">Clinical Treatments</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.88rem; color: var(--text-muted);">
+          <li><a href="treatments.html" style="transition: color 0.2s;">810nm Cold Laser Whitening</a></li>
+          <li><a href="treatments.html" style="transition: color 0.2s;">German E-Max Porcelain Veneers</a></li>
+          <li><a href="treatments.html" style="transition: color 0.2s;">3D Guided Straumann Implants</a></li>
+          <li><a href="treatments.html" style="transition: color 0.2s;">Invisalign® Clear Aligners</a></li>
+          <li><a href="treatments.html" style="transition: color 0.2s;">Microscopic Root Canal Therapy</a></li>
+          <li><a href="treatments.html" style="transition: color 0.2s;">All-on-4® Full Arch Implants</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--text-main);">Patient Portals</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.88rem; color: var(--text-muted);">
+          <li><a href="smile-studio.html" style="transition: color 0.2s;">3D Virtual Smile Studio</a></li>
+          <li><a href="symptom-checker.html" style="transition: color 0.2s;">AI Symptom Checker &amp; Triage</a></li>
+          <li><a href="doctors.html" style="transition: color 0.2s;">Find a Dental Specialist</a></li>
+          <li><a href="gallery.html" style="transition: color 0.2s;">Smile Before &amp; After Vault</a></li>
+          <li><a href="booking.html" style="transition: color 0.2s;">VIP Suite Online Booking</a></li>
+          <li><a href="admin.html" style="transition: color 0.2s;">Clinic Staff Administration</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--text-main);">Hospital Branches</h4>
+        <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.8rem;">
+          <strong style="color: var(--text-main); display: block;">Gulberg III Flagship Hospital:</strong>
+          Plot 42-A, Main Boulevard, Gulberg III, Lahore
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem;">
+          <strong style="color: var(--text-main); display: block;">DHA Phase 5 Cosmetic Boutique:</strong>
+          Sector CCA, Phase 5, DHA, Lahore
+        </p>
+        <div style="font-size: 0.88rem; color: var(--accent-cyan); font-weight: 700;">
+          <i class="fab fa-whatsapp"></i> +92 300 1234567
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width: 1350px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid var(--card-border); text-align: center; color: var(--text-muted); font-size: 0.82rem;">
+      &copy; 2026 SmileCare Laser Dental Hospital &bull; Licensed by Punjab Healthcare Commission &amp; PMC &bull; All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float SOS Trigger -->
+  <a href="https://wa.me/923001234567" target="_blank" rel="noopener noreferrer" class="emergency-float-trigger" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; background: #10b981; color: #fff; padding: 12px 22px; border-radius: 40px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.9rem; box-shadow: 0 10px 30px rgba(16,185,129,0.5); text-decoration: none;">
+    <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i>
+    <span>Emergency? WhatsApp SOS</span>
+  </a>
+
+  <!-- ========================================================
+       MASTER SCRIPTS & LASER ENGINE LOGIC
+       ======================================================== -->
+  <script type="module" src="js/master.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Interactive Laser Whitening Canvas Engine
+      const canvas = document.getElementById('laser-whitening-canvas');
+      const box = document.getElementById('laser-box');
+      if (!canvas || !box) return;
+
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = box.clientWidth;
+      let height = canvas.height = box.clientHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = box.clientWidth;
+        height = canvas.height = box.clientHeight;
+        initTeeth();
+      });
+
+      // 6 Teeth Models on the Arch
+      let teeth = [];
+      const toothCount = 6;
+      let isLasering = false;
+      let laserX = width / 2;
+      let laserY = height / 2;
+      let particles = [];
+
+      function initTeeth() {
+        teeth = [];
+        const toothWidth = Math.min(width / (toothCount + 1.2), 70);
+        const toothHeight = toothWidth * 1.5;
+        const startX = (width - (toothCount * (toothWidth + 12))) / 2;
+        const centerY = height / 2;
+
+        for (let i = 0; i < toothCount; i++) {
+          teeth.push({
+            x: startX + i * (toothWidth + 12),
+            y: centerY - toothHeight / 2 + Math.sin(i / (toothCount - 1) * Math.PI) * 15,
+            w: toothWidth,
+            h: toothHeight,
+            stainLevel: 1.0, // 1.0 = stain, 0.0 = bright white
+            cleanProgress: 0.0
+          });
+        }
+      }
+      initTeeth();
+
+      // Sparks Particle Generator
+      function addSparks(x, y) {
+        for (let i = 0; i < 6; i++) {
+          particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 8,
+            vy: (Math.random() - 0.5) * 8,
+            life: 1.0,
+            color: Math.random() > 0.5 ? '#00f5d4' : '#a855f7'
+          });
+        }
+      }
+
+      // Web Audio Synthesizer for UV Laser & Sparks
+      let laserAudioEnabled = true;
+      let laserAudioCtx = null;
+      let lastZapTime = 0;
+      let victoryPlayed = false;
+
+      function getLaserAudioCtx() {
+        if (!laserAudioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) laserAudioCtx = new AudioContext();
+        }
+        if (laserAudioCtx && laserAudioCtx.state === 'suspended') {
+          laserAudioCtx.resume();
+        }
+        return laserAudioCtx;
+      }
+
+      function playLaserHumSound() {
+        if (!laserAudioEnabled) return;
+        const now = performance.now();
+        if (now - lastZapTime < 50) return;
+        lastZapTime = now;
+        try {
+          const ctx = getLaserAudioCtx();
+          if (!ctx) return;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sawtooth';
+          const freq = 650 + Math.random() * 350;
+          osc.frequency.setValueAtTime(freq, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(freq * 0.6, ctx.currentTime + 0.05);
+          gain.gain.setValueAtTime(0.045, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.05);
+        } catch(e) {}
+      }
+
+      function playVictoryChime() {
+        if (!laserAudioEnabled || victoryPlayed) return;
+        victoryPlayed = true;
+        try {
+          const ctx = getLaserAudioCtx();
+          if (!ctx) return;
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, i) => {
+            setTimeout(() => {
+              const osc = ctx.createOscillator();
+              const gain = ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(freq, ctx.currentTime);
+              gain.gain.setValueAtTime(0.12, ctx.currentTime);
+              gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+              osc.connect(gain);
+              gain.connect(ctx.destination);
+              osc.start();
+              osc.stop(ctx.currentTime + 0.35);
+            }, i * 90);
+          });
+        } catch(e) {}
+      }
+
+      // Drag / Mouse Interaction
+      function handleLaserMove(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        laserX = clientX - rect.left;
+        laserY = clientY - rect.top;
+
+        if (isLasering) {
+          addSparks(laserX, laserY);
+          playLaserHumSound();
+
+          teeth.forEach(t => {
+            const dist = Math.hypot(laserX - (t.x + t.w / 2), laserY - (t.y + t.h / 2));
+            if (dist < 55) {
+              t.stainLevel = Math.max(0, t.stainLevel - 0.04);
+            }
+          });
+          updateWhitenessMetrics();
+        }
+      }
+
+      canvas.addEventListener('mousedown', (e) => {
+        isLasering = true;
+        handleLaserMove(e.clientX, e.clientY);
+      });
+      window.addEventListener('mouseup', () => { isLasering = false; });
+      canvas.addEventListener('mousemove', (e) => {
+        handleLaserMove(e.clientX, e.clientY);
+      });
+
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+          isLasering = true;
+          handleLaserMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      });
+      window.addEventListener('touchend', () => { isLasering = false; });
+      canvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          handleLaserMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      });
+
+      // Sound Toggle Button
+      const audioBtn = document.getElementById('laser-sound-toggle');
+      const audioIcon = document.getElementById('laser-audio-icon');
+      const audioLbl = document.getElementById('laser-audio-lbl');
+      if (audioBtn) {
+        audioBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          laserAudioEnabled = !laserAudioEnabled;
+          if (laserAudioEnabled) {
+            audioIcon.className = 'fa fa-volume-high';
+            audioLbl.textContent = 'AUDIO: ON';
+            audioBtn.style.color = 'var(--accent-cyan)';
+          } else {
+            audioIcon.className = 'fa fa-volume-xmark';
+            audioLbl.textContent = 'AUDIO: OFF';
+            audioBtn.style.color = 'var(--text-muted)';
+          }
+        });
+      }
+
+      // Whiteness Telemetry Updater
+      const progressBar = document.getElementById('whiteness-progress-bar');
+      const purityIndex = document.getElementById('purity-index');
+      const shadeLabel = document.getElementById('shade-tag-label');
+
+      function updateWhitenessMetrics() {
+        const avgStain = teeth.reduce((acc, t) => acc + t.stainLevel, 0) / toothCount;
+        const purityPct = Math.round((1 - avgStain) * 100);
+
+        if (progressBar) progressBar.style.width = `${Math.max(10, purityPct)}%`;
+        if (purityIndex) purityIndex.textContent = `PURITY: ${purityPct}%`;
+
+        if (shadeLabel) {
+          if (purityPct < 35) {
+            shadeLabel.textContent = `Shade A3.5 (Heavy Stains) \u2192 Move wand to whiten!`;
+            shadeLabel.style.color = '#fbbf24';
+          } else if (purityPct < 70) {
+            shadeLabel.textContent = `Shade A1 / B1 (Natural Soft Pearl White)`;
+            shadeLabel.style.color = '#38bdf8';
+          } else if (purityPct < 95) {
+            shadeLabel.textContent = `Shade BL2 (Celebrity White Reached!)`;
+            shadeLabel.style.color = 'var(--accent-uv)';
+          } else {
+            shadeLabel.textContent = `Shade BL1 (Pure Hollywood Crystal White Achieved!)`;
+            shadeLabel.style.color = 'var(--accent-cyan)';
+            playVictoryChime();
+          }
+        }
+      }
+
+      // Auto-Clean AI Button
+      document.getElementById('btn-auto-clean')?.addEventListener('click', () => {
+        let step = 0;
+        const interval = setInterval(() => {
+          step++;
+          teeth.forEach(t => {
+            t.stainLevel = Math.max(0, t.stainLevel - 0.08);
+            addSparks(t.x + t.w / 2, t.y + t.h / 2);
+          });
+          playLaserHumSound();
+          updateWhitenessMetrics();
+          if (step >= 14) clearInterval(interval);
+        }, 60);
+      });
+
+      // Reset Simulation Button
+      document.getElementById('btn-reset-simulation')?.addEventListener('click', () => {
+        victoryPlayed = false;
+        teeth.forEach(t => { t.stainLevel = 1.0; });
+        updateWhitenessMetrics();
+      });
+
+      // Lock In Whitening Result
+      document.getElementById('btn-lock-whitening')?.addEventListener('click', () => {
+        const notesInput = document.getElementById('patient-notes');
+        if (notesInput) {
+          notesInput.value = `Quoted via Laser Whitening Simulator (${shadeLabel ? shadeLabel.textContent : 'Hollywood BL1'})`;
+        }
+        openModal();
+      });
+
+      // Target Shade Pickers
+      document.querySelectorAll('.shade-pick-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.shade-pick-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+
+      // Animation Render Loop
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw Teeth Arch
+        teeth.forEach((t, idx) => {
+          ctx.save();
+          
+          // Color interpolation: stain yellow (#d4af37) to radiant white (#ffffff)
+          const r = Math.round(212 + (255 - 212) * (1 - t.stainLevel));
+          const g = Math.round(175 + (255 - 175) * (1 - t.stainLevel));
+          const b = Math.round(55 + (255 - 55) * (1 - t.stainLevel));
+          
+          ctx.shadowColor = t.stainLevel < 0.2 ? 'rgba(0,245,212,0.6)' : 'rgba(0,0,0,0.5)';
+          ctx.shadowBlur = t.stainLevel < 0.2 ? 20 : 10;
+
+          // Draw rounded tooth shape
+          ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+          ctx.beginPath();
+          const rad = t.w * 0.35;
+          ctx.roundRect(t.x, t.y, t.w, t.h, [rad, rad, rad * 0.4, rad * 0.4]);
+          ctx.fill();
+
+          // Enamel Glisten Gloss
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.beginPath();
+          ctx.ellipse(t.x + t.w * 0.35, t.y + t.h * 0.3, t.w * 0.1, t.h * 0.2, Math.PI / 6, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Tooth Index label
+          ctx.fillStyle = 'rgba(148, 163, 184, 0.5)';
+          ctx.font = '10px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`T-${idx + 1}`, t.x + t.w / 2, t.y + t.h + 16);
+
+          ctx.restore();
+        });
+
+        // Draw Laser Sparks Particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= 0.04;
+
+          if (p.life <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.life;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2.5 * p.life, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // Draw Clinical Laser Wand & Glowing Beam
+        ctx.save();
+        const grad = ctx.createRadialGradient(laserX, laserY, 2, laserX, laserY, isLasering ? 45 : 20);
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.3, '#00f5d4');
+        grad.addColorStop(0.7, '#a855f7');
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(laserX, laserY, isLasering ? 45 : 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Laser Beam Emitter Wand Line
+        ctx.strokeStyle = isLasering ? 'rgba(0,245,212,0.85)' : 'rgba(168,85,247,0.4)';
+        ctx.lineWidth = isLasering ? 3 : 1.5;
+        ctx.beginPath();
+        ctx.moveTo(laserX, laserY);
+        ctx.lineTo(laserX + 35, laserY - 35);
+        ctx.stroke();
+
+        ctx.fillStyle = '#0a0f24';
+        ctx.strokeStyle = '#a855f7';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(laserX + 35, laserY - 35, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.restore();
+
+        requestAnimationFrame(render);
+      }
+      render();
+
+      // 2. Before/After Image Slider
+      const sliderWrap = document.getElementById('slider-case-1');
+      const afterImg = document.getElementById('after-img-1');
+      const handle = document.getElementById('handle-1');
+
+      if (sliderWrap && afterImg && handle) {
+        let isSliding = false;
+
+        const updateSlider = (clientX) => {
+          const rect = sliderWrap.getBoundingClientRect();
+          let x = clientX - rect.left;
+          x = Math.max(0, Math.min(x, rect.width));
+          const pct = (x / rect.width) * 100;
+          afterImg.style.clipPath = `polygon(${pct}% 0, 100% 0, 100% 100%, ${pct}% 100%)`;
+          handle.style.left = `${pct}%`;
+        };
+
+        sliderWrap.addEventListener('mousedown', (e) => {
+          isSliding = true;
+          updateSlider(e.clientX);
+        });
+        window.addEventListener('mouseup', () => { isSliding = false; });
+        sliderWrap.addEventListener('mousemove', (e) => {
+          if (isSliding) updateSlider(e.clientX);
+        });
+
+        sliderWrap.addEventListener('touchstart', (e) => {
+          if (e.touches.length > 0) {
+            isSliding = true;
+            updateSlider(e.touches[0].clientX);
+          }
+        });
+        window.addEventListener('touchend', () => { isSliding = false; });
+        sliderWrap.addEventListener('touchmove', (e) => {
+          if (isSliding && e.touches.length > 0) {
+            updateSlider(e.touches[0].clientX);
+          }
+        });
+      }
+
+      // 3. Modal Booking Flow
+      const modal = document.getElementById('booking-modal');
+      const bookingForm = document.getElementById('suite-booking-form');
+      const successBox = document.getElementById('booking-success');
+      const dateInput = document.getElementById('patient-date');
+      const docSelect = document.getElementById('patient-doc');
+      const treatSelect = document.getElementById('patient-treat');
+      const notesInput = document.getElementById('patient-notes');
+
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+        dateInput.min = today;
+      }
+
+      const openModal = () => {
+        if (modal) modal.style.display = 'flex';
+        if (bookingForm) bookingForm.style.display = 'flex';
+        if (successBox) successBox.style.display = 'none';
+      };
+
+      const closeModal = () => {
+        if (modal) modal.style.display = 'none';
+      };
+
+      document.getElementById('header-book-btn')?.addEventListener('click', openModal);
+      document.getElementById('hero-book-trigger')?.addEventListener('click', openModal);
+      document.getElementById('modal-close')?.addEventListener('click', closeModal);
+      document.getElementById('modal-done')?.addEventListener('click', closeModal);
+
+      // Direct Doctor Booking Buttons
+      document.querySelectorAll('.direct-doc-book-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const doc = btn.getAttribute('data-doctor');
+          if (docSelect && doc) docSelect.value = doc;
+          openModal();
+        });
+      });
+
+      // Booking Form Submit
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('patient-name').value;
+          const phone = document.getElementById('patient-phone').value;
+          const doc = docSelect ? docSelect.value : 'Dr. Ahmed Khan';
+          const treat = treatSelect ? treatSelect.value : '810nm Cold Laser Whitening Suite ($320)';
+          const date = dateInput ? dateInput.value : 'Today';
+          const notes = notesInput ? notesInput.value : '';
+
+          const refId = 'SC-' + Math.floor(10000 + Math.random() * 90000);
+
+          if (window.ClinicStore) {
+            window.ClinicStore.addAppointment({
+              id: refId,
+              name: name,
+              phone: phone,
+              treatment: treat,
+              doctor: doc,
+              date: date,
+              time: '10:30 AM (VIP Private Suite)',
+              status: 'Confirmed',
+              urgency: 'Normal',
+              notes: notes || 'Booked via Laser Whitening Suite Engine',
+              cost: '$320'
+            });
+          }
+
+          document.getElementById('res-ref-id').textContent = refId;
+          bookingForm.style.display = 'none';
+          if (successBox) successBox.style.display = 'block';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
