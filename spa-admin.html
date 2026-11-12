@@ -1,15 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aura Dental Spa • Reception &amp; Patient Queue Desk</title>
-  <meta name="description" content="Aura Dental Spa DHA Phase 6 Karachi - Minimalist Reception & Sequential Patient Queue Desk." />
+  <meta name="description"
+    content="Aura Dental Spa DHA Phase 6 Karachi - Minimalist Reception & Sequential Patient Queue Desk." />
 
   <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -49,10 +54,24 @@
   </script>
 
   <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
     .filter-tab {
-      padding: 0.45rem 1rem;
+      padding: 0.45rem 0.9rem;
       border-radius: 9999px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: #64748b;
       background: #ffffff;
@@ -62,82 +81,98 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
+
     .filter-tab:hover {
       background: #f8fafc;
       color: #0f172a;
     }
+
     .filter-tab.active {
       background: #0d9488;
       color: #ffffff;
       border-color: #0d9488;
       box-shadow: 0 2px 10px rgba(13, 148, 136, 0.2);
     }
+
     .table-row-hover:hover {
       background-color: #f8fafc;
     }
+
     ::selection {
       background-color: #ccfbf1;
       color: #0f766e;
     }
+
+    @media (max-width: 640px) {
+      input, select, textarea {
+        font-size: 16px !important;
+      }
+      #admin-search {
+        font-size: 14px !important;
+      }
+    }
   </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-body font-sans min-h-screen antialiased flex flex-col selection:bg-teal-100 selection:text-teal-900">
 
-  <!-- Clean Minimalist Header (Whitespace-First) -->
-  <header class="bg-white border-b border-slate-100 sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      
+<body
+  class="bg-[#f8fafc] text-slate-body font-sans min-h-screen antialiased flex flex-col selection:bg-teal-100 selection:text-teal-900">
+
+  <!-- Clean Minimalist Header (Responsive Mobile + Desktop) -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-100 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 min-h-[64px] sm:h-20 py-2.5 sm:py-0 flex items-center justify-between gap-2">
+
       <!-- Brand & Desk Status -->
-      <div class="flex items-center gap-4">
-        <a href="/" class="w-10 h-10 rounded-2xl bg-teal-surface border border-teal-subtle flex items-center justify-center text-teal-medical shadow-sm transition-transform hover:scale-105">
-          <i class="fa fa-tooth text-base"></i>
+      <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
+        <a href="index.html"
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-teal-surface border border-teal-subtle flex items-center justify-center text-teal-medical shadow-sm transition-transform hover:scale-105 shrink-0">
+          <i class="fa fa-tooth text-sm sm:text-base"></i>
         </a>
-        <div>
-          <div class="flex items-center gap-2.5">
-            <h1 class="font-display font-extrabold text-lg text-slate-heading tracking-tight leading-none">
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5 sm:gap-2.5">
+            <h1 class="font-display font-extrabold text-sm sm:text-lg text-slate-heading tracking-tight leading-none truncate">
               Aura Dental Spa
             </h1>
-            <span class="bg-teal-50 text-teal-medical border border-teal-200/60 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-              Reception Desk
+            <span
+              class="hidden xs:inline-block bg-teal-50 text-teal-medical border border-teal-200/60 text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider shrink-0">
+              Desk
             </span>
           </div>
-          <p class="text-[11px] text-slate-muted mt-1 flex items-center gap-2">
+          <p class="text-[10px] sm:text-[11px] text-slate-muted mt-1 flex items-center gap-1.5 sm:gap-2 truncate">
             <span class="inline-flex items-center gap-1 text-emerald-600 font-semibold">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> DHA Phase 6 Desk Active
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+              <span class="hidden sm:inline">DHA Phase 6 Desk Active</span>
+              <span class="sm:hidden">DHA 6 Active</span>
             </span>
-            <span>&bull;</span>
-            <span>Sequential Queue</span>
+            <span class="hidden sm:inline">&bull;</span>
+            <span class="hidden sm:inline">Sequential Queue</span>
           </p>
         </div>
       </div>
 
       <!-- Header Actions -->
-      <div class="flex items-center gap-3">
-        <button
-          onclick="resetDemoData()"
-          class="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-slate-muted hover:text-slate-heading hover:bg-slate-100 transition-colors"
-          title="Reset to 5 sample queue vouchers"
-        >
-          <i class="fa fa-rotate-right text-[11px]"></i>
-          <span>Reset Sample Queue</span>
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <button onclick="resetDemoData()"
+          class="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-full text-xs font-semibold text-slate-muted hover:text-slate-heading hover:bg-slate-100 transition-colors"
+          title="Reset to 5 sample queue vouchers">
+          <i class="fa fa-rotate-right text-[12px] sm:text-[11px]"></i>
+          <span class="hidden lg:inline">Reset Sample Queue</span>
         </button>
 
-        <a
-          href="/"
-          target="_blank"
-          class="flex items-center gap-1.5 px-4 py-2 border border-slate-200 hover:border-slate-300 rounded-full text-xs font-semibold text-slate-heading transition-colors bg-white shadow-sm"
-        >
+        <a href="index.html" target="_blank"
+          class="flex items-center gap-1.5 px-2.5 sm:px-4 py-2 border border-slate-200 hover:border-slate-300 rounded-full text-[11px] sm:text-xs font-semibold text-slate-heading transition-colors bg-white shadow-sm">
           <i class="fa fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
-          <span>Patient Website</span>
+          <span class="hidden sm:inline">Patient Website</span>
+          <span class="sm:hidden">Site</span>
         </a>
 
-        <button
-          onclick="openWalkinModal()"
-          class="flex items-center gap-2 bg-teal-medical hover:bg-teal-hover text-white text-xs font-semibold px-4 py-2.5 rounded-full transition-all shadow-sm hover:shadow hover:-translate-y-0.5"
-        >
+        <button onclick="openWalkinModal()"
+          class="flex items-center gap-1.5 sm:gap-2 bg-teal-medical hover:bg-teal-hover text-white text-[11px] sm:text-xs font-semibold px-3 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all shadow-sm hover:shadow active:scale-95">
           <i class="fa fa-plus text-[10px]"></i>
-          <span>+ Walk-In Patient</span>
+          <span class="hidden sm:inline">+ Walk-In Patient</span>
+          <span class="sm:hidden">Walk-In</span>
         </button>
       </div>
 
@@ -145,67 +180,72 @@
   </header>
 
   <!-- Main Body -->
-  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full space-y-6">
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-1 w-full space-y-4 sm:space-y-6">
 
-    <!-- Unified Single 4-Card Summary Strip (Zero Clutter) -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      
+    <!-- Unified Single 4-Card Summary Strip -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+
       <!-- Card 1: Total Vouchers -->
-      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Total Vouchers</span>
-          <div class="flex items-baseline gap-2">
-            <span id="vouchers-total-count" class="font-display font-extrabold text-2xl sm:text-3xl text-slate-heading">5</span>
-            <span class="text-[11px] text-teal-medical font-semibold font-mono" id="vouchers-range-sub">SPA-001–005</span>
+      <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between gap-2 min-w-0">
+        <div class="min-w-0">
+          <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1 truncate">Total Vouchers</span>
+          <div class="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+            <span id="vouchers-total-count"
+              class="font-display font-extrabold text-xl sm:text-3xl text-slate-heading leading-none">5</span>
+            <span class="text-[10px] sm:text-[11px] text-teal-medical font-semibold font-mono truncate"
+              id="vouchers-range-sub">SPA-001–005</span>
           </div>
-          <span class="text-[11px] text-slate-muted block mt-0.5">Sequential Queue</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-muted block mt-1 truncate">Sequential Queue</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-medical flex items-center justify-center text-sm">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-teal-50 text-teal-medical flex items-center justify-center text-xs sm:text-sm shrink-0">
           <i class="fa fa-ticket"></i>
         </div>
       </div>
 
       <!-- Card 2: In Treatment -->
-      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">In Treatment (In-Chair)</span>
-          <div class="flex items-baseline gap-2">
-            <span id="vouchers-inchair-count" class="font-display font-extrabold text-2xl sm:text-3xl text-blue-600">1</span>
-            <span class="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">Suite 1</span>
+      <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between gap-2 min-w-0">
+        <div class="min-w-0">
+          <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1 truncate">In Treatment</span>
+          <div class="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+            <span id="vouchers-inchair-count"
+              class="font-display font-extrabold text-xl sm:text-3xl text-blue-600 leading-none">1</span>
+            <span class="text-[9px] sm:text-[11px] font-semibold text-blue-600 bg-blue-50 px-1.5 sm:px-2 py-0.5 rounded-full">Suite 1</span>
           </div>
-          <span class="text-[11px] text-slate-muted block mt-0.5">Dr. Ahmed Khan</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-muted block mt-1 truncate">Dr. Ahmed Khan</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xs sm:text-sm shrink-0">
           <i class="fa fa-chair"></i>
         </div>
       </div>
 
       <!-- Card 3: Awaiting Turn -->
-      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Awaiting Turn</span>
-          <div class="flex items-baseline gap-2">
-            <span id="vouchers-waiting-count" class="font-display font-extrabold text-2xl sm:text-3xl text-amber-600">3</span>
-            <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">In Lounge</span>
+      <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between gap-2 min-w-0">
+        <div class="min-w-0">
+          <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1 truncate">Awaiting Turn</span>
+          <div class="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+            <span id="vouchers-waiting-count"
+              class="font-display font-extrabold text-xl sm:text-3xl text-amber-600 leading-none">3</span>
+            <span class="text-[9px] sm:text-[11px] font-semibold text-amber-700 bg-amber-50 px-1.5 sm:px-2 py-0.5 rounded-full">Lounge</span>
           </div>
-          <span class="text-[11px] text-slate-muted block mt-0.5">Not Treated Yet</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-muted block mt-1 truncate">Not Treated Yet</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xs sm:text-sm shrink-0">
           <i class="fa fa-clock"></i>
         </div>
       </div>
 
       <!-- Card 4: Treatment Completed & Revenue -->
-      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Completed Today</span>
-          <div class="flex items-baseline gap-2">
-            <span id="vouchers-completed-count" class="font-display font-extrabold text-2xl sm:text-3xl text-emerald-600">1</span>
-            <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Done</span>
+      <div class="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-100 shadow-diffuse flex items-center justify-between gap-2 min-w-0">
+        <div class="min-w-0">
+          <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1 truncate">Completed Today</span>
+          <div class="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+            <span id="vouchers-completed-count"
+              class="font-display font-extrabold text-xl sm:text-3xl text-emerald-600 leading-none">1</span>
+            <span class="text-[9px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 sm:px-2 py-0.5 rounded-full">Done</span>
           </div>
-          <span class="text-[11px] font-semibold text-teal-medical block mt-0.5" id="kpi-revenue">PKR 606,500 Total</span>
+          <span class="text-[10px] sm:text-[11px] font-semibold text-teal-medical block mt-1 truncate" id="kpi-revenue">PKR 606,500 Total</span>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs sm:text-sm shrink-0">
           <i class="fa fa-circle-check"></i>
         </div>
       </div>
@@ -213,89 +253,92 @@
     </div>
 
     <!-- Compact Surgical Suites Strip -->
-    <div class="bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-diffuse flex flex-wrap items-center justify-between gap-3 text-xs">
-      <div class="flex items-center gap-2 font-bold text-slate-heading">
+    <div
+      class="bg-white px-3.5 sm:px-5 py-3 rounded-2xl border border-slate-100 shadow-diffuse flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
+      <div class="flex items-center gap-2 font-bold text-slate-heading shrink-0">
         <i class="fa fa-door-open text-teal-medical text-sm"></i>
         <span>Surgical Suites:</span>
       </div>
 
-      <div class="flex flex-wrap items-center gap-3">
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5 sm:pb-0 sm:flex-wrap">
         <!-- Suite 1 -->
-        <div class="flex items-center gap-2 bg-slate-alabaster px-3 py-1.5 rounded-xl border border-slate-200/70">
+        <div class="flex items-center gap-1.5 sm:gap-2 bg-slate-alabaster px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200/70 shrink-0">
           <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-          <span class="font-semibold text-slate-heading">Suite 1: Dr. Ahmed</span>
+          <span class="font-semibold text-slate-heading text-[11px] sm:text-xs">Suite 1: Dr. Ahmed</span>
           <span class="text-[10px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">In Surgery</span>
         </div>
 
         <!-- Suite 2 -->
-        <div class="flex items-center gap-2 bg-slate-alabaster px-3 py-1.5 rounded-xl border border-slate-200/70">
+        <div class="flex items-center gap-1.5 sm:gap-2 bg-slate-alabaster px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200/70 shrink-0">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="font-semibold text-slate-heading">Suite 2: Dr. Sophia</span>
+          <span class="font-semibold text-slate-heading text-[11px] sm:text-xs">Suite 2: Dr. Sophia</span>
           <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Ready</span>
         </div>
 
         <!-- Suite 3 -->
-        <div class="flex items-center gap-2 bg-slate-alabaster px-3 py-1.5 rounded-xl border border-slate-200/70">
+        <div class="flex items-center gap-1.5 sm:gap-2 bg-slate-alabaster px-2.5 sm:px-3 py-1.5 rounded-xl border border-slate-200/70 shrink-0">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span class="font-semibold text-slate-heading">Suite 3: Dr. Sara</span>
+          <span class="font-semibold text-slate-heading text-[11px] sm:text-xs">Suite 3: Dr. Sara</span>
           <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">Ready</span>
         </div>
       </div>
 
-      <div class="text-[11px] text-slate-muted hidden md:block">
+      <div class="text-[11px] text-slate-muted hidden lg:block shrink-0">
         Main Shahbaz Commercial, DHA Phase 6
       </div>
     </div>
 
-    <!-- Clean Patient Queue Table Container -->
-    <div class="bg-white rounded-3xl border border-slate-100 shadow-diffuse-md overflow-hidden">
-      
+    <!-- Clean Patient Queue Table & Mobile Card Container -->
+    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-diffuse-md overflow-hidden">
+
       <!-- Table Controls Bar -->
-      <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        
+      <div class="p-4 sm:p-6 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 sm:gap-4">
+
         <div>
-          <h2 class="font-display font-extrabold text-xl text-slate-heading leading-tight">
+          <h2 class="font-display font-extrabold text-lg sm:text-xl text-slate-heading leading-tight">
             Patient Queue &amp; Vouchers
           </h2>
-          <p class="text-xs text-slate-muted mt-0.5">
+          <p class="text-[11px] sm:text-xs text-slate-muted mt-0.5">
             Click "Send to Chair" when patient enters suite, and "Finish" when done.
           </p>
         </div>
 
         <!-- Clean Tabs & Instant Search -->
-        <div class="flex flex-wrap items-center gap-2.5">
-          <div class="relative">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2.5 w-full lg:w-auto">
+          <div class="relative w-full sm:w-56 shrink-0">
             <i class="fa fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-            <input
-              id="admin-search"
-              type="text"
-              placeholder="Search patient, doctor, voucher..."
+            <input id="admin-search" type="text" placeholder="Search patient, doctor, voucher..."
               oninput="renderAppointmentsTable()"
-              class="pl-9 pr-3.5 py-2 rounded-full border border-slate-200 bg-slate-alabaster text-xs text-slate-heading placeholder-slate-400 focus:outline-none focus:border-teal-medical w-48 sm:w-56 transition-all"
-            />
+              class="pl-9 pr-3.5 py-2 rounded-full border border-slate-200 bg-slate-alabaster text-xs text-slate-heading placeholder-slate-400 focus:outline-none focus:border-teal-medical w-full transition-all" />
           </div>
 
-          <button class="filter-tab active" onclick="setFilter('all', this)">
-            All (<span id="tab-all-count">5</span>)
-          </button>
-          <button class="filter-tab" onclick="setFilter('In-Chair', this)">
-            <span class="w-2 h-2 rounded-full bg-blue-500"></span> In-Chair (<span id="tab-inchair-count">1</span>)
-          </button>
-          <button class="filter-tab" onclick="setFilter('Waiting', this)">
-            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Awaiting (<span id="tab-waiting-count">3</span>)
-          </button>
-          <button class="filter-tab" onclick="setFilter('Completed', this)">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Done (<span id="tab-completed-count">1</span>)
-          </button>
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0 sm:flex-wrap">
+            <button class="filter-tab active" onclick="setFilter('all', this)">
+              All (<span id="tab-all-count">5</span>)
+            </button>
+            <button class="filter-tab" onclick="setFilter('In-Chair', this)">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span> In-Chair (<span id="tab-inchair-count">1</span>)
+            </button>
+            <button class="filter-tab" onclick="setFilter('Waiting', this)">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span> Awaiting (<span id="tab-waiting-count">3</span>)
+            </button>
+            <button class="filter-tab" onclick="setFilter('Completed', this)">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Done (<span id="tab-completed-count">1</span>)
+            </button>
+            <button class="filter-tab" onclick="setFilter('Cancelled', this)">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span> Cancelled (<span id="tab-cancelled-count">0</span>)
+            </button>
+          </div>
         </div>
 
       </div>
 
-      <!-- Clean Airy Table -->
-      <div class="overflow-x-auto">
+      <!-- Desktop / Tablet Airy Table -->
+      <div class="hidden md:block overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="bg-slate-alabaster/60 border-b border-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-muted">
+            <tr
+              class="bg-slate-alabaster/60 border-b border-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-muted">
               <th class="py-3 px-6">Queue #</th>
               <th class="py-3 px-6">Patient</th>
               <th class="py-3 px-6">Treatment</th>
@@ -311,10 +354,17 @@
         </table>
       </div>
 
+      <!-- Mobile Touch-Friendly Appointment Cards (< 768px) -->
+      <div id="appointments-mobile-cards" class="md:hidden divide-y divide-slate-100">
+        <!-- Rendered cleanly via JavaScript -->
+      </div>
+
       <!-- Subtle Table Footer -->
-      <div class="px-6 py-3.5 bg-slate-alabaster/50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-muted">
-        <span id="queue-status-text">Sequential Line: SPA-001 through SPA-005</span>
-        <button onclick="renderAppointmentsTable()" class="hover:text-teal-medical flex items-center gap-1 font-semibold transition-colors">
+      <div
+        class="px-4 sm:px-6 py-3 sm:py-3.5 bg-slate-alabaster/50 border-t border-slate-100 flex items-center justify-between gap-2 text-[11px] sm:text-xs text-slate-muted">
+        <span id="queue-status-text" class="truncate">Sequential Line: SPA-001 through SPA-005</span>
+        <button onclick="renderAppointmentsTable()"
+          class="hover:text-teal-medical flex items-center gap-1 font-semibold transition-colors shrink-0">
           <i class="fa fa-rotate-right text-[11px]"></i> Refresh
         </button>
       </div>
@@ -324,10 +374,12 @@
   </main>
 
   <!-- Walk-In Patient Modal -->
-  <div id="walkin-modal" class="fixed inset-0 z-50 bg-slate-heading/50 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl border border-slate-100 relative">
-      
-      <button onclick="closeWalkinModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+  <div id="walkin-modal"
+    class="fixed inset-0 z-50 bg-slate-heading/50 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl border border-slate-100 relative my-auto max-h-[92dvh] overflow-y-auto">
+
+      <button onclick="closeWalkinModal()"
+        class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
         <i class="fa fa-xmark text-lg"></i>
       </button>
 
@@ -339,7 +391,8 @@
           New Patient Walk-In
         </h3>
         <p class="text-xs text-slate-muted mt-1">
-          Next sequential voucher: <strong id="modal-next-token" class="text-teal-medical font-mono font-bold">SPA-006 (Queue #6)</strong>
+          Next sequential voucher: <strong id="modal-next-token" class="text-teal-medical font-mono font-bold">SPA-006
+            (Queue #6)</strong>
         </p>
       </div>
 
@@ -348,40 +401,26 @@
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
             Patient Full Name
           </label>
-          <input
-            id="walkin-name"
-            type="text"
-            required
-            placeholder="e.g. Murtaza Hashwani"
-            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical"
-          />
+          <input id="walkin-name" type="text" required placeholder="e.g. Murtaza Hashwani"
+            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical" />
         </div>
 
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
             Mobile / WhatsApp Number <span class="text-rose-500">*</span>
           </label>
-          <input
-            id="walkin-phone"
-            type="tel"
-            required
-            oninput="this.value = this.value.replace(/[^\d+]/g, '')"
+          <input id="walkin-phone" type="tel" required oninput="this.value = this.value.replace(/[^\d+]/g, '')"
             placeholder="e.g. 03001234567 or +923001234567"
-            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm font-mono focus:outline-none focus:border-teal-medical"
-          />
+            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm font-mono focus:outline-none focus:border-teal-medical" />
         </div>
 
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
-            Email Address <span class="text-rose-500">*</span> <span class="text-[10px] font-normal text-slate-400">(Compulsory)</span>
+            Email Address <span class="text-rose-500">*</span> <span
+              class="text-[10px] font-normal text-slate-400">(Compulsory)</span>
           </label>
-          <input
-            id="walkin-email"
-            type="email"
-            required
-            placeholder="e.g. murtaza@gmail.com"
-            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical"
-          />
+          <input id="walkin-email" type="email" required placeholder="e.g. murtaza@gmail.com"
+            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical" />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -389,11 +428,8 @@
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
               Specialist &amp; Suite
             </label>
-            <select
-              id="walkin-doc"
-              onchange="updateWalkinSlots()"
-              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical"
-            >
+            <select id="walkin-doc" onchange="updateWalkinSlots()"
+              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical">
               <option value="Dr. Ahmed Khan (Suite 1)">Dr. Ahmed Khan (Suite 1)</option>
               <option value="Dr. Sophia Vance (Suite 2)">Dr. Sophia Vance (Suite 2)</option>
               <option value="Dr. Sara Malik (Suite 3)">Dr. Sara Malik (Suite 3)</option>
@@ -404,10 +440,8 @@
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
               Initial Stage
             </label>
-            <select
-              id="walkin-status"
-              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical"
-            >
+            <select id="walkin-status"
+              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical">
               <option value="Confirmed">Waiting in Lounge</option>
               <option value="In-Chair">Immediate In-Chair</option>
             </select>
@@ -419,24 +453,16 @@
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
               Appointment Date <span class="text-rose-500">*</span>
             </label>
-            <input
-              id="walkin-date"
-              type="date"
-              required
-              onchange="updateWalkinSlots()"
-              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical"
-            />
+            <input id="walkin-date" type="date" required onchange="updateWalkinSlots()"
+              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical" />
           </div>
 
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
               Doctor Consultation Slot <span class="text-rose-500">*</span>
             </label>
-            <select
-              id="walkin-slot"
-              required
-              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical font-medium"
-            >
+            <select id="walkin-slot" required
+              class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical font-medium">
               <!-- Filled dynamically by updateWalkinSlots() -->
             </select>
           </div>
@@ -446,32 +472,27 @@
           <label class="block text-xs font-bold uppercase tracking-wider text-slate-heading mb-1.5">
             Treatment &amp; Fee
           </label>
-          <select
-            id="walkin-treatment"
-            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical"
-          >
+          <select id="walkin-treatment"
+            class="w-full px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical">
             <option value="EMS Airflow® Spa Cleaning|PKR 6,500">EMS Airflow® Spa Cleaning (PKR 6,500)</option>
             <option value="Laser Teeth Whitening|PKR 25,000">Laser Teeth Whitening (PKR 25,000)</option>
-            <option value="Hollywood Smile Porcelain Veneers|PKR 35,000">Hollywood Smile Porcelain Veneers (PKR 35,000)</option>
+            <option value="Hollywood Smile Porcelain Veneers|PKR 35,000">Hollywood Smile Porcelain Veneers (PKR 35,000)
+            </option>
             <option value="Straumann® Dental Implant|PKR 85,000">Straumann® Dental Implant (PKR 85,000)</option>
             <option value="Invisalign® Clear Braces|PKR 280,000">Invisalign® Clear Braces (PKR 280,000)</option>
-            <option value="General Consultation & 3D Scan|PKR 3,500">General Consultation &amp; 3D Scan (PKR 3,500)</option>
+            <option value="General Consultation & 3D Scan|PKR 3,500">General Consultation &amp; 3D Scan (PKR 3,500)
+            </option>
           </select>
         </div>
 
-        <div class="flex items-center gap-3 pt-3">
-          <button
-            type="submit"
-            class="flex-1 bg-teal-medical hover:bg-teal-hover text-white font-semibold py-3.5 rounded-full transition-all duration-200 shadow-sm hover:shadow"
-          >
-            Assign Queue Token
-          </button>
-          <button
-            type="button"
-            onclick="closeWalkinModal()"
-            class="px-6 py-3.5 border border-slate-200 rounded-full text-slate-heading hover:bg-slate-50 transition-colors font-semibold"
-          >
+        <div class="flex flex-col-reverse sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-3">
+          <button type="button" onclick="closeWalkinModal()"
+            class="px-6 py-3 sm:py-3.5 border border-slate-200 rounded-full text-slate-heading hover:bg-slate-50 transition-colors font-semibold text-sm">
             Cancel
+          </button>
+          <button type="submit"
+            class="flex-1 bg-teal-medical hover:bg-teal-hover text-white font-semibold py-3.5 rounded-full transition-all duration-200 shadow-sm hover:shadow text-sm">
+            Assign Queue Token
           </button>
         </div>
       </form>
@@ -480,8 +501,10 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-heading text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
-    <div id="toast-icon" class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">
+  <div id="toast"
+    class="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 bg-slate-heading text-white px-4 sm:px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div id="toast-icon"
+      class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold">
       <i class="fa fa-check"></i>
     </div>
     <span id="toast-msg" class="text-xs font-semibold">Updated</span>
@@ -492,7 +515,7 @@
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <span>&copy; 2026 Aura Dental Spa &bull; DHA Phase 6 Karachi</span>
       <div class="flex items-center gap-4">
-        <a href="/" class="text-teal-medical font-semibold hover:underline">Patient Website</a>
+        <a href="index.html" class="text-teal-medical font-semibold hover:underline">Patient Website</a>
         <span>&bull;</span>
         <span>Shahbaz Commercial &bull; Complimentary Valet</span>
       </div>
@@ -500,9 +523,209 @@
   </footer>
 
   <!-- Store Module & Interactive Logic -->
-  <script type="module">
-    import { ClinicStore } from './js/master.js';
-    window.ClinicStore = ClinicStore;
+  <script>
+    // Universal Bulletproof ClinicStore Definition (Works in module, script, file://, and localhost)
+    const DEFAULT_APPOINTMENTS = [
+      {
+        id: "SPA-001",
+        queueNumber: 1,
+        name: "Ayesha Tariq",
+        phone: "+92 321 8492019",
+        email: "ayesha.t@gmail.com",
+        treatment: "Hollywood Smile Porcelain Veneers",
+        doctor: "Dr. Sophia Vance",
+        date: "Today",
+        time: "10:30 AM (Suite 2)",
+        status: "Completed",
+        urgency: "Normal",
+        notes: "Requested Vita Shade B1 Natural White • 6 Upper Veneers Bonded",
+        cost: "PKR 210,000"
+      },
+      {
+        id: "SPA-002",
+        queueNumber: 2,
+        name: "Hamza Farooq",
+        phone: "+92 300 4567891",
+        email: "h.farooq@outlook.com",
+        treatment: "Straumann® Dental Implant",
+        doctor: "Dr. Ahmed Khan",
+        date: "Today",
+        time: "11:45 AM (Suite 1)",
+        status: "In-Chair",
+        urgency: "High",
+        notes: "Tooth #19 replacement with Swiss Titanium fixture in progress",
+        cost: "PKR 85,000"
+      },
+      {
+        id: "SPA-003",
+        queueNumber: 3,
+        name: "Zainab Noor",
+        phone: "+92 333 7819203",
+        email: "zainab.noor@yahoo.com",
+        treatment: "Invisalign® Clear Braces",
+        doctor: "Dr. Sara Malik",
+        date: "Today",
+        time: "02:15 PM (Suite 3)",
+        status: "Confirmed",
+        urgency: "Normal",
+        notes: "3D Digital Scan review & tray fitting",
+        cost: "PKR 280,000"
+      },
+      {
+        id: "SPA-004",
+        queueNumber: 4,
+        name: "Bilal Sheikh",
+        phone: "+92 345 9012345",
+        email: "bilal.s@gmail.com",
+        treatment: "EMS Airflow® Spa Cleaning",
+        doctor: "Dr. Sophia Vance",
+        date: "Today",
+        time: "04:30 PM (Suite 2)",
+        status: "Pending",
+        urgency: "Normal",
+        notes: "Tea/coffee stain removal & polish",
+        cost: "PKR 6,500"
+      },
+      {
+        id: "SPA-005",
+        queueNumber: 5,
+        name: "Fatima Bilal",
+        phone: "+92 312 6543210",
+        email: "fatima.b@live.com",
+        treatment: "Laser Teeth Whitening",
+        doctor: "Dr. Ahmed Khan",
+        date: "Tomorrow",
+        time: "10:00 AM (Suite 1)",
+        status: "Confirmed",
+        urgency: "Normal",
+        notes: "Pre-wedding cosmetic smile preparation",
+        cost: "PKR 25,000"
+      }
+    ];
+
+    window.ClinicStore = window.ClinicStore || {
+      getAppointments() {
+        try {
+          const data = localStorage.getItem('smilecare_appointments');
+          if (!data || data === '[]') {
+            localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
+            localStorage.setItem('smilecare_token_seq', '5');
+            return DEFAULT_APPOINTMENTS;
+          }
+          const parsed = JSON.parse(data);
+          if (!Array.isArray(parsed) || parsed.length === 0) {
+            localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
+            return DEFAULT_APPOINTMENTS;
+          }
+          return parsed;
+        } catch (e) {
+          return DEFAULT_APPOINTMENTS;
+        }
+      },
+      getNextToken() {
+        let seq = parseInt(localStorage.getItem('smilecare_token_seq') || '0', 10);
+        if (!seq || seq < 5) {
+          const list = this.getAppointments();
+          let maxNum = 0;
+          list.forEach(a => {
+            if (a.queueNumber && a.queueNumber > maxNum) maxNum = a.queueNumber;
+            const match = a.id && a.id.match(/\d+/);
+            if (match) {
+              const n = parseInt(match[0], 10);
+              if (n > maxNum && n < 9000) maxNum = n;
+            }
+          });
+          seq = Math.max(maxNum, list.length, 5);
+        }
+        seq += 1;
+        localStorage.setItem('smilecare_token_seq', seq.toString());
+        const padded = String(seq).padStart(3, '0');
+        return {
+          tokenId: `SPA-${padded}`,
+          queueNumber: seq
+        };
+      },
+      addAppointment(apt) {
+        const list = this.getAppointments();
+        let tokenId = apt.id;
+        let queueNumber = apt.queueNumber;
+        if (!tokenId || !tokenId.startsWith('SPA-')) {
+          const next = this.getNextToken();
+          tokenId = next.tokenId;
+          queueNumber = next.queueNumber;
+        }
+        const newApt = {
+          status: 'Confirmed',
+          createdAt: new Date().toISOString(),
+          ...apt,
+          id: tokenId,
+          queueNumber: queueNumber || list.length + 1
+        };
+        list.unshift(newApt);
+        localStorage.setItem('smilecare_appointments', JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+        return newApt;
+      },
+      updateStatus(id, newStatus) {
+        const list = this.getAppointments();
+        const item = list.find(a => a.id === id);
+        if (item) {
+          item.status = newStatus;
+          localStorage.setItem('smilecare_appointments', JSON.stringify(list));
+          window.dispatchEvent(new Event('storage'));
+        }
+        return list;
+      },
+      deleteAppointment(id) {
+        let list = this.getAppointments();
+        list = list.filter(a => a.id !== id);
+        localStorage.setItem('smilecare_appointments', JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+        return list;
+      },
+      resetDefaults() {
+        localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
+        localStorage.setItem('smilecare_token_seq', '5');
+        window.dispatchEvent(new Event('storage'));
+        return DEFAULT_APPOINTMENTS;
+      },
+      normalizeDate(d) {
+        if (!d) return '';
+        const str = String(d).trim().toLowerCase();
+        const today = new Date().toISOString().split('T')[0];
+        if (str === 'today') return today;
+        if (str === 'tomorrow') {
+          const t = new Date();
+          t.setDate(t.getDate() + 1);
+          return t.toISOString().split('T')[0];
+        }
+        return d;
+      },
+      isSlotBooked(doctorName, date, time) {
+        const list = this.getAppointments();
+        const targetDate = this.normalizeDate(date);
+        return list.some(a => {
+          if (a.status === 'Cancelled') return false;
+          const aDate = this.normalizeDate(a.date);
+          const docMatch = (a.doctor || '').toLowerCase().includes((doctorName || '').toLowerCase()) ||
+                           (doctorName || '').toLowerCase().includes((a.doctor || '').toLowerCase());
+          const timeMatch = (a.time || '').toLowerCase().includes((time || '').toLowerCase());
+          return docMatch && aDate === targetDate && timeMatch;
+        });
+      },
+      getBookedAppointment(doctorName, date, time) {
+        const list = this.getAppointments();
+        const targetDate = this.normalizeDate(date);
+        return list.find(a => {
+          if (a.status === 'Cancelled') return false;
+          const aDate = this.normalizeDate(a.date);
+          const docMatch = (a.doctor || '').toLowerCase().includes((doctorName || '').toLowerCase()) ||
+                           (doctorName || '').toLowerCase().includes((a.doctor || '').toLowerCase());
+          const timeMatch = (a.time || '').toLowerCase().includes((time || '').toLowerCase());
+          return docMatch && aDate === targetDate && timeMatch;
+        });
+      }
+    };
 
     let currentFilter = 'all';
 
@@ -541,6 +764,7 @@
       const totalVouchers = list.length;
       const inChairCount = list.filter(a => a.status === 'In-Chair').length;
       const completedCount = list.filter(a => a.status === 'Completed').length;
+      const cancelledCount = list.filter(a => a.status === 'Cancelled').length;
       const waitingCount = list.filter(a => a.status !== 'In-Chair' && a.status !== 'Completed' && a.status !== 'Cancelled').length;
 
       // Update Minimalist KPI Cards
@@ -554,10 +778,12 @@
       const tabInChair = document.getElementById('tab-inchair-count');
       const tabWaiting = document.getElementById('tab-waiting-count');
       const tabCompleted = document.getElementById('tab-completed-count');
+      const tabCancelled = document.getElementById('tab-cancelled-count');
       if (tabAll) tabAll.textContent = totalVouchers;
       if (tabInChair) tabInChair.textContent = inChairCount;
       if (tabWaiting) tabWaiting.textContent = waitingCount;
       if (tabCompleted) tabCompleted.textContent = completedCount;
+      if (tabCancelled) tabCancelled.textContent = cancelledCount;
 
       // Range text
       let tokenIds = list.map(a => a.id).filter(id => id && id.startsWith('SPA-'));
@@ -588,6 +814,8 @@
         filtered = filtered.filter(a => a.status !== 'In-Chair' && a.status !== 'Completed' && a.status !== 'Cancelled');
       } else if (currentFilter === 'Completed') {
         filtered = filtered.filter(a => a.status === 'Completed');
+      } else if (currentFilter === 'Cancelled') {
+        filtered = filtered.filter(a => a.status === 'Cancelled');
       }
 
       // Search Query
@@ -602,7 +830,10 @@
         );
       }
 
+      const mobileContainer = document.getElementById('appointments-mobile-cards');
       tbody.innerHTML = '';
+      if (mobileContainer) mobileContainer.innerHTML = '';
+
       if (filtered.length === 0) {
         tbody.innerHTML = `
           <tr>
@@ -612,6 +843,14 @@
             </td>
           </tr>
         `;
+        if (mobileContainer) {
+          mobileContainer.innerHTML = `
+            <div class="py-10 px-4 text-center text-slate-muted">
+              <p class="font-bold text-slate-heading text-sm">No appointments in this view</p>
+              <p class="text-xs text-slate-400 mt-1">Select another filter or add a walk-in patient.</p>
+            </div>
+          `;
+        }
         return;
       }
 
@@ -626,7 +865,7 @@
             </span>
           `;
           actionBtn = `
-            <button onclick="progressPatientStage('${apt.id}')" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors flex items-center gap-1">
+            <button onclick="progressPatientStage('${apt.id}')" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors flex items-center justify-center gap-1">
               <i class="fa fa-check text-[10px]"></i> Finish
             </button>
           `;
@@ -637,8 +876,19 @@
             </span>
           `;
           actionBtn = `
-            <button onclick="progressPatientStage('${apt.id}')" class="px-2.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors">
+            <button onclick="progressPatientStage('${apt.id}')" class="px-2.5 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors flex items-center justify-center">
               Re-Queue
+            </button>
+          `;
+        } else if (apt.status === 'Cancelled') {
+          stageBadge = `
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Cancelled
+            </span>
+          `;
+          actionBtn = `
+            <button onclick="restorePatientStage('${apt.id}')" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-colors flex items-center justify-center gap-1" title="Restore this appointment to Confirmed">
+              <i class="fa fa-rotate-left text-[10px]"></i> Re-Open
             </button>
           `;
         } else {
@@ -649,7 +899,7 @@
             </span>
           `;
           actionBtn = `
-            <button onclick="progressPatientStage('${apt.id}')" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition-colors flex items-center gap-1">
+            <button onclick="progressPatientStage('${apt.id}')" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 transition-colors flex items-center justify-center gap-1">
               <i class="fa fa-chair text-[10px]"></i> Send to Chair
             </button>
           `;
@@ -697,36 +947,128 @@
               ${actionBtn}
               
               <button
+                onclick="printReceiptDirect('${apt.id}')"
+                class="w-7 h-7 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 transition-colors flex items-center justify-center text-xs"
+                title="Download / Print Receipt"
+              >
+                <i class="fa fa-print"></i>
+              </button>
+
+              <button
                 onclick="sendWhatsAppDirect('${apt.phone}', '${apt.name}', '${apt.doctor}', '${apt.treatment}', '${apt.time}', '${apt.date}', '${apt.id}', '${queueNum}', '${apt.status}')"
                 class="w-7 h-7 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-colors flex items-center justify-center text-xs"
-                title="Send WhatsApp Confirmation"
+                title="Send WhatsApp Notice"
               >
                 <i class="fab fa-whatsapp"></i>
               </button>
 
-              <button
-                onclick="deletePatientRecord('${apt.id}')"
-                class="w-7 h-7 rounded-full hover:bg-rose-50 text-slate-300 hover:text-rose-600 transition-colors flex items-center justify-center text-xs"
-                title="Cancel"
-              >
-                <i class="fa fa-trash"></i>
-              </button>
+              ${apt.status === 'Cancelled' ? `
+                <button
+                  onclick="deletePatientRecord('${apt.id}')"
+                  class="w-7 h-7 rounded-full hover:bg-rose-50 text-slate-300 hover:text-rose-600 transition-colors flex items-center justify-center text-xs"
+                  title="Delete permanently"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              ` : `
+                <button
+                  onclick="cancelPatientRecord('${apt.id}')"
+                  class="w-7 h-7 rounded-full hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-colors flex items-center justify-center text-xs"
+                  title="Cancel Appointment"
+                >
+                  <i class="fa fa-ban"></i>
+                </button>
+              `}
             </div>
           </td>
         `;
         tbody.appendChild(tr);
+
+        if (mobileContainer) {
+          const card = document.createElement('div');
+          card.className = 'p-4 space-y-3 bg-white';
+          card.innerHTML = `
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-6 h-6 rounded-lg bg-teal-surface border border-teal-subtle text-teal-medical font-bold text-[11px] flex items-center justify-center font-mono shrink-0">
+                  #${queueNum}
+                </span>
+                <span class="font-mono font-bold text-slate-heading text-xs shrink-0">${apt.id}</span>
+              </div>
+              <div class="shrink-0">${stageBadge}</div>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-slate-heading text-sm leading-snug">${apt.name}</h4>
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-slate-muted mt-0.5">
+                <a href="tel:${apt.phone}" class="text-slate-600 font-medium hover:text-teal-medical">${apt.phone}</a>
+                <span>&bull;</span>
+                <span class="text-teal-medical truncate max-w-[200px]">${apt.email || 'patient@spa.com'}</span>
+              </div>
+            </div>
+
+            <div class="bg-slate-alabaster rounded-xl p-2.5 border border-slate-100 grid grid-cols-2 gap-2 text-[11px]">
+              <div class="min-w-0">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Treatment</span>
+                <span class="font-semibold text-slate-heading block truncate">${apt.treatment}</span>
+                <span class="text-teal-medical font-bold">${apt.cost || 'PKR 25,000'}</span>
+              </div>
+              <div class="min-w-0">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Doctor &amp; Time</span>
+                <span class="font-semibold text-slate-heading block truncate">${apt.doctor}</span>
+                <span class="text-slate-500 block truncate">${apt.date} &bull; ${apt.time}</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-0.5">
+              <div class="flex-1 [&>button]:w-full [&>button]:py-2">${actionBtn}</div>
+              <button
+                onclick="printReceiptDirect('${apt.id}')"
+                class="w-9 h-9 rounded-full bg-slate-50 active:bg-slate-200 text-slate-600 border border-slate-200 flex items-center justify-center text-xs shrink-0"
+                title="Download / Print Receipt"
+              >
+                <i class="fa fa-print"></i>
+              </button>
+              <button
+                onclick="sendWhatsAppDirect('${apt.phone}', '${apt.name}', '${apt.doctor}', '${apt.treatment}', '${apt.time}', '${apt.date}', '${apt.id}', '${queueNum}', '${apt.status}')"
+                class="w-9 h-9 rounded-full bg-emerald-50 active:bg-emerald-100 text-emerald-700 border border-emerald-200 flex items-center justify-center text-sm shrink-0"
+                title="Send WhatsApp Notice"
+              >
+                <i class="fab fa-whatsapp"></i>
+              </button>
+              ${apt.status === 'Cancelled' ? `
+                <button
+                  onclick="deletePatientRecord('${apt.id}')"
+                  class="w-9 h-9 rounded-full bg-rose-50/60 text-rose-500 border border-rose-200/70 flex items-center justify-center text-xs shrink-0"
+                  title="Delete permanently"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              ` : `
+                <button
+                  onclick="cancelPatientRecord('${apt.id}')"
+                  class="w-9 h-9 rounded-full bg-rose-50/60 text-rose-500 border border-rose-200/70 flex items-center justify-center text-xs shrink-0"
+                  title="Cancel Appointment"
+                >
+                  <i class="fa fa-ban"></i>
+                </button>
+              `}
+            </div>
+          `;
+          mobileContainer.appendChild(card);
+        }
       });
     }
     window.renderAppointmentsTable = renderAppointmentsTable;
 
-    window.setFilter = function(filterVal, btn) {
+    window.setFilter = function (filterVal, btn) {
       document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFilter = filterVal;
       renderAppointmentsTable();
     };
 
-    window.progressPatientStage = function(id) {
+    window.progressPatientStage = function (id) {
       const list = window.ClinicStore ? window.ClinicStore.getAppointments() : [];
       const item = list.find(a => a.id === id);
       if (!item) return;
@@ -749,29 +1091,382 @@
       renderAppointmentsTable();
     };
 
-    window.deletePatientRecord = function(id) {
-      if (confirm('Cancel voucher ' + id + '?')) {
+    window.restorePatientStage = function (id) {
+      if (window.ClinicStore) {
+        window.ClinicStore.updateStatus(id, 'Confirmed');
+      }
+      showToast('Appointment ' + id + ' Restored (Confirmed)', 'fa-rotate-left');
+      renderAppointmentsTable();
+    };
+
+    window.cancelPatientRecord = function (id) {
+      if (confirm('Are you sure you want to CANCEL appointment ' + id + '?\n\nPatient will be notified that the appointment has been cancelled.')) {
         if (window.ClinicStore) {
-          window.ClinicStore.deleteAppointment(id);
+          window.ClinicStore.updateStatus(id, 'Cancelled');
         }
-        showToast('Voucher removed', 'fa-trash');
+        showToast('Appointment ' + id + ' marked as Cancelled', 'fa-ban');
         renderAppointmentsTable();
       }
     };
 
-    window.sendWhatsAppDirect = function(phone, name, doctor, treatment, time, date, id, queueNum, status) {
+    window.deletePatientRecord = function (id) {
+      if (confirm('Permanently delete record ' + id + ' from system?')) {
+        if (window.ClinicStore) {
+          window.ClinicStore.deleteAppointment(id);
+        }
+        showToast('Record deleted permanently', 'fa-trash');
+        renderAppointmentsTable();
+      }
+    };
+
+    window.sendWhatsAppDirect = function (phone, name, doctor, treatment, time, date, id, queueNum, status) {
       const cleanPhone = phone.replace(/[^0-9]/g, '');
-      const stageText = status === 'In-Chair' ? 'Currently in Treatment' : (status === 'Completed' ? 'Treatment Completed' : 'Awaiting Turn in Lounge');
-      const msg = encodeURIComponent(
-        `Assalam-o-Alaikum ${name}!\n\nThis is Aura Dental Spa, Main Shahbaz Commercial, DHA Phase 6, Karachi.\n\nYour Queue Voucher:\n` +
-        `• Token: ${id} (Turn #${queueNum} in Queue)\n` +
-        `• Doctor: ${doctor}\n` +
-        `• Treatment: ${treatment}\n` +
-        `• Slot: ${time} (${date})\n` +
-        `• Status: ${stageText}\n\n` +
-        `Complimentary valet parking is ready. See you soon!`
-      );
+      let msg = '';
+      if (status === 'Cancelled') {
+        msg = encodeURIComponent(
+          `Assalam-o-Alaikum ${name}!\n\n` +
+          `Your appointment at Aura Dental Spa has been *CANCELLED*.\n` +
+          `• Token ID: ${id}\n` +
+          `• Doctor: ${doctor}\n` +
+          `• Treatment: ${treatment}\n` +
+          `• Scheduled Slot: ${date} at ${time}\n` +
+          `• Status: ❌ CANCELLED\n\n` +
+          `Aapki appointment cancel kar di gayi hai. Agar aap nayi appointment schedule karna chahte hain toh barah-e-karam yahan reply karein.\n\n` +
+          `Aura Dental Spa, Main Shahbaz Commercial, DHA Phase 6, Karachi\nPhone/WhatsApp: +92 300 1234567`
+        );
+      } else {
+        const stageText = status === 'In-Chair' ? 'Currently in Treatment (In-Chair)' : (status === 'Completed' ? 'Treatment Completed' : 'Awaiting Turn in Lounge');
+        msg = encodeURIComponent(
+          `Assalam-o-Alaikum ${name}!\n\nThis is Aura Dental Spa, Main Shahbaz Commercial, DHA Phase 6, Karachi.\n\nYour Queue Voucher:\n` +
+          `• Token: ${id} (Turn #${queueNum})\n` +
+          `• Patient: ${name}\n` +
+          `• Specialist: ${doctor}\n` +
+          `• Treatment: ${treatment}\n` +
+          `• Confirmed Slot: ${date} at ${time}\n` +
+          `• Status: ${stageText}\n\n` +
+          `Free valet parking is available on arrival.\nEmergency WhatsApp: +92 300 1234567`
+        );
+      }
       window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
+    };
+
+    window.downloadAppointmentReceipt = function (apt) {
+      if (!apt) return;
+      const token = apt.id || 'SPA-001';
+      const name = apt.name || 'Valued Patient';
+      const phone = apt.phone || '-';
+      const doctor = apt.doctor || 'Aura Dental Specialist';
+      const suite = apt.suite || 'Private Suite';
+      const treatment = apt.treatment || 'Treatment';
+      const date = apt.date || 'Scheduled Date';
+      const time = apt.time || 'Scheduled Time';
+      const cost = apt.cost || 'PKR 25,000';
+      const queueNum = apt.queueNumber || '1';
+      const status = apt.status || 'Confirmed';
+      const isCancelled = String(status).toLowerCase() === 'cancelled';
+      const now = new Date().toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' });
+
+      const canvas = document.createElement('canvas');
+      const w = 720;
+      const h = isCancelled ? 960 : 910;
+      const scale = 2;
+      canvas.width = w * scale;
+      canvas.height = h * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(scale, scale);
+
+      function drawRoundRect(x, y, width, height, r, fill, stroke, strokeColor, fillColor) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + width - r, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+        ctx.lineTo(x + width, y + height - r);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+        ctx.lineTo(x + r, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+        if (fill) { ctx.fillStyle = fillColor; ctx.fill(); }
+        if (stroke) { ctx.strokeStyle = strokeColor; ctx.lineWidth = 1.5; ctx.stroke(); }
+      }
+
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 0, w, h);
+      drawRoundRect(20, 20, w - 40, h - 40, 22, true, true, isCancelled ? '#ef4444' : '#0d9488', '#ffffff');
+
+      ctx.fillStyle = isCancelled ? '#dc2626' : '#0d9488';
+      ctx.beginPath();
+      ctx.moveTo(40, 20); ctx.lineTo(w - 40, 20);
+      ctx.quadraticCurveTo(w - 20, 20, w - 20, 40);
+      ctx.lineTo(w - 20, 32); ctx.lineTo(20, 32); ctx.lineTo(20, 40);
+      ctx.quadraticCurveTo(20, 20, 40, 20); ctx.closePath(); ctx.fill();
+
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 25px sans-serif';
+      ctx.fillText('AURA DENTAL SPA', 45, 68);
+
+      ctx.fillStyle = '#0d9488';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('CLINICAL LUXURY & HOLISTIC DENTISTRY', 45, 90);
+
+      ctx.fillStyle = '#64748b';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('Main Shahbaz Commercial, DHA Phase 6, Karachi', 45, 110);
+      ctx.fillText('WhatsApp Reception: +92 300 1234567 • Karachi', 45, 126);
+
+      const tbX = w - 215; const tbY = 46;
+      drawRoundRect(tbX, tbY, 170, 84, 14, true, true, isCancelled ? '#ef4444' : '#0d9488', isCancelled ? '#fef2f2' : '#f0fdfa');
+      ctx.fillStyle = '#64748b'; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('QUEUE TOKEN', tbX + 85, tbY + 22);
+      ctx.fillStyle = isCancelled ? '#dc2626' : '#0d9488'; ctx.font = 'bold 28px monospace';
+      ctx.fillText(token, tbX + 85, tbY + 54);
+      ctx.fillStyle = isCancelled ? '#b91c1c' : '#0f766e'; ctx.font = 'bold 11px sans-serif';
+      ctx.fillText(`Turn #${queueNum} in Line`, tbX + 85, tbY + 74);
+      ctx.textAlign = 'left';
+
+      ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 6]);
+      ctx.beginPath(); ctx.moveTo(45, 150); ctx.lineTo(w - 45, 150); ctx.stroke(); ctx.setLineDash([]);
+
+      let curY = 175;
+      if (isCancelled) {
+        drawRoundRect(45, curY, w - 90, 64, 12, true, true, '#ef4444', '#fee2e2');
+        ctx.fillStyle = '#991b1b'; ctx.font = 'bold 15px sans-serif';
+        ctx.fillText('❌ APPOINTMENT CANCEL HO CHUKI HAI (CANCELLED)', 65, curY + 26);
+        ctx.fillStyle = '#b91c1c'; ctx.font = '11.5px sans-serif';
+        ctx.fillText('Yeh appointment clinic reception se cancel kar di gayi hai.', 65, curY + 44);
+        ctx.fillText('Reschedule / Rabta ke liye WhatsApp karein: +92 300 1234567', 65, curY + 58);
+        curY += 78;
+      }
+
+      ctx.fillStyle = '#0f172a'; ctx.font = 'bold 14px sans-serif';
+      ctx.fillText('OFFICIAL PATIENT APPOINTMENT RECEIPT & QUEUE SLIP', 45, curY + 5);
+      curY += 22;
+
+      const fields = [
+        { label: 'PATIENT NAME', val: name, col: 1 },
+        { label: 'CONTACT MOBILE', val: phone, col: 2 },
+        { label: 'SPECIALIST DOCTOR', val: doctor, col: 1 },
+        { label: 'SUITE LOCATION', val: suite + ' • DHA Phase 6', col: 2 },
+        { label: 'TREATMENT PROCEDURE', val: treatment, col: 0 },
+        { label: 'APPOINTMENT DATE', val: date, col: 1, strike: isCancelled },
+        { label: 'CONFIRMED TIME SLOT', val: time, col: 2, strike: isCancelled },
+        { label: 'CURRENT STATUS', val: isCancelled ? '❌ Cancelled (Mansookh)' : status, col: 1, color: isCancelled ? '#dc2626' : '#0d9488' },
+        { label: 'RECEIPT ISSUED AT', val: now, col: 2 }
+      ];
+
+      const colW = (w - 90 - 16) / 2;
+      const col1X = 45; const col2X = 45 + colW + 16;
+      for (let i = 0; i < fields.length; i++) {
+        const f = fields[i];
+        let fX, fY, fW, fH = 50;
+        if (f.col === 0) { fX = col1X; fY = curY; fW = w - 90; curY += 58; }
+        else if (f.col === 1) {
+          fX = col1X; fY = curY; fW = colW;
+          if (i + 1 < fields.length && fields[i + 1].col === 2) { } else { curY += 58; }
+        } else { fX = col2X; fY = curY; fW = colW; curY += 58; }
+
+        drawRoundRect(fX, fY, fW, fH, 10, true, true, '#e2e8f0', '#f8fafc');
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 9.5px sans-serif';
+        ctx.fillText(f.label, fX + 12, fY + 18);
+        ctx.fillStyle = f.color || '#0f172a'; ctx.font = 'bold 12.5px sans-serif';
+        let displayVal = f.val;
+        if (ctx.measureText(displayVal).width > fW - 24) {
+          while (displayVal.length > 3 && ctx.measureText(displayVal + '...').width > fW - 24) { displayVal = displayVal.slice(0, -1); }
+          displayVal += '...';
+        }
+        ctx.fillText(displayVal, fX + 12, fY + 38);
+        if (f.strike) {
+          const textW = ctx.measureText(displayVal).width;
+          ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(fX + 12, fY + 34); ctx.lineTo(fX + 12 + textW, fY + 34); ctx.stroke();
+        }
+      }
+
+      curY += 8;
+      const feeH = 52;
+      drawRoundRect(45, curY, w - 90, feeH, 12, true, true, isCancelled ? '#fca5a5' : '#99f6e4', isCancelled ? '#fef2f2' : '#f0fdfa');
+      ctx.fillStyle = isCancelled ? '#991b1b' : '#0f766e'; ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('Estimated Treatment Fee', 60, curY + 22);
+      ctx.fillStyle = '#64748b'; ctx.font = '10px sans-serif';
+      ctx.fillText('Official Transparent Karachi Rates (0% Markup EMI Available)', 60, curY + 39);
+      ctx.fillStyle = isCancelled ? '#b91c1c' : '#0d9488'; ctx.font = 'bold 22px monospace'; ctx.textAlign = 'right';
+      ctx.fillText(cost, w - 60, curY + 35); ctx.textAlign = 'left';
+
+      curY += feeH + 18;
+      ctx.fillStyle = '#0f172a';
+      for (let b = 0; b < 44; b++) {
+        const barW = ((b * 7 + 3) % 4) + 1.5; const barX = 45 + b * 5.5;
+        if (barX < 300) ctx.fillRect(barX, curY, barW, 26);
+      }
+      ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+      ctx.fillText('VERIFIED DIGITAL VOUCHER • ' + token, 45, curY + 38);
+
+      drawRoundRect(w - 230, curY - 5, 185, 48, 10, true, true, '#10b981', '#ecfdf5');
+      ctx.fillStyle = '#047857'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('✓ AURA CLINIC VERIFIED', w - 138, curY + 17);
+      ctx.fillStyle = '#059669'; ctx.font = '9px sans-serif';
+      ctx.fillText('DHA Phase 6 • Official Desk', w - 138, curY + 32); ctx.textAlign = 'left';
+
+      // 1. Show interactive preview modal immediately
+      showReceiptPreviewModal(canvas, apt);
+      // 2. Trigger direct download in background
+      triggerReceiptDownload(canvas, token);
+    };
+
+    function showReceiptPreviewModal(canvas, apt) {
+      const token = apt.id || apt.ref || 'SPA-001';
+      const dataUrl = canvas.toDataURL('image/png');
+      const isCancelled = String(apt.status || '').toLowerCase() === 'cancelled';
+      
+      let existing = document.getElementById('receipt-image-preview-modal');
+      if (existing) existing.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'receipt-image-preview-modal';
+      modal.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.8);backdrop-filter:blur(8px);z-index:9999999;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn 0.25s ease;';
+      
+      modal.innerHTML = `
+        <div style="background:#ffffff;border-radius:24px;max-width:540px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.4);overflow:hidden;border:1px solid rgba(226,232,240,0.8);font-family:inherit;">
+          <!-- Header -->
+          <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;background:${isCancelled ? '#fef2f2' : '#f0fdfa'};">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:22px;">${isCancelled ? '❌' : '🖼️'}</span>
+              <div>
+                <h4 style="margin:0;font-size:15px;font-weight:800;color:${isCancelled ? '#991b1b' : '#0f766e'};">
+                  ${isCancelled ? 'Cancelled Appointment Receipt' : 'Clinic Desk Receipt (HD Image)'}
+                </h4>
+                <p style="margin:0;font-size:11px;color:#64748b;font-weight:600;">
+                  Token: <strong style="color:#0f172a;">${token}</strong> • Patient: ${apt.name || 'Patient'}
+                </p>
+              </div>
+            </div>
+            <button id="close-receipt-preview-btn" type="button" style="border:none;background:#e2e8f0;width:32px;height:32px;border-radius:50%;cursor:pointer;font-weight:bold;color:#475569;display:flex;align-items:center;justify-content:center;font-size:16px;">✕</button>
+          </div>
+
+          <!-- Image Viewport -->
+          <div style="padding:16px;overflow-y:auto;background:#f8fafc;display:flex;flex-direction:column;align-items:center;text-align:center;">
+            <img id="receipt-preview-img" src="${dataUrl}" alt="Aura Dental Spa Receipt ${token}" style="max-width:100%;max-height:380px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;object-fit:contain;cursor:pointer;" title="Click or long press to save image" />
+            <p style="margin:10px 0 0;font-size:12px;color:#475569;line-height:1.4;background:#ffffff;padding:8px 14px;border-radius:10px;border:1px solid #e2e8f0;">
+              💡 <strong>Save Tip:</strong> Image par right-click / tap karke <em>"Save Image As..."</em> ya gallery me save kar saktay hain.
+            </p>
+          </div>
+
+          <!-- Actions Bar -->
+          <div style="padding:16px 20px;background:#ffffff;border-top:1px solid #f1f5f9;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <button id="btn-save-receipt-img" type="button" style="background:#0d9488;color:#ffffff;font-weight:700;padding:12px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;box-shadow:0 4px 12px rgba(13,148,136,0.3);">
+                📥 Download Image
+              </button>
+              <button id="btn-open-receipt-tab" type="button" style="background:#0f172a;color:#ffffff;font-weight:700;padding:12px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;">
+                👁️ Open Full Size
+              </button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <button id="btn-copy-receipt-img" type="button" style="background:#f1f5f9;color:#334155;font-weight:700;padding:10px;border-radius:12px;border:1px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;">
+                📋 Copy to Clipboard
+              </button>
+              <a href="https://wa.me/${(apt.phone || '').replace(/[^0-9]/g, '') || '923001234567'}?text=${encodeURIComponent(`Salam ${apt.name || 'Patient'}, Aura Dental Spa official appointment token: ${token}. Date: ${apt.date || ''}`)}" target="_blank" style="background:#25D366;color:#ffffff;font-weight:700;padding:10px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;text-decoration:none;">
+                💬 WhatsApp Patient
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      const closeBtn = document.getElementById('close-receipt-preview-btn');
+      if (closeBtn) closeBtn.onclick = () => modal.remove();
+      modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+      document.getElementById('btn-save-receipt-img').onclick = function() {
+        triggerReceiptDownload(canvas, token);
+      };
+
+      document.getElementById('btn-open-receipt-tab').onclick = function() {
+        const w = window.open('');
+        if (w) {
+          w.document.write(`
+            <html>
+              <head>
+                <title>Aura Dental Spa Receipt - ${token}</title>
+                <style>
+                  body { margin:0; background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; font-family:sans-serif; color:#ffffff; padding:20px; box-sizing:border-box; }
+                  img { max-width:95%; max-height:85vh; border-radius:14px; box-shadow:0 20px 45px rgba(0,0,0,0.6); }
+                  p { margin-top:16px; font-size:14px; color:#94a3b8; font-weight:600; }
+                </style>
+              </head>
+              <body>
+                <img src="${dataUrl}" alt="Receipt ${token}">
+                <p>Right-click or long-press on mobile to Save Image</p>
+              </body>
+            </html>
+          `);
+        }
+      };
+
+      document.getElementById('btn-copy-receipt-img').onclick = async function() {
+        try {
+          canvas.toBlob(async function(blob) {
+            if (!blob) return;
+            if (navigator.clipboard && window.ClipboardItem) {
+              await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+              const btn = document.getElementById('btn-copy-receipt-img');
+              if (btn) {
+                btn.innerHTML = '✅ Copied to Clipboard!';
+                setTimeout(() => { if (btn) btn.innerHTML = '📋 Copy to Clipboard'; }, 2000);
+              }
+            } else {
+              alert('Clipboard image copy is not supported in this browser.');
+            }
+          }, 'image/png');
+        } catch(e) {
+          console.warn('Clipboard copy error:', e);
+        }
+      };
+    }
+
+    function triggerReceiptDownload(canvas, token) {
+      canvas.toBlob(async function(blob) {
+        if (!blob) return;
+
+        if ('showSaveFilePicker' in window) {
+          try {
+            const handle = await window.showSaveFilePicker({
+              suggestedName: `AuraDentalSpa_Receipt_${token}.png`,
+              types: [{
+                description: 'PNG Image',
+                accept: { 'image/png': ['.png'] }
+              }]
+            });
+            const writable = await handle.createWritable();
+            await writable.write(blob);
+            await writable.close();
+            showToast(`Receipt Image (${token}.png) saved!`, 'fa-image');
+            return;
+          } catch (err) {
+            if (err.name === 'AbortError') return;
+          }
+        }
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `AuraDentalSpa_Receipt_${token}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 2500);
+        showToast(`Receipt Image (${token}.png) saved!`, 'fa-image');
+      }, 'image/png');
+    }
+
+    window.printReceiptDirect = function (id) {
+      const list = window.ClinicStore ? window.ClinicStore.getAppointments() : [];
+      const apt = list.find(a => a.id === id);
+      if (!apt) return alert('Appointment record not found');
+      window.downloadAppointmentReceipt(apt);
     };
 
     const ADMIN_DOCTORS = {
@@ -798,7 +1493,7 @@
       }
     };
 
-    window.updateWalkinSlots = function() {
+    window.updateWalkinSlots = function () {
       const docSelect = document.getElementById('walkin-doc');
       const dateInput = document.getElementById('walkin-date');
       const slotSelect = document.getElementById('walkin-slot');
@@ -832,7 +1527,7 @@
       slotSelect.innerHTML = html;
     };
 
-    window.openWalkinModal = function() {
+    window.openWalkinModal = function () {
       const modal = document.getElementById('walkin-modal');
       const nextTokenLabel = document.getElementById('modal-next-token');
       const dateInput = document.getElementById('walkin-date');
@@ -842,7 +1537,7 @@
         if (!dateInput.value) dateInput.value = todayStr;
         dateInput.min = todayStr;
       }
-      
+
       let nextSeq = 6;
       if (window.ClinicStore) {
         const list = window.ClinicStore.getAppointments();
@@ -868,7 +1563,7 @@
       }
     };
 
-    window.closeWalkinModal = function() {
+    window.closeWalkinModal = function () {
       const modal = document.getElementById('walkin-modal');
       if (modal) {
         modal.classList.add('hidden');
@@ -876,7 +1571,7 @@
       }
     };
 
-    window.saveWalkinPatient = function(e) {
+    window.saveWalkinPatient = function (e) {
       e.preventDefault();
       const name = document.getElementById('walkin-name').value.trim() || 'Walk-In Patient';
       const rawPhone = document.getElementById('walkin-phone').value.trim();
@@ -931,7 +1626,7 @@
       if (window.ClinicStore) {
         window.ClinicStore.addAppointment(newRecord);
       }
-      
+
       closeWalkinModal();
       document.getElementById('walkin-name').value = '';
       document.getElementById('walkin-phone').value = '';
@@ -940,7 +1635,7 @@
       renderAppointmentsTable();
     };
 
-    window.resetDemoData = function() {
+    window.resetDemoData = function () {
       if (confirm('Reset appointments to Karachi DHA Phase 6 sequential queue data?')) {
         if (window.ClinicStore) {
           window.ClinicStore.resetDefaults();
@@ -955,11 +1650,20 @@
       renderAppointmentsTable();
     });
 
-    // 2.5s polling safeguard for instant real-time sync
-    setInterval(renderAppointmentsTable, 2500);
+    // Polling safeguard for real-time live sync
+    setInterval(renderAppointmentsTable, 1500);
 
-    // Initial load
-    window.addEventListener('DOMContentLoaded', renderAppointmentsTable);
+    // Initial load: multiple triggers so appointments ALWAYS render immediately
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      renderAppointmentsTable();
+    } else {
+      document.addEventListener('DOMContentLoaded', renderAppointmentsTable);
+    }
+    window.addEventListener('load', renderAppointmentsTable);
+    
+    // Immediate execution right now
+    renderAppointmentsTable();
   </script>
 </body>
+
 </html>

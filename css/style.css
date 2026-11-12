@@ -40,6 +40,12 @@
   --clean-muted: #64748b;
   --clean-primary: #a855f7;
   --clean-border: rgba(168, 85, 247, 0.2);
+
+  /* Uiverse Circular Tabs Tokens (Dark Theme) */
+  --color-cloud: rgba(10, 15, 36, 0.85);
+  --color-edge: rgba(168, 85, 247, 0.25);
+  --color-mist: #94a3b8;
+  --color-ink: #00f5d4;
 }
 
 [data-theme="light"] {
@@ -58,6 +64,12 @@
   --text-muted: #64748b;
   --accent-uv: #9333ea;
   --accent-cyan: #0284c7;
+
+  /* Uiverse Circular Tabs Tokens (Light Theme) */
+  --color-cloud: #ffffff;
+  --color-edge: #e3e8ee;
+  --color-mist: #5b6472;
+  --color-ink: #0e1116;
   --accent-blue: #0ea5e9;
   --accent-laser: #0284c7;
   --accent-rose: #e11d48;
@@ -188,37 +200,136 @@ img {
   box-shadow: 0 0 20px var(--glow-uv);
 }
 
-.nav-menu {
-  display: flex;
+/* ========================================================
+   CIRCULAR PILL TABS NAVBAR (From Uiverse.io by uiverse-astronaut)
+   ======================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap");
+
+.cir-tabs {
+  display: inline-flex;
   align-items: center;
-  gap: 1.8rem;
+  gap: 4px;
+  padding: 6px;
+  background: var(--color-cloud, #ffffff);
+  border: 1px solid var(--color-edge, #e3e8ee);
+  border-radius: 999px;
+  box-shadow:
+    0 1px 1px rgba(14, 17, 22, 0.04),
+    0 20px 40px -24px rgba(14, 17, 22, 0.18);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.cir-tabs__r {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cir-tabs__t {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-mist, #5b6472);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cir-tabs__t:hover {
+  color: var(--color-ink, #0e1116);
+}
+
+.cir-tabs__r:checked + .cir-tabs__t {
+  background: var(--color-ink, #0e1116);
+  color: var(--color-cloud, #ffffff);
+  box-shadow:
+    0 1px 1px rgba(14, 17, 22, 0.06),
+    0 8px 18px -10px rgba(14, 17, 22, 0.5);
+}
+
+.cir-tabs__r:focus-visible + .cir-tabs__t {
+  box-shadow: 0 0 0 3px rgba(46, 125, 239, 0.32);
+}
+
+/* Navbar Menu mapped to Circular Pill Tabs */
+.nav-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  background: var(--color-cloud, rgba(10, 15, 36, 0.85));
+  border: 1px solid var(--color-edge, rgba(168, 85, 247, 0.25));
+  border-radius: 999px;
+  box-shadow:
+    0 1px 1px rgba(14, 17, 22, 0.04),
+    0 20px 40px -24px rgba(14, 17, 22, 0.18);
+  font-family:
+    "Inter",
+    "Plus Jakarta Sans",
+    system-ui,
+    -apple-system,
+    sans-serif;
   list-style: none;
+  margin: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-menu li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  transition: all 0.25s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-mist, #94a3b8);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
   position: relative;
-  padding: 6px 0;
+  transition:
+    background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  color: var(--color-ink, #ffffff);
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .nav-link.active {
-  color: var(--accent-cyan);
+  background: var(--color-ink, #00f5d4);
+  color: var(--color-cloud, #040714) !important;
+  font-weight: 700;
+  box-shadow:
+    0 1px 1px rgba(14, 17, 22, 0.06),
+    0 8px 18px -10px rgba(0, 245, 212, 0.5);
 }
 
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--accent-cyan);
-  border-radius: 2px;
-  box-shadow: 0 0 8px var(--accent-cyan);
+.nav-link:focus-visible {
+  box-shadow: 0 0 0 3px rgba(46, 125, 239, 0.32);
 }
 
 .nav-badge-pill {
@@ -228,7 +339,7 @@ img {
   color: #040714;
   padding: 2px 7px;
   border-radius: 12px;
-  margin-left: 4px;
+  margin-left: 6px;
 }
 
 .header-actions {

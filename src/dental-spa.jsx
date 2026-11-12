@@ -393,6 +393,12 @@ function DentalSpaApp() {
   const [bookingSuccess, setBookingSuccess] = useState(null);
   const [storeVersion, setStoreVersion] = useState(0);
 
+  // ── Check My Appointment State ──
+  const [isCheckOpen, setIsCheckOpen] = useState(false);
+  const [checkQuery, setCheckQuery] = useState('');
+  const [checkResults, setCheckResults] = useState(null);
+  const [checkSearched, setCheckSearched] = useState(false);
+
   // Before / After Slider State
   const [sliderPos, setSliderPos] = useState(50);
   const sliderRef = useRef(null);
@@ -664,6 +670,52 @@ function DentalSpaApp() {
     setFormData(prev => ({ ...prev, name: '', phone: '' }));
   };
 
+  // ── Check Appointment Logic ──
+  const handleCheckAppointment = () => {
+    const q = checkQuery.trim().toLowerCase();
+    if (!q) return;
+    let all = [];
+    try {
+      if (window.ClinicStore && typeof window.ClinicStore.getAppointments === 'function') {
+        all = window.ClinicStore.getAppointments();
+      } else {
+        const raw = localStorage.getItem('smilecare_appointments');
+        if (raw) all = JSON.parse(raw);
+      }
+    } catch(e) {}
+    const found = all.filter(a => {
+      const refMatch = (a.id || '').toLowerCase().includes(q);
+      const phoneMatch = (a.phone || '').replace(/\D/g,'').includes(q.replace(/\D/g,''));
+      const emailMatch = (a.email || '').toLowerCase().includes(q);
+      return refMatch || phoneMatch || emailMatch;
+    });
+    setCheckResults(found);
+    setCheckSearched(true);
+  };
+
+  const closeCheckModal = () => {
+    setIsCheckOpen(false);
+    setCheckQuery('');
+    setCheckResults(null);
+    setCheckSearched(false);
+  };
+
+  const getStatusStyle = (status) => {
+    switch((status || '').toLowerCase()) {
+      case 'cancelled':
+        return { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200', dot: 'bg-red-500', label: '✗ Cancelled' };
+      case 'in-chair':
+      case 'in chair':
+        return { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', dot: 'bg-blue-500', label: '⚡ In-Chair Now' };
+      case 'treatment done':
+      case 'done':
+      case 'completed':
+        return { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', dot: 'bg-emerald-500', label: '✓ Treatment Done' };
+      default:
+        return { bg: 'bg-teal-50', text: 'text-teal-700', border: 'border-teal-200', dot: 'bg-teal-500', label: '● Confirmed' };
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-slate-body font-sans">
 
@@ -726,6 +778,13 @@ function DentalSpaApp() {
               <span>WhatsApp</span>
             </a>
             <button
+              onClick={() => { setIsCheckOpen(true); }}
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-slate-heading bg-slate-alabaster hover:bg-amber-50 border border-slate-200 hover:border-amber-300 px-4 py-2.5 rounded-full transition-colors"
+            >
+              <svg className="w-3.5 h-3.5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <span>Check Appointment</span>
+            </button>
+            <button
               onClick={() => setIsBookingOpen(true)}
               className="bg-teal-medical hover:bg-teal-hover text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
             >
@@ -765,6 +824,13 @@ function DentalSpaApp() {
                   className="bg-teal-medical hover:bg-teal-hover text-white text-base font-semibold px-8 py-4 rounded-full transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-teal-medical/15 hover:-translate-y-1 text-center"
                 >
                   Book Your Appointment
+                </button>
+                <button
+                  onClick={() => setIsCheckOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 text-slate-heading hover:text-amber-600 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-base font-semibold px-6 py-4 rounded-full transition-colors group"
+                >
+                  <svg className="w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  <span>Check My Appointment</span>
                 </button>
                 <a
                   href="#services"
@@ -1890,6 +1956,139 @@ function DentalSpaApp() {
               </div>
             )}
 
+          </div>
+        </div>
+      )}
+
+      {/* ══════════════════════════════════════════════════
+          CHECK MY APPOINTMENT MODAL
+          ══════════════════════════════════════════════════ */}
+      {isCheckOpen && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+          style={{ background: 'rgba(15,23,42,0.55)', backdropFilter: 'blur(6px)' }}
+          onClick={closeCheckModal}
+        >
+          <div
+            className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden"
+            onClick={e => e.stopPropagation()}
+            style={{ maxHeight: '90vh', overflowY: 'auto' }}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                </div>
+                <div>
+                  <h2 className="font-display font-extrabold text-lg text-slate-heading leading-tight">Check My Appointment</h2>
+                  <p className="text-xs text-slate-muted mt-0.5">Enter your token, mobile number, or email</p>
+                </div>
+              </div>
+              <button onClick={closeCheckModal} className="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center transition-colors">
+                <Icons.Close className="w-4 h-4 text-slate-muted" />
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <div className="px-6 py-5">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={checkQuery}
+                  onChange={e => { setCheckQuery(e.target.value); setCheckSearched(false); setCheckResults(null); }}
+                  onKeyDown={e => { if (e.key === 'Enter') handleCheckAppointment(); }}
+                  placeholder="e.g. SPA-003 • 03001234567 • name@email.com"
+                  className="flex-1 px-4 py-3 rounded-2xl bg-slate-alabaster border border-slate-200 text-slate-heading text-sm focus:outline-none focus:border-teal-medical placeholder-slate-400 font-mono"
+                  autoFocus
+                />
+                <button
+                  onClick={handleCheckAppointment}
+                  className="bg-teal-medical hover:bg-teal-hover text-white font-bold px-5 py-3 rounded-2xl text-sm transition-colors shadow-sm"
+                >
+                  Search
+                </button>
+              </div>
+              <p className="text-[11px] text-slate-muted mt-2 ml-1">Search by: Voucher Token (SPA-001) • Mobile Number • Email Address</p>
+            </div>
+
+            {/* Results */}
+            {checkSearched && (
+              <div className="px-6 pb-6">
+                {checkResults && checkResults.length > 0 ? (
+                  <div className="space-y-4">
+                    {checkResults.map((apt, i) => {
+                      const st = getStatusStyle(apt.status);
+                      return (
+                        <div key={i} className={`rounded-2xl border p-4 ${st.bg} ${st.border}`}>
+                          {/* Status Badge */}
+                          <div className="flex items-center justify-between mb-3">
+                            <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${st.bg} ${st.text} ${st.border}`}>
+                              <span className={`w-2 h-2 rounded-full ${st.dot}`}></span>
+                              {st.label}
+                            </div>
+                            <span className="font-mono font-bold text-sm text-slate-heading">{apt.id}</span>
+                          </div>
+                          {/* Details */}
+                          <div className="space-y-1.5 text-xs">
+                            <div className="flex justify-between"><span className="text-slate-500 font-medium">Patient:</span><span className="font-semibold text-slate-heading">{apt.name}</span></div>
+                            <div className="flex justify-between"><span className="text-slate-500 font-medium">Doctor:</span><span className="font-semibold text-slate-heading">{apt.doctor}</span></div>
+                            <div className="flex justify-between"><span className="text-slate-500 font-medium">Treatment:</span><span className="font-semibold text-slate-heading text-right max-w-[60%]">{apt.treatment}</span></div>
+                            <div className="flex justify-between"><span className="text-slate-500 font-medium">Date:</span><span className="font-semibold text-slate-heading">{apt.date}</span></div>
+                            <div className="flex justify-between"><span className="text-slate-500 font-medium">Time:</span><span className="font-semibold text-slate-heading">{apt.time}</span></div>
+                            {apt.queueNumber && (
+                              <div className="flex justify-between"><span className="text-slate-500 font-medium">Queue:</span><span className={`font-bold ${st.text}`}>Turn #{apt.queueNumber} in Line</span></div>
+                            )}
+                          </div>
+                          {/* Cancelled alert */}
+                          {(apt.status || '').toLowerCase() === 'cancelled' && (
+                            <div className="mt-3 p-3 bg-red-100 rounded-xl border border-red-200 text-xs text-red-700 font-medium">
+                              ⚠️ Your appointment has been <strong>cancelled</strong>. Please contact us on WhatsApp to reschedule.
+                            </div>
+                          )}
+                          {/* Reschedule CTA for cancelled */}
+                          {(apt.status || '').toLowerCase() === 'cancelled' && (
+                            <a
+                              href={`https://wa.me/923001234567?text=${encodeURIComponent(`Assalam-o-Alaikum! My appointment ${apt.id} for ${apt.treatment} with ${apt.doctor} was cancelled. I would like to reschedule. My name is ${apt.name}.`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-3 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors"
+                            >
+                              <Icons.WhatsApp className="w-3.5 h-3.5 text-white" />
+                              Reschedule via WhatsApp
+                            </a>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-7 h-7 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    </div>
+                    <p className="font-semibold text-slate-heading mb-1">No Appointment Found</p>
+                    <p className="text-xs text-slate-muted">Try your Token ID (e.g. SPA-003), mobile number, or email address.</p>
+                    <a
+                      href="https://wa.me/923001234567?text=Hi Aura Dental Spa, I want to check my appointment status."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 text-xs font-bold transition-colors"
+                    >
+                      <Icons.WhatsApp className="w-3.5 h-3.5 text-emerald-600" />
+                      Ask on WhatsApp
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Footer hint */}
+            {!checkSearched && (
+              <div className="px-6 pb-6 text-center">
+                <p className="text-xs text-slate-muted">Your Token ID is on your booking voucher, e.g. <span className="font-mono font-bold text-teal-medical">SPA-003</span></p>
+              </div>
+            )}
           </div>
         </div>
       )}

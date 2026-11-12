@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AURA DENTAL SPA • Clinical Luxury &amp; Holistic Smile Architecture</title>
-  <meta name="description" content="A modern, clinical luxury dental spa. Clean, hygienic, trustworthy, and heavily reliant on whitespace. Handcrafted Swiss veneers, robotic implants, and EMS Airflow." />
+  <meta name="description"
+    content="A modern, clinical luxury dental spa. Clean, hygienic, trustworthy, and heavily reliant on whitespace. Handcrafted Swiss veneers, robotic implants, and EMS Airflow." />
 
   <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet" />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -51,14 +55,21 @@
   <style>
     /* Continuous Horizontal CSS Marquee */
     @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0%);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
+
     .animate-marquee {
       display: flex;
       width: 200%;
       animation: marquee 28s linear infinite;
     }
+
     .animate-marquee:hover {
       animation-play-state: paused;
     }
@@ -75,24 +86,1403 @@
       background-color: #ccfbf1;
       color: #0f766e;
     }
+
+    /* ── Sliding Pill Nav Indicator ── */
+    header nav {
+      position: relative;
+      background: #f1f5f9;
+      border-radius: 9999px;
+      padding: 4px;
+      gap: 0 !important;
+    }
+
+    header nav a {
+      position: relative;
+      z-index: 2;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #64748b;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    header nav a:hover,
+    header nav a.nav-active {
+      color: #0f172a;
+    }
+
+    /* The sliding pill background */
+    .nav-pill-indicator {
+      position: absolute;
+      z-index: 1;
+      background: #ffffff;
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s ease;
+      top: 4px;
+      bottom: 4px;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .nav-pill-indicator.visible {
+      opacity: 1;
+    }
+
+    /* Entrance animation for the whole header */
+    header {
+      animation: headerSlideIn 0.5s ease-out both;
+    }
+
+    @keyframes headerSlideIn {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* ── Global Mobile Responsiveness & Smooth Touch UX ── */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Mobile Quick Pill Nav Bar inside <header> */
+    #mobile-quick-nav {
+      display: none;
+      border-top: 1px solid #f1f5f9;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 8px 12px;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    #mobile-quick-nav::-webkit-scrollbar { display: none; }
+    #mobile-quick-nav a,
+    #mobile-quick-nav button {
+      flex-shrink: 0;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    #mobile-quick-nav a.mob-active {
+      background: #0d9488;
+      color: #ffffff;
+      border-color: #0d9488;
+    }
+    #mobile-quick-nav button.mob-check-btn {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: #fde68a;
+    }
+    #mobile-quick-nav a.mob-wa-btn {
+      background: #ecfdf5;
+      color: #065f46;
+      border-color: #a7f3d0;
+    }
+
+    @media (max-width: 767px) {
+      #mobile-quick-nav {
+        display: flex;
+        align-items: center;
+      }
+
+      /* Prevent iOS/Android auto-zoom on form fields */
+      input, select, textarea {
+        font-size: 16px !important;
+      }
+
+      /* Compact header bar on mobile */
+      header > div:first-child {
+        height: 62px !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+      }
+
+      section {
+        overflow-x: hidden;
+      }
+
+      h1 {
+        font-size: clamp(2.15rem, 8.5vw, 3rem) !important;
+        line-height: 1.08 !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .p-8, .p-10 {
+        padding: 1.25rem !important;
+      }
+
+      .chk-modal {
+        border-radius: 22px !important;
+        max-height: 92dvh !important;
+      }
+
+      .chk-header {
+        padding: 1rem 1rem 0.75rem !important;
+      }
+
+      .chk-search {
+        flex-direction: column !important;
+        padding: 0.9rem 1rem 0.5rem !important;
+      }
+
+      .chk-search-btn {
+        width: 100% !important;
+        padding: 12px !important;
+      }
+
+      .chk-body {
+        padding: 0.75rem 1rem 1.1rem !important;
+      }
+    }
   </style>
 </head>
+
 <body class="bg-white text-slate-body font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
 
   <!-- Root React App Container -->
   <div id="root">
-    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #0d9488; font-weight: 600;">
+    <div
+      style="min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #0d9488; font-weight: 600;">
       Loading Aura Dental Spa Experience...
     </div>
   </div>
 
   <!-- Master Clinic Store API for live appointment sync -->
-  <script type="module">
-    import { ClinicStore } from './js/master.js';
-    window.ClinicStore = ClinicStore;
+  <script>
+    const DEFAULT_APPOINTMENTS = [
+      {
+        id: "SPA-001",
+        queueNumber: 1,
+        name: "Ayesha Tariq",
+        phone: "+92 321 8492019",
+        email: "ayesha.t@gmail.com",
+        treatment: "Hollywood Smile Porcelain Veneers",
+        doctor: "Dr. Sophia Vance",
+        date: "Today",
+        time: "10:30 AM (Suite 2)",
+        status: "Completed",
+        urgency: "Normal",
+        notes: "Requested Vita Shade B1 Natural White • 6 Upper Veneers Bonded",
+        cost: "PKR 210,000"
+      },
+      {
+        id: "SPA-002",
+        queueNumber: 2,
+        name: "Hamza Farooq",
+        phone: "+92 300 4567891",
+        email: "h.farooq@outlook.com",
+        treatment: "Straumann® Dental Implant",
+        doctor: "Dr. Ahmed Khan",
+        date: "Today",
+        time: "11:45 AM (Suite 1)",
+        status: "In-Chair",
+        urgency: "High",
+        notes: "Tooth #19 replacement with Swiss Titanium fixture in progress",
+        cost: "PKR 85,000"
+      },
+      {
+        id: "SPA-003",
+        queueNumber: 3,
+        name: "Zainab Noor",
+        phone: "+92 333 7819203",
+        email: "zainab.noor@yahoo.com",
+        treatment: "Invisalign® Clear Braces",
+        doctor: "Dr. Sara Malik",
+        date: "Today",
+        time: "02:15 PM (Suite 3)",
+        status: "Confirmed",
+        urgency: "Normal",
+        notes: "3D Digital Scan review & tray fitting",
+        cost: "PKR 280,000"
+      },
+      {
+        id: "SPA-004",
+        queueNumber: 4,
+        name: "Bilal Sheikh",
+        phone: "+92 345 9012345",
+        email: "bilal.s@gmail.com",
+        treatment: "EMS Airflow® Spa Cleaning",
+        doctor: "Dr. Sophia Vance",
+        date: "Today",
+        time: "04:30 PM (Suite 2)",
+        status: "Pending",
+        urgency: "Normal",
+        notes: "Tea/coffee stain removal & polish",
+        cost: "PKR 6,500"
+      },
+      {
+        id: "SPA-005",
+        queueNumber: 5,
+        name: "Fatima Bilal",
+        phone: "+92 312 6543210",
+        email: "fatima.b@live.com",
+        treatment: "Laser Teeth Whitening",
+        doctor: "Dr. Ahmed Khan",
+        date: "Tomorrow",
+        time: "10:00 AM (Suite 1)",
+        status: "Confirmed",
+        urgency: "Normal",
+        notes: "Pre-wedding cosmetic smile preparation",
+        cost: "PKR 25,000"
+      }
+    ];
+
+    window.ClinicStore = window.ClinicStore || {
+      getAppointments() {
+        try {
+          const data = localStorage.getItem('smilecare_appointments');
+          if (!data || data === '[]') {
+            localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
+            localStorage.setItem('smilecare_token_seq', '5');
+            return DEFAULT_APPOINTMENTS;
+          }
+          const parsed = JSON.parse(data);
+          if (!Array.isArray(parsed) || parsed.length === 0) {
+            localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
+            return DEFAULT_APPOINTMENTS;
+          }
+          return parsed;
+        } catch (e) {
+          return DEFAULT_APPOINTMENTS;
+        }
+      },
+      getNextToken() {
+        let seq = parseInt(localStorage.getItem('smilecare_token_seq') || '0', 10);
+        if (!seq || seq < 5) {
+          const list = this.getAppointments();
+          let maxNum = 0;
+          list.forEach(a => {
+            if (a.queueNumber && a.queueNumber > maxNum) maxNum = a.queueNumber;
+            const match = a.id && a.id.match(/\d+/);
+            if (match) {
+              const n = parseInt(match[0], 10);
+              if (n > maxNum && n < 9000) maxNum = n;
+            }
+          });
+          seq = Math.max(maxNum, list.length, 5);
+        }
+        seq += 1;
+        localStorage.setItem('smilecare_token_seq', seq.toString());
+        const padded = String(seq).padStart(3, '0');
+        return {
+          tokenId: `SPA-${padded}`,
+          queueNumber: seq
+        };
+      },
+      addAppointment(apt) {
+        const list = this.getAppointments();
+        let tokenId = apt.id;
+        let queueNumber = apt.queueNumber;
+        if (!tokenId || !tokenId.startsWith('SPA-')) {
+          const next = this.getNextToken();
+          tokenId = next.tokenId;
+          queueNumber = next.queueNumber;
+        }
+        const newApt = {
+          status: 'Confirmed',
+          createdAt: new Date().toISOString(),
+          ...apt,
+          id: tokenId,
+          queueNumber: queueNumber || list.length + 1
+        };
+        list.unshift(newApt);
+        localStorage.setItem('smilecare_appointments', JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+        return newApt;
+      },
+      updateStatus(id, newStatus) {
+        const list = this.getAppointments();
+        const item = list.find(a => a.id === id);
+        if (item) {
+          item.status = newStatus;
+          localStorage.setItem('smilecare_appointments', JSON.stringify(list));
+          window.dispatchEvent(new Event('storage'));
+        }
+        return list;
+      },
+      deleteAppointment(id) {
+        let list = this.getAppointments();
+        list = list.filter(a => a.id !== id);
+        localStorage.setItem('smilecare_appointments', JSON.stringify(list));
+        window.dispatchEvent(new Event('storage'));
+        return list;
+      },
+      resetDefaults() {
+        localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
+        localStorage.setItem('smilecare_token_seq', '5');
+        window.dispatchEvent(new Event('storage'));
+        return DEFAULT_APPOINTMENTS;
+      },
+      normalizeDate(d) {
+        if (!d) return '';
+        const str = String(d).trim().toLowerCase();
+        const today = new Date().toISOString().split('T')[0];
+        if (str === 'today') return today;
+        if (str === 'tomorrow') {
+          const t = new Date();
+          t.setDate(t.getDate() + 1);
+          return t.toISOString().split('T')[0];
+        }
+        return d;
+      },
+      isSlotBooked(doctorName, date, time) {
+        const list = this.getAppointments();
+        const targetDate = this.normalizeDate(date);
+        return list.some(a => {
+          if (a.status === 'Cancelled') return false;
+          const aDate = this.normalizeDate(a.date);
+          const docMatch = (a.doctor || '').toLowerCase().includes((doctorName || '').toLowerCase()) ||
+                           (doctorName || '').toLowerCase().includes((a.doctor || '').toLowerCase());
+          const timeMatch = (a.time || '').toLowerCase().includes((time || '').toLowerCase());
+          return docMatch && aDate === targetDate && timeMatch;
+        });
+      },
+      getBookedAppointment(doctorName, date, time) {
+        const list = this.getAppointments();
+        const targetDate = this.normalizeDate(date);
+        return list.find(a => {
+          if (a.status === 'Cancelled') return false;
+          const aDate = this.normalizeDate(a.date);
+          const docMatch = (a.doctor || '').toLowerCase().includes((doctorName || '').toLowerCase()) ||
+                           (doctorName || '').toLowerCase().includes((a.doctor || '').toLowerCase());
+          const timeMatch = (a.time || '').toLowerCase().includes((time || '').toLowerCase());
+          return docMatch && aDate === targetDate && timeMatch;
+        });
+      }
+    };
   </script>
 
   <!-- Pre-compiled Native React Bundle (Instant Execution) -->
   <script src="js/dental-spa.bundle.js"></script>
+
+  <!-- Sliding Pill Nav Animation + Check Appointment Feature (post-render) -->
+  <script>
+    /* ══════════════════════════════════════════════════
+       1. Sliding Pill Nav Animation
+       ══════════════════════════════════════════════════ */
+    (function initNavPill() {
+      function setup() {
+        const nav = document.querySelector('header nav');
+        if (!nav) return requestAnimationFrame(setup);
+
+        const pill = document.createElement('div');
+        pill.className = 'nav-pill-indicator';
+        nav.style.position = 'relative';
+        nav.appendChild(pill);
+
+        const links = nav.querySelectorAll('a');
+
+        function movePill(el) {
+          const navRect = nav.getBoundingClientRect();
+          const elRect = el.getBoundingClientRect();
+          pill.style.left = (elRect.left - navRect.left) + 'px';
+          pill.style.width = elRect.width + 'px';
+          pill.classList.add('visible');
+        }
+
+        function hidePill() {
+          const active = nav.querySelector('a.nav-active');
+          if (active) movePill(active); else pill.classList.remove('visible');
+        }
+
+        links.forEach(link => {
+          link.addEventListener('mouseenter', () => movePill(link));
+          link.addEventListener('mouseleave', hidePill);
+          link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('nav-active'));
+            link.classList.add('nav-active');
+            movePill(link);
+          });
+        });
+
+        // Inject Mobile Quick Pill Nav Bar inside <header>
+        const headerEl = document.querySelector('header');
+        if (headerEl && !document.getElementById('mobile-quick-nav')) {
+          const mobBar = document.createElement('div');
+          mobBar.id = 'mobile-quick-nav';
+          mobBar.innerHTML = `
+            <a href="#services">Treatments</a>
+            <a href="#transformation">Before &amp; After</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#specialists">Doctors</a>
+            <a href="#faq">FAQs</a>
+            <button type="button" class="mob-check-btn" onclick="window.openCheckAppointmentModal && window.openCheckAppointmentModal()">🔍 Check Status</button>
+            <a href="https://wa.me/923001234567?text=Hi%20Aura%20Dental%20Spa" target="_blank" rel="noopener noreferrer" class="mob-wa-btn">💬 WhatsApp</a>
+          `;
+          headerEl.appendChild(mobBar);
+        }
+
+        const sectionIds = Array.from(links).map(a => a.getAttribute('href')).filter(h => h && h.startsWith('#'));
+        function onScroll() {
+          let current = '';
+          for (const id of sectionIds) {
+            const sec = document.querySelector(id);
+            if (sec && sec.getBoundingClientRect().top <= 160) current = id;
+          }
+          links.forEach(link => {
+            if (link.getAttribute('href') === current) link.classList.add('nav-active');
+            else link.classList.remove('nav-active');
+          });
+          const active = nav.querySelector('a.nav-active');
+          if (active) movePill(active); else pill.classList.remove('visible');
+
+          // Sync mobile pill active highlight
+          const mobLinks = document.querySelectorAll('#mobile-quick-nav a[href^="#"]');
+          mobLinks.forEach(ml => {
+            if (ml.getAttribute('href') === current) ml.classList.add('mob-active');
+            else ml.classList.remove('mob-active');
+          });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        setTimeout(onScroll, 300);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(setup, 200));
+      } else {
+        setTimeout(setup, 200);
+      }
+    })();
+
+    /* ══════════════════════════════════════════════════
+       2. CHECK MY APPOINTMENT – Inject button + modal
+       ══════════════════════════════════════════════════ */
+    (function initCheckAppointment() {
+
+      /* ── Inject CSS ── */
+      const style = document.createElement('style');
+      style.textContent = `
+        /* Check Appointment Button */
+        .chk-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #92400e;
+          background: #fffbeb;
+          border: 1px solid #fcd34d;
+          padding: 8px 16px;
+          border-radius: 9999px;
+          cursor: pointer;
+          transition: background 0.2s, border-color 0.2s;
+          font-family: inherit;
+        }
+        .chk-btn:hover { background: #fef3c7; border-color: #f59e0b; }
+
+        /* Overlay */
+        .chk-overlay {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 99999;
+          background: rgba(15,23,42,0.55);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+        }
+        .chk-overlay.open { display: flex; }
+
+        /* Modal */
+        .chk-modal {
+          background: #fff;
+          border-radius: 24px;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+          width: 100%;
+          max-width: 480px;
+          max-height: 90vh;
+          overflow-y: auto;
+          animation: chkSlideIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+        @keyframes chkSlideIn {
+          from { transform: scale(0.9) translateY(20px); opacity: 0; }
+          to   { transform: scale(1) translateY(0);      opacity: 1; }
+        }
+        .chk-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.25rem 1.5rem 1rem;
+          border-bottom: 1px solid #f1f5f9;
+        }
+        .chk-header-left { display: flex; align-items: center; gap: 12px; }
+        .chk-icon-wrap {
+          width: 40px; height: 40px;
+          border-radius: 14px;
+          background: #fffbeb;
+          border: 1px solid #fcd34d;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .chk-title { font-weight: 800; font-size: 1.05rem; color: #0f172a; line-height: 1.2; }
+        .chk-subtitle { font-size: 0.72rem; color: #64748b; margin-top: 2px; }
+        .chk-close {
+          width: 32px; height: 32px; border-radius: 50%;
+          border: none; background: none; cursor: pointer;
+          display: flex; align-items: center; justify-content: center;
+          color: #94a3b8; font-size: 1.1rem;
+          transition: background 0.2s;
+        }
+        .chk-close:hover { background: #f1f5f9; }
+
+        /* Search Row */
+        .chk-search { display: flex; gap: 8px; padding: 1.1rem 1.5rem 0.5rem; }
+        .chk-input {
+          flex: 1;
+          padding: 10px 14px;
+          border-radius: 14px;
+          border: 1.5px solid #e2e8f0;
+          font-size: 0.82rem;
+          font-family: 'Plus Jakarta Sans', monospace;
+          color: #0f172a;
+          background: #f8fafc;
+          outline: none;
+          transition: border-color 0.2s;
+        }
+        .chk-input:focus { border-color: #0d9488; }
+        .chk-search-btn {
+          padding: 10px 18px;
+          border-radius: 14px;
+          background: #0d9488;
+          color: #fff;
+          font-weight: 700;
+          font-size: 0.82rem;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s;
+          font-family: inherit;
+        }
+        .chk-search-btn:hover { background: #0f766e; }
+        .chk-hint { font-size: 0.7rem; color: #94a3b8; padding: 0 1.5rem 1rem; }
+
+        /* Result card */
+        .chk-result-wrap { padding: 0 1.5rem 1.5rem; }
+        .chk-card {
+          border-radius: 16px;
+          border: 1.5px solid;
+          padding: 1rem;
+          margin-bottom: 10px;
+        }
+        .chk-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .chk-status-pill {
+          display: inline-flex; align-items: center; gap: 6px;
+          padding: 4px 10px; border-radius: 9999px;
+          font-size: 0.72rem; font-weight: 700; border: 1px solid;
+        }
+        .chk-status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .chk-ref { font-family: monospace; font-weight: 700; font-size: 0.85rem; color: #0f172a; }
+        .chk-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.75rem; }
+        .chk-label { color: #64748b; font-weight: 500; }
+        .chk-val { font-weight: 600; color: #0f172a; text-align: right; max-width: 60%; }
+
+        .chk-cancelled-alert {
+          background: #fef2f2; border: 1.5px solid #f87171;
+          border-radius: 12px; padding: 12px 14px;
+          font-size: 0.78rem; color: #991b1b; font-weight: 500;
+          margin-top: 12px;
+        }
+        .chk-cancelled-banner {
+          background: #fee2e2; border: 2px solid #ef4444;
+          border-radius: 12px; padding: 12px 14px;
+          margin-bottom: 12px;
+        }
+        .chk-wa-btn {
+          display: flex; align-items: center; justify-content: center; gap: 6px;
+          margin-top: 10px; padding: 10px;
+          background: #16a34a; color: #fff;
+          border-radius: 12px; font-size: 0.75rem; font-weight: 700;
+          text-decoration: none; transition: background 0.2s;
+        }
+        .chk-wa-btn:hover { background: #15803d; }
+
+        .chk-receipt-btn {
+          display: flex; align-items: center; justify-content: center; gap: 6px;
+          width: 100%; margin-top: 10px; padding: 10px;
+          background: #0d9488; color: #fff;
+          border-radius: 12px; font-size: 0.75rem; font-weight: 700;
+          border: none; cursor: pointer; transition: background 0.2s;
+          font-family: inherit;
+        }
+        .chk-receipt-btn:hover { background: #0f766e; }
+
+        /* Not found */
+        .chk-empty { text-align: center; padding: 2rem 1.5rem; }
+        .chk-empty-icon { width: 52px; height: 52px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+        .chk-empty p { font-weight: 600; color: #0f172a; margin-bottom: 4px; font-size: 0.9rem; }
+        .chk-empty small { color: #64748b; font-size: 0.72rem; }
+        .chk-wa-ask {
+          display: inline-flex; align-items: center; gap: 6px;
+          margin-top: 14px; padding: 8px 16px;
+          background: #f0fdf4; border: 1px solid #bbf7d0;
+          border-radius: 9999px; color: #15803d;
+          font-size: 0.72rem; font-weight: 700; text-decoration: none;
+          transition: background 0.2s;
+        }
+        .chk-wa-ask:hover { background: #dcfce7; }
+
+        /* Status colour themes */
+        .st-confirmed  { background:#f0fdfa; border-color:#99f6e4; }
+        .st-confirmed .chk-status-pill { background:#f0fdfa; border-color:#5eead4; color:#0f766e; }
+        .st-confirmed .chk-status-dot  { background:#0d9488; }
+
+        .st-cancelled  { background:#fef2f2; border-color:#fecaca; }
+        .st-cancelled .chk-status-pill { background:#fef2f2; border-color:#fca5a5; color:#b91c1c; }
+        .st-cancelled .chk-status-dot  { background:#ef4444; }
+
+        .st-inchair    { background:#eff6ff; border-color:#bfdbfe; }
+        .st-inchair .chk-status-pill   { background:#eff6ff; border-color:#93c5fd; color:#1d4ed8; }
+        .st-inchair .chk-status-dot    { background:#3b82f6; }
+
+        .st-done       { background:#f0fdf4; border-color:#bbf7d0; }
+        .st-done .chk-status-pill      { background:#f0fdf4; border-color:#86efac; color:#15803d; }
+        .st-done .chk-status-dot       { background:#22c55e; }
+      `;
+      document.head.appendChild(style);
+
+      /* ── Build the overlay HTML ── */
+      const overlay = document.createElement('div');
+      overlay.className = 'chk-overlay';
+      overlay.id = 'chkOverlay';
+      overlay.innerHTML = `
+        <div class="chk-modal" id="chkModal">
+          <div class="chk-header">
+            <div class="chk-header-left">
+              <div class="chk-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <div>
+                <div class="chk-title">Check My Appointment</div>
+                <div class="chk-subtitle">Token ID • Mobile • Email</div>
+              </div>
+            </div>
+            <button class="chk-close" id="chkClose" title="Close">✕</button>
+          </div>
+
+          <div class="chk-search">
+            <input class="chk-input" id="chkInput" type="text" placeholder="SPA-003 or 03001234567 or email..." autocomplete="off" />
+            <button class="chk-search-btn" id="chkSearchBtn">Search</button>
+          </div>
+          <div class="chk-hint">Search by: Voucher Token (SPA-001) • Mobile Number • Email Address</div>
+
+          <div id="chkResults"></div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      /* ── Helper: build status info ── */
+      function getStatusInfo(status) {
+        const s = (status || '').toLowerCase();
+        if (s === 'cancelled') return { cls: 'st-cancelled', label: '✗  Cancelled' };
+        if (s === 'in-chair' || s === 'in chair') return { cls: 'st-inchair', label: '⚡ In-Chair Now' };
+        if (s === 'treatment done' || s === 'done' || s === 'completed')
+          return { cls: 'st-done', label: '✓  Treatment Done' };
+        return { cls: 'st-confirmed', label: '● Confirmed' };
+      }
+
+      /* ── Render results ── */
+      function renderResults(results) {
+        const wrap = document.getElementById('chkResults');
+        if (!results) { wrap.innerHTML = ''; return; }
+
+        if (results.length === 0) {
+          wrap.innerHTML = `
+            <div class="chk-empty">
+              <div class="chk-empty-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <p>No Appointment Found</p>
+              <small>Try your Token ID (e.g. SPA-003), mobile number, or email address.</small><br/>
+              <a class="chk-wa-ask" href="https://wa.me/923001234567?text=Hi%20Aura%20Dental%20Spa%2C%20I%20want%20to%20check%20my%20appointment%20status." target="_blank">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>`;
+          return;
+        }
+
+        const html = results.map(apt => {
+          const si = getStatusInfo(apt.status);
+          const isCancelled = (apt.status || '').toLowerCase() === 'cancelled';
+          const waUrl = `https://wa.me/923001234567?text=${encodeURIComponent(`Assalam-o-Alaikum! My appointment ${apt.id} for ${apt.treatment} with ${apt.doctor} was cancelled. I would like to reschedule. My name is ${apt.name}.`)}`;
+
+          return `
+            <div class="chk-card ${si.cls}">
+              ${isCancelled ? `
+                <div class="chk-cancelled-banner">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#991b1b;margin-bottom:4px;">
+                    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#dc2626;"></span>
+                    APPOINTMENT CANCEL HO CHUKI HAI (CANCELLED)
+                  </div>
+                  <div style="font-size:11.5px;color:#b91c1c;line-height:1.5;">
+                    Yeh appointment reception desk se <strong>cancel</strong> kar di gayi hai. Agar aap rescheduling chahein toh barah-e-karam foran WhatsApp par rabta karein.
+                  </div>
+                </div>
+              ` : ''}
+
+              <div class="chk-card-header">
+                <div class="chk-status-pill">
+                  <span class="chk-status-dot"></span>
+                  ${si.label}
+                </div>
+                <span class="chk-ref">${apt.id || ''}</span>
+              </div>
+
+              <div class="chk-row"><span class="chk-label">Patient:</span><span class="chk-val">${apt.name || ''}</span></div>
+              <div class="chk-row"><span class="chk-label">Doctor:</span><span class="chk-val">${apt.doctor || ''}</span></div>
+              <div class="chk-row"><span class="chk-label">Treatment:</span><span class="chk-val">${apt.treatment || ''}</span></div>
+              <div class="chk-row">
+                <span class="chk-label">Date:</span>
+                <span class="chk-val" style="${isCancelled ? 'text-decoration:line-through;color:#94a3b8;' : ''}">${apt.date || ''}</span>
+              </div>
+              <div class="chk-row">
+                <span class="chk-label">Time:</span>
+                <span class="chk-val" style="${isCancelled ? 'text-decoration:line-through;color:#94a3b8;' : ''}">${apt.time || ''}</span>
+              </div>
+              <div class="chk-row">
+                <span class="chk-label">Status:</span>
+                <span class="chk-val" style="${isCancelled ? 'color:#dc2626;font-weight:800;' : 'color:#0d9488;'}">
+                  ${isCancelled ? '❌ Cancelled (Mansookh)' : (apt.status || 'Confirmed')}
+                </span>
+              </div>
+              ${apt.queueNumber ? `<div class="chk-row"><span class="chk-label">Queue Position:</span><span class="chk-val" style="color:inherit;font-weight:700">Turn #${apt.queueNumber} in Line</span></div>` : ''}
+
+              <!-- Download Receipt Button (PNG Image for Gallery) -->
+              <button type="button" class="chk-receipt-btn" onclick="window.downloadAppointmentReceiptById('${apt.id}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                🖼️ Download Receipt Image (Save to Gallery)
+              </button>
+
+              ${isCancelled ? `
+                <a class="chk-wa-btn" href="${waUrl}" target="_blank" rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  Reschedule / Rabta Karein (WhatsApp)
+                </a>` : ''}
+            </div>`;
+        }).join('');
+        wrap.innerHTML = `<div class="chk-result-wrap">${html}</div>`;
+      }
+
+      /* ── Search logic ── */
+      function doSearch() {
+        const q = document.getElementById('chkInput').value.trim().toLowerCase();
+        if (!q) return;
+        let all = [];
+        try {
+          if (window.ClinicStore && typeof window.ClinicStore.getAppointments === 'function') {
+            all = window.ClinicStore.getAppointments();
+          } else {
+            const raw = localStorage.getItem('smilecare_appointments');
+            if (raw) all = JSON.parse(raw);
+          }
+        } catch (e) { }
+        const found = all.filter(a => {
+          const refMatch = (a.id || '').toLowerCase().includes(q);
+          const phoneMatch = (a.phone || '').replace(/\D/g, '').includes(q.replace(/\D/g, ''));
+          const emailMatch = (a.email || '').toLowerCase().includes(q);
+          return refMatch || phoneMatch || emailMatch;
+        });
+        renderResults(found);
+      }
+
+      /* ── Open / Close ── */
+      function openModal() {
+        document.getElementById('chkOverlay').classList.add('open');
+        document.getElementById('chkInput').focus();
+      }
+      function closeModal() {
+        document.getElementById('chkOverlay').classList.remove('open');
+        document.getElementById('chkInput').value = '';
+        renderResults(null);
+      }
+
+      /* ── Inject "Check My Appointment" button into navbar ── */
+      function injectNavButton() {
+        const header = document.querySelector('header');
+        if (!header) return requestAnimationFrame(injectNavButton);
+
+        // Find the Book Visit button
+        const btns = header.querySelectorAll('button');
+        let bookBtn = null;
+        btns.forEach(b => { if (b.textContent.trim().includes('Book')) bookBtn = b; });
+        if (!bookBtn) return setTimeout(injectNavButton, 300);
+
+        const chkBtn = document.createElement('button');
+        chkBtn.className = 'chk-btn';
+        chkBtn.innerHTML = `
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Check Appointment`;
+        chkBtn.onclick = openModal;
+        bookBtn.parentNode.insertBefore(chkBtn, bookBtn);
+      }
+
+      /* ── Event listeners ── */
+      document.getElementById('chkClose').onclick = closeModal;
+      document.getElementById('chkOverlay').onclick = function (e) {
+        if (e.target === this) closeModal();
+      };
+      document.getElementById('chkSearchBtn').onclick = doSearch;
+      document.getElementById('chkInput').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') doSearch();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      /* ── Expose globally so the hero "Check My Appointment" button can open it too ── */
+      window.openCheckAppointmentModal = openModal;
+
+      /* ── Universal Receipt Generator & Downloader (Direct PNG Image to Gallery) ── */
+      function createReceiptCanvas(apt) {
+        const token = apt.id || apt.ref || 'SPA-001';
+        const name = apt.name || 'Valued Patient';
+        const phone = apt.phone || '-';
+        const doctor = apt.doctor || 'Dr. Ahmed Khan';
+        const suite = apt.suite || 'Suite 1';
+        const treatment = apt.treatment || 'Consultation & Treatment';
+        const date = apt.date || 'Today';
+        const time = apt.time || '10:00 AM';
+        const cost = apt.cost || 'PKR 25,000';
+        const queueNum = apt.queueNumber || apt.queueNum || '1';
+        const status = apt.status || 'Confirmed';
+        const isCancelled = String(status).toLowerCase() === 'cancelled';
+        const now = new Date().toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' });
+
+        const canvas = document.createElement('canvas');
+        const w = 720;
+        const h = isCancelled ? 960 : 910;
+        const scale = 2; // High resolution 2x
+        canvas.width = w * scale;
+        canvas.height = h * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.scale(scale, scale);
+
+        function drawRoundRect(x, y, width, height, r, fill, stroke, strokeColor, fillColor) {
+          ctx.beginPath();
+          ctx.moveTo(x + r, y);
+          ctx.lineTo(x + width - r, y);
+          ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+          ctx.lineTo(x + width, y + height - r);
+          ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+          ctx.lineTo(x + r, y + height);
+          ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+          ctx.lineTo(x, y + r);
+          ctx.quadraticCurveTo(x, y, x + r, y);
+          ctx.closePath();
+          if (fill) { ctx.fillStyle = fillColor; ctx.fill(); }
+          if (stroke) { ctx.strokeStyle = strokeColor; ctx.lineWidth = 1.5; ctx.stroke(); }
+        }
+
+        // 1. Outer Background
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(0, 0, w, h);
+
+        // 2. White Card Container
+        drawRoundRect(20, 20, w - 40, h - 40, 22, true, true, isCancelled ? '#ef4444' : '#0d9488', '#ffffff');
+
+        // 3. Top Decorative Ribbon
+        ctx.fillStyle = isCancelled ? '#dc2626' : '#0d9488';
+        ctx.beginPath();
+        ctx.moveTo(40, 20);
+        ctx.lineTo(w - 40, 20);
+        ctx.quadraticCurveTo(w - 20, 20, w - 20, 40);
+        ctx.lineTo(w - 20, 32);
+        ctx.lineTo(20, 32);
+        ctx.lineTo(20, 40);
+        ctx.quadraticCurveTo(20, 20, 40, 20);
+        ctx.closePath();
+        ctx.fill();
+
+        // 4. Header Section
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 25px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.fillText('AURA DENTAL SPA', 45, 68);
+
+        ctx.fillStyle = '#0d9488';
+        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.fillText('CLINICAL LUXURY & HOLISTIC DENTISTRY', 45, 90);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.fillText('Main Shahbaz Commercial, DHA Phase 6, Karachi', 45, 110);
+        ctx.fillText('WhatsApp Reception: +92 300 1234567 • Karachi', 45, 126);
+
+        // 5. Token Box (Top Right)
+        const tbX = w - 215;
+        const tbY = 46;
+        drawRoundRect(tbX, tbY, 170, 84, 14, true, true, isCancelled ? '#ef4444' : '#0d9488', isCancelled ? '#fef2f2' : '#f0fdfa');
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = 'bold 10px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('QUEUE TOKEN', tbX + 85, tbY + 22);
+
+        ctx.fillStyle = isCancelled ? '#dc2626' : '#0d9488';
+        ctx.font = 'bold 28px monospace';
+        ctx.fillText(token, tbX + 85, tbY + 54);
+
+        ctx.fillStyle = isCancelled ? '#b91c1c' : '#0f766e';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillText(`Turn #${queueNum} in Line`, tbX + 85, tbY + 74);
+        ctx.textAlign = 'left';
+
+        // 6. Dashed Divider
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(45, 150);
+        ctx.lineTo(w - 45, 150);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        let curY = 175;
+
+        // 7. If Cancelled, Big Warning Banner!
+        if (isCancelled) {
+          drawRoundRect(45, curY, w - 90, 64, 12, true, true, '#ef4444', '#fee2e2');
+          ctx.fillStyle = '#991b1b';
+          ctx.font = 'bold 15px sans-serif';
+          ctx.fillText('❌ APPOINTMENT CANCEL HO CHUKI HAI (CANCELLED)', 65, curY + 26);
+          ctx.fillStyle = '#b91c1c';
+          ctx.font = '11.5px sans-serif';
+          ctx.fillText('Yeh appointment clinic reception se cancel kar di gayi hai.', 65, curY + 44);
+          ctx.fillText('Reschedule / Rabta ke liye WhatsApp karein: +92 300 1234567', 65, curY + 58);
+          curY += 78;
+        }
+
+        // 8. Title of slip
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 14px sans-serif';
+        ctx.fillText('OFFICIAL PATIENT APPOINTMENT RECEIPT & QUEUE SLIP', 45, curY + 5);
+        curY += 22;
+
+        // 9. Two-column grid of info fields
+        const fields = [
+          { label: 'PATIENT NAME', val: name, col: 1 },
+          { label: 'CONTACT MOBILE', val: phone, col: 2 },
+          { label: 'SPECIALIST DOCTOR', val: doctor, col: 1 },
+          { label: 'SUITE LOCATION', val: suite + ' • DHA Phase 6', col: 2 },
+          { label: 'TREATMENT PROCEDURE', val: treatment, col: 0 },
+          { label: 'APPOINTMENT DATE', val: date, col: 1, strike: isCancelled },
+          { label: 'CONFIRMED TIME SLOT', val: time, col: 2, strike: isCancelled },
+          { label: 'CURRENT STATUS', val: isCancelled ? '❌ Cancelled (Mansookh)' : status, col: 1, color: isCancelled ? '#dc2626' : '#0d9488' },
+          { label: 'RECEIPT ISSUED AT', val: now, col: 2 }
+        ];
+
+        const colW = (w - 90 - 16) / 2;
+        const col1X = 45;
+        const col2X = 45 + colW + 16;
+
+        for (let i = 0; i < fields.length; i++) {
+          const f = fields[i];
+          let fX, fY, fW, fH;
+          fH = 50;
+
+          if (f.col === 0) {
+            fX = col1X;
+            fY = curY;
+            fW = w - 90;
+            curY += 58;
+          } else if (f.col === 1) {
+            fX = col1X;
+            fY = curY;
+            fW = colW;
+            if (i + 1 < fields.length && fields[i + 1].col === 2) {
+              // wait for next to advance curY
+            } else {
+              curY += 58;
+            }
+          } else {
+            fX = col2X;
+            fY = curY;
+            fW = colW;
+            curY += 58;
+          }
+
+          drawRoundRect(fX, fY, fW, fH, 10, true, true, '#e2e8f0', '#f8fafc');
+
+          ctx.fillStyle = '#64748b';
+          ctx.font = 'bold 9.5px sans-serif';
+          ctx.fillText(f.label, fX + 12, fY + 18);
+
+          ctx.fillStyle = f.color || '#0f172a';
+          ctx.font = 'bold 12.5px sans-serif';
+
+          let displayVal = f.val;
+          if (ctx.measureText(displayVal).width > fW - 24) {
+            while (displayVal.length > 3 && ctx.measureText(displayVal + '...').width > fW - 24) {
+              displayVal = displayVal.slice(0, -1);
+            }
+            displayVal += '...';
+          }
+          ctx.fillText(displayVal, fX + 12, fY + 38);
+
+          if (f.strike) {
+            const textW = ctx.measureText(displayVal).width;
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(fX + 12, fY + 34);
+            ctx.lineTo(fX + 12 + textW, fY + 34);
+            ctx.stroke();
+          }
+        }
+
+        curY += 8;
+
+        // 10. Treatment Fee Box
+        const feeH = 52;
+        drawRoundRect(45, curY, w - 90, feeH, 12, true, true, isCancelled ? '#fca5a5' : '#99f6e4', isCancelled ? '#fef2f2' : '#f0fdfa');
+
+        ctx.fillStyle = isCancelled ? '#991b1b' : '#0f766e';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('Estimated Treatment Fee', 60, curY + 22);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px sans-serif';
+        ctx.fillText('Official Transparent Karachi Rates (0% Markup EMI Available)', 60, curY + 39);
+
+        ctx.fillStyle = isCancelled ? '#b91c1c' : '#0d9488';
+        ctx.font = 'bold 22px monospace';
+        ctx.textAlign = 'right';
+        ctx.fillText(cost, w - 60, curY + 35);
+        ctx.textAlign = 'left';
+
+        curY += feeH + 18;
+
+        // 11. Simulated Barcode & Stamp
+        ctx.fillStyle = '#0f172a';
+        for (let b = 0; b < 44; b++) {
+          const barW = ((b * 7 + 3) % 4) + 1.5;
+          const barX = 45 + b * 5.5;
+          if (barX < 300) {
+            ctx.fillRect(barX, curY, barW, 26);
+          }
+        }
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px monospace';
+        ctx.fillText('VERIFIED DIGITAL VOUCHER • ' + token, 45, curY + 38);
+
+        // Digital stamp on right
+        drawRoundRect(w - 230, curY - 5, 185, 48, 10, true, true, '#10b981', '#ecfdf5');
+        ctx.fillStyle = '#047857';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('✓ AURA CLINIC VERIFIED', w - 138, curY + 17);
+        ctx.fillStyle = '#059669';
+        ctx.font = '9px sans-serif';
+        ctx.fillText('DHA Phase 6 • Official Desk', w - 138, curY + 32);
+        ctx.textAlign = 'left';
+
+        curY += 56;
+
+        // 12. Footer Notice
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(45, curY);
+        ctx.lineTo(w - 45, curY);
+        ctx.stroke();
+
+        curY += 16;
+        ctx.fillStyle = '#64748b';
+        ctx.font = '9.5px sans-serif';
+        ctx.fillText('• Free valet parking available on Main Shahbaz Commercial.', 45, curY);
+        ctx.fillText('• Please arrive 10 minutes prior to your suite consultation.', 45, curY + 14);
+        ctx.fillText('• Emergency / Reschedule WhatsApp: +92 300 1234567 • www.auradentalspa.pk', 45, curY + 28);
+
+        return canvas;
+      }
+
+      /* ── Trigger Image Download & Instant On-Screen Receipt Preview Modal ── */
+      function showReceiptPreviewModal(canvas, apt) {
+        const token = apt.id || apt.ref || 'SPA-001';
+        const dataUrl = canvas.toDataURL('image/png');
+        const isCancelled = String(apt.status || '').toLowerCase() === 'cancelled';
+
+        let existing = document.getElementById('receipt-image-preview-modal');
+        if (existing) existing.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'receipt-image-preview-modal';
+        modal.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.8);backdrop-filter:blur(8px);z-index:9999999;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn 0.25s ease;';
+
+        modal.innerHTML = `
+          <div style="background:#ffffff;border-radius:24px;max-width:540px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.4);overflow:hidden;border:1px solid rgba(226,232,240,0.8);font-family:inherit;">
+            <!-- Header -->
+            <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;background:${isCancelled ? '#fef2f2' : '#f0fdfa'};">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:22px;">${isCancelled ? '❌' : '🖼️'}</span>
+                <div>
+                  <h4 style="margin:0;font-size:15px;font-weight:800;color:${isCancelled ? '#991b1b' : '#0f766e'};">
+                    ${isCancelled ? 'Cancelled Appointment Receipt' : 'Official Appointment Receipt'}
+                  </h4>
+                  <p style="margin:0;font-size:11px;color:#64748b;font-weight:600;">
+                    Token: <strong style="color:#0f172a;">${token}</strong> • Patient: ${apt.name || 'Valued Patient'}
+                  </p>
+                </div>
+              </div>
+              <button id="close-receipt-preview-btn" type="button" style="border:none;background:#e2e8f0;width:32px;height:32px;border-radius:50%;cursor:pointer;font-weight:bold;color:#475569;display:flex;align-items:center;justify-content:center;font-size:16px;">✕</button>
+            </div>
+
+            <!-- Image Viewport -->
+            <div style="padding:16px;overflow-y:auto;background:#f8fafc;display:flex;flex-direction:column;align-items:center;text-align:center;">
+              <img id="receipt-preview-img" src="${dataUrl}" alt="Aura Dental Spa Receipt ${token}" style="max-width:100%;max-height:380px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;object-fit:contain;cursor:pointer;" title="Click or long press to save image" />
+              <p style="margin:10px 0 0;font-size:12px;color:#475569;line-height:1.4;background:#ffffff;padding:8px 14px;border-radius:10px;border:1px solid #e2e8f0;">
+                💡 <strong>Save Tip:</strong> Image par right-click / tap karke <em>"Save Image As..."</em> ya mobile gallery me save kar saktay hain.
+              </p>
+            </div>
+
+            <!-- Actions Bar -->
+            <div style="padding:16px 20px;background:#ffffff;border-top:1px solid #f1f5f9;display:flex;flex-direction:column;gap:10px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <button id="btn-save-receipt-img" type="button" style="background:#0d9488;color:#ffffff;font-weight:700;padding:12px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;box-shadow:0 4px 12px rgba(13,148,136,0.3);">
+                  📥 Download Image
+                </button>
+                <button id="btn-open-receipt-tab" type="button" style="background:#0f172a;color:#ffffff;font-weight:700;padding:12px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;">
+                  👁️ Open Full Size
+                </button>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <button id="btn-copy-receipt-img" type="button" style="background:#f1f5f9;color:#334155;font-weight:700;padding:10px;border-radius:12px;border:1px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;">
+                  📋 Copy to Clipboard
+                </button>
+                <a href="https://wa.me/923001234567?text=${encodeURIComponent(`Salam Aura Dental Spa, my appointment receipt token is ${token} for ${apt.name || 'patient'}. Date: ${apt.date || ''}`)}" target="_blank" style="background:#25D366;color:#ffffff;font-weight:700;padding:10px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;text-decoration:none;">
+                  💬 WhatsApp Share
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const closeBtn = document.getElementById('close-receipt-preview-btn');
+        if (closeBtn) closeBtn.onclick = () => modal.remove();
+        modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+        document.getElementById('btn-save-receipt-img').onclick = function () {
+          triggerReceiptDownload(canvas, token);
+        };
+
+        document.getElementById('btn-open-receipt-tab').onclick = function () {
+          const w = window.open('');
+          if (w) {
+            w.document.write(`
+              <html>
+                <head>
+                  <title>Aura Dental Spa Receipt - ${token}</title>
+                  <style>
+                    body { margin:0; background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; font-family:sans-serif; color:#ffffff; padding:20px; box-sizing:border-box; }
+                    img { max-width:95%; max-height:85vh; border-radius:14px; box-shadow:0 20px 45px rgba(0,0,0,0.6); }
+                    p { margin-top:16px; font-size:14px; color:#94a3b8; font-weight:600; }
+                  </style>
+                </head>
+                <body>
+                  <img src="${dataUrl}" alt="Receipt ${token}">
+                  <p>Right-click or long-press on mobile to Save Image</p>
+                </body>
+              </html>
+            `);
+          }
+        };
+
+        document.getElementById('btn-copy-receipt-img').onclick = async function () {
+          try {
+            canvas.toBlob(async function (blob) {
+              if (!blob) return;
+              if (navigator.clipboard && window.ClipboardItem) {
+                await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                const btn = document.getElementById('btn-copy-receipt-img');
+                if (btn) {
+                  btn.innerHTML = '✅ Copied to Clipboard!';
+                  setTimeout(() => { if (btn) btn.innerHTML = '📋 Copy to Clipboard'; }, 2000);
+                }
+              } else {
+                alert('Image copy clipboard standard supported browser me chalega. Aap "Download Image" ya "Open Full Size" se save kar saktay hain.');
+              }
+            }, 'image/png');
+          } catch (e) {
+            console.warn('Clipboard copy error:', e);
+          }
+        };
+      }
+
+      function triggerReceiptDownload(canvas, token) {
+        canvas.toBlob(async function (blob) {
+          if (!blob) return;
+
+          // Try modern showSaveFilePicker if available
+          if ('showSaveFilePicker' in window) {
+            try {
+              const handle = await window.showSaveFilePicker({
+                suggestedName: `AuraDentalSpa_Receipt_${token}.png`,
+                types: [{
+                  description: 'PNG Image',
+                  accept: { 'image/png': ['.png'] }
+                }]
+              });
+              const writable = await handle.createWritable();
+              await writable.write(blob);
+              await writable.close();
+              showGallerySavedToast(token);
+              return;
+            } catch (err) {
+              if (err.name === 'AbortError') return;
+            }
+          }
+
+          // Standard fallback <a> download
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `AuraDentalSpa_Receipt_${token}.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 2500);
+          showGallerySavedToast(token);
+        }, 'image/png');
+      }
+
+      /* ── Trigger Image Download (PNG format saves straight to Gallery) ── */
+      window.downloadAppointmentReceipt = function (apt) {
+        if (!apt) {
+          const list = window.ClinicStore ? window.ClinicStore.getAppointments() : JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
+          apt = list[0] || {};
+        }
+        const token = apt.id || apt.ref || 'SPA-001';
+
+        try {
+          const canvas = createReceiptCanvas(apt);
+          // 1. Show interactive preview modal immediately
+          showReceiptPreviewModal(canvas, apt);
+          // 2. Trigger direct download in background
+          triggerReceiptDownload(canvas, token);
+        } catch (err) {
+          console.error('Receipt image generation error:', err);
+        }
+      };
+
+      function showGallerySavedToast(token) {
+        let toast = document.getElementById('receipt-image-toast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'receipt-image-toast';
+          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:#ffffff;padding:12px 24px;border-radius:9999px;font-size:13px;font-weight:700;z-index:999999;box-shadow:0 10px 30px rgba(0,0,0,0.3);display:flex;align-items:center;gap:10px;border:1px solid rgba(13,148,136,0.6);animation:slideUpToast 0.3s ease;';
+          document.body.appendChild(toast);
+        }
+        toast.innerHTML = `
+          <span style="display:inline-flex;width:20px;height:20px;border-radius:50%;background:#0d9488;align-items:center;justify-content:center;font-size:11px;">✓</span>
+          <span>Receipt Image (${token}.png) Downloaded &amp; Saved to Gallery!</span>
+        `;
+        toast.style.display = 'flex';
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => {
+          if (toast) toast.style.display = 'none';
+        }, 4000);
+      }
+
+      window.downloadAppointmentReceiptById = function (id) {
+        let all = [];
+        try {
+          if (window.ClinicStore && typeof window.ClinicStore.getAppointments === 'function') {
+            all = window.ClinicStore.getAppointments();
+          } else {
+            all = JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
+          }
+        } catch (e) { }
+        const apt = all.find(a => a.id === id);
+        if (apt) {
+          window.downloadAppointmentReceipt(apt);
+        } else {
+          alert('Appointment not found');
+        }
+      };
+
+      /* ── Watch for React Booking Success Modal to Inject "Download Receipt Image (Gallery)" ── */
+      function checkAndEnhanceBookingVoucher() {
+        const headings = document.querySelectorAll('h3');
+        let isSuccessModal = false;
+        headings.forEach(h => {
+          if (h.textContent.includes('Voucher & Token Confirmed') || h.textContent.includes('OFFICIAL PATIENT QUEUE VOUCHER')) {
+            isSuccessModal = true;
+          }
+        });
+
+        if (isSuccessModal) {
+          if (!document.getElementById('btn-receipt-download-live')) {
+            const waBtn = document.querySelector('a[href*="wa.me"][href*="Voucher"]');
+            if (waBtn && waBtn.parentNode) {
+              const btn = document.createElement('button');
+              btn.id = 'btn-receipt-download-live';
+              btn.type = 'button';
+              btn.className = 'w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3.5 px-4 rounded-full transition-all text-sm shadow-md hover:shadow-lg flex items-center justify-center gap-2 mb-2 cursor-pointer';
+              btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <span>🖼️ Download Receipt Image (Save to Gallery)</span>
+              `;
+              btn.onclick = function () {
+                const list = window.ClinicStore ? window.ClinicStore.getAppointments() : JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
+                window.downloadAppointmentReceipt(list[0]);
+              };
+              waBtn.parentNode.insertBefore(btn, waBtn);
+
+              // ALSO automatically trigger image download after 1 second of booking confirmation
+              // so the user gets it automatically in their gallery without even having to click!
+              if (!window.__autoDownloadedOnce) {
+                window.__autoDownloadedOnce = true;
+                setTimeout(() => {
+                  const list = window.ClinicStore ? window.ClinicStore.getAppointments() : JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
+                  if (list && list[0]) {
+                    window.downloadAppointmentReceipt(list[0]);
+                  }
+                }, 900);
+              }
+            }
+          }
+        } else {
+          window.__autoDownloadedOnce = false;
+        }
+      }
+
+      // Check on DOM changes & intervals
+      setInterval(checkAndEnhanceBookingVoucher, 700);
+
+      /* Inject nav button after React renders */
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(injectNavButton, 400));
+      } else {
+        setTimeout(injectNavButton, 400);
+      }
+    })();
+  </script>
 </body>
+
 </html>
