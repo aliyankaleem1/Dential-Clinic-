@@ -737,7 +737,7 @@ function DentalSpaApp() {
             <span>WhatsApp Clinic</span>
           </a>
           <span className="text-slate-300">|</span>
-          <a href="/spa-admin" className="hover:text-teal-medical transition-colors font-semibold text-teal-medical">Reception Desk (Admin)</a>
+          <a href="admin.html" className="hover:text-teal-medical transition-colors font-semibold text-teal-medical">Reception Desk (Admin)</a>
         </div>
       </div>
 
@@ -1581,7 +1581,7 @@ function DentalSpaApp() {
             <a href="#transformation" className="hover:text-teal-medical transition-colors">Before &amp; After</a>
             <a href="#pricing" className="hover:text-teal-medical transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-teal-medical transition-colors">FAQs</a>
-            <a href="/spa-admin" className="text-teal-medical font-semibold hover:underline">Reception Admin</a>
+            <a href="admin.html" className="text-teal-medical font-semibold hover:underline">Reception Admin</a>
             <a href="tel:+923001234567" className="hover:text-teal-medical transition-colors">+92 300 1234567</a>
           </div>
 
