@@ -3,17 +3,20 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AURA DENTAL SPA • Clinical Luxury &amp; Holistic Smile Architecture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>PRECISION DENTISTRY • Aura Dental Spa Karachi</title>
   <meta name="description"
-    content="A modern, clinical luxury dental spa. Clean, hygienic, trustworthy, and heavily reliant on whitespace. Handcrafted Swiss veneers, robotic implants, and EMS Airflow." />
+    content="An individual dental Care provided by modern technology. Precision Dentistry, Swiss porcelain veneers, guided implants, and 3D digital smile architecture in DHA Phase 6 Karachi." />
 
-  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,258 +25,1249 @@
       theme: {
         extend: {
           colors: {
-            teal: {
-              medical: '#0d9488',
-              hover: '#0f766e',
-              surface: '#f0fdfa',
-              subtle: '#ccfbf1'
-            },
-            slate: {
-              heading: '#0f172a',
-              body: '#475569',
-              muted: '#64748b',
-              alabaster: '#f8fafc',
-              border: '#f1f5f9'
+            brand: {
+              navy: '#0a192f',
+              dark: '#0f172a',
+              blue: '#1d4ed8',
+              cyan: '#00d2ff',
+              neon: '#06b6d4',
+              surface: '#f8fafc',
+              border: '#e2e8f0',
+              teal: '#0d9488'
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
             display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif']
           },
           boxShadow: {
-            'diffuse': '0 8px 30px rgba(0, 0, 0, 0.04)',
-            'diffuse-lg': '0 20px 40px rgba(0, 0, 0, 0.06)',
-            'glass': '0 8px 32px 0 rgba(13, 148, 136, 0.08)'
+            'glow-cyan': '0 0 35px -5px rgba(0, 210, 255, 0.45)',
+            'glow-cyan-sm': '0 0 18px -2px rgba(0, 210, 255, 0.35)',
+            'pill': '0 10px 25px -5px rgba(10, 25, 47, 0.25)',
+            'diffuse': '0 12px 35px rgba(0, 0, 0, 0.04)',
+            'diffuse-lg': '0 25px 50px -12px rgba(15, 23, 42, 0.08)'
           }
         }
       }
     }
   </script>
 
-  <!-- Standalone React 18 Application Bundle -->
+  <!-- Three.js 3D Library via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
-    /* Continuous Horizontal CSS Marquee */
-    @keyframes marquee {
-      0% {
-        transform: translateX(0%);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .animate-marquee {
-      display: flex;
-      width: 200%;
-      animation: marquee 28s linear infinite;
-    }
-
-    .animate-marquee:hover {
-      animation-play-state: paused;
-    }
-
-    /* Glassmorphism utility */
-    .glass-frosted {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-    }
-
-    ::selection {
-      background-color: #ccfbf1;
-      color: #0f766e;
-    }
-
-    /* ── Sliding Pill Nav Indicator ── */
-    header nav {
-      position: relative;
-      background: #f1f5f9;
-      border-radius: 9999px;
-      padding: 4px;
-      gap: 0 !important;
-    }
-
-    header nav a {
-      position: relative;
-      z-index: 2;
-      padding: 8px 18px;
-      border-radius: 9999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #64748b;
-      transition: color 0.25s ease;
-      white-space: nowrap;
-    }
-
-    header nav a:hover,
-    header nav a.nav-active {
-      color: #0f172a;
-    }
-
-    /* The sliding pill background */
-    .nav-pill-indicator {
-      position: absolute;
-      z-index: 1;
-      background: #ffffff;
-      border-radius: 9999px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.2s ease;
-      top: 4px;
-      bottom: 4px;
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .nav-pill-indicator.visible {
-      opacity: 1;
-    }
-
-    /* Entrance animation for the whole header */
-    header {
-      animation: headerSlideIn 0.5s ease-out both;
-    }
-
-    @keyframes headerSlideIn {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* ── Global Mobile Responsiveness & Smooth Touch UX ── */
     html, body {
       overflow-x: hidden;
       max-width: 100%;
       -webkit-tap-highlight-color: transparent;
+      background-color: #fbfcfd;
+      color: #0f172a;
     }
 
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Mobile Quick Pill Nav Bar inside <header> */
-    #mobile-quick-nav {
-      display: none;
-      border-top: 1px solid #f1f5f9;
-      background: rgba(255, 255, 255, 0.96);
-      padding: 8px 12px;
-      gap: 6px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+    ::selection {
+      background-color: #cffafe;
+      color: #0891b2;
     }
-    #mobile-quick-nav::-webkit-scrollbar { display: none; }
-    #mobile-quick-nav a,
-    #mobile-quick-nav button {
-      flex-shrink: 0;
-      padding: 6px 12px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #475569;
+
+    /* Custom smooth scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
       background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      cursor: pointer;
     }
-    #mobile-quick-nav a.mob-active {
-      background: #0d9488;
-      color: #ffffff;
-      border-color: #0d9488;
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
     }
-    #mobile-quick-nav button.mob-check-btn {
-      background: #fef3c7;
-      color: #92400e;
-      border-color: #fde68a;
-    }
-    #mobile-quick-nav a.mob-wa-btn {
-      background: #ecfdf5;
-      color: #065f46;
-      border-color: #a7f3d0;
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00d2ff;
     }
 
-    @media (max-width: 767px) {
-      #mobile-quick-nav {
-        display: flex;
-        align-items: center;
+    /* Glowing laser ring keyframes */
+    @keyframes laserPulse {
+      0%, 100% {
+        opacity: 0.85;
+        filter: drop-shadow(0 0 14px rgba(0, 210, 255, 0.8));
       }
-
-      /* Prevent iOS/Android auto-zoom on form fields */
-      input, select, textarea {
-        font-size: 16px !important;
-      }
-
-      /* Compact header bar on mobile */
-      header > div:first-child {
-        height: 62px !important;
-        padding-left: 14px !important;
-        padding-right: 14px !important;
-      }
-
-      section {
-        overflow-x: hidden;
-      }
-
-      h1 {
-        font-size: clamp(2.15rem, 8.5vw, 3rem) !important;
-        line-height: 1.08 !important;
+      50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 28px rgba(0, 210, 255, 1));
       }
     }
 
-    @media (max-width: 640px) {
-      .p-8, .p-10 {
-        padding: 1.25rem !important;
+    @keyframes floatSlow {
+      0%, 100% {
+        transform: translateY(0px);
       }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
 
-      .chk-modal {
-        border-radius: 22px !important;
-        max-height: 92dvh !important;
+    @keyframes floatReverse {
+      0%, 100% {
+        transform: translateY(0px);
       }
+      50% {
+        transform: translateY(7px);
+      }
+    }
 
-      .chk-header {
-        padding: 1rem 1rem 0.75rem !important;
+    @keyframes scanBeam {
+      0% {
+        top: 15%;
+        opacity: 0;
       }
+      20% {
+        opacity: 0.9;
+      }
+      80% {
+        opacity: 0.9;
+      }
+      100% {
+        top: 85%;
+        opacity: 0;
+      }
+    }
 
-      .chk-search {
-        flex-direction: column !important;
-        padding: 0.9rem 1rem 0.5rem !important;
-      }
+    .animate-laser {
+      animation: laserPulse 2.8s ease-in-out infinite;
+    }
+    .animate-float-1 {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+    .animate-float-2 {
+      animation: floatReverse 5.2s ease-in-out infinite 0.6s;
+    }
+    .animate-float-3 {
+      animation: floatSlow 4.8s ease-in-out infinite 1.2s;
+    }
+    .animate-float-4 {
+      animation: floatReverse 5.5s ease-in-out infinite 1.8s;
+    }
 
-      .chk-search-btn {
-        width: 100% !important;
-        padding: 12px !important;
-      }
+    /* Glass pill badge */
+    .tech-pill-badge {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .tech-pill-badge:hover {
+      transform: translateY(-3px) scale(1.03);
+      border-color: #00d2ff;
+      box-shadow: 0 12px 30px -4px rgba(0, 210, 255, 0.25);
+    }
 
-      .chk-body {
-        padding: 0.75rem 1rem 1.1rem !important;
-      }
+    /* Sliding pill indicator in navigation */
+    .nav-pill-active {
+      background: #ffffff;
+      color: #0f172a !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Vertical pagination dot active */
+    .pager-dot.active {
+      background-color: #0a192f;
+      transform: scale(1.25);
     }
   </style>
 </head>
 
-<body class="bg-white text-slate-body font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
+<body class="min-h-screen flex flex-col font-sans antialiased text-slate-800 bg-[#fbfcfd]">
 
-  <!-- Root React App Container -->
-  <div id="root">
-    <div
-      style="min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #0d9488; font-weight: 600;">
-      Loading Aura Dental Spa Experience...
+  <!-- ══════════════════════════════════════════════════════════
+       TOP MINIMALIST NAVBAR (Exact match to video)
+       ══════════════════════════════════════════════════════════ -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+
+      <!-- Brand Logo & Name (Matching "PRECISION DENTISTRY") -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center text-brand-navy group-hover:border-cyan-400 group-hover:text-cyan-500 transition-all duration-300 shadow-xs">
+          <!-- Geometric Tooth Outline Icon -->
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 3C4.24 3 2 5.24 2 8c0 3.2 1.6 6.8 2.5 9 .8 2 2.5 4 4.5 4 1.8 0 2.5-1.5 3-3 .5 1.5 1.2 3 3 3 2 0 3.7-2 4.5-4 .9-2.2 2.5-5.8 2.5-9 0-2.76-2.24-5-5-5-2 0-3.5 1-4.5 2.5C10.5 4 9 3 7 3z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-sm sm:text-base text-slate-900 tracking-wider uppercase block leading-none">
+            PRECISION DENTISTRY
+          </span>
+          <span class="text-[10px] text-slate-400 font-semibold tracking-widest uppercase mt-0.5 block">
+            Aura Clinic • DHA Phase 6
+          </span>
+        </div>
+      </a>
+
+      <!-- Center Navigation Links (Matching Video: HOME, PACKAGES, CONTACT US, LOGIN) -->
+      <nav class="hidden md:flex items-center bg-slate-100/80 p-1.5 rounded-full border border-slate-200/60 text-xs font-semibold text-slate-500">
+        <a href="#hero" class="px-5 py-2 rounded-full nav-pill-active transition-all duration-200">HOME</a>
+        <a href="#packages" class="px-5 py-2 rounded-full hover:text-slate-900 transition-all duration-200">PACKAGES</a>
+        <a href="#specialists" class="px-5 py-2 rounded-full hover:text-slate-900 transition-all duration-200">SPECIALISTS</a>
+        <a href="#contact" class="px-5 py-2 rounded-full hover:text-slate-900 transition-all duration-200">CONTACT US</a>
+        <a href="admin.html" class="px-4 py-2 rounded-full hover:text-brand-navy hover:bg-slate-200/70 transition-all duration-200 flex items-center gap-1.5" title="Reception Desk Login">
+          <i class="fa fa-lock text-[10px] text-cyan-600"></i> LOGIN
+        </a>
+      </nav>
+
+      <!-- Right Action Pill Buttons (Matching Video: BOOK YOUR VISIT ➔) -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Check Appointment Queue Button -->
+        <button onclick="openCheckQueueModal()"
+          class="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-colors shadow-xs"
+          title="Check your live voucher status in queue">
+          <i class="fa fa-ticket text-cyan-500"></i>
+          <span>Check Voucher</span>
+        </button>
+
+        <!-- Main Video CTA Pill Button -->
+        <button onclick="openBookingModal()"
+          class="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#0a192f] hover:bg-[#112240] text-white text-xs sm:text-sm font-bold tracking-wide shadow-pill hover:shadow-cyan-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2">
+          <span>BOOK YOUR VISIT</span>
+          <span class="text-cyan-400 font-bold transition-transform duration-200 group-hover:translate-x-1">➔</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()"
+          class="md:hidden w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:text-brand-navy focus:outline-none">
+          <i class="fa fa-bars text-base"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="hidden md:hidden border-t border-slate-100 bg-white px-5 py-4 space-y-3">
+      <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+        <a href="#hero" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-900 flex items-center gap-2">
+          <i class="fa fa-home text-cyan-500"></i> Home
+        </a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 flex items-center gap-2">
+          <i class="fa fa-cube text-cyan-500"></i> Packages
+        </a>
+        <a href="#specialists" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 flex items-center gap-2">
+          <i class="fa fa-user-doctor text-cyan-500"></i> Specialists
+        </a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 flex items-center gap-2">
+          <i class="fa fa-map-pin text-cyan-500"></i> Contact
+        </a>
+      </div>
+      <div class="pt-2 flex flex-col gap-2">
+        <button onclick="openCheckQueueModal(); toggleMobileMenu();" class="w-full py-2.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center gap-2">
+          <i class="fa fa-ticket text-cyan-600"></i> Check My Voucher Status
+        </button>
+        <a href="admin.html" class="w-full py-2.5 rounded-full border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2">
+          <i class="fa fa-lock text-cyan-600"></i> Staff / Reception Desk Login
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HERO SECTION (1:1 Exact Match to User's Video)
+       ══════════════════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden py-10 lg:py-0">
+
+    <!-- Subtle futuristic background grid & radial glow -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-cyan-100/40 via-blue-50/30 to-transparent rounded-full blur-3xl opacity-70"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-35"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center relative z-10">
+
+      <!-- LEFT COLUMN: Headline & CTA (Exact Video Copy) -->
+      <div class="lg:col-span-5 text-center lg:text-left space-y-6 pt-4 lg:pt-0">
+
+        <!-- Small Eyebrow Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>DHA Phase 6 • Precision Dental Architecture</span>
+        </div>
+
+        <!-- Huge Main Headline: "YOUR SMILE. OUR PRECISION." -->
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] text-slate-900 leading-[1.06] tracking-tight">
+          YOUR SMILE.<br />
+          <span class="text-slate-900">OUR PRECISION.</span>
+        </h1>
+
+        <!-- Subheadline: "An individual dental Care provided by modern technology" -->
+        <p class="text-slate-500 font-medium text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
+          An individual dental Care provided by modern technology
+        </p>
+
+        <!-- CTA Pill Button (Exact Video Match) -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <button onclick="openBookingModal()"
+            class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0a192f] hover:bg-[#112240] text-white font-bold text-sm tracking-wide shadow-pill hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 group">
+            <span>BOOK YOUR VISIT</span>
+            <span class="text-cyan-400 font-bold transition-transform duration-200 group-hover:translate-x-1.5">➔</span>
+          </button>
+
+          <a href="#packages"
+            class="px-6 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm border border-slate-200 shadow-xs hover:border-slate-300 transition-colors">
+            Explore Packages
+          </a>
+        </div>
+
+        <!-- Technology Features List -->
+        <div class="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium border-t border-slate-100">
+          <div class="flex items-center gap-1.5">
+            <i class="fa fa-check text-cyan-500"></i>
+            <span>3D Guided Scans</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <i class="fa fa-check text-cyan-500"></i>
+            <span>Pain-Free Laser</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <i class="fa fa-check text-cyan-500"></i>
+            <span>Swiss Veneers</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CENTER COLUMN: Interactive 3D Tooth & Laser Scanner (Exact Video Centerpiece) -->
+      <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[440px] sm:min-h-[520px] select-none">
+
+        <!-- 3D Canvas / Visual Tooth Stage -->
+        <div id="tooth-stage" class="relative w-full max-w-[480px] h-[380px] sm:h-[460px] flex items-center justify-center">
+
+          <!-- 3D WebGL / SVG Canvas Element -->
+          <div id="three-tooth-container" class="w-full h-full cursor-grab active:cursor-grabbing relative z-10 flex items-center justify-center">
+            <!-- Three.js Canvas injected dynamically via script -->
+          </div>
+
+          <!-- ── FLOATING HOLOGRAPHIC TECH BADGES (Exact 4 Badges from 00:05-00:08 in Video) ── -->
+
+          <!-- Badge 1: 3D SCAN (Top Left) -->
+          <div id="badge-3dscan"
+            class="tech-pill-badge animate-float-1 absolute top-4 sm:top-8 left-2 sm:left-4 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            onclick="triggerAnatomyScan('3D Scan Activated')">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">3D SCAN</span>
+            <span class="text-[10px] text-cyan-600 hidden sm:inline font-mono">0.02mm</span>
+          </div>
+
+          <!-- Badge 2: ADVANCED CARE (Top Right) -->
+          <div id="badge-advanced"
+            class="tech-pill-badge animate-float-2 absolute top-4 sm:top-10 right-2 sm:right-4 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            onclick="triggerAnatomyScan('Advanced Laser Active')">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">ADVANCED CARE</span>
+          </div>
+
+          <!-- Badge 3: PERSONALIZED CARE (Bottom Left) -->
+          <div id="badge-personalized"
+            class="tech-pill-badge animate-float-3 absolute bottom-10 sm:bottom-12 left-2 sm:left-6 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            onclick="triggerAnatomyScan('Bespoke Architecture')">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">PERSONALIZED CARE</span>
+          </div>
+
+          <!-- Badge 4: DIGITAL SMILE (Bottom Right) -->
+          <div id="badge-digital"
+            class="tech-pill-badge animate-float-4 absolute bottom-10 sm:bottom-12 right-2 sm:right-6 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            onclick="triggerAnatomyScan('Digital Smile Simulation')">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">DIGITAL SMILE</span>
+          </div>
+
+        </div>
+
+        <!-- Interactive Anatomy Toggle & Badge (Matching 00:02-00:04 in Video) -->
+        <div class="mt-2 sm:mt-4 flex flex-col items-center gap-2 z-20">
+          <div class="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md px-5 py-2 rounded-full border border-slate-200/90 shadow-sm text-xs font-bold text-slate-700">
+            <button id="btn-toggle-view" onclick="toggleAnatomyMode()"
+              class="flex items-center gap-2 text-cyan-600 hover:text-cyan-700 transition-colors">
+              <i id="anatomy-icon" class="fa fa-eye"></i>
+              <span id="anatomy-label">PRECISION DENTISTRY</span>
+            </button>
+            <span class="text-slate-300">|</span>
+            <span class="text-[11px] text-slate-400 font-normal">Click tooth to inspect anatomy</span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono tracking-wide">Drag to rotate 3D model • Hover to scan</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT EDGE: 3 Vertical Navigation Dots (Matching Video) -->
+    <div class="hidden lg:flex flex-col items-center gap-3.5 absolute right-6 top-1/2 -translate-y-1/2 z-30">
+      <a href="#hero" class="pager-dot active w-2.5 h-2.5 rounded-full transition-all duration-300" title="Hero Screen"></a>
+      <a href="#packages" class="pager-dot w-2.5 h-2.5 rounded-full border-2 border-slate-300 hover:border-slate-800 transition-all duration-300" title="Packages"></a>
+      <a href="#specialists" class="pager-dot w-2.5 h-2.5 rounded-full border-2 border-slate-300 hover:border-slate-800 transition-all duration-300" title="Specialists"></a>
+    </div>
+
+    <!-- BOTTOM RIGHT: Circular Chat Widget (Matching Video) -->
+    <div class="fixed bottom-6 right-6 z-40">
+      <a href="https://wa.me/923001234567?text=Assalam-o-Alaikum%20Aura%20Dental%20Spa!%20I%20want%20to%20inquire%20about%20precision%20dental%20care."
+        target="_blank" rel="noopener noreferrer"
+        class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#0a192f] hover:bg-[#112240] text-cyan-400 hover:text-white flex items-center justify-center text-xl sm:text-2xl shadow-xl hover:shadow-cyan-500/30 hover:scale-110 active:scale-95 transition-all duration-300 border border-cyan-400/30"
+        title="Chat with Precision Dental Concierge on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       PACKAGES & ADVANCED CARE SECTION ("PACKAGES")
+       ══════════════════════════════════════════════════════════ -->
+  <section id="packages" class="py-20 bg-white border-t border-slate-100 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+
+      <!-- Section Title -->
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-cyan-600 block">
+          Precision Clinical Care
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Advanced Dental Packages
+        </h2>
+        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">
+          Transparent DHA Phase 6 Karachi pricing powered by guided optical technology and pain-free Swiss protocols.
+        </p>
+      </div>
+
+      <!-- Bento Grid of Packages -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Package 1: Hollywood Smile Veneers -->
+        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-lg font-bold">
+              <i class="fa fa-sparkles"></i>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-700 bg-cyan-50 px-2.5 py-1 rounded-full">
+              Aesthetic Architecture
+            </span>
+            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-cyan-700 transition-colors">
+              Hollywood Smile Veneers
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Ultra-thin 0.3mm handcrafted Swiss E.max porcelain veneers. Zero natural tooth grinding and permanent natural shade matching.
+            </p>
+            <div class="pt-2">
+              <span class="text-xs text-slate-400 block font-medium">Standard Investment</span>
+              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 210,000</span>
+              <span class="text-[11px] text-slate-400 block">Per upper arch transformation</span>
+            </div>
+          </div>
+          <button onclick="bookTreatment('Hollywood Smile Porcelain Veneers', 'PKR 210,000', 'dr-sophia')"
+            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-cyan-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
+            <span>Book Package</span>
+            <span>➔</span>
+          </button>
+        </div>
+
+        <!-- Package 2: Straumann Guided Implants -->
+        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold">
+              <i class="fa fa-microchip"></i>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+              Robotic Precision
+            </span>
+            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-blue-700 transition-colors">
+              Straumann® Guided Implants
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Swiss Titanium fixture placed with 3D surgical guides. No cuts, no stitches, and immediate healing under local luxury sedation.
+            </p>
+            <div class="pt-2">
+              <span class="text-xs text-slate-400 block font-medium">Single Tooth Fixture</span>
+              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 85,000</span>
+              <span class="text-[11px] text-slate-400 block">Includes 3D CBCT scan & guide</span>
+            </div>
+          </div>
+          <button onclick="bookTreatment('Straumann® Dental Implant', 'PKR 85,000', 'dr-ahmed')"
+            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
+            <span>Book Package</span>
+            <span>➔</span>
+          </button>
+        </div>
+
+        <!-- Package 3: Invisalign Clear Braces -->
+        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg font-bold">
+              <i class="fa fa-wand-magic-sparkles"></i>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">
+              Invisible Orthodontics
+            </span>
+            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-amber-700 transition-colors">
+              Invisalign® Clear Braces
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              3D intraoral digital scan and clear aligner series. Straighten your smile comfortably without wires, brackets, or food restrictions.
+            </p>
+            <div class="pt-2">
+              <span class="text-xs text-slate-400 block font-medium">Full Comprehensive Case</span>
+              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 280,000</span>
+              <span class="text-[11px] text-slate-400 block">Complete tray sequence & retention</span>
+            </div>
+          </div>
+          <button onclick="bookTreatment('Invisalign® Clear Braces', 'PKR 280,000', 'dr-sara')"
+            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-amber-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
+            <span>Book Package</span>
+            <span>➔</span>
+          </button>
+        </div>
+
+        <!-- Package 4: EMS Airflow Spa Cleaning -->
+        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg font-bold">
+              <i class="fa fa-leaf"></i>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full">
+              Painless Biofilm Therapy
+            </span>
+            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-teal-700 transition-colors">
+              EMS Airflow® Spa Cleaning
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Gentle warm water and micro-powder spray removes all tea, coffee, and nicotine stains with zero scraping or gum sensitivity.
+            </p>
+            <div class="pt-2">
+              <span class="text-xs text-slate-400 block font-medium">Full Spa Session</span>
+              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 6,500</span>
+              <span class="text-[11px] text-slate-400 block">45-minute revitalizing appointment</span>
+            </div>
+          </div>
+          <button onclick="bookTreatment('EMS Airflow® Spa Cleaning', 'PKR 6,500', 'dr-sophia')"
+            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-teal-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
+            <span>Book Package</span>
+            <span>➔</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SPECIALIST DOCTORS SECTION ("SPECIALISTS")
+       ══════════════════════════════════════════════════════════ -->
+  <section id="specialists" class="py-20 bg-slate-50/70 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-cyan-600 block">
+          Board-Certified Team
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          Specialist Surgical Suites
+        </h2>
+        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">
+          Dedicated private acoustic suites designed for zero hospital smell, zero pain, and extreme precision.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Specialist 1 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-diffuse hover:shadow-diffuse-lg transition-all duration-300 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">Suite 1 • In Surgery</span>
+            <span class="text-xs text-slate-400 font-mono">16+ Yrs Exp</span>
+          </div>
+          <div>
+            <h3 class="font-display font-extrabold text-xl text-slate-900">Dr. Ahmed Khan</h3>
+            <p class="text-xs text-cyan-600 font-semibold mt-0.5">BDS, RDS, FICOI (USA) • Chief Implantologist</p>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Pioneer in computer-guided keyhole implants in Pakistan. Over 4,500 successful surgical implants with zero nerve damage.
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Available: Mon, Wed, Fri, Sat</span>
+            <button onclick="selectDoctor('dr-ahmed')" class="text-brand-navy font-bold hover:text-cyan-600 transition-colors">
+              Select Suite 1 ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- Specialist 2 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-diffuse hover:shadow-diffuse-lg transition-all duration-300 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Suite 2 • Ready</span>
+            <span class="text-xs text-slate-400 font-mono">Swiss Trained</span>
+          </div>
+          <div>
+            <h3 class="font-display font-extrabold text-xl text-slate-900">Dr. Sophia Vance</h3>
+            <p class="text-xs text-cyan-600 font-semibold mt-0.5">DDS, MSc Aesthetic Dentistry (Zurich)</p>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Specialist in ultra-natural porcelain veneers, smile symmetry, and micro-aesthetic gum contouring with zero tooth reduction.
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Available: Tue, Thu, Fri, Sun</span>
+            <button onclick="selectDoctor('dr-sophia')" class="text-brand-navy font-bold hover:text-cyan-600 transition-colors">
+              Select Suite 2 ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- Specialist 3 -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-diffuse hover:shadow-diffuse-lg transition-all duration-300 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Suite 3 • Ready</span>
+            <span class="text-xs text-slate-400 font-mono">Align Specialist</span>
+          </div>
+          <div>
+            <h3 class="font-display font-extrabold text-xl text-slate-900">Dr. Sara Malik</h3>
+            <p class="text-xs text-cyan-600 font-semibold mt-0.5">BDS, FCPS Orthodontics • Clear Aligners</p>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Invisalign® certified provider specializing in adult orthodontics, bite correction, and aesthetic smile harmonization.
+          </p>
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Available: Mon, Tue, Thu, Sat</span>
+            <button onclick="selectDoctor('dr-sara')" class="text-brand-navy font-bold hover:text-cyan-600 transition-colors">
+              Select Suite 3 ➔
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       CONTACT & LOCATION SECTION ("CONTACT US")
+       ══════════════════════════════════════════════════════════ -->
+  <section id="contact" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="bg-[#0a192f] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl">
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+          <div class="space-y-5">
+            <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 block">
+              Karachi Location &amp; Concierge
+            </span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+              Visit Our Private Dental Spa
+            </h2>
+            <p class="text-slate-300 text-sm leading-relaxed max-w-md">
+              Located on Main Shahbaz Commercial in DHA Phase 6. Enjoy complimentary valet parking and private acoustic suites upon arrival.
+            </p>
+            <div class="space-y-3 text-xs sm:text-sm text-slate-200">
+              <div class="flex items-center gap-3">
+                <i class="fa fa-location-dot text-cyan-400 w-5"></i>
+                <span>Main Shahbaz Commercial, DHA Phase 6, Karachi</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa fa-phone text-cyan-400 w-5"></i>
+                <span>+92 300 1234567 • Desk Line: 021-35849201</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="fa fa-clock text-cyan-400 w-5"></i>
+                <span>Mon – Sat: 10:00 AM – 8:00 PM • Sun: By Prior Appointment</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 space-y-4">
+            <h3 class="font-display font-bold text-lg text-white">Need Immediate Appointment?</h3>
+            <p class="text-xs text-slate-300">
+              Book online to receive an automated sequential token number and Google Calendar reminder immediately.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <button onclick="openBookingModal()"
+                class="px-6 py-3.5 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-extrabold text-xs transition-colors flex items-center justify-center gap-2">
+                <span>Book Instant Token</span>
+                <span>➔</span>
+              </button>
+              <a href="admin.html"
+                class="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-colors flex items-center justify-center gap-2">
+                <i class="fa fa-lock"></i>
+                <span>Staff Portal</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════════ -->
+  <footer class="bg-white border-t border-slate-100 py-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-slate-900">PRECISION DENTISTRY</span>
+        <span>&bull;</span>
+        <span>Aura Dental Spa DHA Phase 6 Karachi</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#hero" class="hover:text-slate-900 transition-colors">Home</a>
+        <a href="#packages" class="hover:text-slate-900 transition-colors">Packages</a>
+        <a href="admin.html" class="text-cyan-700 font-bold hover:underline flex items-center gap-1">
+          <i class="fa fa-lock text-[10px]"></i> Staff Admin Desk
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       BOOKING MODAL (Connected to ClinicStore & LocalStorage)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative my-auto max-h-[92dvh] overflow-y-auto">
+
+      <button onclick="closeBookingModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
+        <i class="fa fa-xmark text-lg"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-xs uppercase tracking-widest font-bold text-cyan-600 block mb-1">
+          Precision Digital Booking
+        </span>
+        <h3 class="font-display font-extrabold text-2xl text-slate-900">
+          Book Your Dental Visit
+        </h3>
+        <p class="text-xs text-slate-500 mt-1">
+          Direct sequential queue token with automated Google Calendar alert.
+        </p>
+      </div>
+
+      <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4 text-xs font-semibold text-slate-700">
+
+        <!-- Full Name -->
+        <div>
+          <label class="block mb-1 text-slate-600">Patient Full Name *</label>
+          <input id="book-name" type="text" required placeholder="e.g. Ayesha Tariq"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+        </div>
+
+        <!-- Phone & Email -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block mb-1 text-slate-600">WhatsApp / Phone *</label>
+            <input id="book-phone" type="tel" required placeholder="03218492019"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+          </div>
+          <div>
+            <label class="block mb-1 text-slate-600">Email Address *</label>
+            <input id="book-email" type="email" required placeholder="patient@gmail.com"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+          </div>
+        </div>
+
+        <!-- Doctor & Treatment -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block mb-1 text-slate-600">Specialist Doctor *</label>
+            <select id="book-doc" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all">
+              <option value="dr-ahmed">Dr. Ahmed Khan (Suite 1 - Implants)</option>
+              <option value="dr-sophia">Dr. Sophia Vance (Suite 2 - Veneers)</option>
+              <option value="dr-sara">Dr. Sara Malik (Suite 3 - Aligners)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block mb-1 text-slate-600">Package / Care *</label>
+            <select id="book-treatment" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all">
+              <option value="Hollywood Smile Porcelain Veneers|PKR 210,000">Hollywood Smile Veneers (PKR 210,000)</option>
+              <option value="Straumann® Dental Implant|PKR 85,000">Straumann® Implants (PKR 85,000)</option>
+              <option value="Invisalign® Clear Braces|PKR 280,000">Invisalign® Clear Braces (PKR 280,000)</option>
+              <option value="EMS Airflow® Spa Cleaning|PKR 6,500">EMS Airflow® Spa Cleaning (PKR 6,500)</option>
+              <option value="Comprehensive Dental Checkup|PKR 3,500">Comprehensive Checkup &amp; Scan (PKR 3,500)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Date & Slot -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block mb-1 text-slate-600">Preferred Date *</label>
+            <input id="book-date" type="date" required
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+          </div>
+          <div>
+            <label class="block mb-1 text-slate-600">Preferred Slot *</label>
+            <select id="book-slot" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all">
+              <option value="10:00 AM">10:00 AM (Morning)</option>
+              <option value="11:30 AM">11:30 AM (Late Morning)</option>
+              <option value="02:00 PM">02:00 PM (Afternoon)</option>
+              <option value="03:30 PM">03:30 PM (Mid Afternoon)</option>
+              <option value="05:00 PM">05:00 PM (Evening)</option>
+              <option value="06:30 PM">06:30 PM (Night Slot)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-3 flex gap-3">
+          <button type="button" onclick="closeBookingModal()" class="w-1/3 py-3.5 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">
+            Cancel
+          </button>
+          <button type="submit" class="w-2/3 py-3.5 rounded-full bg-[#0a192f] hover:bg-[#112240] text-white font-bold transition-all shadow-md">
+            Confirm &amp; Generate Voucher ➔
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Booking Result Preview (Hidden until booked) -->
+      <div id="booking-success-view" class="hidden space-y-4 pt-3">
+        <div class="p-4 rounded-2xl bg-cyan-50 border border-cyan-200 text-center space-y-1">
+          <div class="w-10 h-10 rounded-full bg-cyan-500 text-white flex items-center justify-center mx-auto text-base">
+            <i class="fa fa-check"></i>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900">Appointment Confirmed!</h4>
+          <p class="text-xs text-slate-600" id="res-token-sub">Sequential Voucher Generated</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
+          <div class="flex justify-between"><span class="text-slate-400">Voucher Token:</span><strong id="res-token" class="font-mono text-cyan-700">SPA-006</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Queue Position:</span><strong id="res-queue" class="text-slate-900">#6 in line</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Patient:</span><strong id="res-name" class="text-slate-900">Patient Name</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Treatment:</span><strong id="res-treatment" class="text-slate-900">Treatment</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Specialist:</span><strong id="res-doc" class="text-slate-900">Doctor</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Time &amp; Suite:</span><strong id="res-time" class="text-slate-900">Slot</strong></div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <a id="res-gcal-btn" href="#" target="_blank" rel="noopener noreferrer"
+            class="py-2.5 px-3 rounded-xl bg-white border border-slate-200 hover:border-cyan-500 text-slate-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
+            <i class="fa fa-calendar text-cyan-600"></i> Google Cal
+          </a>
+          <button id="res-wa-btn" type="button"
+            class="py-2.5 px-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
+            <i class="fab fa-whatsapp text-emerald-600"></i> WhatsApp
+          </button>
+        </div>
+
+        <button onclick="closeBookingModal(); location.reload();"
+          class="w-full py-3 rounded-full bg-slate-900 text-white font-bold text-xs mt-2">
+          Done
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- Master Clinic Store API for live appointment sync -->
+
+  <!-- ══════════════════════════════════════════════════════════
+       CHECK QUEUE VOUCHER STATUS MODAL
+       ══════════════════════════════════════════════════════════ -->
+  <div id="check-queue-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative my-auto">
+      <button onclick="closeCheckQueueModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
+        <i class="fa fa-xmark text-lg"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-xs uppercase tracking-widest font-bold text-cyan-600 block mb-1">
+          Live Patient Desk
+        </span>
+        <h3 class="font-display font-extrabold text-2xl text-slate-900">
+          Check Voucher Status
+        </h3>
+        <p class="text-xs text-slate-500 mt-1">
+          Enter your Token ID (e.g. SPA-001) or phone number to view live queue position.
+        </p>
+      </div>
+
+      <div class="flex gap-2 mb-4">
+        <input id="chk-query" type="text" placeholder="SPA-001 or 03218492019"
+          class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs font-mono uppercase focus:outline-none focus:border-cyan-500" />
+        <button onclick="performVoucherLookup()"
+          class="px-5 py-2.5 rounded-xl bg-brand-navy hover:bg-slate-800 text-white text-xs font-bold transition-colors">
+          Search
+        </button>
+      </div>
+
+      <div id="chk-result-box" class="space-y-3 min-h-[80px]">
+        <p class="text-xs text-slate-400 text-center py-6">Enter voucher number to view live status.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       INTERACTIVE 3D TOOTH SCRIPT & LASER SCANNER LOGIC
+       ══════════════════════════════════════════════════════════ -->
   <script>
+    // State
+    let isAnatomyMode = false;
+    let toothGroup = null;
+    let laserRing = null;
+    let laserBeam = null;
+    let exteriorMesh = null;
+    let anatomyMesh = null;
+    let renderer, scene, camera;
+
+    // Initialize 3D Tooth Scene
+    function init3DTooth() {
+      const container = document.getElementById('three-tooth-container');
+      if (!container) return;
+
+      const width = container.clientWidth || 440;
+      const height = container.clientHeight || 420;
+
+      // 1. Scene
+      scene = new THREE.Scene();
+
+      // 2. Camera
+      camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+      camera.position.set(0, 0, 7.2);
+
+      // 3. Renderer with high-DPI anti-aliasing
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      // 4. Lights: Studio Key + Fill + Rim + Neon Laser Glow Light
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 0.95);
+      keyLight.position.set(5, 8, 6);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xe0f2fe, 0.5);
+      fillLight.position.set(-5, 2, 4);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(0x00d2ff, 0.85);
+      rimLight.position.set(0, -4, -4);
+      scene.add(rimLight);
+
+      // 5. Tooth Root Group
+      toothGroup = new THREE.Group();
+      scene.add(toothGroup);
+
+      // ── BUILD PROCEDURAL 3D TOOTH MODEL ──
+      buildProceduralTooth();
+
+      // ── BUILD GLOWING CYAN LASER SCAN RING (Matching Video) ──
+      buildLaserRing();
+
+      // Mouse drag rotation & interaction
+      setupInteraction(container);
+
+      // Animation loop
+      animate();
+
+      // Responsive resize
+      window.addEventListener('resize', onWindowResize);
+    }
+
+    // Build anatomical tooth geometry
+    function buildProceduralTooth() {
+      // 1. Enamel Material (High gloss white ceramic with subtle specular translucency)
+      const enamelMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0.15,
+        metalness: 0.05,
+        shadowSide: THREE.DoubleSide
+      });
+
+      // 2. Dentin Material (Warm creamy ivory-gold for anatomy cutaway)
+      const dentinMaterial = new THREE.MeshStandardMaterial({
+        color: 0xfef08a,
+        roughness: 0.4,
+        metalness: 0.0
+      });
+
+      // 3. Pulp Material (Crimson red vascular chamber)
+      const pulpMaterial = new THREE.MeshStandardMaterial({
+        color: 0xef4444,
+        emissive: 0x991b1b,
+        emissiveIntensity: 0.35,
+        roughness: 0.3
+      });
+
+      // ── EXTERIOR FULL TOOTH GROUP ──
+      exteriorMesh = new THREE.Group();
+
+      // Crown: Rounded molar dome with 4 cusps
+      const crownGeo = new THREE.CylinderGeometry(1.2, 1.0, 1.3, 32, 16);
+      // Deform cylinder vertices to form anatomical tooth crown cusps
+      const pos = crownGeo.attributes.position;
+      for (let i = 0; i < pos.count; i++) {
+        let x = pos.getX(i);
+        let y = pos.getY(i);
+        let z = pos.getZ(i);
+
+        if (y > 0.3) {
+          // 4 distinct rounded cusp peaks
+          const cuspBump = Math.sin(x * 3.5) * Math.cos(z * 3.5) * 0.22;
+          const centralDepression = (1 - (x * x + z * z) * 0.4) * 0.12;
+          pos.setY(i, y + cuspBump - centralDepression);
+        } else if (y < -0.3) {
+          // Cervical neck taper
+          const factor = 0.92;
+          pos.setX(i, x * factor);
+          pos.setZ(i, z * factor);
+        }
+      }
+      crownGeo.computeVertexNormals();
+
+      const crown = new THREE.Mesh(crownGeo, enamelMaterial);
+      crown.position.y = 0.65;
+      exteriorMesh.add(crown);
+
+      // Root 1 (Left tapering root)
+      const root1Geo = new THREE.ConeGeometry(0.5, 1.6, 24);
+      const root1 = new THREE.Mesh(root1Geo, enamelMaterial);
+      root1.rotation.z = Math.PI;
+      root1.rotation.x = -0.12;
+      root1.position.set(-0.45, -0.75, 0);
+      exteriorMesh.add(root1);
+
+      // Root 2 (Right tapering root)
+      const root2Geo = new THREE.ConeGeometry(0.5, 1.6, 24);
+      const root2 = new THREE.Mesh(root2Geo, enamelMaterial);
+      root2.rotation.z = Math.PI;
+      root2.rotation.x = 0.12;
+      root2.position.set(0.45, -0.75, 0);
+      exteriorMesh.add(root2);
+
+      toothGroup.add(exteriorMesh);
+
+      // ── ANATOMY CUTAWAY TOOTH GROUP (Revealed when clicked/hovered) ──
+      anatomyMesh = new THREE.Group();
+      anatomyMesh.visible = false;
+
+      // Cutaway Crown (Half tooth with exposed layers)
+      const halfCrownGeo = new THREE.CylinderGeometry(1.2, 1.0, 1.3, 32, 16, false, 0, Math.PI);
+      const halfCrown = new THREE.Mesh(halfCrownGeo, enamelMaterial);
+      halfCrown.position.y = 0.65;
+      anatomyMesh.add(halfCrown);
+
+      // Inner Dentin Core
+      const dentinGeo = new THREE.CylinderGeometry(0.95, 0.75, 1.1, 24, 8, false, 0, Math.PI);
+      const dentin = new THREE.Mesh(dentinGeo, dentinMaterial);
+      dentin.position.y = 0.62;
+      dentin.position.z = -0.05;
+      anatomyMesh.add(dentin);
+
+      // Central Vascular Pulp Chamber (Red)
+      const pulpGeo = new THREE.CylinderGeometry(0.35, 0.2, 0.8, 16);
+      const pulp = new THREE.Mesh(pulpGeo, pulpMaterial);
+      pulp.position.y = 0.55;
+      anatomyMesh.add(pulp);
+
+      // Exposed Root Canals
+      const canal1 = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.04, 1.4, 12), pulpMaterial);
+      canal1.position.set(-0.45, -0.65, 0);
+      anatomyMesh.add(canal1);
+
+      const canal2 = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.04, 1.4, 12), pulpMaterial);
+      canal2.position.set(0.45, -0.65, 0);
+      anatomyMesh.add(canal2);
+
+      // Cutaway Root half
+      const halfRoot1 = new THREE.Mesh(new THREE.ConeGeometry(0.5, 1.6, 24, 1, false, 0, Math.PI), enamelMaterial);
+      halfRoot1.rotation.z = Math.PI;
+      halfRoot1.position.set(-0.45, -0.75, 0);
+      anatomyMesh.add(halfRoot1);
+
+      const halfRoot2 = new THREE.Mesh(new THREE.ConeGeometry(0.5, 1.6, 24, 1, false, 0, Math.PI), enamelMaterial);
+      halfRoot2.rotation.z = Math.PI;
+      halfRoot2.position.set(0.45, -0.75, 0);
+      anatomyMesh.add(halfRoot2);
+
+      toothGroup.add(anatomyMesh);
+
+      // Soft ground ambient shadow disc
+      const shadowGeo = new THREE.CircleGeometry(1.6, 32);
+      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.18 });
+      const groundShadow = new THREE.Mesh(shadowGeo, shadowMat);
+      groundShadow.rotation.x = -Math.PI / 2;
+      groundShadow.position.y = -1.8;
+      toothGroup.add(groundShadow);
+    }
+
+    // Build the Glowing Cyan Laser Scanner Ring
+    function buildLaserRing() {
+      // 1. Torus Ring
+      const ringGeo = new THREE.TorusGeometry(1.95, 0.035, 16, 100);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0x00d2ff,
+        transparent: true,
+        opacity: 0.95
+      });
+      laserRing = new THREE.Mesh(ringGeo, ringMat);
+      laserRing.rotation.x = Math.PI / 2.3;
+      laserRing.rotation.y = 0.2;
+      laserRing.position.y = 0.2;
+      scene.add(laserRing);
+
+      // 2. Faint Laser Disc Scanner
+      const discGeo = new THREE.RingGeometry(0.2, 1.9, 32);
+      const discMat = new THREE.MeshBasicMaterial({
+        color: 0x00d2ff,
+        transparent: true,
+        opacity: 0.12,
+        side: THREE.DoubleSide
+      });
+      laserBeam = new THREE.Mesh(discGeo, discMat);
+      laserBeam.rotation.x = Math.PI / 2.3;
+      laserBeam.position.y = 0.2;
+      scene.add(laserBeam);
+    }
+
+    // Interaction handling (drag & click)
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+
+    function setupInteraction(domElement) {
+      domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      domElement.addEventListener('mousemove', (e) => {
+        if (!isDragging && toothGroup) {
+          // Subtle mouse parallax tilt
+          const rect = domElement.getBoundingClientRect();
+          const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          const normY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+          toothGroup.rotation.y += (normX * 0.45 - toothGroup.rotation.y) * 0.05;
+          toothGroup.rotation.x += (-normY * 0.25 - toothGroup.rotation.x) * 0.05;
+        } else if (isDragging && toothGroup) {
+          const deltaX = e.clientX - previousMousePosition.x;
+          const deltaY = e.clientY - previousMousePosition.y;
+          toothGroup.rotation.y += deltaX * 0.012;
+          toothGroup.rotation.x += deltaY * 0.012;
+          previousMousePosition = { x: e.clientX, y: e.clientY };
+        }
+      });
+
+      // Hover / Click to trigger Anatomy cutaway view (Matching Video)
+      domElement.addEventListener('click', () => {
+        toggleAnatomyMode();
+      });
+
+      // Touch events for mobile
+      domElement.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => { isDragging = false; });
+
+      domElement.addEventListener('touchmove', (e) => {
+        if (isDragging && toothGroup && e.touches.length === 1) {
+          const deltaX = e.touches[0].clientX - previousMousePosition.x;
+          toothGroup.rotation.y += deltaX * 0.015;
+          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+    }
+
+    // Toggle Anatomy Cutaway Mode (Matching 00:02 in Video)
+    function toggleAnatomyMode(forceState) {
+      if (typeof forceState === 'boolean') {
+        isAnatomyMode = forceState;
+      } else {
+        isAnatomyMode = !isAnatomyMode;
+      }
+
+      if (exteriorMesh && anatomyMesh) {
+        exteriorMesh.visible = !isAnatomyMode;
+        anatomyMesh.visible = isAnatomyMode;
+      }
+
+      const label = document.getElementById('anatomy-label');
+      const icon = document.getElementById('anatomy-icon');
+
+      if (isAnatomyMode) {
+        if (label) label.textContent = 'ANATOMICAL SCAN • ENAMEL & PULP';
+        if (icon) icon.className = 'fa fa-microscope text-cyan-500';
+      } else {
+        if (label) label.textContent = 'PRECISION DENTISTRY';
+        if (icon) icon.className = 'fa fa-eye text-cyan-600';
+      }
+    }
+
+    // Trigger laser pulse when badge clicked
+    function triggerAnatomyScan(badgeName) {
+      toggleAnatomyMode(true);
+      if (laserRing) {
+        laserRing.scale.set(1.15, 1.15, 1.15);
+        setTimeout(() => laserRing.scale.set(1, 1, 1), 350);
+      }
+      setTimeout(() => toggleAnatomyMode(false), 3000);
+    }
+
+    // Animation Loop
+    let clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const elapsedTime = clock.getElapsedTime();
+
+      // Slow elegant continuous idle rotation
+      if (toothGroup && !isDragging) {
+        toothGroup.rotation.y += 0.0035;
+      }
+
+      // Laser Scanner Ring vertical oscillation & rotation
+      if (laserRing && laserBeam) {
+        laserRing.rotation.z += 0.008;
+        const scanY = Math.sin(elapsedTime * 1.8) * 0.85;
+        laserRing.position.y = scanY;
+        laserBeam.position.y = scanY;
+        laserBeam.material.opacity = 0.08 + Math.abs(Math.sin(elapsedTime * 2)) * 0.12;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('three-tooth-container');
+      if (!container || !renderer || !camera) return;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    // Initialize 3D on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(init3DTooth, 100);
+    });
+  </script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CLINIC STORE & BOOKING LOGIC
+       ══════════════════════════════════════════════════════════ -->
+  <script>
+    // Universal ClinicStore (Synchronized with admin.html)
     const DEFAULT_APPOINTMENTS = [
       {
         id: "SPA-001",
@@ -355,20 +1349,20 @@
     window.ClinicStore = window.ClinicStore || {
       getAppointments() {
         try {
-          const data = localStorage.getItem('smilecare_appointments');
-          if (!data || data === '[]') {
+          const raw = localStorage.getItem('smilecare_appointments');
+          if (!raw || raw === '[]') {
             localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
             localStorage.setItem('smilecare_token_seq', '5');
-            return DEFAULT_APPOINTMENTS;
+            return [...DEFAULT_APPOINTMENTS];
           }
-          const parsed = JSON.parse(data);
+          let parsed = JSON.parse(raw);
           if (!Array.isArray(parsed) || parsed.length === 0) {
             localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
-            return DEFAULT_APPOINTMENTS;
+            return [...DEFAULT_APPOINTMENTS];
           }
           return parsed;
         } catch (e) {
-          return DEFAULT_APPOINTMENTS;
+          return [...DEFAULT_APPOINTMENTS];
         }
       },
       getNextToken() {
@@ -388,1101 +1382,202 @@
         }
         seq += 1;
         localStorage.setItem('smilecare_token_seq', seq.toString());
-        const padded = String(seq).padStart(3, '0');
         return {
-          tokenId: `SPA-${padded}`,
+          tokenId: `SPA-${String(seq).padStart(3, '0')}`,
           queueNumber: seq
         };
       },
       addAppointment(apt) {
         const list = this.getAppointments();
-        let tokenId = apt.id;
-        let queueNumber = apt.queueNumber;
-        if (!tokenId || !tokenId.startsWith('SPA-')) {
-          const next = this.getNextToken();
-          tokenId = next.tokenId;
-          queueNumber = next.queueNumber;
-        }
+        let next = this.getNextToken();
         const newApt = {
           status: 'Confirmed',
           createdAt: new Date().toISOString(),
           ...apt,
-          id: tokenId,
-          queueNumber: queueNumber || list.length + 1
+          id: apt.id || next.tokenId,
+          queueNumber: apt.queueNumber || next.queueNumber
         };
         list.unshift(newApt);
         localStorage.setItem('smilecare_appointments', JSON.stringify(list));
         window.dispatchEvent(new Event('storage'));
         return newApt;
-      },
-      updateStatus(id, newStatus) {
-        const list = this.getAppointments();
-        const item = list.find(a => a.id === id);
-        if (item) {
-          item.status = newStatus;
-          localStorage.setItem('smilecare_appointments', JSON.stringify(list));
-          window.dispatchEvent(new Event('storage'));
-        }
-        return list;
-      },
-      deleteAppointment(id) {
-        let list = this.getAppointments();
-        list = list.filter(a => a.id !== id);
-        localStorage.setItem('smilecare_appointments', JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-        return list;
-      },
-      resetDefaults() {
-        localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
-        localStorage.setItem('smilecare_token_seq', '5');
-        window.dispatchEvent(new Event('storage'));
-        return DEFAULT_APPOINTMENTS;
-      },
-      normalizeDate(d) {
-        if (!d) return '';
-        const str = String(d).trim().toLowerCase();
-        const today = new Date().toISOString().split('T')[0];
-        if (str === 'today') return today;
-        if (str === 'tomorrow') {
-          const t = new Date();
-          t.setDate(t.getDate() + 1);
-          return t.toISOString().split('T')[0];
-        }
-        return d;
-      },
-      isSlotBooked(doctorName, date, time) {
-        const list = this.getAppointments();
-        const targetDate = this.normalizeDate(date);
-        return list.some(a => {
-          if (a.status === 'Cancelled') return false;
-          const aDate = this.normalizeDate(a.date);
-          const docMatch = (a.doctor || '').toLowerCase().includes((doctorName || '').toLowerCase()) ||
-                           (doctorName || '').toLowerCase().includes((a.doctor || '').toLowerCase());
-          const timeMatch = (a.time || '').toLowerCase().includes((time || '').toLowerCase());
-          return docMatch && aDate === targetDate && timeMatch;
-        });
-      },
-      getBookedAppointment(doctorName, date, time) {
-        const list = this.getAppointments();
-        const targetDate = this.normalizeDate(date);
-        return list.find(a => {
-          if (a.status === 'Cancelled') return false;
-          const aDate = this.normalizeDate(a.date);
-          const docMatch = (a.doctor || '').toLowerCase().includes((doctorName || '').toLowerCase()) ||
-                           (doctorName || '').toLowerCase().includes((a.doctor || '').toLowerCase());
-          const timeMatch = (a.time || '').toLowerCase().includes((time || '').toLowerCase());
-          return docMatch && aDate === targetDate && timeMatch;
-        });
       }
     };
-  </script>
 
-  <!-- Pre-compiled Native React Bundle (Instant Execution) -->
-  <script src="js/dental-spa.bundle.js"></script>
+    // Modal Handlers
+    function openBookingModal() {
+      const modal = document.getElementById('booking-modal');
+      const form = document.getElementById('booking-form');
+      const resView = document.getElementById('booking-success-view');
+      const dateInput = document.getElementById('book-date');
 
-  <!-- Sliding Pill Nav Animation + Check Appointment Feature (post-render) -->
-  <script>
-    /* ══════════════════════════════════════════════════
-       1. Sliding Pill Nav Animation
-       ══════════════════════════════════════════════════ */
-    (function initNavPill() {
-      function setup() {
-        const nav = document.querySelector('header nav');
-        if (!nav) return requestAnimationFrame(setup);
+      if (dateInput && !dateInput.value) {
+        dateInput.value = new Date().toISOString().split('T')[0];
+        dateInput.min = new Date().toISOString().split('T')[0];
+      }
 
-        const pill = document.createElement('div');
-        pill.className = 'nav-pill-indicator';
-        nav.style.position = 'relative';
-        nav.appendChild(pill);
+      if (form) form.classList.remove('hidden');
+      if (resView) resView.classList.add('hidden');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
 
-        const links = nav.querySelectorAll('a');
+    function closeBookingModal() {
+      const modal = document.getElementById('booking-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
 
-        function movePill(el) {
-          const navRect = nav.getBoundingClientRect();
-          const elRect = el.getBoundingClientRect();
-          pill.style.left = (elRect.left - navRect.left) + 'px';
-          pill.style.width = elRect.width + 'px';
-          pill.classList.add('visible');
-        }
+    function openCheckQueueModal() {
+      const modal = document.getElementById('check-queue-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
 
-        function hidePill() {
-          const active = nav.querySelector('a.nav-active');
-          if (active) movePill(active); else pill.classList.remove('visible');
-        }
+    function closeCheckQueueModal() {
+      const modal = document.getElementById('check-queue-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
 
-        links.forEach(link => {
-          link.addEventListener('mouseenter', () => movePill(link));
-          link.addEventListener('mouseleave', hidePill);
-          link.addEventListener('click', () => {
-            links.forEach(l => l.classList.remove('nav-active'));
-            link.classList.add('nav-active');
-            movePill(link);
-          });
-        });
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-nav-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
 
-        // Inject Mobile Quick Pill Nav Bar inside <header>
-        const headerEl = document.querySelector('header');
-        if (headerEl && !document.getElementById('mobile-quick-nav')) {
-          const mobBar = document.createElement('div');
-          mobBar.id = 'mobile-quick-nav';
-          mobBar.innerHTML = `
-            <a href="#services">Treatments</a>
-            <a href="#transformation">Before &amp; After</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#specialists">Doctors</a>
-            <a href="#faq">FAQs</a>
-            <button type="button" class="mob-check-btn" onclick="window.openCheckAppointmentModal && window.openCheckAppointmentModal()">🔍 Check Status</button>
-            <a href="https://wa.me/923001234567?text=Hi%20Aura%20Dental%20Spa" target="_blank" rel="noopener noreferrer" class="mob-wa-btn">💬 WhatsApp</a>
-          `;
-          headerEl.appendChild(mobBar);
-        }
-
-        const sectionIds = Array.from(links).map(a => a.getAttribute('href')).filter(h => h && h.startsWith('#'));
-        function onScroll() {
-          let current = '';
-          for (const id of sectionIds) {
-            const sec = document.querySelector(id);
-            if (sec && sec.getBoundingClientRect().top <= 160) current = id;
+    // Quick book preset handler
+    function bookTreatment(name, cost, docKey) {
+      openBookingModal();
+      const treatSelect = document.getElementById('book-treatment');
+      const docSelect = document.getElementById('book-doc');
+      if (treatSelect) {
+        for (let opt of treatSelect.options) {
+          if (opt.value.includes(name)) {
+            treatSelect.value = opt.value;
+            break;
           }
-          links.forEach(link => {
-            if (link.getAttribute('href') === current) link.classList.add('nav-active');
-            else link.classList.remove('nav-active');
-          });
-          const active = nav.querySelector('a.nav-active');
-          if (active) movePill(active); else pill.classList.remove('visible');
-
-          // Sync mobile pill active highlight
-          const mobLinks = document.querySelectorAll('#mobile-quick-nav a[href^="#"]');
-          mobLinks.forEach(ml => {
-            if (ml.getAttribute('href') === current) ml.classList.add('mob-active');
-            else ml.classList.remove('mob-active');
-          });
         }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        setTimeout(onScroll, 300);
+      }
+      if (docSelect && docKey) {
+        docSelect.value = docKey;
+      }
+    }
+
+    function selectDoctor(docKey) {
+      openBookingModal();
+      const docSelect = document.getElementById('book-doc');
+      if (docSelect) docSelect.value = docKey;
+    }
+
+    // Handle Form Submit
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('book-name').value.trim();
+      const rawPhone = document.getElementById('book-phone').value.trim();
+      const email = document.getElementById('book-email').value.trim();
+      const docKey = document.getElementById('book-doc').value;
+      const rawTreatment = document.getElementById('book-treatment').value;
+      const [treatmentName, treatmentCost] = rawTreatment.split('|');
+      const dateVal = document.getElementById('book-date').value;
+      const slotVal = document.getElementById('book-slot').value;
+
+      const doctorsMap = {
+        'dr-ahmed': { name: 'Dr. Ahmed Khan', suite: 'Suite 1' },
+        'dr-sophia': { name: 'Dr. Sophia Vance', suite: 'Suite 2' },
+        'dr-sara': { name: 'Dr. Sara Malik', suite: 'Suite 3' }
+      };
+      const docInfo = doctorsMap[docKey] || { name: 'Dr. Ahmed Khan', suite: 'Suite 1' };
+
+      const cleanPhone = rawPhone.replace(/[\s-]/g, '');
+      const formattedPhone = cleanPhone.startsWith('92') && !cleanPhone.startsWith('+') ? '+' + cleanPhone : (cleanPhone.startsWith('03') ? '+92' + cleanPhone.slice(1) : cleanPhone);
+
+      const newRecord = {
+        name: name,
+        phone: formattedPhone,
+        email: email,
+        doctor: docInfo.name,
+        treatment: treatmentName,
+        cost: treatmentCost || 'PKR 25,000',
+        date: dateVal,
+        time: `${slotVal} (${docInfo.suite})`,
+        status: 'Confirmed',
+        urgency: 'Normal',
+        notes: 'Online Booking • Precision Platform'
+      };
+
+      const saved = window.ClinicStore.addAppointment(newRecord);
+
+      // Show Success View
+      document.getElementById('booking-form').classList.add('hidden');
+      const resView = document.getElementById('booking-success-view');
+      resView.classList.remove('hidden');
+
+      document.getElementById('res-token').textContent = saved.id;
+      document.getElementById('res-token-sub').textContent = `Sequential Voucher Generated: ${saved.id}`;
+      document.getElementById('res-queue').textContent = `#${saved.queueNumber} in line`;
+      document.getElementById('res-name').textContent = saved.name;
+      document.getElementById('res-treatment').textContent = saved.treatment;
+      document.getElementById('res-doc').textContent = `${saved.doctor} (${docInfo.suite})`;
+      document.getElementById('res-time').textContent = `${saved.date} at ${saved.time}`;
+
+      // Google Calendar Link
+      const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Aura Dental Spa: ' + saved.treatment)}&dates=20261125T100000Z/20261125T110000Z&details=${encodeURIComponent('Voucher ' + saved.id + ' for ' + saved.name + ' with ' + saved.doctor)}&location=${encodeURIComponent('Main Shahbaz Commercial, DHA Phase 6, Karachi')}`;
+      const gcalBtn = document.getElementById('res-gcal-btn');
+      if (gcalBtn) gcalBtn.href = gcalUrl;
+
+      // WhatsApp direct
+      const waMsg = encodeURIComponent(`Assalam-o-Alaikum! I have booked voucher ${saved.id} (Turn #${saved.queueNumber}) for ${saved.treatment} with ${saved.doctor} at Aura Dental Spa DHA Phase 6 Karachi.`);
+      const waBtn = document.getElementById('res-wa-btn');
+      if (waBtn) waBtn.onclick = () => window.open(`https://wa.me/923001234567?text=${waMsg}`, '_blank');
+    }
+
+    // Perform Voucher Lookup in Check Queue Modal
+    function performVoucherLookup() {
+      const q = (document.getElementById('chk-query').value || '').trim().toLowerCase();
+      const box = document.getElementById('chk-result-box');
+      if (!q) {
+        box.innerHTML = '<p class="text-xs text-rose-500 text-center py-4">Please enter a valid Token ID or phone number.</p>';
+        return;
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => setTimeout(setup, 200));
-      } else {
-        setTimeout(setup, 200);
+      const list = window.ClinicStore.getAppointments();
+      const match = list.find(a =>
+        (a.id && a.id.toLowerCase() === q) ||
+        (a.phone && a.phone.replace(/[^0-9]/g, '').includes(q.replace(/[^0-9]/g, '')))
+      );
+
+      if (!match) {
+        box.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">No appointment found for this search. Please check your token ID or visit reception.</p>';
+        return;
       }
-    })();
 
-    /* ══════════════════════════════════════════════════
-       2. CHECK MY APPOINTMENT – Inject button + modal
-       ══════════════════════════════════════════════════ */
-    (function initCheckAppointment() {
+      let stageCls = 'bg-amber-50 text-amber-800 border-amber-200';
+      if (match.status === 'In-Chair') stageCls = 'bg-blue-50 text-blue-800 border-blue-200';
+      if (match.status === 'Completed') stageCls = 'bg-emerald-50 text-emerald-800 border-emerald-200';
 
-      /* ── Inject CSS ── */
-      const style = document.createElement('style');
-      style.textContent = `
-        /* Check Appointment Button */
-        .chk-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: #92400e;
-          background: #fffbeb;
-          border: 1px solid #fcd34d;
-          padding: 8px 16px;
-          border-radius: 9999px;
-          cursor: pointer;
-          transition: background 0.2s, border-color 0.2s;
-          font-family: inherit;
-        }
-        .chk-btn:hover { background: #fef3c7; border-color: #f59e0b; }
-
-        /* Overlay */
-        .chk-overlay {
-          display: none;
-          position: fixed;
-          inset: 0;
-          z-index: 99999;
-          background: rgba(15,23,42,0.55);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
-        }
-        .chk-overlay.open { display: flex; }
-
-        /* Modal */
-        .chk-modal {
-          background: #fff;
-          border-radius: 24px;
-          box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-          width: 100%;
-          max-width: 480px;
-          max-height: 90vh;
-          overflow-y: auto;
-          animation: chkSlideIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
-        }
-        @keyframes chkSlideIn {
-          from { transform: scale(0.9) translateY(20px); opacity: 0; }
-          to   { transform: scale(1) translateY(0);      opacity: 1; }
-        }
-        .chk-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1.25rem 1.5rem 1rem;
-          border-bottom: 1px solid #f1f5f9;
-        }
-        .chk-header-left { display: flex; align-items: center; gap: 12px; }
-        .chk-icon-wrap {
-          width: 40px; height: 40px;
-          border-radius: 14px;
-          background: #fffbeb;
-          border: 1px solid #fcd34d;
-          display: flex; align-items: center; justify-content: center;
-        }
-        .chk-title { font-weight: 800; font-size: 1.05rem; color: #0f172a; line-height: 1.2; }
-        .chk-subtitle { font-size: 0.72rem; color: #64748b; margin-top: 2px; }
-        .chk-close {
-          width: 32px; height: 32px; border-radius: 50%;
-          border: none; background: none; cursor: pointer;
-          display: flex; align-items: center; justify-content: center;
-          color: #94a3b8; font-size: 1.1rem;
-          transition: background 0.2s;
-        }
-        .chk-close:hover { background: #f1f5f9; }
-
-        /* Search Row */
-        .chk-search { display: flex; gap: 8px; padding: 1.1rem 1.5rem 0.5rem; }
-        .chk-input {
-          flex: 1;
-          padding: 10px 14px;
-          border-radius: 14px;
-          border: 1.5px solid #e2e8f0;
-          font-size: 0.82rem;
-          font-family: 'Plus Jakarta Sans', monospace;
-          color: #0f172a;
-          background: #f8fafc;
-          outline: none;
-          transition: border-color 0.2s;
-        }
-        .chk-input:focus { border-color: #0d9488; }
-        .chk-search-btn {
-          padding: 10px 18px;
-          border-radius: 14px;
-          background: #0d9488;
-          color: #fff;
-          font-weight: 700;
-          font-size: 0.82rem;
-          border: none;
-          cursor: pointer;
-          transition: background 0.2s;
-          font-family: inherit;
-        }
-        .chk-search-btn:hover { background: #0f766e; }
-        .chk-hint { font-size: 0.7rem; color: #94a3b8; padding: 0 1.5rem 1rem; }
-
-        /* Result card */
-        .chk-result-wrap { padding: 0 1.5rem 1.5rem; }
-        .chk-card {
-          border-radius: 16px;
-          border: 1.5px solid;
-          padding: 1rem;
-          margin-bottom: 10px;
-        }
-        .chk-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-        .chk-status-pill {
-          display: inline-flex; align-items: center; gap: 6px;
-          padding: 4px 10px; border-radius: 9999px;
-          font-size: 0.72rem; font-weight: 700; border: 1px solid;
-        }
-        .chk-status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-        .chk-ref { font-family: monospace; font-weight: 700; font-size: 0.85rem; color: #0f172a; }
-        .chk-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.75rem; }
-        .chk-label { color: #64748b; font-weight: 500; }
-        .chk-val { font-weight: 600; color: #0f172a; text-align: right; max-width: 60%; }
-
-        .chk-cancelled-alert {
-          background: #fef2f2; border: 1.5px solid #f87171;
-          border-radius: 12px; padding: 12px 14px;
-          font-size: 0.78rem; color: #991b1b; font-weight: 500;
-          margin-top: 12px;
-        }
-        .chk-cancelled-banner {
-          background: #fee2e2; border: 2px solid #ef4444;
-          border-radius: 12px; padding: 12px 14px;
-          margin-bottom: 12px;
-        }
-        .chk-wa-btn {
-          display: flex; align-items: center; justify-content: center; gap: 6px;
-          margin-top: 10px; padding: 10px;
-          background: #16a34a; color: #fff;
-          border-radius: 12px; font-size: 0.75rem; font-weight: 700;
-          text-decoration: none; transition: background 0.2s;
-        }
-        .chk-wa-btn:hover { background: #15803d; }
-
-        .chk-receipt-btn {
-          display: flex; align-items: center; justify-content: center; gap: 6px;
-          width: 100%; margin-top: 10px; padding: 10px;
-          background: #0d9488; color: #fff;
-          border-radius: 12px; font-size: 0.75rem; font-weight: 700;
-          border: none; cursor: pointer; transition: background 0.2s;
-          font-family: inherit;
-        }
-        .chk-receipt-btn:hover { background: #0f766e; }
-
-        /* Not found */
-        .chk-empty { text-align: center; padding: 2rem 1.5rem; }
-        .chk-empty-icon { width: 52px; height: 52px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
-        .chk-empty p { font-weight: 600; color: #0f172a; margin-bottom: 4px; font-size: 0.9rem; }
-        .chk-empty small { color: #64748b; font-size: 0.72rem; }
-        .chk-wa-ask {
-          display: inline-flex; align-items: center; gap: 6px;
-          margin-top: 14px; padding: 8px 16px;
-          background: #f0fdf4; border: 1px solid #bbf7d0;
-          border-radius: 9999px; color: #15803d;
-          font-size: 0.72rem; font-weight: 700; text-decoration: none;
-          transition: background 0.2s;
-        }
-        .chk-wa-ask:hover { background: #dcfce7; }
-
-        /* Status colour themes */
-        .st-confirmed  { background:#f0fdfa; border-color:#99f6e4; }
-        .st-confirmed .chk-status-pill { background:#f0fdfa; border-color:#5eead4; color:#0f766e; }
-        .st-confirmed .chk-status-dot  { background:#0d9488; }
-
-        .st-cancelled  { background:#fef2f2; border-color:#fecaca; }
-        .st-cancelled .chk-status-pill { background:#fef2f2; border-color:#fca5a5; color:#b91c1c; }
-        .st-cancelled .chk-status-dot  { background:#ef4444; }
-
-        .st-inchair    { background:#eff6ff; border-color:#bfdbfe; }
-        .st-inchair .chk-status-pill   { background:#eff6ff; border-color:#93c5fd; color:#1d4ed8; }
-        .st-inchair .chk-status-dot    { background:#3b82f6; }
-
-        .st-done       { background:#f0fdf4; border-color:#bbf7d0; }
-        .st-done .chk-status-pill      { background:#f0fdf4; border-color:#86efac; color:#15803d; }
-        .st-done .chk-status-dot       { background:#22c55e; }
-      `;
-      document.head.appendChild(style);
-
-      /* ── Build the overlay HTML ── */
-      const overlay = document.createElement('div');
-      overlay.className = 'chk-overlay';
-      overlay.id = 'chkOverlay';
-      overlay.innerHTML = `
-        <div class="chk-modal" id="chkModal">
-          <div class="chk-header">
-            <div class="chk-header-left">
-              <div class="chk-icon-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              </div>
-              <div>
-                <div class="chk-title">Check My Appointment</div>
-                <div class="chk-subtitle">Token ID • Mobile • Email</div>
-              </div>
-            </div>
-            <button class="chk-close" id="chkClose" title="Close">✕</button>
+      box.innerHTML = `
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-sm text-cyan-700">${match.id}</span>
+            <span class="px-2.5 py-0.5 rounded-full font-bold text-[10px] border ${stageCls}">${match.status}</span>
           </div>
-
-          <div class="chk-search">
-            <input class="chk-input" id="chkInput" type="text" placeholder="SPA-003 or 03001234567 or email..." autocomplete="off" />
-            <button class="chk-search-btn" id="chkSearchBtn">Search</button>
-          </div>
-          <div class="chk-hint">Search by: Voucher Token (SPA-001) • Mobile Number • Email Address</div>
-
-          <div id="chkResults"></div>
+          <div class="flex justify-between"><span class="text-slate-400">Queue Order:</span><strong>Turn #${match.queueNumber || '1'}</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Patient:</span><strong>${match.name}</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Treatment:</span><strong>${match.treatment}</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Specialist:</span><strong>${match.doctor}</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Schedule:</span><strong>${match.date} &bull; ${match.time}</strong></div>
         </div>
       `;
-      document.body.appendChild(overlay);
-
-      /* ── Helper: build status info ── */
-      function getStatusInfo(status) {
-        const s = (status || '').toLowerCase();
-        if (s === 'cancelled') return { cls: 'st-cancelled', label: '✗  Cancelled' };
-        if (s === 'in-chair' || s === 'in chair') return { cls: 'st-inchair', label: '⚡ In-Chair Now' };
-        if (s === 'treatment done' || s === 'done' || s === 'completed')
-          return { cls: 'st-done', label: '✓  Treatment Done' };
-        return { cls: 'st-confirmed', label: '● Confirmed' };
-      }
-
-      /* ── Render results ── */
-      function renderResults(results) {
-        const wrap = document.getElementById('chkResults');
-        if (!results) { wrap.innerHTML = ''; return; }
-
-        if (results.length === 0) {
-          wrap.innerHTML = `
-            <div class="chk-empty">
-              <div class="chk-empty-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              </div>
-              <p>No Appointment Found</p>
-              <small>Try your Token ID (e.g. SPA-003), mobile number, or email address.</small><br/>
-              <a class="chk-wa-ask" href="https://wa.me/923001234567?text=Hi%20Aura%20Dental%20Spa%2C%20I%20want%20to%20check%20my%20appointment%20status." target="_blank">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                Ask on WhatsApp
-              </a>
-            </div>`;
-          return;
-        }
-
-        const html = results.map(apt => {
-          const si = getStatusInfo(apt.status);
-          const isCancelled = (apt.status || '').toLowerCase() === 'cancelled';
-          const waUrl = `https://wa.me/923001234567?text=${encodeURIComponent(`Assalam-o-Alaikum! My appointment ${apt.id} for ${apt.treatment} with ${apt.doctor} was cancelled. I would like to reschedule. My name is ${apt.name}.`)}`;
-
-          return `
-            <div class="chk-card ${si.cls}">
-              ${isCancelled ? `
-                <div class="chk-cancelled-banner">
-                  <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#991b1b;margin-bottom:4px;">
-                    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#dc2626;"></span>
-                    APPOINTMENT CANCEL HO CHUKI HAI (CANCELLED)
-                  </div>
-                  <div style="font-size:11.5px;color:#b91c1c;line-height:1.5;">
-                    Yeh appointment reception desk se <strong>cancel</strong> kar di gayi hai. Agar aap rescheduling chahein toh barah-e-karam foran WhatsApp par rabta karein.
-                  </div>
-                </div>
-              ` : ''}
-
-              <div class="chk-card-header">
-                <div class="chk-status-pill">
-                  <span class="chk-status-dot"></span>
-                  ${si.label}
-                </div>
-                <span class="chk-ref">${apt.id || ''}</span>
-              </div>
-
-              <div class="chk-row"><span class="chk-label">Patient:</span><span class="chk-val">${apt.name || ''}</span></div>
-              <div class="chk-row"><span class="chk-label">Doctor:</span><span class="chk-val">${apt.doctor || ''}</span></div>
-              <div class="chk-row"><span class="chk-label">Treatment:</span><span class="chk-val">${apt.treatment || ''}</span></div>
-              <div class="chk-row">
-                <span class="chk-label">Date:</span>
-                <span class="chk-val" style="${isCancelled ? 'text-decoration:line-through;color:#94a3b8;' : ''}">${apt.date || ''}</span>
-              </div>
-              <div class="chk-row">
-                <span class="chk-label">Time:</span>
-                <span class="chk-val" style="${isCancelled ? 'text-decoration:line-through;color:#94a3b8;' : ''}">${apt.time || ''}</span>
-              </div>
-              <div class="chk-row">
-                <span class="chk-label">Status:</span>
-                <span class="chk-val" style="${isCancelled ? 'color:#dc2626;font-weight:800;' : 'color:#0d9488;'}">
-                  ${isCancelled ? '❌ Cancelled (Mansookh)' : (apt.status || 'Confirmed')}
-                </span>
-              </div>
-              ${apt.queueNumber ? `<div class="chk-row"><span class="chk-label">Queue Position:</span><span class="chk-val" style="color:inherit;font-weight:700">Turn #${apt.queueNumber} in Line</span></div>` : ''}
-
-              <!-- Download Receipt Button (PNG Image for Gallery) -->
-              <button type="button" class="chk-receipt-btn" onclick="window.downloadAppointmentReceiptById('${apt.id}')">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                🖼️ Download Receipt Image (Save to Gallery)
-              </button>
-
-              ${isCancelled ? `
-                <a class="chk-wa-btn" href="${waUrl}" target="_blank" rel="noopener noreferrer">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                  Reschedule / Rabta Karein (WhatsApp)
-                </a>` : ''}
-            </div>`;
-        }).join('');
-        wrap.innerHTML = `<div class="chk-result-wrap">${html}</div>`;
-      }
-
-      /* ── Search logic ── */
-      function doSearch() {
-        const q = document.getElementById('chkInput').value.trim().toLowerCase();
-        if (!q) return;
-        let all = [];
-        try {
-          if (window.ClinicStore && typeof window.ClinicStore.getAppointments === 'function') {
-            all = window.ClinicStore.getAppointments();
-          } else {
-            const raw = localStorage.getItem('smilecare_appointments');
-            if (raw) all = JSON.parse(raw);
-          }
-        } catch (e) { }
-        const found = all.filter(a => {
-          const refMatch = (a.id || '').toLowerCase().includes(q);
-          const phoneMatch = (a.phone || '').replace(/\D/g, '').includes(q.replace(/\D/g, ''));
-          const emailMatch = (a.email || '').toLowerCase().includes(q);
-          return refMatch || phoneMatch || emailMatch;
-        });
-        renderResults(found);
-      }
-
-      /* ── Open / Close ── */
-      function openModal() {
-        document.getElementById('chkOverlay').classList.add('open');
-        document.getElementById('chkInput').focus();
-      }
-      function closeModal() {
-        document.getElementById('chkOverlay').classList.remove('open');
-        document.getElementById('chkInput').value = '';
-        renderResults(null);
-      }
-
-      /* ── Inject "Check My Appointment" button into navbar ── */
-      function injectNavButton() {
-        const header = document.querySelector('header');
-        if (!header) return requestAnimationFrame(injectNavButton);
-
-        // Find the Book Visit button
-        const btns = header.querySelectorAll('button');
-        let bookBtn = null;
-        btns.forEach(b => { if (b.textContent.trim().includes('Book')) bookBtn = b; });
-        if (!bookBtn) return setTimeout(injectNavButton, 300);
-
-        const chkBtn = document.createElement('button');
-        chkBtn.className = 'chk-btn';
-        chkBtn.innerHTML = `
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Check Appointment`;
-        chkBtn.onclick = openModal;
-        bookBtn.parentNode.insertBefore(chkBtn, bookBtn);
-      }
-
-      /* ── Event listeners ── */
-      document.getElementById('chkClose').onclick = closeModal;
-      document.getElementById('chkOverlay').onclick = function (e) {
-        if (e.target === this) closeModal();
-      };
-      document.getElementById('chkSearchBtn').onclick = doSearch;
-      document.getElementById('chkInput').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') doSearch();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeModal();
-      });
-
-      /* ── Expose globally so the hero "Check My Appointment" button can open it too ── */
-      window.openCheckAppointmentModal = openModal;
-
-      /* ── Universal Receipt Generator & Downloader (Direct PNG Image to Gallery) ── */
-      function createReceiptCanvas(apt) {
-        const token = apt.id || apt.ref || 'SPA-001';
-        const name = apt.name || 'Valued Patient';
-        const phone = apt.phone || '-';
-        const doctor = apt.doctor || 'Dr. Ahmed Khan';
-        const suite = apt.suite || 'Suite 1';
-        const treatment = apt.treatment || 'Consultation & Treatment';
-        const date = apt.date || 'Today';
-        const time = apt.time || '10:00 AM';
-        const cost = apt.cost || 'PKR 25,000';
-        const queueNum = apt.queueNumber || apt.queueNum || '1';
-        const status = apt.status || 'Confirmed';
-        const isCancelled = String(status).toLowerCase() === 'cancelled';
-        const now = new Date().toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' });
-
-        const canvas = document.createElement('canvas');
-        const w = 720;
-        const h = isCancelled ? 960 : 910;
-        const scale = 2; // High resolution 2x
-        canvas.width = w * scale;
-        canvas.height = h * scale;
-        const ctx = canvas.getContext('2d');
-        ctx.scale(scale, scale);
-
-        function drawRoundRect(x, y, width, height, r, fill, stroke, strokeColor, fillColor) {
-          ctx.beginPath();
-          ctx.moveTo(x + r, y);
-          ctx.lineTo(x + width - r, y);
-          ctx.quadraticCurveTo(x + width, y, x + width, y + r);
-          ctx.lineTo(x + width, y + height - r);
-          ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
-          ctx.lineTo(x + r, y + height);
-          ctx.quadraticCurveTo(x, y + height, x, y + height - r);
-          ctx.lineTo(x, y + r);
-          ctx.quadraticCurveTo(x, y, x + r, y);
-          ctx.closePath();
-          if (fill) { ctx.fillStyle = fillColor; ctx.fill(); }
-          if (stroke) { ctx.strokeStyle = strokeColor; ctx.lineWidth = 1.5; ctx.stroke(); }
-        }
-
-        // 1. Outer Background
-        ctx.fillStyle = '#f8fafc';
-        ctx.fillRect(0, 0, w, h);
-
-        // 2. White Card Container
-        drawRoundRect(20, 20, w - 40, h - 40, 22, true, true, isCancelled ? '#ef4444' : '#0d9488', '#ffffff');
-
-        // 3. Top Decorative Ribbon
-        ctx.fillStyle = isCancelled ? '#dc2626' : '#0d9488';
-        ctx.beginPath();
-        ctx.moveTo(40, 20);
-        ctx.lineTo(w - 40, 20);
-        ctx.quadraticCurveTo(w - 20, 20, w - 20, 40);
-        ctx.lineTo(w - 20, 32);
-        ctx.lineTo(20, 32);
-        ctx.lineTo(20, 40);
-        ctx.quadraticCurveTo(20, 20, 40, 20);
-        ctx.closePath();
-        ctx.fill();
-
-        // 4. Header Section
-        ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 25px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-        ctx.fillText('AURA DENTAL SPA', 45, 68);
-
-        ctx.fillStyle = '#0d9488';
-        ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, sans-serif';
-        ctx.fillText('CLINICAL LUXURY & HOLISTIC DENTISTRY', 45, 90);
-
-        ctx.fillStyle = '#64748b';
-        ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
-        ctx.fillText('Main Shahbaz Commercial, DHA Phase 6, Karachi', 45, 110);
-        ctx.fillText('WhatsApp Reception: +92 300 1234567 • Karachi', 45, 126);
-
-        // 5. Token Box (Top Right)
-        const tbX = w - 215;
-        const tbY = 46;
-        drawRoundRect(tbX, tbY, 170, 84, 14, true, true, isCancelled ? '#ef4444' : '#0d9488', isCancelled ? '#fef2f2' : '#f0fdfa');
-
-        ctx.fillStyle = '#64748b';
-        ctx.font = 'bold 10px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('QUEUE TOKEN', tbX + 85, tbY + 22);
-
-        ctx.fillStyle = isCancelled ? '#dc2626' : '#0d9488';
-        ctx.font = 'bold 28px monospace';
-        ctx.fillText(token, tbX + 85, tbY + 54);
-
-        ctx.fillStyle = isCancelled ? '#b91c1c' : '#0f766e';
-        ctx.font = 'bold 11px sans-serif';
-        ctx.fillText(`Turn #${queueNum} in Line`, tbX + 85, tbY + 74);
-        ctx.textAlign = 'left';
-
-        // 6. Dashed Divider
-        ctx.strokeStyle = '#e2e8f0';
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([6, 6]);
-        ctx.beginPath();
-        ctx.moveTo(45, 150);
-        ctx.lineTo(w - 45, 150);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        let curY = 175;
-
-        // 7. If Cancelled, Big Warning Banner!
-        if (isCancelled) {
-          drawRoundRect(45, curY, w - 90, 64, 12, true, true, '#ef4444', '#fee2e2');
-          ctx.fillStyle = '#991b1b';
-          ctx.font = 'bold 15px sans-serif';
-          ctx.fillText('❌ APPOINTMENT CANCEL HO CHUKI HAI (CANCELLED)', 65, curY + 26);
-          ctx.fillStyle = '#b91c1c';
-          ctx.font = '11.5px sans-serif';
-          ctx.fillText('Yeh appointment clinic reception se cancel kar di gayi hai.', 65, curY + 44);
-          ctx.fillText('Reschedule / Rabta ke liye WhatsApp karein: +92 300 1234567', 65, curY + 58);
-          curY += 78;
-        }
-
-        // 8. Title of slip
-        ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 14px sans-serif';
-        ctx.fillText('OFFICIAL PATIENT APPOINTMENT RECEIPT & QUEUE SLIP', 45, curY + 5);
-        curY += 22;
-
-        // 9. Two-column grid of info fields
-        const fields = [
-          { label: 'PATIENT NAME', val: name, col: 1 },
-          { label: 'CONTACT MOBILE', val: phone, col: 2 },
-          { label: 'SPECIALIST DOCTOR', val: doctor, col: 1 },
-          { label: 'SUITE LOCATION', val: suite + ' • DHA Phase 6', col: 2 },
-          { label: 'TREATMENT PROCEDURE', val: treatment, col: 0 },
-          { label: 'APPOINTMENT DATE', val: date, col: 1, strike: isCancelled },
-          { label: 'CONFIRMED TIME SLOT', val: time, col: 2, strike: isCancelled },
-          { label: 'CURRENT STATUS', val: isCancelled ? '❌ Cancelled (Mansookh)' : status, col: 1, color: isCancelled ? '#dc2626' : '#0d9488' },
-          { label: 'RECEIPT ISSUED AT', val: now, col: 2 }
-        ];
-
-        const colW = (w - 90 - 16) / 2;
-        const col1X = 45;
-        const col2X = 45 + colW + 16;
-
-        for (let i = 0; i < fields.length; i++) {
-          const f = fields[i];
-          let fX, fY, fW, fH;
-          fH = 50;
-
-          if (f.col === 0) {
-            fX = col1X;
-            fY = curY;
-            fW = w - 90;
-            curY += 58;
-          } else if (f.col === 1) {
-            fX = col1X;
-            fY = curY;
-            fW = colW;
-            if (i + 1 < fields.length && fields[i + 1].col === 2) {
-              // wait for next to advance curY
-            } else {
-              curY += 58;
-            }
-          } else {
-            fX = col2X;
-            fY = curY;
-            fW = colW;
-            curY += 58;
-          }
-
-          drawRoundRect(fX, fY, fW, fH, 10, true, true, '#e2e8f0', '#f8fafc');
-
-          ctx.fillStyle = '#64748b';
-          ctx.font = 'bold 9.5px sans-serif';
-          ctx.fillText(f.label, fX + 12, fY + 18);
-
-          ctx.fillStyle = f.color || '#0f172a';
-          ctx.font = 'bold 12.5px sans-serif';
-
-          let displayVal = f.val;
-          if (ctx.measureText(displayVal).width > fW - 24) {
-            while (displayVal.length > 3 && ctx.measureText(displayVal + '...').width > fW - 24) {
-              displayVal = displayVal.slice(0, -1);
-            }
-            displayVal += '...';
-          }
-          ctx.fillText(displayVal, fX + 12, fY + 38);
-
-          if (f.strike) {
-            const textW = ctx.measureText(displayVal).width;
-            ctx.strokeStyle = '#ef4444';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(fX + 12, fY + 34);
-            ctx.lineTo(fX + 12 + textW, fY + 34);
-            ctx.stroke();
-          }
-        }
-
-        curY += 8;
-
-        // 10. Treatment Fee Box
-        const feeH = 52;
-        drawRoundRect(45, curY, w - 90, feeH, 12, true, true, isCancelled ? '#fca5a5' : '#99f6e4', isCancelled ? '#fef2f2' : '#f0fdfa');
-
-        ctx.fillStyle = isCancelled ? '#991b1b' : '#0f766e';
-        ctx.font = 'bold 12px sans-serif';
-        ctx.fillText('Estimated Treatment Fee', 60, curY + 22);
-
-        ctx.fillStyle = '#64748b';
-        ctx.font = '10px sans-serif';
-        ctx.fillText('Official Transparent Karachi Rates (0% Markup EMI Available)', 60, curY + 39);
-
-        ctx.fillStyle = isCancelled ? '#b91c1c' : '#0d9488';
-        ctx.font = 'bold 22px monospace';
-        ctx.textAlign = 'right';
-        ctx.fillText(cost, w - 60, curY + 35);
-        ctx.textAlign = 'left';
-
-        curY += feeH + 18;
-
-        // 11. Simulated Barcode & Stamp
-        ctx.fillStyle = '#0f172a';
-        for (let b = 0; b < 44; b++) {
-          const barW = ((b * 7 + 3) % 4) + 1.5;
-          const barX = 45 + b * 5.5;
-          if (barX < 300) {
-            ctx.fillRect(barX, curY, barW, 26);
-          }
-        }
-        ctx.fillStyle = '#64748b';
-        ctx.font = '10px monospace';
-        ctx.fillText('VERIFIED DIGITAL VOUCHER • ' + token, 45, curY + 38);
-
-        // Digital stamp on right
-        drawRoundRect(w - 230, curY - 5, 185, 48, 10, true, true, '#10b981', '#ecfdf5');
-        ctx.fillStyle = '#047857';
-        ctx.font = 'bold 11px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('✓ AURA CLINIC VERIFIED', w - 138, curY + 17);
-        ctx.fillStyle = '#059669';
-        ctx.font = '9px sans-serif';
-        ctx.fillText('DHA Phase 6 • Official Desk', w - 138, curY + 32);
-        ctx.textAlign = 'left';
-
-        curY += 56;
-
-        // 12. Footer Notice
-        ctx.strokeStyle = '#e2e8f0';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(45, curY);
-        ctx.lineTo(w - 45, curY);
-        ctx.stroke();
-
-        curY += 16;
-        ctx.fillStyle = '#64748b';
-        ctx.font = '9.5px sans-serif';
-        ctx.fillText('• Free valet parking available on Main Shahbaz Commercial.', 45, curY);
-        ctx.fillText('• Please arrive 10 minutes prior to your suite consultation.', 45, curY + 14);
-        ctx.fillText('• Emergency / Reschedule WhatsApp: +92 300 1234567 • www.auradentalspa.pk', 45, curY + 28);
-
-        return canvas;
-      }
-
-      /* ── Trigger Image Download & Instant On-Screen Receipt Preview Modal ── */
-      function showReceiptPreviewModal(canvas, apt) {
-        const token = apt.id || apt.ref || 'SPA-001';
-        const dataUrl = canvas.toDataURL('image/png');
-        const isCancelled = String(apt.status || '').toLowerCase() === 'cancelled';
-
-        let existing = document.getElementById('receipt-image-preview-modal');
-        if (existing) existing.remove();
-
-        const modal = document.createElement('div');
-        modal.id = 'receipt-image-preview-modal';
-        modal.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.8);backdrop-filter:blur(8px);z-index:9999999;display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn 0.25s ease;';
-
-        modal.innerHTML = `
-          <div style="background:#ffffff;border-radius:24px;max-width:540px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 25px 60px rgba(0,0,0,0.4);overflow:hidden;border:1px solid rgba(226,232,240,0.8);font-family:inherit;">
-            <!-- Header -->
-            <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;background:${isCancelled ? '#fef2f2' : '#f0fdfa'};">
-              <div style="display:flex;align-items:center;gap:10px;">
-                <span style="font-size:22px;">${isCancelled ? '❌' : '🖼️'}</span>
-                <div>
-                  <h4 style="margin:0;font-size:15px;font-weight:800;color:${isCancelled ? '#991b1b' : '#0f766e'};">
-                    ${isCancelled ? 'Cancelled Appointment Receipt' : 'Official Appointment Receipt'}
-                  </h4>
-                  <p style="margin:0;font-size:11px;color:#64748b;font-weight:600;">
-                    Token: <strong style="color:#0f172a;">${token}</strong> • Patient: ${apt.name || 'Valued Patient'}
-                  </p>
-                </div>
-              </div>
-              <button id="close-receipt-preview-btn" type="button" style="border:none;background:#e2e8f0;width:32px;height:32px;border-radius:50%;cursor:pointer;font-weight:bold;color:#475569;display:flex;align-items:center;justify-content:center;font-size:16px;">✕</button>
-            </div>
-
-            <!-- Image Viewport -->
-            <div style="padding:16px;overflow-y:auto;background:#f8fafc;display:flex;flex-direction:column;align-items:center;text-align:center;">
-              <img id="receipt-preview-img" src="${dataUrl}" alt="Aura Dental Spa Receipt ${token}" style="max-width:100%;max-height:380px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.12);border:1px solid #e2e8f0;object-fit:contain;cursor:pointer;" title="Click or long press to save image" />
-              <p style="margin:10px 0 0;font-size:12px;color:#475569;line-height:1.4;background:#ffffff;padding:8px 14px;border-radius:10px;border:1px solid #e2e8f0;">
-                💡 <strong>Save Tip:</strong> Image par right-click / tap karke <em>"Save Image As..."</em> ya mobile gallery me save kar saktay hain.
-              </p>
-            </div>
-
-            <!-- Actions Bar -->
-            <div style="padding:16px 20px;background:#ffffff;border-top:1px solid #f1f5f9;display:flex;flex-direction:column;gap:10px;">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <button id="btn-save-receipt-img" type="button" style="background:#0d9488;color:#ffffff;font-weight:700;padding:12px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;box-shadow:0 4px 12px rgba(13,148,136,0.3);">
-                  📥 Download Image
-                </button>
-                <button id="btn-open-receipt-tab" type="button" style="background:#0f172a;color:#ffffff;font-weight:700;padding:12px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;">
-                  👁️ Open Full Size
-                </button>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <button id="btn-copy-receipt-img" type="button" style="background:#f1f5f9;color:#334155;font-weight:700;padding:10px;border-radius:12px;border:1px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;">
-                  📋 Copy to Clipboard
-                </button>
-                <a href="https://wa.me/923001234567?text=${encodeURIComponent(`Salam Aura Dental Spa, my appointment receipt token is ${token} for ${apt.name || 'patient'}. Date: ${apt.date || ''}`)}" target="_blank" style="background:#25D366;color:#ffffff;font-weight:700;padding:10px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;text-decoration:none;">
-                  💬 WhatsApp Share
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-
-        document.body.appendChild(modal);
-
-        const closeBtn = document.getElementById('close-receipt-preview-btn');
-        if (closeBtn) closeBtn.onclick = () => modal.remove();
-        modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
-
-        document.getElementById('btn-save-receipt-img').onclick = function () {
-          triggerReceiptDownload(canvas, token);
-        };
-
-        document.getElementById('btn-open-receipt-tab').onclick = function () {
-          const w = window.open('');
-          if (w) {
-            w.document.write(`
-              <html>
-                <head>
-                  <title>Aura Dental Spa Receipt - ${token}</title>
-                  <style>
-                    body { margin:0; background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; font-family:sans-serif; color:#ffffff; padding:20px; box-sizing:border-box; }
-                    img { max-width:95%; max-height:85vh; border-radius:14px; box-shadow:0 20px 45px rgba(0,0,0,0.6); }
-                    p { margin-top:16px; font-size:14px; color:#94a3b8; font-weight:600; }
-                  </style>
-                </head>
-                <body>
-                  <img src="${dataUrl}" alt="Receipt ${token}">
-                  <p>Right-click or long-press on mobile to Save Image</p>
-                </body>
-              </html>
-            `);
-          }
-        };
-
-        document.getElementById('btn-copy-receipt-img').onclick = async function () {
-          try {
-            canvas.toBlob(async function (blob) {
-              if (!blob) return;
-              if (navigator.clipboard && window.ClipboardItem) {
-                await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-                const btn = document.getElementById('btn-copy-receipt-img');
-                if (btn) {
-                  btn.innerHTML = '✅ Copied to Clipboard!';
-                  setTimeout(() => { if (btn) btn.innerHTML = '📋 Copy to Clipboard'; }, 2000);
-                }
-              } else {
-                alert('Image copy clipboard standard supported browser me chalega. Aap "Download Image" ya "Open Full Size" se save kar saktay hain.');
-              }
-            }, 'image/png');
-          } catch (e) {
-            console.warn('Clipboard copy error:', e);
-          }
-        };
-      }
-
-      function triggerReceiptDownload(canvas, token) {
-        canvas.toBlob(async function (blob) {
-          if (!blob) return;
-
-          // Try modern showSaveFilePicker if available
-          if ('showSaveFilePicker' in window) {
-            try {
-              const handle = await window.showSaveFilePicker({
-                suggestedName: `AuraDentalSpa_Receipt_${token}.png`,
-                types: [{
-                  description: 'PNG Image',
-                  accept: { 'image/png': ['.png'] }
-                }]
-              });
-              const writable = await handle.createWritable();
-              await writable.write(blob);
-              await writable.close();
-              showGallerySavedToast(token);
-              return;
-            } catch (err) {
-              if (err.name === 'AbortError') return;
-            }
-          }
-
-          // Standard fallback <a> download
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `AuraDentalSpa_Receipt_${token}.png`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          setTimeout(() => URL.revokeObjectURL(url), 2500);
-          showGallerySavedToast(token);
-        }, 'image/png');
-      }
-
-      /* ── Trigger Image Download (PNG format saves straight to Gallery) ── */
-      window.downloadAppointmentReceipt = function (apt) {
-        if (!apt) {
-          const list = window.ClinicStore ? window.ClinicStore.getAppointments() : JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
-          apt = list[0] || {};
-        }
-        const token = apt.id || apt.ref || 'SPA-001';
-
-        try {
-          const canvas = createReceiptCanvas(apt);
-          // 1. Show interactive preview modal immediately
-          showReceiptPreviewModal(canvas, apt);
-          // 2. Trigger direct download in background
-          triggerReceiptDownload(canvas, token);
-        } catch (err) {
-          console.error('Receipt image generation error:', err);
-        }
-      };
-
-      function showGallerySavedToast(token) {
-        let toast = document.getElementById('receipt-image-toast');
-        if (!toast) {
-          toast = document.createElement('div');
-          toast.id = 'receipt-image-toast';
-          toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:#ffffff;padding:12px 24px;border-radius:9999px;font-size:13px;font-weight:700;z-index:999999;box-shadow:0 10px 30px rgba(0,0,0,0.3);display:flex;align-items:center;gap:10px;border:1px solid rgba(13,148,136,0.6);animation:slideUpToast 0.3s ease;';
-          document.body.appendChild(toast);
-        }
-        toast.innerHTML = `
-          <span style="display:inline-flex;width:20px;height:20px;border-radius:50%;background:#0d9488;align-items:center;justify-content:center;font-size:11px;">✓</span>
-          <span>Receipt Image (${token}.png) Downloaded &amp; Saved to Gallery!</span>
-        `;
-        toast.style.display = 'flex';
-        clearTimeout(window.__toastTimer);
-        window.__toastTimer = setTimeout(() => {
-          if (toast) toast.style.display = 'none';
-        }, 4000);
-      }
-
-      window.downloadAppointmentReceiptById = function (id) {
-        let all = [];
-        try {
-          if (window.ClinicStore && typeof window.ClinicStore.getAppointments === 'function') {
-            all = window.ClinicStore.getAppointments();
-          } else {
-            all = JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
-          }
-        } catch (e) { }
-        const apt = all.find(a => a.id === id);
-        if (apt) {
-          window.downloadAppointmentReceipt(apt);
-        } else {
-          alert('Appointment not found');
-        }
-      };
-
-      /* ── Watch for React Booking Success Modal to Inject "Download Receipt Image (Gallery)" ── */
-      function checkAndEnhanceBookingVoucher() {
-        const headings = document.querySelectorAll('h3');
-        let isSuccessModal = false;
-        headings.forEach(h => {
-          if (h.textContent.includes('Voucher & Token Confirmed') || h.textContent.includes('OFFICIAL PATIENT QUEUE VOUCHER')) {
-            isSuccessModal = true;
-          }
-        });
-
-        if (isSuccessModal) {
-          if (!document.getElementById('btn-receipt-download-live')) {
-            const waBtn = document.querySelector('a[href*="wa.me"][href*="Voucher"]');
-            if (waBtn && waBtn.parentNode) {
-              const btn = document.createElement('button');
-              btn.id = 'btn-receipt-download-live';
-              btn.type = 'button';
-              btn.className = 'w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3.5 px-4 rounded-full transition-all text-sm shadow-md hover:shadow-lg flex items-center justify-center gap-2 mb-2 cursor-pointer';
-              btn.innerHTML = `
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                <span>🖼️ Download Receipt Image (Save to Gallery)</span>
-              `;
-              btn.onclick = function () {
-                const list = window.ClinicStore ? window.ClinicStore.getAppointments() : JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
-                window.downloadAppointmentReceipt(list[0]);
-              };
-              waBtn.parentNode.insertBefore(btn, waBtn);
-
-              // ALSO automatically trigger image download after 1 second of booking confirmation
-              // so the user gets it automatically in their gallery without even having to click!
-              if (!window.__autoDownloadedOnce) {
-                window.__autoDownloadedOnce = true;
-                setTimeout(() => {
-                  const list = window.ClinicStore ? window.ClinicStore.getAppointments() : JSON.parse(localStorage.getItem('smilecare_appointments') || '[]');
-                  if (list && list[0]) {
-                    window.downloadAppointmentReceipt(list[0]);
-                  }
-                }, 900);
-              }
-            }
-          }
-        } else {
-          window.__autoDownloadedOnce = false;
-        }
-      }
-
-      // Check on DOM changes & intervals
-      setInterval(checkAndEnhanceBookingVoucher, 700);
-
-      /* Inject nav button after React renders */
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => setTimeout(injectNavButton, 400));
-      } else {
-        setTimeout(injectNavButton, 400);
-      }
-    })();
+    }
   </script>
-</body>
 
+</body>
 </html>
