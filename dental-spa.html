@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>PRECISION DENTISTRY • Aura Dental Spa Karachi</title>
+  <title>PRECISION DENTISTRY • Aura Dental Clinic</title>
   <meta name="description"
-    content="An individual dental Care provided by modern technology. Precision Dentistry, Swiss porcelain veneers, guided implants, and 3D digital smile architecture in DHA Phase 6 Karachi." />
+    content="An individual dental Care provided by modern technology. Precision Dentistry, guided scans, and advanced dental architecture." />
 
-  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
@@ -26,831 +26,604 @@
         extend: {
           colors: {
             brand: {
-              navy: '#0a192f',
-              dark: '#0f172a',
-              blue: '#1d4ed8',
+              blue: '#0d3b82',
+              navy: '#0a2552',
               cyan: '#00d2ff',
-              neon: '#06b6d4',
-              surface: '#f8fafc',
-              border: '#e2e8f0',
-              teal: '#0d9488'
+              bg: '#f3f4f6',
+              dark: '#111827'
             }
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-            display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif']
-          },
-          boxShadow: {
-            'glow-cyan': '0 0 35px -5px rgba(0, 210, 255, 0.45)',
-            'glow-cyan-sm': '0 0 18px -2px rgba(0, 210, 255, 0.35)',
-            'pill': '0 10px 25px -5px rgba(10, 25, 47, 0.25)',
-            'diffuse': '0 12px 35px rgba(0, 0, 0, 0.04)',
-            'diffuse-lg': '0 25px 50px -12px rgba(15, 23, 42, 0.08)'
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Outfit"', '"Inter"', 'sans-serif']
           }
         }
       }
     }
   </script>
 
-  <!-- Three.js 3D Library via CDN -->
+  <!-- Three.js 3D Engine via CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
-    html, body {
+    html,
+    body {
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
-      max-width: 100%;
+      background-color: #f3f4f6;
+      color: #111827;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       -webkit-tap-highlight-color: transparent;
-      background-color: #fbfcfd;
-      color: #0f172a;
     }
 
-    ::selection {
-      background-color: #cffafe;
-      color: #0891b2;
-    }
-
-    /* Custom smooth scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
+    /* ── Precise Floating Badges (Matching 00:06-00:08 in Video) ── */
+    .video-pill-badge {
+      background: #ffffff;
+      border: 1px solid rgba(209, 213, 219, 0.85);
       border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #00d2ff;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #111827;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.25s ease;
     }
 
-    /* Glowing laser ring keyframes */
-    @keyframes laserPulse {
+    .video-pill-badge:hover {
+      border-color: #00d2ff;
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Floating animation matching video */
+    @keyframes floatTag1 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes floatTag2 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(6px); }
+    }
+
+    .anim-tag-1 { animation: floatTag1 4s ease-in-out infinite; }
+    .anim-tag-2 { animation: floatTag2 4.5s ease-in-out infinite 0.5s; }
+    .anim-tag-3 { animation: floatTag1 4.2s ease-in-out infinite 1s; }
+    .anim-tag-4 { animation: floatTag2 4.8s ease-in-out infinite 1.5s; }
+
+    /* Laser Ring Glow Pulse */
+    @keyframes laserGlow {
       0%, 100% {
-        opacity: 0.85;
-        filter: drop-shadow(0 0 14px rgba(0, 210, 255, 0.8));
+        opacity: 0.9;
+        filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.85));
       }
       50% {
         opacity: 1;
-        filter: drop-shadow(0 0 28px rgba(0, 210, 255, 1));
+        filter: drop-shadow(0 0 22px rgba(0, 210, 255, 1));
       }
     }
 
-    @keyframes floatSlow {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-8px);
-      }
+    .laser-glow {
+      animation: laserGlow 2.5s ease-in-out infinite;
     }
 
-    @keyframes floatReverse {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(7px);
-      }
+    /* Pager dot */
+    .pager-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      transition: all 0.25s ease;
     }
-
-    @keyframes scanBeam {
-      0% {
-        top: 15%;
-        opacity: 0;
-      }
-      20% {
-        opacity: 0.9;
-      }
-      80% {
-        opacity: 0.9;
-      }
-      100% {
-        top: 85%;
-        opacity: 0;
-      }
-    }
-
-    .animate-laser {
-      animation: laserPulse 2.8s ease-in-out infinite;
-    }
-    .animate-float-1 {
-      animation: floatSlow 4.5s ease-in-out infinite;
-    }
-    .animate-float-2 {
-      animation: floatReverse 5.2s ease-in-out infinite 0.6s;
-    }
-    .animate-float-3 {
-      animation: floatSlow 4.8s ease-in-out infinite 1.2s;
-    }
-    .animate-float-4 {
-      animation: floatReverse 5.5s ease-in-out infinite 1.8s;
-    }
-
-    /* Glass pill badge */
-    .tech-pill-badge {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .tech-pill-badge:hover {
-      transform: translateY(-3px) scale(1.03);
-      border-color: #00d2ff;
-      box-shadow: 0 12px 30px -4px rgba(0, 210, 255, 0.25);
-    }
-
-    /* Sliding pill indicator in navigation */
-    .nav-pill-active {
-      background: #ffffff;
-      color: #0f172a !important;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    }
-
-    /* Vertical pagination dot active */
     .pager-dot.active {
-      background-color: #0a192f;
-      transform: scale(1.25);
+      background-color: #111827;
+      transform: scale(1.3);
+    }
+    .pager-dot.inactive {
+      border: 1.5px solid #9ca3af;
+      background: transparent;
+    }
+    .pager-dot.inactive:hover {
+      border-color: #111827;
+    }
+
+    /* Anatomy Cross Section Cutaway Graphic */
+    .anatomy-overlay {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    /* Blue CTA Button in Video */
+    .btn-video-blue {
+      background-color: #0d3b82;
+      color: #ffffff;
+      border-radius: 9999px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(13, 59, 130, 0.25);
+    }
+    .btn-video-blue:hover {
+      background-color: #092c64;
+      box-shadow: 0 6px 20px rgba(13, 59, 130, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-video-blue:active {
+      transform: translateY(0);
     }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col font-sans antialiased text-slate-800 bg-[#fbfcfd]">
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-100 selection:text-cyan-900">
 
   <!-- ══════════════════════════════════════════════════════════
-       TOP MINIMALIST NAVBAR (Exact match to video)
+       TOP HEADER (Exact 1:1 match to video on laptop screen)
        ══════════════════════════════════════════════════════════ -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+  <header class="w-full pt-4 sm:pt-6 pb-2 px-4 sm:px-12 max-w-[1440px] mx-auto flex items-center justify-between">
 
-      <!-- Brand Logo & Name (Matching "PRECISION DENTISTRY") -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center text-brand-navy group-hover:border-cyan-400 group-hover:text-cyan-500 transition-all duration-300 shadow-xs">
-          <!-- Geometric Tooth Outline Icon -->
-          <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 3C4.24 3 2 5.24 2 8c0 3.2 1.6 6.8 2.5 9 .8 2 2.5 4 4.5 4 1.8 0 2.5-1.5 3-3 .5 1.5 1.2 3 3 3 2 0 3.7-2 4.5-4 .9-2.2 2.5-5.8 2.5-9 0-2.76-2.24-5-5-5-2 0-3.5 1-4.5 2.5C10.5 4 9 3 7 3z"/>
-          </svg>
-        </div>
-        <div>
-          <span class="font-display font-extrabold text-sm sm:text-base text-slate-900 tracking-wider uppercase block leading-none">
-            PRECISION DENTISTRY
-          </span>
-          <span class="text-[10px] text-slate-400 font-semibold tracking-widest uppercase mt-0.5 block">
-            Aura Clinic • DHA Phase 6
-          </span>
-        </div>
+    <!-- Left: Logo & Title (Matching "PRECISION DENTISTRY") -->
+    <a href="index.html" class="flex items-center gap-2.5 group">
+      <!-- Minimalist Tooth Outline Logo from Video -->
+      <div class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-slate-800">
+        <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 3C4.24 3 2 5.24 2 8c0 3.2 1.6 6.8 2.5 9 .8 2 2.5 4 4.5 4 1.8 0 2.5-1.5 3-3 .5 1.5 1.2 3 3 3 2 0 3.7-2 4.5-4 .9-2.2 2.5-5.8 2.5-9 0-2.76-2.24-5-5-5-2 0-3.5 1-4.5 2.5C10.5 4 9 3 7 3z"/>
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <span class="font-display font-extrabold text-xs sm:text-sm text-slate-900 tracking-wider uppercase block">
+          PRECISION DENTISTRY
+        </span>
+      </div>
+    </a>
+
+    <!-- Center: Links (Matching Video: HOME, PACKAGES, CONTACT US, LOGIN) -->
+    <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-[11px] lg:text-xs font-semibold text-slate-600">
+      <a href="index.html" class="text-slate-900 font-bold relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-blue-600 after:rounded-full">
+        HOME
       </a>
+      <a href="#packages-view" onclick="openPackagesModal(event)" class="hover:text-slate-900 transition-colors">
+        PACKAGES
+      </a>
+      <a href="#contact-view" onclick="openContactModal(event)" class="hover:text-slate-900 transition-colors">
+        CONTACT US
+      </a>
+      <a href="admin.html" class="hover:text-blue-700 transition-colors" title="Reception Staff Login">
+        LOGIN
+      </a>
+    </nav>
 
-      <!-- Center Navigation Links (Matching Video: HOME, PACKAGES, CONTACT US, LOGIN) -->
-      <nav class="hidden md:flex items-center bg-slate-100/80 p-1.5 rounded-full border border-slate-200/60 text-xs font-semibold text-slate-500">
-        <a href="#hero" class="px-5 py-2 rounded-full nav-pill-active transition-all duration-200">HOME</a>
-        <a href="#packages" class="px-5 py-2 rounded-full hover:text-slate-900 transition-all duration-200">PACKAGES</a>
-        <a href="#specialists" class="px-5 py-2 rounded-full hover:text-slate-900 transition-all duration-200">SPECIALISTS</a>
-        <a href="#contact" class="px-5 py-2 rounded-full hover:text-slate-900 transition-all duration-200">CONTACT US</a>
-        <a href="admin.html" class="px-4 py-2 rounded-full hover:text-brand-navy hover:bg-slate-200/70 transition-all duration-200 flex items-center gap-1.5" title="Reception Desk Login">
-          <i class="fa fa-lock text-[10px] text-cyan-600"></i> LOGIN
-        </a>
-      </nav>
+    <!-- Right: Blue Pill Button (Matching "BOOK YOUR VISIT ➔") -->
+    <div class="flex items-center gap-3">
+      <button onclick="openBookingModal()"
+        class="btn-video-blue px-4 sm:px-6 py-2 sm:py-2.5 text-[11px] sm:text-xs flex items-center gap-2">
+        <span>BOOK YOUR VISIT</span>
+        <span class="text-xs">➔</span>
+      </button>
 
-      <!-- Right Action Pill Buttons (Matching Video: BOOK YOUR VISIT ➔) -->
-      <div class="flex items-center gap-2.5 sm:gap-3">
-        <!-- Check Appointment Queue Button -->
-        <button onclick="openCheckQueueModal()"
-          class="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 transition-colors shadow-xs"
-          title="Check your live voucher status in queue">
-          <i class="fa fa-ticket text-cyan-500"></i>
-          <span>Check Voucher</span>
-        </button>
-
-        <!-- Main Video CTA Pill Button -->
-        <button onclick="openBookingModal()"
-          class="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#0a192f] hover:bg-[#112240] text-white text-xs sm:text-sm font-bold tracking-wide shadow-pill hover:shadow-cyan-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2">
-          <span>BOOK YOUR VISIT</span>
-          <span class="text-cyan-400 font-bold transition-transform duration-200 group-hover:translate-x-1">➔</span>
-        </button>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button onclick="toggleMobileMenu()"
-          class="md:hidden w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:text-brand-navy focus:outline-none">
-          <i class="fa fa-bars text-base"></i>
-        </button>
-      </div>
-
+      <!-- Mobile Hamburger -->
+      <button onclick="toggleMobileNav()" class="md:hidden p-2 text-slate-700 hover:text-slate-900">
+        <i class="fa fa-bars text-sm"></i>
+      </button>
     </div>
 
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobile-nav-drawer" class="hidden md:hidden border-t border-slate-100 bg-white px-5 py-4 space-y-3">
-      <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
-        <a href="#hero" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-900 flex items-center gap-2">
-          <i class="fa fa-home text-cyan-500"></i> Home
-        </a>
-        <a href="#packages" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 flex items-center gap-2">
-          <i class="fa fa-cube text-cyan-500"></i> Packages
-        </a>
-        <a href="#specialists" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 flex items-center gap-2">
-          <i class="fa fa-user-doctor text-cyan-500"></i> Specialists
-        </a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 flex items-center gap-2">
-          <i class="fa fa-map-pin text-cyan-500"></i> Contact
-        </a>
-      </div>
-      <div class="pt-2 flex flex-col gap-2">
-        <button onclick="openCheckQueueModal(); toggleMobileMenu();" class="w-full py-2.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold flex items-center justify-center gap-2">
-          <i class="fa fa-ticket text-cyan-600"></i> Check My Voucher Status
-        </button>
-        <a href="admin.html" class="w-full py-2.5 rounded-full border border-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-2">
-          <i class="fa fa-lock text-cyan-600"></i> Staff / Reception Desk Login
-        </a>
-      </div>
-    </div>
   </header>
 
+  <!-- Mobile Drawer -->
+  <div id="mob-drawer" class="hidden md:hidden bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 text-xs font-semibold space-y-3">
+    <a href="index.html" class="block py-1 text-slate-900 font-bold">HOME</a>
+    <a href="#packages" onclick="openPackagesModal(event); toggleMobileNav();" class="block py-1 text-slate-600">PACKAGES</a>
+    <a href="#contact" onclick="openContactModal(event); toggleMobileNav();" class="block py-1 text-slate-600">CONTACT US</a>
+    <a href="admin.html" class="block py-1 text-blue-700 font-bold">STAFF LOGIN (ADMIN)</a>
+  </div>
+
+
   <!-- ══════════════════════════════════════════════════════════
-       HERO SECTION (1:1 Exact Match to User's Video)
+       MAIN HERO SECTION (Exact 1:1 match to video on laptop)
        ══════════════════════════════════════════════════════════ -->
-  <section id="hero" class="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden py-10 lg:py-0">
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-12 flex items-center relative py-6 sm:py-0">
 
-    <!-- Subtle futuristic background grid & radial glow -->
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-cyan-100/40 via-blue-50/30 to-transparent rounded-full blur-3xl opacity-70"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-35"></div>
-    </div>
+    <div class="w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-0">
 
-    <!-- Main Container -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center relative z-10">
+      <!-- LEFT COLUMN: Headline, Subheadline & Button (Exact Video Match) -->
+      <div class="lg:col-span-5 text-left space-y-4 sm:space-y-6 z-10 sm:pl-2">
 
-      <!-- LEFT COLUMN: Headline & CTA (Exact Video Copy) -->
-      <div class="lg:col-span-5 text-center lg:text-left space-y-6 pt-4 lg:pt-0">
-
-        <!-- Small Eyebrow Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 shadow-xs">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-          <span>DHA Phase 6 • Precision Dental Architecture</span>
-        </div>
-
-        <!-- Huge Main Headline: "YOUR SMILE. OUR PRECISION." -->
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] text-slate-900 leading-[1.06] tracking-tight">
+        <!-- Headline: "YOUR SMILE. OUR PRECISION." -->
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] text-slate-950 leading-[1.08] tracking-tight uppercase">
           YOUR SMILE.<br />
-          <span class="text-slate-900">OUR PRECISION.</span>
+          <span class="text-slate-950">OUR PRECISION.</span>
         </h1>
 
         <!-- Subheadline: "An individual dental Care provided by modern technology" -->
-        <p class="text-slate-500 font-medium text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
+        <p class="text-slate-500 font-normal text-xs sm:text-sm md:text-base max-w-sm leading-relaxed">
           An individual dental Care provided by modern technology
         </p>
 
-        <!-- CTA Pill Button (Exact Video Match) -->
-        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+        <!-- Button: "BOOK YOUR VISIT ➔" -->
+        <div class="pt-2">
           <button onclick="openBookingModal()"
-            class="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0a192f] hover:bg-[#112240] text-white font-bold text-sm tracking-wide shadow-pill hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 group">
+            class="btn-video-blue px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm flex items-center gap-2.5">
             <span>BOOK YOUR VISIT</span>
-            <span class="text-cyan-400 font-bold transition-transform duration-200 group-hover:translate-x-1.5">➔</span>
+            <span class="text-xs sm:text-sm">➔</span>
           </button>
-
-          <a href="#packages"
-            class="px-6 py-4 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm border border-slate-200 shadow-xs hover:border-slate-300 transition-colors">
-            Explore Packages
-          </a>
-        </div>
-
-        <!-- Technology Features List -->
-        <div class="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium border-t border-slate-100">
-          <div class="flex items-center gap-1.5">
-            <i class="fa fa-check text-cyan-500"></i>
-            <span>3D Guided Scans</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <i class="fa fa-check text-cyan-500"></i>
-            <span>Pain-Free Laser</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <i class="fa fa-check text-cyan-500"></i>
-            <span>Swiss Veneers</span>
-          </div>
         </div>
 
       </div>
 
-      <!-- CENTER COLUMN: Interactive 3D Tooth & Laser Scanner (Exact Video Centerpiece) -->
-      <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[440px] sm:min-h-[520px] select-none">
+      <!-- CENTER COLUMN: Interactive 3D Tooth & Holographic Laser Scanner (Exact Video Centerpiece) -->
+      <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[380px] sm:min-h-[480px] select-none">
 
-        <!-- 3D Canvas / Visual Tooth Stage -->
-        <div id="tooth-stage" class="relative w-full max-w-[480px] h-[380px] sm:h-[460px] flex items-center justify-center">
+        <!-- The Tooth Stage -->
+        <div id="tooth-stage" class="relative w-full max-w-[420px] sm:max-w-[480px] h-[340px] sm:h-[430px] flex items-center justify-center">
 
-          <!-- 3D WebGL / SVG Canvas Element -->
-          <div id="three-tooth-container" class="w-full h-full cursor-grab active:cursor-grabbing relative z-10 flex items-center justify-center">
-            <!-- Three.js Canvas injected dynamically via script -->
+          <!-- 3D Canvas Container -->
+          <div id="tooth-3d-canvas"
+            onclick="handleToothClick()"
+            onmouseenter="handleToothHover(true)"
+            onmouseleave="handleToothHover(false)"
+            class="w-full h-full relative z-10 flex items-center justify-center cursor-pointer"
+            title="Click or Hover to reveal internal anatomy cutaway">
+            <!-- Three.js Canvas injected here -->
           </div>
 
-          <!-- ── FLOATING HOLOGRAPHIC TECH BADGES (Exact 4 Badges from 00:05-00:08 in Video) ── -->
+          <!-- ── 2D/3D HIGH-RES ANATOMY CUTAWAY OVERLAY (Exact match to 00:03 in video) ── -->
+          <div id="anatomy-cutaway-graphic"
+            onclick="handleToothClick()"
+            class="anatomy-overlay opacity-0 pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center scale-95 transition-all duration-300">
 
-          <!-- Badge 1: 3D SCAN (Top Left) -->
-          <div id="badge-3dscan"
-            class="tech-pill-badge animate-float-1 absolute top-4 sm:top-8 left-2 sm:left-4 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
-            onclick="triggerAnatomyScan('3D Scan Activated')">
-            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">3D SCAN</span>
-            <span class="text-[10px] text-cyan-600 hidden sm:inline font-mono">0.02mm</span>
+            <!-- High-Res Cutaway Anatomical SVG Illustration matching 00:03 -->
+            <svg class="w-[200px] sm:w-[250px] h-auto drop-shadow-xl" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Soft Drop Shadow on Ground -->
+              <ellipse cx="130" cy="285" rx="85" ry="12" fill="#94a3b8" opacity="0.25"/>
+
+              <!-- Outer White Enamel Half Shell -->
+              <path d="M70 40C45 60 40 100 42 140C44 175 60 190 75 220C85 240 90 270 95 275C100 270 108 230 115 190C120 160 128 145 130 140V40C110 32 90 30 70 40Z"
+                fill="url(#enamelGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
+
+              <!-- Right Cutaway Surface: Exposed White Enamel Rim -->
+              <path d="M130 35C155 33 190 38 210 50C220 85 220 135 218 150C215 175 195 210 180 245C170 268 165 275 162 275C158 270 152 235 146 195C142 170 132 150 130 140V35Z"
+                fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+
+              <!-- Warm Tan/Ivory Dentin Interior Cutaway -->
+              <path d="M130 48C148 48 185 58 198 75C204 110 204 140 200 155C195 180 180 215 168 245C163 260 160 262 158 260C155 240 148 200 142 170C138 150 132 135 130 130V48Z"
+                fill="url(#dentinGrad)" stroke="#e2e8f0" stroke-width="1"/>
+
+              <!-- Left side internal dentin shadow -->
+              <path d="M80 60C62 75 58 110 60 140C62 165 74 185 85 210C94 230 98 255 100 258C103 245 110 200 116 170C120 150 126 135 130 130V60C115 52 98 52 80 60Z"
+                fill="#fef9c3" opacity="0.35"/>
+
+              <!-- Ruby-Red Vascular Pulp Chamber & Root Canals (Matching 00:03 in video) -->
+              <path d="M130 75C140 75 160 85 165 100C168 120 162 135 158 145C155 155 150 185 146 220C144 240 143 250 142 250C141 245 140 220 138 195C135 170 132 150 130 140V75Z"
+                fill="url(#pulpGrad)" filter="drop-shadow(0 0 5px rgba(239, 68, 68, 0.4))"/>
+
+              <!-- Secondary Left Canal -->
+              <path d="M130 100C122 100 110 110 108 125C106 140 110 160 112 180C114 200 115 230 115 240C117 240 119 210 122 185C125 160 128 140 130 135V100Z"
+                fill="url(#pulpGrad)" opacity="0.85"/>
+
+              <!-- Delicate Neural Nerve Filaments -->
+              <path d="M142 120Q150 150 145 220" stroke="#fca5a5" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M120 130Q115 160 116 210" stroke="#fca5a5" stroke-width="1.2" stroke-linecap="round"/>
+
+              <!-- Gradients Definition -->
+              <defs>
+                <linearGradient id="enamelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="60%" stop-color="#f1f5f9"/>
+                  <stop offset="100%" stop-color="#e2e8f0"/>
+                </linearGradient>
+                <linearGradient id="dentinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fef08a"/>
+                  <stop offset="50%" stop-color="#fde047"/>
+                  <stop offset="100%" stop-color="#eab308"/>
+                </linearGradient>
+                <linearGradient id="pulpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#f87171"/>
+                  <stop offset="40%" stop-color="#ef4444"/>
+                  <stop offset="100%" stop-color="#b91c1c"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <!-- Pill Badge Under Tooth (Matching "PRECISION DENTISTRY" in 00:03 of video) -->
+            <div class="mt-3 bg-white px-4 py-1.5 rounded-full border border-slate-200/90 shadow-sm text-[10px] font-bold text-slate-800 tracking-wider">
+              PRECISION DENTISTRY
+            </div>
+
           </div>
 
-          <!-- Badge 2: ADVANCED CARE (Top Right) -->
-          <div id="badge-advanced"
-            class="tech-pill-badge animate-float-2 absolute top-4 sm:top-10 right-2 sm:right-4 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
-            onclick="triggerAnatomyScan('Advanced Laser Active')">
-            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">ADVANCED CARE</span>
+          <!-- ── 4 FLOATING BADGES (Exact text & placement from 00:06-00:08 in Video) ── -->
+
+          <!-- 1. Top-Left: "3D SCAN" -->
+          <div id="tag-3dscan"
+            onclick="triggerTagPulse('3D SCAN')"
+            class="video-pill-badge anim-tag-1 absolute top-6 sm:top-10 left-1 sm:left-6 z-30">
+            3D SCAN
           </div>
 
-          <!-- Badge 3: PERSONALIZED CARE (Bottom Left) -->
-          <div id="badge-personalized"
-            class="tech-pill-badge animate-float-3 absolute bottom-10 sm:bottom-12 left-2 sm:left-6 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
-            onclick="triggerAnatomyScan('Bespoke Architecture')">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">PERSONALIZED CARE</span>
+          <!-- 2. Top-Right: "ADVANCED CARE" -->
+          <div id="tag-advanced"
+            onclick="triggerTagPulse('ADVANCED CARE')"
+            class="video-pill-badge anim-tag-2 absolute top-6 sm:top-10 right-1 sm:right-6 z-30">
+            ADVANCED CARE
           </div>
 
-          <!-- Badge 4: DIGITAL SMILE (Bottom Right) -->
-          <div id="badge-digital"
-            class="tech-pill-badge animate-float-4 absolute bottom-10 sm:bottom-12 right-2 sm:right-6 z-20 px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
-            onclick="triggerAnatomyScan('Digital Smile Simulation')">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span class="font-display font-bold text-xs sm:text-sm text-slate-800 tracking-wider">DIGITAL SMILE</span>
+          <!-- 3. Bottom-Left: "PERSONALIZED CARE" -->
+          <div id="tag-personalized"
+            onclick="triggerTagPulse('PERSONALIZED CARE')"
+            class="video-pill-badge anim-tag-3 absolute bottom-8 sm:bottom-12 left-1 sm:left-4 z-30">
+            PERSONALIZED CARE
           </div>
 
-        </div>
-
-        <!-- Interactive Anatomy Toggle & Badge (Matching 00:02-00:04 in Video) -->
-        <div class="mt-2 sm:mt-4 flex flex-col items-center gap-2 z-20">
-          <div class="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md px-5 py-2 rounded-full border border-slate-200/90 shadow-sm text-xs font-bold text-slate-700">
-            <button id="btn-toggle-view" onclick="toggleAnatomyMode()"
-              class="flex items-center gap-2 text-cyan-600 hover:text-cyan-700 transition-colors">
-              <i id="anatomy-icon" class="fa fa-eye"></i>
-              <span id="anatomy-label">PRECISION DENTISTRY</span>
-            </button>
-            <span class="text-slate-300">|</span>
-            <span class="text-[11px] text-slate-400 font-normal">Click tooth to inspect anatomy</span>
+          <!-- 4. Bottom-Right: "DIGITAL SMILE" -->
+          <div id="tag-digital"
+            onclick="triggerTagPulse('DIGITAL SMILE')"
+            class="video-pill-badge anim-tag-4 absolute bottom-8 sm:bottom-12 right-1 sm:right-4 z-30">
+            DIGITAL SMILE
           </div>
-          <span class="text-[10px] text-slate-400 font-mono tracking-wide">Drag to rotate 3D model • Hover to scan</span>
+
         </div>
 
       </div>
 
     </div>
 
-    <!-- RIGHT EDGE: 3 Vertical Navigation Dots (Matching Video) -->
-    <div class="hidden lg:flex flex-col items-center gap-3.5 absolute right-6 top-1/2 -translate-y-1/2 z-30">
-      <a href="#hero" class="pager-dot active w-2.5 h-2.5 rounded-full transition-all duration-300" title="Hero Screen"></a>
-      <a href="#packages" class="pager-dot w-2.5 h-2.5 rounded-full border-2 border-slate-300 hover:border-slate-800 transition-all duration-300" title="Packages"></a>
-      <a href="#specialists" class="pager-dot w-2.5 h-2.5 rounded-full border-2 border-slate-300 hover:border-slate-800 transition-all duration-300" title="Specialists"></a>
+    <!-- ── RIGHT EDGE: 3 Vertical Pagination Dots (Exact Video Match) ── -->
+    <div class="hidden lg:flex flex-col items-center gap-3 absolute right-0 top-1/2 -translate-y-1/2">
+      <div class="pager-dot active cursor-pointer" onclick="scrollToTop()"></div>
+      <div class="pager-dot inactive cursor-pointer" onclick="openPackagesModal()"></div>
+      <div class="pager-dot inactive cursor-pointer" onclick="openContactModal()"></div>
     </div>
 
-    <!-- BOTTOM RIGHT: Circular Chat Widget (Matching Video) -->
-    <div class="fixed bottom-6 right-6 z-40">
-      <a href="https://wa.me/923001234567?text=Assalam-o-Alaikum%20Aura%20Dental%20Spa!%20I%20want%20to%20inquire%20about%20precision%20dental%20care."
-        target="_blank" rel="noopener noreferrer"
-        class="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#0a192f] hover:bg-[#112240] text-cyan-400 hover:text-white flex items-center justify-center text-xl sm:text-2xl shadow-xl hover:shadow-cyan-500/30 hover:scale-110 active:scale-95 transition-all duration-300 border border-cyan-400/30"
-        title="Chat with Precision Dental Concierge on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-    </div>
-
-  </section>
+  </main>
 
 
   <!-- ══════════════════════════════════════════════════════════
-       PACKAGES & ADVANCED CARE SECTION ("PACKAGES")
+       BOTTOM BAR & CHAT ICON (Exact Video Match)
        ══════════════════════════════════════════════════════════ -->
-  <section id="packages" class="py-20 bg-white border-t border-slate-100 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-
-      <!-- Section Title -->
-      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <span class="text-xs uppercase font-bold tracking-widest text-cyan-600 block">
-          Precision Clinical Care
-        </span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
-          Advanced Dental Packages
-        </h2>
-        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">
-          Transparent DHA Phase 6 Karachi pricing powered by guided optical technology and pain-free Swiss protocols.
-        </p>
-      </div>
-
-      <!-- Bento Grid of Packages -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- Package 1: Hollywood Smile Veneers -->
-        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-lg font-bold">
-              <i class="fa fa-sparkles"></i>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-700 bg-cyan-50 px-2.5 py-1 rounded-full">
-              Aesthetic Architecture
-            </span>
-            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-cyan-700 transition-colors">
-              Hollywood Smile Veneers
-            </h3>
-            <p class="text-xs text-slate-500 leading-relaxed">
-              Ultra-thin 0.3mm handcrafted Swiss E.max porcelain veneers. Zero natural tooth grinding and permanent natural shade matching.
-            </p>
-            <div class="pt-2">
-              <span class="text-xs text-slate-400 block font-medium">Standard Investment</span>
-              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 210,000</span>
-              <span class="text-[11px] text-slate-400 block">Per upper arch transformation</span>
-            </div>
-          </div>
-          <button onclick="bookTreatment('Hollywood Smile Porcelain Veneers', 'PKR 210,000', 'dr-sophia')"
-            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-cyan-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
-            <span>Book Package</span>
-            <span>➔</span>
-          </button>
-        </div>
-
-        <!-- Package 2: Straumann Guided Implants -->
-        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold">
-              <i class="fa fa-microchip"></i>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
-              Robotic Precision
-            </span>
-            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-blue-700 transition-colors">
-              Straumann® Guided Implants
-            </h3>
-            <p class="text-xs text-slate-500 leading-relaxed">
-              Swiss Titanium fixture placed with 3D surgical guides. No cuts, no stitches, and immediate healing under local luxury sedation.
-            </p>
-            <div class="pt-2">
-              <span class="text-xs text-slate-400 block font-medium">Single Tooth Fixture</span>
-              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 85,000</span>
-              <span class="text-[11px] text-slate-400 block">Includes 3D CBCT scan & guide</span>
-            </div>
-          </div>
-          <button onclick="bookTreatment('Straumann® Dental Implant', 'PKR 85,000', 'dr-ahmed')"
-            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
-            <span>Book Package</span>
-            <span>➔</span>
-          </button>
-        </div>
-
-        <!-- Package 3: Invisalign Clear Braces -->
-        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg font-bold">
-              <i class="fa fa-wand-magic-sparkles"></i>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">
-              Invisible Orthodontics
-            </span>
-            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-amber-700 transition-colors">
-              Invisalign® Clear Braces
-            </h3>
-            <p class="text-xs text-slate-500 leading-relaxed">
-              3D intraoral digital scan and clear aligner series. Straighten your smile comfortably without wires, brackets, or food restrictions.
-            </p>
-            <div class="pt-2">
-              <span class="text-xs text-slate-400 block font-medium">Full Comprehensive Case</span>
-              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 280,000</span>
-              <span class="text-[11px] text-slate-400 block">Complete tray sequence & retention</span>
-            </div>
-          </div>
-          <button onclick="bookTreatment('Invisalign® Clear Braces', 'PKR 280,000', 'dr-sara')"
-            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-amber-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
-            <span>Book Package</span>
-            <span>➔</span>
-          </button>
-        </div>
-
-        <!-- Package 4: EMS Airflow Spa Cleaning -->
-        <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/80 hover:border-cyan-400 hover:shadow-diffuse-lg transition-all duration-300 flex flex-col justify-between group">
-          <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg font-bold">
-              <i class="fa fa-leaf"></i>
-            </div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full">
-              Painless Biofilm Therapy
-            </span>
-            <h3 class="font-display font-extrabold text-xl text-slate-900 group-hover:text-teal-700 transition-colors">
-              EMS Airflow® Spa Cleaning
-            </h3>
-            <p class="text-xs text-slate-500 leading-relaxed">
-              Gentle warm water and micro-powder spray removes all tea, coffee, and nicotine stains with zero scraping or gum sensitivity.
-            </p>
-            <div class="pt-2">
-              <span class="text-xs text-slate-400 block font-medium">Full Spa Session</span>
-              <span class="font-display font-extrabold text-2xl text-slate-900">PKR 6,500</span>
-              <span class="text-[11px] text-slate-400 block">45-minute revitalizing appointment</span>
-            </div>
-          </div>
-          <button onclick="bookTreatment('EMS Airflow® Spa Cleaning', 'PKR 6,500', 'dr-sophia')"
-            class="mt-6 w-full py-3 rounded-full bg-slate-900 hover:bg-teal-600 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2">
-            <span>Book Package</span>
-            <span>➔</span>
-          </button>
-        </div>
-
-      </div>
-
+  <footer class="w-full pb-4 sm:pb-6 pt-2 px-4 sm:px-12 max-w-[1440px] mx-auto flex items-center justify-between text-[11px] text-slate-400">
+    <div>
+      <!-- Clean Minimal Subtext -->
+      <span>&copy; 2026 Precision Dentistry • DHA Phase 6 Karachi</span>
     </div>
-  </section>
 
-
-  <!-- ══════════════════════════════════════════════════════════
-       SPECIALIST DOCTORS SECTION ("SPECIALISTS")
-       ══════════════════════════════════════════════════════════ -->
-  <section id="specialists" class="py-20 bg-slate-50/70 border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-
-      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <span class="text-xs uppercase font-bold tracking-widest text-cyan-600 block">
-          Board-Certified Team
-        </span>
-        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
-          Specialist Surgical Suites
-        </h2>
-        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">
-          Dedicated private acoustic suites designed for zero hospital smell, zero pain, and extreme precision.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <!-- Specialist 1 -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-diffuse hover:shadow-diffuse-lg transition-all duration-300 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">Suite 1 • In Surgery</span>
-            <span class="text-xs text-slate-400 font-mono">16+ Yrs Exp</span>
-          </div>
-          <div>
-            <h3 class="font-display font-extrabold text-xl text-slate-900">Dr. Ahmed Khan</h3>
-            <p class="text-xs text-cyan-600 font-semibold mt-0.5">BDS, RDS, FICOI (USA) • Chief Implantologist</p>
-          </div>
-          <p class="text-xs text-slate-500 leading-relaxed">
-            Pioneer in computer-guided keyhole implants in Pakistan. Over 4,500 successful surgical implants with zero nerve damage.
-          </p>
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500">Available: Mon, Wed, Fri, Sat</span>
-            <button onclick="selectDoctor('dr-ahmed')" class="text-brand-navy font-bold hover:text-cyan-600 transition-colors">
-              Select Suite 1 ➔
-            </button>
-          </div>
-        </div>
-
-        <!-- Specialist 2 -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-diffuse hover:shadow-diffuse-lg transition-all duration-300 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Suite 2 • Ready</span>
-            <span class="text-xs text-slate-400 font-mono">Swiss Trained</span>
-          </div>
-          <div>
-            <h3 class="font-display font-extrabold text-xl text-slate-900">Dr. Sophia Vance</h3>
-            <p class="text-xs text-cyan-600 font-semibold mt-0.5">DDS, MSc Aesthetic Dentistry (Zurich)</p>
-          </div>
-          <p class="text-xs text-slate-500 leading-relaxed">
-            Specialist in ultra-natural porcelain veneers, smile symmetry, and micro-aesthetic gum contouring with zero tooth reduction.
-          </p>
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500">Available: Tue, Thu, Fri, Sun</span>
-            <button onclick="selectDoctor('dr-sophia')" class="text-brand-navy font-bold hover:text-cyan-600 transition-colors">
-              Select Suite 2 ➔
-            </button>
-          </div>
-        </div>
-
-        <!-- Specialist 3 -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-diffuse hover:shadow-diffuse-lg transition-all duration-300 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">Suite 3 • Ready</span>
-            <span class="text-xs text-slate-400 font-mono">Align Specialist</span>
-          </div>
-          <div>
-            <h3 class="font-display font-extrabold text-xl text-slate-900">Dr. Sara Malik</h3>
-            <p class="text-xs text-cyan-600 font-semibold mt-0.5">BDS, FCPS Orthodontics • Clear Aligners</p>
-          </div>
-          <p class="text-xs text-slate-500 leading-relaxed">
-            Invisalign® certified provider specializing in adult orthodontics, bite correction, and aesthetic smile harmonization.
-          </p>
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500">Available: Mon, Tue, Thu, Sat</span>
-            <button onclick="selectDoctor('dr-sara')" class="text-brand-navy font-bold hover:text-cyan-600 transition-colors">
-              Select Suite 3 ➔
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       CONTACT & LOCATION SECTION ("CONTACT US")
-       ══════════════════════════════════════════════════════════ -->
-  <section id="contact" class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-      <div class="bg-[#0a192f] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
-          <div class="space-y-5">
-            <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 block">
-              Karachi Location &amp; Concierge
-            </span>
-            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
-              Visit Our Private Dental Spa
-            </h2>
-            <p class="text-slate-300 text-sm leading-relaxed max-w-md">
-              Located on Main Shahbaz Commercial in DHA Phase 6. Enjoy complimentary valet parking and private acoustic suites upon arrival.
-            </p>
-            <div class="space-y-3 text-xs sm:text-sm text-slate-200">
-              <div class="flex items-center gap-3">
-                <i class="fa fa-location-dot text-cyan-400 w-5"></i>
-                <span>Main Shahbaz Commercial, DHA Phase 6, Karachi</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <i class="fa fa-phone text-cyan-400 w-5"></i>
-                <span>+92 300 1234567 • Desk Line: 021-35849201</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <i class="fa fa-clock text-cyan-400 w-5"></i>
-                <span>Mon – Sat: 10:00 AM – 8:00 PM • Sun: By Prior Appointment</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 space-y-4">
-            <h3 class="font-display font-bold text-lg text-white">Need Immediate Appointment?</h3>
-            <p class="text-xs text-slate-300">
-              Book online to receive an automated sequential token number and Google Calendar reminder immediately.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-3 pt-2">
-              <button onclick="openBookingModal()"
-                class="px-6 py-3.5 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-extrabold text-xs transition-colors flex items-center justify-center gap-2">
-                <span>Book Instant Token</span>
-                <span>➔</span>
-              </button>
-              <a href="admin.html"
-                class="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-colors flex items-center justify-center gap-2">
-                <i class="fa fa-lock"></i>
-                <span>Staff Portal</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       FOOTER
-       ══════════════════════════════════════════════════════════ -->
-  <footer class="bg-white border-t border-slate-100 py-8 text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-display font-bold text-slate-900">PRECISION DENTISTRY</span>
-        <span>&bull;</span>
-        <span>Aura Dental Spa DHA Phase 6 Karachi</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="#hero" class="hover:text-slate-900 transition-colors">Home</a>
-        <a href="#packages" class="hover:text-slate-900 transition-colors">Packages</a>
-        <a href="admin.html" class="text-cyan-700 font-bold hover:underline flex items-center gap-1">
-          <i class="fa fa-lock text-[10px]"></i> Staff Admin Desk
-        </a>
-      </div>
-    </div>
+    <!-- Bottom-Right Chat Bubble Button (Exact Video Match) -->
+    <a href="https://wa.me/923001234567?text=Assalam-o-Alaikum%20Precision%20Dentistry!%20I%20want%20to%20inquire%20about%20dental%20care."
+      target="_blank" rel="noopener noreferrer"
+      class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0d3b82] hover:bg-[#092c64] text-white flex items-center justify-center text-sm sm:text-base shadow-lg transition-transform hover:scale-105"
+      title="Chat with Precision Dentistry Concierge">
+      <!-- Chat message bubble icon from video -->
+      <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+      </svg>
+    </a>
   </footer>
 
 
   <!-- ══════════════════════════════════════════════════════════
-       BOOKING MODAL (Connected to ClinicStore & LocalStorage)
+       PACKAGES OVERLAY MODAL ("PACKAGES" link in navbar)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="packages-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto">
+      <button onclick="closePackagesModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800">
+        <i class="fa fa-xmark text-lg"></i>
+      </button>
+
+      <div class="mb-6">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-700 block mb-1">Precision Clinical Care</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-950">Advanced Dental Packages</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">DHA Phase 6 Karachi transparent rates with computer-guided technology.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- 1 -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Veneers</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-2">Hollywood Smile Porcelain Veneers</h3>
+            <p class="text-xs text-slate-500 mt-1">0.3mm handcrafted Swiss E.max ultra-thin porcelain veneers. No natural tooth grinding.</p>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 block">Investment</span>
+              <span class="font-display font-bold text-lg text-slate-900">PKR 210,000</span>
+            </div>
+          </div>
+          <button onclick="selectPackageBooking('Hollywood Smile Porcelain Veneers', 'PKR 210,000', 'dr-sophia')"
+            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
+        </div>
+
+        <!-- 2 -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded">Implants</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-2">Straumann® Guided Implants</h3>
+            <p class="text-xs text-slate-500 mt-1">Swiss Titanium fixture placed with 3D robotic guides. Pain-free, no cuts, no stitches.</p>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 block">Investment</span>
+              <span class="font-display font-bold text-lg text-slate-900">PKR 85,000</span>
+            </div>
+          </div>
+          <button onclick="selectPackageBooking('Straumann® Dental Implant', 'PKR 85,000', 'dr-ahmed')"
+            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
+        </div>
+
+        <!-- 3 -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Aligners</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-2">Invisalign® Clear Braces</h3>
+            <p class="text-xs text-slate-500 mt-1">3D intraoral digital scanned clear aligners series. Invisible and comfortable.</p>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 block">Investment</span>
+              <span class="font-display font-bold text-lg text-slate-900">PKR 280,000</span>
+            </div>
+          </div>
+          <button onclick="selectPackageBooking('Invisalign® Clear Braces', 'PKR 280,000', 'dr-sara')"
+            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
+        </div>
+
+        <!-- 4 -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase text-teal-700 bg-teal-50 px-2 py-0.5 rounded">Spa Clean</span>
+            <h3 class="font-display font-bold text-base text-slate-900 mt-2">EMS Airflow® Spa Cleaning</h3>
+            <p class="text-xs text-slate-500 mt-1">Warm water Swiss Airflow biofilm therapy. Eliminates all tea and coffee stains gently.</p>
+            <div class="mt-3">
+              <span class="text-xs text-slate-400 block">Investment</span>
+              <span class="font-display font-bold text-lg text-slate-900">PKR 6,500</span>
+            </div>
+          </div>
+          <button onclick="selectPackageBooking('EMS Airflow® Spa Cleaning', 'PKR 6,500', 'dr-sophia')"
+            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       CONTACT OVERLAY MODAL ("CONTACT US" link in navbar)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="contact-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-auto">
+      <button onclick="closeContactModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800">
+        <i class="fa fa-xmark text-lg"></i>
+      </button>
+
+      <span class="text-xs font-bold uppercase tracking-widest text-blue-700 block mb-1">DHA Phase 6 Karachi</span>
+      <h3 class="font-display font-extrabold text-2xl text-slate-950 mb-4">Contact Precision Clinic</h3>
+
+      <div class="space-y-3.5 text-xs text-slate-600 mb-6">
+        <div class="flex items-start gap-3">
+          <i class="fa fa-location-dot text-blue-600 mt-0.5"></i>
+          <span>Main Shahbaz Commercial, DHA Phase 6, Karachi (Complimentary Valet at entrance)</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fa fa-phone text-blue-600"></i>
+          <span>+92 300 1234567 • Desk Line: 021-35849201</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fa fa-clock text-blue-600"></i>
+          <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeContactModal(); openBookingModal();" class="btn-video-blue flex-1 py-3 text-xs">
+          Book Visit ➔
+        </button>
+        <a href="admin.html" class="px-4 py-3 rounded-full border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5">
+          <i class="fa fa-lock text-[10px]"></i> Staff Desk
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       BOOKING MODAL (Connects directly to ClinicStore & Admin)
        ══════════════════════════════════════════════════════════ -->
   <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative my-auto max-h-[92dvh] overflow-y-auto">
-
-      <button onclick="closeBookingModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto max-h-[92dvh] overflow-y-auto">
+      <button onclick="closeBookingModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800">
         <i class="fa fa-xmark text-lg"></i>
       </button>
 
       <div class="mb-5">
-        <span class="text-xs uppercase tracking-widest font-bold text-cyan-600 block mb-1">
-          Precision Digital Booking
-        </span>
-        <h3 class="font-display font-extrabold text-2xl text-slate-900">
-          Book Your Dental Visit
-        </h3>
-        <p class="text-xs text-slate-500 mt-1">
-          Direct sequential queue token with automated Google Calendar alert.
-        </p>
+        <span class="text-xs uppercase tracking-widest font-bold text-blue-700 block mb-1">Online Reception Desk</span>
+        <h3 class="font-display font-extrabold text-2xl text-slate-950">Book Your Visit</h3>
+        <p class="text-xs text-slate-500 mt-1">Direct sequential voucher token with automated calendar alert.</p>
       </div>
 
       <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4 text-xs font-semibold text-slate-700">
-
-        <!-- Full Name -->
         <div>
           <label class="block mb-1 text-slate-600">Patient Full Name *</label>
           <input id="book-name" type="text" required placeholder="e.g. Ayesha Tariq"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
         </div>
 
-        <!-- Phone & Email -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block mb-1 text-slate-600">WhatsApp / Phone *</label>
+            <label class="block mb-1 text-slate-600">WhatsApp / Mobile *</label>
             <input id="book-phone" type="tel" required placeholder="03218492019"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
           </div>
           <div>
             <label class="block mb-1 text-slate-600">Email Address *</label>
             <input id="book-email" type="email" required placeholder="patient@gmail.com"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
           </div>
         </div>
 
-        <!-- Doctor & Treatment -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block mb-1 text-slate-600">Specialist Doctor *</label>
-            <select id="book-doc" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all">
+            <label class="block mb-1 text-slate-600">Specialist *</label>
+            <select id="book-doc" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600">
               <option value="dr-ahmed">Dr. Ahmed Khan (Suite 1 - Implants)</option>
               <option value="dr-sophia">Dr. Sophia Vance (Suite 2 - Veneers)</option>
               <option value="dr-sara">Dr. Sara Malik (Suite 3 - Aligners)</option>
             </select>
           </div>
           <div>
-            <label class="block mb-1 text-slate-600">Package / Care *</label>
-            <select id="book-treatment" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all">
+            <label class="block mb-1 text-slate-600">Treatment *</label>
+            <select id="book-treatment" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600">
               <option value="Hollywood Smile Porcelain Veneers|PKR 210,000">Hollywood Smile Veneers (PKR 210,000)</option>
               <option value="Straumann® Dental Implant|PKR 85,000">Straumann® Implants (PKR 85,000)</option>
               <option value="Invisalign® Clear Braces|PKR 280,000">Invisalign® Clear Braces (PKR 280,000)</option>
               <option value="EMS Airflow® Spa Cleaning|PKR 6,500">EMS Airflow® Spa Cleaning (PKR 6,500)</option>
-              <option value="Comprehensive Dental Checkup|PKR 3,500">Comprehensive Checkup &amp; Scan (PKR 3,500)</option>
+              <option value="Comprehensive 3D Scan & Consultation|PKR 3,500">3D Scan &amp; Consultation (PKR 3,500)</option>
             </select>
           </div>
         </div>
 
-        <!-- Date & Slot -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block mb-1 text-slate-600">Preferred Date *</label>
+            <label class="block mb-1 text-slate-600">Date *</label>
             <input id="book-date" type="date" required
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all" />
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
           </div>
           <div>
-            <label class="block mb-1 text-slate-600">Preferred Slot *</label>
-            <select id="book-slot" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-cyan-500 transition-all">
-              <option value="10:00 AM">10:00 AM (Morning)</option>
-              <option value="11:30 AM">11:30 AM (Late Morning)</option>
-              <option value="02:00 PM">02:00 PM (Afternoon)</option>
-              <option value="03:30 PM">03:30 PM (Mid Afternoon)</option>
-              <option value="05:00 PM">05:00 PM (Evening)</option>
-              <option value="06:30 PM">06:30 PM (Night Slot)</option>
+            <label class="block mb-1 text-slate-600">Time Slot *</label>
+            <select id="book-slot" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600">
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="03:30 PM">03:30 PM</option>
+              <option value="05:00 PM">05:00 PM</option>
+              <option value="06:30 PM">06:30 PM</option>
             </select>
           </div>
         </div>
 
-        <!-- Submit Button -->
-        <div class="pt-3 flex gap-3">
-          <button type="button" onclick="closeBookingModal()" class="w-1/3 py-3.5 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">
-            Cancel
-          </button>
-          <button type="submit" class="w-2/3 py-3.5 rounded-full bg-[#0a192f] hover:bg-[#112240] text-white font-bold transition-all shadow-md">
-            Confirm &amp; Generate Voucher ➔
-          </button>
+        <div class="pt-2 flex gap-3">
+          <button type="button" onclick="closeBookingModal()" class="w-1/3 py-3.5 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50">Cancel</button>
+          <button type="submit" class="btn-video-blue w-2/3 py-3.5 text-xs">Confirm Visit ➔</button>
         </div>
-
       </form>
 
-      <!-- Booking Result Preview (Hidden until booked) -->
+      <!-- Booking Result -->
       <div id="booking-success-view" class="hidden space-y-4 pt-3">
-        <div class="p-4 rounded-2xl bg-cyan-50 border border-cyan-200 text-center space-y-1">
-          <div class="w-10 h-10 rounded-full bg-cyan-500 text-white flex items-center justify-center mx-auto text-base">
+        <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-center space-y-1">
+          <div class="w-10 h-10 rounded-full bg-[#0d3b82] text-white flex items-center justify-center mx-auto text-base">
             <i class="fa fa-check"></i>
           </div>
-          <h4 class="font-display font-bold text-lg text-slate-900">Appointment Confirmed!</h4>
+          <h4 class="font-display font-bold text-lg text-slate-900">Voucher Issued!</h4>
           <p class="text-xs text-slate-600" id="res-token-sub">Sequential Voucher Generated</p>
         </div>
 
         <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
-          <div class="flex justify-between"><span class="text-slate-400">Voucher Token:</span><strong id="res-token" class="font-mono text-cyan-700">SPA-006</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Queue Position:</span><strong id="res-queue" class="text-slate-900">#6 in line</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Token ID:</span><strong id="res-token" class="font-mono text-blue-700">SPA-006</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Queue Order:</span><strong id="res-queue" class="text-slate-900">#6 in line</strong></div>
           <div class="flex justify-between"><span class="text-slate-400">Patient:</span><strong id="res-name" class="text-slate-900">Patient Name</strong></div>
           <div class="flex justify-between"><span class="text-slate-400">Treatment:</span><strong id="res-treatment" class="text-slate-900">Treatment</strong></div>
           <div class="flex justify-between"><span class="text-slate-400">Specialist:</span><strong id="res-doc" class="text-slate-900">Doctor</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Time &amp; Suite:</span><strong id="res-time" class="text-slate-900">Slot</strong></div>
+          <div class="flex justify-between"><span class="text-slate-400">Schedule:</span><strong id="res-time" class="text-slate-900">Slot</strong></div>
         </div>
 
         <div class="grid grid-cols-2 gap-2 pt-1">
           <a id="res-gcal-btn" href="#" target="_blank" rel="noopener noreferrer"
-            class="py-2.5 px-3 rounded-xl bg-white border border-slate-200 hover:border-cyan-500 text-slate-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
-            <i class="fa fa-calendar text-cyan-600"></i> Google Cal
+            class="py-2.5 px-3 rounded-xl bg-white border border-slate-200 hover:border-blue-500 text-slate-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
+            <i class="fa fa-calendar text-blue-600"></i> Google Cal
           </a>
           <button id="res-wa-btn" type="button"
             class="py-2.5 px-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
@@ -859,9 +632,7 @@
         </div>
 
         <button onclick="closeBookingModal(); location.reload();"
-          class="w-full py-3 rounded-full bg-slate-900 text-white font-bold text-xs mt-2">
-          Done
-        </button>
+          class="btn-video-blue w-full py-3 text-xs mt-2">Done</button>
       </div>
 
     </div>
@@ -869,146 +640,88 @@
 
 
   <!-- ══════════════════════════════════════════════════════════
-       CHECK QUEUE VOUCHER STATUS MODAL
-       ══════════════════════════════════════════════════════════ -->
-  <div id="check-queue-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative my-auto">
-      <button onclick="closeCheckQueueModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
-        <i class="fa fa-xmark text-lg"></i>
-      </button>
-
-      <div class="mb-5">
-        <span class="text-xs uppercase tracking-widest font-bold text-cyan-600 block mb-1">
-          Live Patient Desk
-        </span>
-        <h3 class="font-display font-extrabold text-2xl text-slate-900">
-          Check Voucher Status
-        </h3>
-        <p class="text-xs text-slate-500 mt-1">
-          Enter your Token ID (e.g. SPA-001) or phone number to view live queue position.
-        </p>
-      </div>
-
-      <div class="flex gap-2 mb-4">
-        <input id="chk-query" type="text" placeholder="SPA-001 or 03218492019"
-          class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs font-mono uppercase focus:outline-none focus:border-cyan-500" />
-        <button onclick="performVoucherLookup()"
-          class="px-5 py-2.5 rounded-xl bg-brand-navy hover:bg-slate-800 text-white text-xs font-bold transition-colors">
-          Search
-        </button>
-      </div>
-
-      <div id="chk-result-box" class="space-y-3 min-h-[80px]">
-        <p class="text-xs text-slate-400 text-center py-6">Enter voucher number to view live status.</p>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       INTERACTIVE 3D TOOTH SCRIPT & LASER SCANNER LOGIC
+       JAVASCRIPT: THREE.JS TOOTH + LASER RING + ANATOMY
        ══════════════════════════════════════════════════════════ -->
   <script>
-    // State
-    let isAnatomyMode = false;
-    let toothGroup = null;
-    let laserRing = null;
-    let laserBeam = null;
-    let exteriorMesh = null;
-    let anatomyMesh = null;
-    let renderer, scene, camera;
+    let scene, camera, renderer, toothGroup, laserRing, laserBeam;
+    let isAnatomyRevealed = false;
+    let isUserDragging = false;
+    let prevMouse = { x: 0, y: 0 };
 
-    // Initialize 3D Tooth Scene
-    function init3DTooth() {
-      const container = document.getElementById('three-tooth-container');
+    function initThreeScene() {
+      const container = document.getElementById('tooth-3d-canvas');
       if (!container) return;
 
       const width = container.clientWidth || 440;
-      const height = container.clientHeight || 420;
+      const height = container.clientHeight || 400;
 
-      // 1. Scene
       scene = new THREE.Scene();
 
-      // 2. Camera
-      camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-      camera.position.set(0, 0, 7.2);
+      camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+      camera.position.set(0, 0, 7.5);
 
-      // 3. Renderer with high-DPI anti-aliasing
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       container.innerHTML = '';
       container.appendChild(renderer.domElement);
 
-      // 4. Lights: Studio Key + Fill + Rim + Neon Laser Glow Light
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
-      scene.add(ambientLight);
+      // Studio Lighting for Glossy Ceramic Porcelain
+      const ambLight = new THREE.AmbientLight(0xffffff, 0.8);
+      scene.add(ambLight);
 
-      const keyLight = new THREE.DirectionalLight(0xffffff, 0.95);
-      keyLight.position.set(5, 8, 6);
-      scene.add(keyLight);
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.1);
+      dirLight.position.set(5, 8, 6);
+      scene.add(dirLight);
 
-      const fillLight = new THREE.DirectionalLight(0xe0f2fe, 0.5);
-      fillLight.position.set(-5, 2, 4);
-      scene.add(fillLight);
-
-      const rimLight = new THREE.DirectionalLight(0x00d2ff, 0.85);
-      rimLight.position.set(0, -4, -4);
+      const rimLight = new THREE.DirectionalLight(0x00d2ff, 0.9);
+      rimLight.position.set(-4, -2, -3);
       scene.add(rimLight);
 
-      // 5. Tooth Root Group
       toothGroup = new THREE.Group();
       scene.add(toothGroup);
 
-      // ── BUILD PROCEDURAL 3D TOOTH MODEL ──
-      buildProceduralTooth();
+      // Build Glossy Ceramic Tooth (Matching Video)
+      buildCeramicTooth();
 
-      // ── BUILD GLOWING CYAN LASER SCAN RING (Matching Video) ──
-      buildLaserRing();
+      // Build Cyan Glowing Laser Ring (Matching Video)
+      buildCyanLaserRing();
 
-      // Mouse drag rotation & interaction
-      setupInteraction(container);
+      // Mouse drag controls
+      container.addEventListener('mousedown', (e) => {
+        isUserDragging = true;
+        prevMouse = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mouseup', () => { isUserDragging = false; });
+      window.addEventListener('mousemove', (e) => {
+        if (isUserDragging && toothGroup) {
+          const dx = e.clientX - prevMouse.x;
+          const dy = e.clientY - prevMouse.y;
+          toothGroup.rotation.y += dx * 0.012;
+          toothGroup.rotation.x += dy * 0.012;
+          prevMouse = { x: e.clientX, y: e.clientY };
+        }
+      });
 
-      // Animation loop
-      animate();
+      // Animation Loop
+      animateScene();
 
-      // Responsive resize
       window.addEventListener('resize', onWindowResize);
     }
 
-    // Build anatomical tooth geometry
-    function buildProceduralTooth() {
-      // 1. Enamel Material (High gloss white ceramic with subtle specular translucency)
-      const enamelMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffffff,
-        roughness: 0.15,
-        metalness: 0.05,
-        shadowSide: THREE.DoubleSide
+    function buildCeramicTooth() {
+      const enamelMat = new THREE.MeshPhysicalMaterial({
+        color: 0xfcfdfd,
+        roughness: 0.12,
+        metalness: 0.04,
+        clearcoat: 0.9,
+        clearcoatRoughness: 0.08,
+        reflectivity: 0.75
       });
 
-      // 2. Dentin Material (Warm creamy ivory-gold for anatomy cutaway)
-      const dentinMaterial = new THREE.MeshStandardMaterial({
-        color: 0xfef08a,
-        roughness: 0.4,
-        metalness: 0.0
-      });
-
-      // 3. Pulp Material (Crimson red vascular chamber)
-      const pulpMaterial = new THREE.MeshStandardMaterial({
-        color: 0xef4444,
-        emissive: 0x991b1b,
-        emissiveIntensity: 0.35,
-        roughness: 0.3
-      });
-
-      // ── EXTERIOR FULL TOOTH GROUP ──
-      exteriorMesh = new THREE.Group();
-
-      // Crown: Rounded molar dome with 4 cusps
-      const crownGeo = new THREE.CylinderGeometry(1.2, 1.0, 1.3, 32, 16);
-      // Deform cylinder vertices to form anatomical tooth crown cusps
+      // Anatomical Crown with 4 cusps
+      const crownGeo = new THREE.CylinderGeometry(1.22, 1.02, 1.35, 36, 16);
       const pos = crownGeo.attributes.position;
       for (let i = 0; i < pos.count; i++) {
         let x = pos.getX(i);
@@ -1016,116 +729,67 @@
         let z = pos.getZ(i);
 
         if (y > 0.3) {
-          // 4 distinct rounded cusp peaks
-          const cuspBump = Math.sin(x * 3.5) * Math.cos(z * 3.5) * 0.22;
-          const centralDepression = (1 - (x * x + z * z) * 0.4) * 0.12;
-          pos.setY(i, y + cuspBump - centralDepression);
+          // 4 natural anatomical cusps
+          const cuspBump = Math.sin(x * 3.4) * Math.cos(z * 3.4) * 0.24;
+          const groove = (1 - (x * x + z * z) * 0.4) * 0.1;
+          pos.setY(i, y + cuspBump - groove);
         } else if (y < -0.3) {
           // Cervical neck taper
-          const factor = 0.92;
-          pos.setX(i, x * factor);
-          pos.setZ(i, z * factor);
+          pos.setX(i, x * 0.92);
+          pos.setZ(i, z * 0.92);
         }
       }
       crownGeo.computeVertexNormals();
 
-      const crown = new THREE.Mesh(crownGeo, enamelMaterial);
-      crown.position.y = 0.65;
-      exteriorMesh.add(crown);
+      const crown = new THREE.Mesh(crownGeo, enamelMat);
+      crown.position.y = 0.7;
+      toothGroup.add(crown);
 
-      // Root 1 (Left tapering root)
-      const root1Geo = new THREE.ConeGeometry(0.5, 1.6, 24);
-      const root1 = new THREE.Mesh(root1Geo, enamelMaterial);
+      // Root 1 (Tapered left root)
+      const root1Geo = new THREE.ConeGeometry(0.5, 1.65, 28);
+      const root1 = new THREE.Mesh(root1Geo, enamelMat);
       root1.rotation.z = Math.PI;
-      root1.rotation.x = -0.12;
-      root1.position.set(-0.45, -0.75, 0);
-      exteriorMesh.add(root1);
+      root1.rotation.x = -0.1;
+      root1.position.set(-0.46, -0.75, 0);
+      toothGroup.add(root1);
 
-      // Root 2 (Right tapering root)
-      const root2Geo = new THREE.ConeGeometry(0.5, 1.6, 24);
-      const root2 = new THREE.Mesh(root2Geo, enamelMaterial);
+      // Root 2 (Tapered right root)
+      const root2Geo = new THREE.ConeGeometry(0.5, 1.65, 28);
+      const root2 = new THREE.Mesh(root2Geo, enamelMat);
       root2.rotation.z = Math.PI;
-      root2.rotation.x = 0.12;
-      root2.position.set(0.45, -0.75, 0);
-      exteriorMesh.add(root2);
+      root2.rotation.x = 0.1;
+      root2.position.set(0.46, -0.75, 0);
+      toothGroup.add(root2);
 
-      toothGroup.add(exteriorMesh);
-
-      // ── ANATOMY CUTAWAY TOOTH GROUP (Revealed when clicked/hovered) ──
-      anatomyMesh = new THREE.Group();
-      anatomyMesh.visible = false;
-
-      // Cutaway Crown (Half tooth with exposed layers)
-      const halfCrownGeo = new THREE.CylinderGeometry(1.2, 1.0, 1.3, 32, 16, false, 0, Math.PI);
-      const halfCrown = new THREE.Mesh(halfCrownGeo, enamelMaterial);
-      halfCrown.position.y = 0.65;
-      anatomyMesh.add(halfCrown);
-
-      // Inner Dentin Core
-      const dentinGeo = new THREE.CylinderGeometry(0.95, 0.75, 1.1, 24, 8, false, 0, Math.PI);
-      const dentin = new THREE.Mesh(dentinGeo, dentinMaterial);
-      dentin.position.y = 0.62;
-      dentin.position.z = -0.05;
-      anatomyMesh.add(dentin);
-
-      // Central Vascular Pulp Chamber (Red)
-      const pulpGeo = new THREE.CylinderGeometry(0.35, 0.2, 0.8, 16);
-      const pulp = new THREE.Mesh(pulpGeo, pulpMaterial);
-      pulp.position.y = 0.55;
-      anatomyMesh.add(pulp);
-
-      // Exposed Root Canals
-      const canal1 = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.04, 1.4, 12), pulpMaterial);
-      canal1.position.set(-0.45, -0.65, 0);
-      anatomyMesh.add(canal1);
-
-      const canal2 = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.04, 1.4, 12), pulpMaterial);
-      canal2.position.set(0.45, -0.65, 0);
-      anatomyMesh.add(canal2);
-
-      // Cutaway Root half
-      const halfRoot1 = new THREE.Mesh(new THREE.ConeGeometry(0.5, 1.6, 24, 1, false, 0, Math.PI), enamelMaterial);
-      halfRoot1.rotation.z = Math.PI;
-      halfRoot1.position.set(-0.45, -0.75, 0);
-      anatomyMesh.add(halfRoot1);
-
-      const halfRoot2 = new THREE.Mesh(new THREE.ConeGeometry(0.5, 1.6, 24, 1, false, 0, Math.PI), enamelMaterial);
-      halfRoot2.rotation.z = Math.PI;
-      halfRoot2.position.set(0.45, -0.75, 0);
-      anatomyMesh.add(halfRoot2);
-
-      toothGroup.add(anatomyMesh);
-
-      // Soft ground ambient shadow disc
+      // Soft ground ambient occlusion shadow
       const shadowGeo = new THREE.CircleGeometry(1.6, 32);
-      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.18 });
-      const groundShadow = new THREE.Mesh(shadowGeo, shadowMat);
-      groundShadow.rotation.x = -Math.PI / 2;
-      groundShadow.position.y = -1.8;
-      toothGroup.add(groundShadow);
+      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.15 });
+      const shadow = new THREE.Mesh(shadowGeo, shadowMat);
+      shadow.rotation.x = -Math.PI / 2;
+      shadow.position.y = -1.85;
+      toothGroup.add(shadow);
     }
 
-    // Build the Glowing Cyan Laser Scanner Ring
-    function buildLaserRing() {
-      // 1. Torus Ring
-      const ringGeo = new THREE.TorusGeometry(1.95, 0.035, 16, 100);
+    function buildCyanLaserRing() {
+      // 1. Neon Cyan Torus Ring
+      const ringGeo = new THREE.TorusGeometry(2.0, 0.038, 16, 100);
       const ringMat = new THREE.MeshBasicMaterial({
         color: 0x00d2ff,
         transparent: true,
-        opacity: 0.95
+        opacity: 0.92
       });
       laserRing = new THREE.Mesh(ringGeo, ringMat);
       laserRing.rotation.x = Math.PI / 2.3;
-      laserRing.rotation.y = 0.2;
+      laserRing.rotation.y = 0.22;
       laserRing.position.y = 0.2;
       scene.add(laserRing);
 
       // 2. Faint Laser Disc Scanner
-      const discGeo = new THREE.RingGeometry(0.2, 1.9, 32);
+      const discGeo = new THREE.RingGeometry(0.2, 1.95, 32);
       const discMat = new THREE.MeshBasicMaterial({
         color: 0x00d2ff,
         transparent: true,
-        opacity: 0.12,
+        opacity: 0.1,
         side: THREE.DoubleSide
       });
       laserBeam = new THREE.Mesh(discGeo, discMat);
@@ -1134,121 +798,31 @@
       scene.add(laserBeam);
     }
 
-    // Interaction handling (drag & click)
-    let isDragging = false;
-    let previousMousePosition = { x: 0, y: 0 };
-
-    function setupInteraction(domElement) {
-      domElement.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        previousMousePosition = { x: e.clientX, y: e.clientY };
-      });
-
-      window.addEventListener('mouseup', () => { isDragging = false; });
-
-      domElement.addEventListener('mousemove', (e) => {
-        if (!isDragging && toothGroup) {
-          // Subtle mouse parallax tilt
-          const rect = domElement.getBoundingClientRect();
-          const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-          const normY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-          toothGroup.rotation.y += (normX * 0.45 - toothGroup.rotation.y) * 0.05;
-          toothGroup.rotation.x += (-normY * 0.25 - toothGroup.rotation.x) * 0.05;
-        } else if (isDragging && toothGroup) {
-          const deltaX = e.clientX - previousMousePosition.x;
-          const deltaY = e.clientY - previousMousePosition.y;
-          toothGroup.rotation.y += deltaX * 0.012;
-          toothGroup.rotation.x += deltaY * 0.012;
-          previousMousePosition = { x: e.clientX, y: e.clientY };
-        }
-      });
-
-      // Hover / Click to trigger Anatomy cutaway view (Matching Video)
-      domElement.addEventListener('click', () => {
-        toggleAnatomyMode();
-      });
-
-      // Touch events for mobile
-      domElement.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-          isDragging = true;
-          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        }
-      }, { passive: true });
-
-      window.addEventListener('touchend', () => { isDragging = false; });
-
-      domElement.addEventListener('touchmove', (e) => {
-        if (isDragging && toothGroup && e.touches.length === 1) {
-          const deltaX = e.touches[0].clientX - previousMousePosition.x;
-          toothGroup.rotation.y += deltaX * 0.015;
-          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        }
-      }, { passive: true });
-    }
-
-    // Toggle Anatomy Cutaway Mode (Matching 00:02 in Video)
-    function toggleAnatomyMode(forceState) {
-      if (typeof forceState === 'boolean') {
-        isAnatomyMode = forceState;
-      } else {
-        isAnatomyMode = !isAnatomyMode;
-      }
-
-      if (exteriorMesh && anatomyMesh) {
-        exteriorMesh.visible = !isAnatomyMode;
-        anatomyMesh.visible = isAnatomyMode;
-      }
-
-      const label = document.getElementById('anatomy-label');
-      const icon = document.getElementById('anatomy-icon');
-
-      if (isAnatomyMode) {
-        if (label) label.textContent = 'ANATOMICAL SCAN • ENAMEL & PULP';
-        if (icon) icon.className = 'fa fa-microscope text-cyan-500';
-      } else {
-        if (label) label.textContent = 'PRECISION DENTISTRY';
-        if (icon) icon.className = 'fa fa-eye text-cyan-600';
-      }
-    }
-
-    // Trigger laser pulse when badge clicked
-    function triggerAnatomyScan(badgeName) {
-      toggleAnatomyMode(true);
-      if (laserRing) {
-        laserRing.scale.set(1.15, 1.15, 1.15);
-        setTimeout(() => laserRing.scale.set(1, 1, 1), 350);
-      }
-      setTimeout(() => toggleAnatomyMode(false), 3000);
-    }
-
-    // Animation Loop
     let clock = new THREE.Clock();
 
-    function animate() {
-      requestAnimationFrame(animate);
+    function animateScene() {
+      requestAnimationFrame(animateScene);
+      const elapsed = clock.getElapsedTime();
 
-      const elapsedTime = clock.getElapsedTime();
-
-      // Slow elegant continuous idle rotation
-      if (toothGroup && !isDragging) {
+      // Idle smooth continuous rotation
+      if (toothGroup && !isUserDragging) {
         toothGroup.rotation.y += 0.0035;
       }
 
       // Laser Scanner Ring vertical oscillation & rotation
       if (laserRing && laserBeam) {
-        laserRing.rotation.z += 0.008;
-        const scanY = Math.sin(elapsedTime * 1.8) * 0.85;
+        laserRing.rotation.z += 0.007;
+        const scanY = Math.sin(elapsed * 1.8) * 0.85;
         laserRing.position.y = scanY;
         laserBeam.position.y = scanY;
-        laserBeam.material.opacity = 0.08 + Math.abs(Math.sin(elapsedTime * 2)) * 0.12;
+        laserBeam.material.opacity = 0.06 + Math.abs(Math.sin(elapsed * 2)) * 0.1;
       }
 
       renderer.render(scene, camera);
     }
 
     function onWindowResize() {
-      const container = document.getElementById('three-tooth-container');
+      const container = document.getElementById('tooth-3d-canvas');
       if (!container || !renderer || !camera) return;
       const width = container.clientWidth;
       const height = container.clientHeight;
@@ -1257,17 +831,143 @@
       renderer.setSize(width, height);
     }
 
-    // Initialize 3D on page load
+    // Toggle Anatomy Cutaway Mode (Matching 00:03 in Video)
+    function handleToothClick() {
+      isAnatomyRevealed = !isAnatomyRevealed;
+      setAnatomyCutawayVisibility(isAnatomyRevealed);
+    }
+
+    function handleToothHover(isHovering) {
+      if (isHovering) {
+        setAnatomyCutawayVisibility(true);
+      } else {
+        if (!isAnatomyRevealed) {
+          setAnatomyCutawayVisibility(false);
+        }
+      }
+    }
+
+    function setAnatomyCutawayVisibility(visible) {
+      const cutaway = document.getElementById('anatomy-cutaway-graphic');
+      const canvasDom = renderer ? renderer.domElement : null;
+
+      if (cutaway) {
+        if (visible) {
+          cutaway.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+          cutaway.classList.add('opacity-100', 'scale-100');
+          if (canvasDom) canvasDom.style.opacity = '0.15';
+        } else {
+          cutaway.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+          cutaway.classList.remove('opacity-100', 'scale-100');
+          if (canvasDom) canvasDom.style.opacity = '1';
+        }
+      }
+    }
+
+    function triggerTagPulse(tagText) {
+      setAnatomyCutawayVisibility(true);
+      setTimeout(() => {
+        if (!isAnatomyRevealed) setAnatomyCutawayVisibility(false);
+      }, 2500);
+    }
+
+    // Modals
+    function openBookingModal() {
+      const modal = document.getElementById('booking-modal');
+      const form = document.getElementById('booking-form');
+      const resView = document.getElementById('booking-success-view');
+      const dateInput = document.getElementById('book-date');
+
+      if (dateInput && !dateInput.value) {
+        dateInput.value = new Date().toISOString().split('T')[0];
+        dateInput.min = new Date().toISOString().split('T')[0];
+      }
+
+      if (form) form.classList.remove('hidden');
+      if (resView) resView.classList.add('hidden');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('booking-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function openPackagesModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('packages-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closePackagesModal() {
+      const modal = document.getElementById('packages-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function openContactModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('contact-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contact-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function selectPackageBooking(pkgName, pkgCost, docKey) {
+      closePackagesModal();
+      openBookingModal();
+      const treatSelect = document.getElementById('book-treatment');
+      const docSelect = document.getElementById('book-doc');
+      if (treatSelect) {
+        for (let opt of treatSelect.options) {
+          if (opt.value.includes(pkgName)) {
+            treatSelect.value = opt.value;
+            break;
+          }
+        }
+      }
+      if (docSelect && docKey) docSelect.value = docKey;
+    }
+
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mob-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Initialize 3D tooth when ready
     window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(init3DTooth, 100);
+      setTimeout(initThreeScene, 100);
     });
   </script>
 
   <!-- ══════════════════════════════════════════════════════════
-       CLINIC STORE & BOOKING LOGIC
+       CLINIC STORE & REAL-TIME BOOKING ENGINE (Sync with admin.html)
        ══════════════════════════════════════════════════════════ -->
   <script>
-    // Universal ClinicStore (Synchronized with admin.html)
     const DEFAULT_APPOINTMENTS = [
       {
         id: "SPA-001",
@@ -1404,80 +1104,6 @@
       }
     };
 
-    // Modal Handlers
-    function openBookingModal() {
-      const modal = document.getElementById('booking-modal');
-      const form = document.getElementById('booking-form');
-      const resView = document.getElementById('booking-success-view');
-      const dateInput = document.getElementById('book-date');
-
-      if (dateInput && !dateInput.value) {
-        dateInput.value = new Date().toISOString().split('T')[0];
-        dateInput.min = new Date().toISOString().split('T')[0];
-      }
-
-      if (form) form.classList.remove('hidden');
-      if (resView) resView.classList.add('hidden');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closeBookingModal() {
-      const modal = document.getElementById('booking-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    function openCheckQueueModal() {
-      const modal = document.getElementById('check-queue-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closeCheckQueueModal() {
-      const modal = document.getElementById('check-queue-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    function toggleMobileMenu() {
-      const drawer = document.getElementById('mobile-nav-drawer');
-      if (drawer) drawer.classList.toggle('hidden');
-    }
-
-    // Quick book preset handler
-    function bookTreatment(name, cost, docKey) {
-      openBookingModal();
-      const treatSelect = document.getElementById('book-treatment');
-      const docSelect = document.getElementById('book-doc');
-      if (treatSelect) {
-        for (let opt of treatSelect.options) {
-          if (opt.value.includes(name)) {
-            treatSelect.value = opt.value;
-            break;
-          }
-        }
-      }
-      if (docSelect && docKey) {
-        docSelect.value = docKey;
-      }
-    }
-
-    function selectDoctor(docKey) {
-      openBookingModal();
-      const docSelect = document.getElementById('book-doc');
-      if (docSelect) docSelect.value = docKey;
-    }
-
-    // Handle Form Submit
     function handleBookingSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('book-name').value.trim();
@@ -1515,7 +1141,6 @@
 
       const saved = window.ClinicStore.addAppointment(newRecord);
 
-      // Show Success View
       document.getElementById('booking-form').classList.add('hidden');
       const resView = document.getElementById('booking-success-view');
       resView.classList.remove('hidden');
@@ -1528,56 +1153,16 @@
       document.getElementById('res-doc').textContent = `${saved.doctor} (${docInfo.suite})`;
       document.getElementById('res-time').textContent = `${saved.date} at ${saved.time}`;
 
-      // Google Calendar Link
       const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Aura Dental Spa: ' + saved.treatment)}&dates=20261125T100000Z/20261125T110000Z&details=${encodeURIComponent('Voucher ' + saved.id + ' for ' + saved.name + ' with ' + saved.doctor)}&location=${encodeURIComponent('Main Shahbaz Commercial, DHA Phase 6, Karachi')}`;
       const gcalBtn = document.getElementById('res-gcal-btn');
       if (gcalBtn) gcalBtn.href = gcalUrl;
 
-      // WhatsApp direct
       const waMsg = encodeURIComponent(`Assalam-o-Alaikum! I have booked voucher ${saved.id} (Turn #${saved.queueNumber}) for ${saved.treatment} with ${saved.doctor} at Aura Dental Spa DHA Phase 6 Karachi.`);
       const waBtn = document.getElementById('res-wa-btn');
       if (waBtn) waBtn.onclick = () => window.open(`https://wa.me/923001234567?text=${waMsg}`, '_blank');
     }
-
-    // Perform Voucher Lookup in Check Queue Modal
-    function performVoucherLookup() {
-      const q = (document.getElementById('chk-query').value || '').trim().toLowerCase();
-      const box = document.getElementById('chk-result-box');
-      if (!q) {
-        box.innerHTML = '<p class="text-xs text-rose-500 text-center py-4">Please enter a valid Token ID or phone number.</p>';
-        return;
-      }
-
-      const list = window.ClinicStore.getAppointments();
-      const match = list.find(a =>
-        (a.id && a.id.toLowerCase() === q) ||
-        (a.phone && a.phone.replace(/[^0-9]/g, '').includes(q.replace(/[^0-9]/g, '')))
-      );
-
-      if (!match) {
-        box.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">No appointment found for this search. Please check your token ID or visit reception.</p>';
-        return;
-      }
-
-      let stageCls = 'bg-amber-50 text-amber-800 border-amber-200';
-      if (match.status === 'In-Chair') stageCls = 'bg-blue-50 text-blue-800 border-blue-200';
-      if (match.status === 'Completed') stageCls = 'bg-emerald-50 text-emerald-800 border-emerald-200';
-
-      box.innerHTML = `
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
-          <div class="flex items-center justify-between">
-            <span class="font-mono font-bold text-sm text-cyan-700">${match.id}</span>
-            <span class="px-2.5 py-0.5 rounded-full font-bold text-[10px] border ${stageCls}">${match.status}</span>
-          </div>
-          <div class="flex justify-between"><span class="text-slate-400">Queue Order:</span><strong>Turn #${match.queueNumber || '1'}</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Patient:</span><strong>${match.name}</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Treatment:</span><strong>${match.treatment}</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Specialist:</span><strong>${match.doctor}</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Schedule:</span><strong>${match.date} &bull; ${match.time}</strong></div>
-        </div>
-      `;
-    }
   </script>
 
 </body>
+
 </html>
