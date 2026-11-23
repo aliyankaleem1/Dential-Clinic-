@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>PRECISION DENTISTRY • Aura Dental Clinic</title>
+  <title>PRECISION DENTISTRY • Modern Dental Care</title>
   <meta name="description"
-    content="An individual dental Care provided by modern technology. Precision Dentistry, guided scans, and advanced dental architecture." />
+    content="An individual dental Care provided by modern technology. Precision Dentistry, 3D guided scans, and advanced dental architecture." />
 
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap"
     rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
@@ -26,9 +26,9 @@
         extend: {
           colors: {
             brand: {
-              blue: '#0d3b82',
-              navy: '#0a2552',
-              cyan: '#00d2ff',
+              blue: '#0c3878',
+              blueHover: '#082855',
+              cyan: '#00f0ff',
               bg: '#f3f4f6',
               dark: '#111827'
             }
@@ -46,10 +46,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html,
     body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
       overflow-x: hidden;
       background-color: #f3f4f6;
       color: #111827;
@@ -57,62 +63,66 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* ── Precise Floating Badges (Matching 00:06-00:08 in Video) ── */
+    /* ── Precise Floating Badges (Exact match to 00:06-00:08 in Video) ── */
     .video-pill-badge {
       background: #ffffff;
-      border: 1px solid rgba(209, 213, 219, 0.85);
+      border: 1px solid rgba(229, 231, 235, 0.95);
       border-radius: 9999px;
-      padding: 6px 14px;
+      padding: 7px 15px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.04em;
       color: #111827;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
-      transition: all 0.25s ease;
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    .video-pill-badge:hover {
-      border-color: #00d2ff;
-      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.25);
-      transform: translateY(-2px);
+    .video-pill-badge:hover, .video-pill-badge.active-pulse {
+      border-color: #00f0ff;
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
+      transform: translateY(-3px) scale(1.04);
+      color: #0c3878;
     }
 
-    /* Floating animation matching video */
+    /* Floating keyframes matching video */
     @keyframes floatTag1 {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+      50% { transform: translateY(-7px); }
     }
 
     @keyframes floatTag2 {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(6px); }
+      50% { transform: translateY(7px); }
     }
 
-    .anim-tag-1 { animation: floatTag1 4s ease-in-out infinite; }
-    .anim-tag-2 { animation: floatTag2 4.5s ease-in-out infinite 0.5s; }
-    .anim-tag-3 { animation: floatTag1 4.2s ease-in-out infinite 1s; }
-    .anim-tag-4 { animation: floatTag2 4.8s ease-in-out infinite 1.5s; }
+    .anim-tag-1 { animation: floatTag1 4.2s ease-in-out infinite; }
+    .anim-tag-2 { animation: floatTag2 4.8s ease-in-out infinite 0.6s; }
+    .anim-tag-3 { animation: floatTag1 4.5s ease-in-out infinite 1.2s; }
+    .anim-tag-4 { animation: floatTag2 5.1s ease-in-out infinite 1.8s; }
 
-    /* Laser Ring Glow Pulse */
-    @keyframes laserGlow {
+    /* Laser Ring Glow Animation */
+    @keyframes laserPulseGlow {
       0%, 100% {
-        opacity: 0.9;
-        filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.85));
+        opacity: 0.88;
+        filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.85));
       }
       50% {
         opacity: 1;
-        filter: drop-shadow(0 0 22px rgba(0, 210, 255, 1));
+        filter: drop-shadow(0 0 25px rgba(0, 240, 255, 1));
       }
     }
 
     .laser-glow {
-      animation: laserGlow 2.5s ease-in-out infinite;
+      animation: laserPulseGlow 2.4s ease-in-out infinite;
     }
 
-    /* Pager dot */
+    /* Vertical Pager Dots on Right Edge */
     .pager-dot {
       width: 7px;
       height: 7px;
@@ -120,38 +130,55 @@
       transition: all 0.25s ease;
     }
     .pager-dot.active {
-      background-color: #111827;
-      transform: scale(1.3);
+      background-color: #0c3878;
+      transform: scale(1.35);
     }
     .pager-dot.inactive {
       border: 1.5px solid #9ca3af;
       background: transparent;
     }
     .pager-dot.inactive:hover {
-      border-color: #111827;
+      border-color: #0c3878;
+      transform: scale(1.15);
     }
 
-    /* Anatomy Cross Section Cutaway Graphic */
-    .anatomy-overlay {
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-
-    /* Blue CTA Button in Video */
+    /* Royal Blue CTA Button matching Video */
     .btn-video-blue {
-      background-color: #0d3b82;
+      background-color: #0c3878;
       color: #ffffff;
       border-radius: 9999px;
       font-weight: 700;
-      letter-spacing: 0.03em;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(13, 59, 130, 0.25);
+      letter-spacing: 0.02em;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 16px rgba(12, 56, 120, 0.28);
     }
     .btn-video-blue:hover {
-      background-color: #092c64;
-      box-shadow: 0 6px 20px rgba(13, 59, 130, 0.35);
-      transform: translateY(-1px);
+      background-color: #082855;
+      box-shadow: 0 8px 24px rgba(12, 56, 120, 0.42);
+      transform: translateY(-2px);
     }
     .btn-video-blue:active {
+      transform: translateY(0);
+    }
+
+    /* Anatomy Cross-Section Overlay */
+    .anatomy-cross-section {
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Ambient Spotlight Background behind Tooth */
+    .stage-spotlight {
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 0%, rgba(243, 244, 246, 0) 70%);
+    }
+
+    /* Tech HUD Line & Callouts */
+    .hud-callout {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all 0.3s ease 0.1s;
+    }
+    .opacity-100 .hud-callout {
+      opacity: 1;
       transform: translateY(0);
     }
   </style>
@@ -162,35 +189,35 @@
   <!-- ══════════════════════════════════════════════════════════
        TOP HEADER (Exact 1:1 match to video on laptop screen)
        ══════════════════════════════════════════════════════════ -->
-  <header class="w-full pt-4 sm:pt-6 pb-2 px-4 sm:px-12 max-w-[1440px] mx-auto flex items-center justify-between">
+  <header class="w-full pt-4 sm:pt-6 pb-2 px-5 sm:px-14 max-w-[1440px] mx-auto flex items-center justify-between z-30">
 
     <!-- Left: Logo & Title (Matching "PRECISION DENTISTRY") -->
     <a href="index.html" class="flex items-center gap-2.5 group">
       <!-- Minimalist Tooth Outline Logo from Video -->
-      <div class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-slate-800">
+      <div class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-slate-900 group-hover:text-blue-700 transition-colors">
         <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 3C4.24 3 2 5.24 2 8c0 3.2 1.6 6.8 2.5 9 .8 2 2.5 4 4.5 4 1.8 0 2.5-1.5 3-3 .5 1.5 1.2 3 3 3 2 0 3.7-2 4.5-4 .9-2.2 2.5-5.8 2.5-9 0-2.76-2.24-5-5-5-2 0-3.5 1-4.5 2.5C10.5 4 9 3 7 3z"/>
         </svg>
       </div>
-      <div class="leading-tight">
-        <span class="font-display font-extrabold text-xs sm:text-sm text-slate-900 tracking-wider uppercase block">
+      <div>
+        <span class="font-display font-extrabold text-xs sm:text-sm text-slate-900 tracking-wider uppercase block leading-tight">
           PRECISION DENTISTRY
         </span>
       </div>
     </a>
 
     <!-- Center: Links (Matching Video: HOME, PACKAGES, CONTACT US, LOGIN) -->
-    <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-[11px] lg:text-xs font-semibold text-slate-600">
-      <a href="index.html" class="text-slate-900 font-bold relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-blue-600 after:rounded-full">
+    <nav class="hidden md:flex items-center gap-7 lg:gap-10 text-[11px] lg:text-xs font-semibold text-slate-600">
+      <a href="index.html" class="text-slate-950 font-bold relative pb-1 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-[#0c3878] after:rounded-full">
         HOME
       </a>
-      <a href="#packages-view" onclick="openPackagesModal(event)" class="hover:text-slate-900 transition-colors">
+      <a href="#packages" onclick="openPackagesModal(event)" class="hover:text-slate-950 transition-colors">
         PACKAGES
       </a>
-      <a href="#contact-view" onclick="openContactModal(event)" class="hover:text-slate-900 transition-colors">
+      <a href="#contact" onclick="openContactModal(event)" class="hover:text-slate-950 transition-colors">
         CONTACT US
       </a>
-      <a href="admin.html" class="hover:text-blue-700 transition-colors" title="Reception Staff Login">
+      <a href="admin.html" class="hover:text-blue-800 transition-colors" title="Reception Staff Login">
         LOGIN
       </a>
     </nav>
@@ -204,7 +231,7 @@
       </button>
 
       <!-- Mobile Hamburger -->
-      <button onclick="toggleMobileNav()" class="md:hidden p-2 text-slate-700 hover:text-slate-900">
+      <button onclick="toggleMobileNav()" class="md:hidden p-2 text-slate-700 hover:text-slate-950" title="Toggle menu">
         <i class="fa fa-bars text-sm"></i>
       </button>
     </div>
@@ -212,8 +239,8 @@
   </header>
 
   <!-- Mobile Drawer -->
-  <div id="mob-drawer" class="hidden md:hidden bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 text-xs font-semibold space-y-3">
-    <a href="index.html" class="block py-1 text-slate-900 font-bold">HOME</a>
+  <div id="mob-drawer" class="hidden md:hidden bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 text-xs font-semibold space-y-3 z-40">
+    <a href="index.html" class="block py-1 text-slate-950 font-bold">HOME</a>
     <a href="#packages" onclick="openPackagesModal(event); toggleMobileNav();" class="block py-1 text-slate-600">PACKAGES</a>
     <a href="#contact" onclick="openContactModal(event); toggleMobileNav();" class="block py-1 text-slate-600">CONTACT US</a>
     <a href="admin.html" class="block py-1 text-blue-700 font-bold">STAFF LOGIN (ADMIN)</a>
@@ -223,15 +250,15 @@
   <!-- ══════════════════════════════════════════════════════════
        MAIN HERO SECTION (Exact 1:1 match to video on laptop)
        ══════════════════════════════════════════════════════════ -->
-  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 sm:px-12 flex items-center relative py-6 sm:py-0">
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-5 sm:px-14 flex items-center relative py-4 sm:py-0">
 
     <div class="w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-0">
 
       <!-- LEFT COLUMN: Headline, Subheadline & Button (Exact Video Match) -->
-      <div class="lg:col-span-5 text-left space-y-4 sm:space-y-6 z-10 sm:pl-2">
+      <div class="lg:col-span-5 text-left space-y-4 sm:space-y-6 z-10 sm:pl-1">
 
         <!-- Headline: "YOUR SMILE. OUR PRECISION." -->
-        <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] text-slate-950 leading-[1.08] tracking-tight uppercase">
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-slate-950 leading-[1.06] tracking-tight uppercase">
           YOUR SMILE.<br />
           <span class="text-slate-950">OUR PRECISION.</span>
         </h1>
@@ -242,92 +269,116 @@
         </p>
 
         <!-- Button: "BOOK YOUR VISIT ➔" -->
-        <div class="pt-2">
+        <div class="pt-1 sm:pt-2">
           <button onclick="openBookingModal()"
-            class="btn-video-blue px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm flex items-center gap-2.5">
+            class="btn-video-blue px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm flex items-center gap-2.5 group">
             <span>BOOK YOUR VISIT</span>
-            <span class="text-xs sm:text-sm">➔</span>
+            <span class="text-xs sm:text-sm transition-transform duration-200 group-hover:translate-x-1">➔</span>
           </button>
         </div>
 
       </div>
 
       <!-- CENTER COLUMN: Interactive 3D Tooth & Holographic Laser Scanner (Exact Video Centerpiece) -->
-      <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[380px] sm:min-h-[480px] select-none">
+      <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[390px] sm:min-h-[500px] select-none">
 
         <!-- The Tooth Stage -->
-        <div id="tooth-stage" class="relative w-full max-w-[420px] sm:max-w-[480px] h-[340px] sm:h-[430px] flex items-center justify-center">
+        <div id="tooth-stage" class="stage-spotlight relative w-full max-w-[430px] sm:max-w-[500px] h-[360px] sm:h-[450px] flex items-center justify-center rounded-full">
 
           <!-- 3D Canvas Container -->
           <div id="tooth-3d-canvas"
-            onclick="handleToothClick()"
+            onclick="handleToothToggle()"
             onmouseenter="handleToothHover(true)"
             onmouseleave="handleToothHover(false)"
             class="w-full h-full relative z-10 flex items-center justify-center cursor-pointer"
             title="Click or Hover to reveal internal anatomy cutaway">
-            <!-- Three.js Canvas injected here -->
+            <!-- Three.js 3D Canvas Injected Dynamically -->
           </div>
 
           <!-- ── 2D/3D HIGH-RES ANATOMY CUTAWAY OVERLAY (Exact match to 00:03 in video) ── -->
           <div id="anatomy-cutaway-graphic"
-            onclick="handleToothClick()"
-            class="anatomy-overlay opacity-0 pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center scale-95 transition-all duration-300">
+            onclick="handleToothToggle()"
+            class="anatomy-cross-section opacity-0 pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center scale-95">
 
-            <!-- High-Res Cutaway Anatomical SVG Illustration matching 00:03 -->
-            <svg class="w-[200px] sm:w-[250px] h-auto drop-shadow-xl" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Soft Drop Shadow on Ground -->
-              <ellipse cx="130" cy="285" rx="85" ry="12" fill="#94a3b8" opacity="0.25"/>
+            <!-- High-Res Cutaway Anatomical SVG Illustration matching 00:03 in Video -->
+            <div class="relative flex flex-col items-center">
+              <svg class="w-[220px] sm:w-[275px] h-auto drop-shadow-2xl" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Soft Ground Shadow Disc -->
+                <ellipse cx="140" cy="305" rx="90" ry="12" fill="#64748b" opacity="0.22"/>
 
-              <!-- Outer White Enamel Half Shell -->
-              <path d="M70 40C45 60 40 100 42 140C44 175 60 190 75 220C85 240 90 270 95 275C100 270 108 230 115 190C120 160 128 145 130 140V40C110 32 90 30 70 40Z"
-                fill="url(#enamelGrad)" stroke="#cbd5e1" stroke-width="1.5"/>
+                <!-- Outer White Enamel Half Shell (Left Wall) -->
+                <path d="M78 45C52 65 46 105 48 145C50 185 66 200 82 232C92 252 98 285 104 290C109 285 116 242 124 200C129 170 137 155 140 148V45C118 36 98 35 78 45Z"
+                  fill="url(#enamelGrad)" stroke="#cbd5e1" stroke-width="1.6"/>
 
-              <!-- Right Cutaway Surface: Exposed White Enamel Rim -->
-              <path d="M130 35C155 33 190 38 210 50C220 85 220 135 218 150C215 175 195 210 180 245C170 268 165 275 162 275C158 270 152 235 146 195C142 170 132 150 130 140V35Z"
-                fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+                <!-- Right Cutaway Surface: Exposed White Enamel Outer Rim -->
+                <path d="M140 40C168 37 205 44 225 56C236 92 236 142 234 158C230 185 208 222 192 260C182 282 176 290 172 290C168 285 162 248 156 206C152 180 142 158 140 148V40Z"
+                  fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.6"/>
 
-              <!-- Warm Tan/Ivory Dentin Interior Cutaway -->
-              <path d="M130 48C148 48 185 58 198 75C204 110 204 140 200 155C195 180 180 215 168 245C163 260 160 262 158 260C155 240 148 200 142 170C138 150 132 135 130 130V48Z"
-                fill="url(#dentinGrad)" stroke="#e2e8f0" stroke-width="1"/>
+                <!-- Warm Amber/Ivory Dentin Interior Cutaway -->
+                <path d="M140 54C160 54 200 64 212 82C218 118 218 148 214 164C208 190 192 228 178 260C172 276 169 278 167 275C163 252 156 210 150 178C146 156 142 142 140 138V54Z"
+                  fill="url(#dentinGrad)" stroke="#fef08a" stroke-width="1"/>
 
-              <!-- Left side internal dentin shadow -->
-              <path d="M80 60C62 75 58 110 60 140C62 165 74 185 85 210C94 230 98 255 100 258C103 245 110 200 116 170C120 150 126 135 130 130V60C115 52 98 52 80 60Z"
-                fill="#fef9c3" opacity="0.35"/>
+                <!-- Left Side Internal Dentin Ambient Tone -->
+                <path d="M88 65C68 80 64 116 66 148C68 174 80 196 92 222C102 244 106 270 108 273C111 258 118 210 125 178C129 156 136 142 140 138V65C124 57 106 57 88 65Z"
+                  fill="#fef9c3" opacity="0.45"/>
 
-              <!-- Ruby-Red Vascular Pulp Chamber & Root Canals (Matching 00:03 in video) -->
-              <path d="M130 75C140 75 160 85 165 100C168 120 162 135 158 145C155 155 150 185 146 220C144 240 143 250 142 250C141 245 140 220 138 195C135 170 132 150 130 140V75Z"
-                fill="url(#pulpGrad)" filter="drop-shadow(0 0 5px rgba(239, 68, 68, 0.4))"/>
+                <!-- Ruby-Red Vascular Pulp Chamber & Primary Root Canal (Matching 00:03 in video) -->
+                <path d="M140 82C152 82 172 92 178 108C181 128 174 145 170 156C166 168 160 200 154 236C151 258 150 268 149 268C148 262 146 236 144 208C141 180 137 158 140 148V82Z"
+                  fill="url(#pulpGrad)" filter="drop-shadow(0 0 7px rgba(239, 68, 68, 0.55))"/>
 
-              <!-- Secondary Left Canal -->
-              <path d="M130 100C122 100 110 110 108 125C106 140 110 160 112 180C114 200 115 230 115 240C117 240 119 210 122 185C125 160 128 140 130 135V100Z"
-                fill="url(#pulpGrad)" opacity="0.85"/>
+                <!-- Secondary Left Root Canal -->
+                <path d="M140 110C130 110 118 120 116 136C114 152 118 174 120 196C122 218 123 248 123 258C125 258 127 226 131 198C134 170 138 150 140 145V110Z"
+                  fill="url(#pulpGrad)" opacity="0.9"/>
 
-              <!-- Delicate Neural Nerve Filaments -->
-              <path d="M142 120Q150 150 145 220" stroke="#fca5a5" stroke-width="1.2" stroke-linecap="round"/>
-              <path d="M120 130Q115 160 116 210" stroke="#fca5a5" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- Delicate Neural Nerve Filaments -->
+                <path d="M152 128Q160 162 153 234" stroke="#fca5a5" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M128 138Q122 172 124 226" stroke="#fca5a5" stroke-width="1.4" stroke-linecap="round"/>
 
-              <!-- Gradients Definition -->
-              <defs>
-                <linearGradient id="enamelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff"/>
-                  <stop offset="60%" stop-color="#f1f5f9"/>
-                  <stop offset="100%" stop-color="#e2e8f0"/>
-                </linearGradient>
-                <linearGradient id="dentinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#fef08a"/>
-                  <stop offset="50%" stop-color="#fde047"/>
-                  <stop offset="100%" stop-color="#eab308"/>
-                </linearGradient>
-                <linearGradient id="pulpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#f87171"/>
-                  <stop offset="40%" stop-color="#ef4444"/>
-                  <stop offset="100%" stop-color="#b91c1c"/>
-                </linearGradient>
-              </defs>
-            </svg>
+                <!-- Tech HUD Pointer Leader Lines (Diagnostic Display) -->
+                <!-- 1. Enamel Line -->
+                <line x1="48" y1="110" x2="16" y2="110" stroke="#00f0ff" stroke-width="1.2" stroke-dasharray="2 2"/>
+                <circle cx="48" cy="110" r="2.5" fill="#00f0ff"/>
+                <!-- 2. Dentin Line -->
+                <line x1="216" y1="120" x2="260" y2="120" stroke="#00f0ff" stroke-width="1.2" stroke-dasharray="2 2"/>
+                <circle cx="216" cy="120" r="2.5" fill="#00f0ff"/>
+                <!-- 3. Pulp Line -->
+                <line x1="168" y1="180" x2="255" y2="180" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2 2"/>
+                <circle cx="168" cy="180" r="2.5" fill="#ef4444"/>
+
+                <!-- Gradients Definition -->
+                <defs>
+                  <linearGradient id="enamelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="60%" stop-color="#f8fafc"/>
+                    <stop offset="100%" stop-color="#e2e8f0"/>
+                  </linearGradient>
+                  <linearGradient id="dentinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a"/>
+                    <stop offset="50%" stop-color="#fde047"/>
+                    <stop offset="100%" stop-color="#eab308"/>
+                  </linearGradient>
+                  <linearGradient id="pulpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f87171"/>
+                    <stop offset="40%" stop-color="#ef4444"/>
+                    <stop offset="100%" stop-color="#b91c1c"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <!-- Diagnostic Labels (HUD) -->
+              <span class="hud-callout absolute -left-6 sm:-left-12 top-[100px] text-[9px] font-bold text-slate-700 bg-white/90 px-2 py-0.5 rounded shadow-xs border border-slate-200">
+                ENAMEL
+              </span>
+              <span class="hud-callout absolute -right-6 sm:-right-12 top-[110px] text-[9px] font-bold text-amber-700 bg-amber-50/90 px-2 py-0.5 rounded shadow-xs border border-amber-200">
+                DENTIN
+              </span>
+              <span class="hud-callout absolute -right-8 sm:-right-16 top-[170px] text-[9px] font-bold text-rose-700 bg-rose-50/90 px-2 py-0.5 rounded shadow-xs border border-rose-200">
+                PULP & CANAL
+              </span>
+            </div>
 
             <!-- Pill Badge Under Tooth (Matching "PRECISION DENTISTRY" in 00:03 of video) -->
-            <div class="mt-3 bg-white px-4 py-1.5 rounded-full border border-slate-200/90 shadow-sm text-[10px] font-bold text-slate-800 tracking-wider">
+            <div class="mt-2 sm:mt-3 bg-white px-4 py-1.5 rounded-full border border-slate-200/90 shadow-sm text-[10px] sm:text-[11px] font-bold text-slate-800 tracking-wider">
               PRECISION DENTISTRY
             </div>
 
@@ -338,29 +389,33 @@
           <!-- 1. Top-Left: "3D SCAN" -->
           <div id="tag-3dscan"
             onclick="triggerTagPulse('3D SCAN')"
-            class="video-pill-badge anim-tag-1 absolute top-6 sm:top-10 left-1 sm:left-6 z-30">
-            3D SCAN
+            class="video-pill-badge anim-tag-1 absolute top-5 sm:top-9 left-1 sm:left-6 z-30">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>3D SCAN</span>
           </div>
 
           <!-- 2. Top-Right: "ADVANCED CARE" -->
           <div id="tag-advanced"
             onclick="triggerTagPulse('ADVANCED CARE')"
-            class="video-pill-badge anim-tag-2 absolute top-6 sm:top-10 right-1 sm:right-6 z-30">
-            ADVANCED CARE
+            class="video-pill-badge anim-tag-2 absolute top-5 sm:top-9 right-1 sm:right-6 z-30">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            <span>ADVANCED CARE</span>
           </div>
 
           <!-- 3. Bottom-Left: "PERSONALIZED CARE" -->
           <div id="tag-personalized"
             onclick="triggerTagPulse('PERSONALIZED CARE')"
-            class="video-pill-badge anim-tag-3 absolute bottom-8 sm:bottom-12 left-1 sm:left-4 z-30">
-            PERSONALIZED CARE
+            class="video-pill-badge anim-tag-3 absolute bottom-7 sm:bottom-11 left-1 sm:left-4 z-30">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>PERSONALIZED CARE</span>
           </div>
 
           <!-- 4. Bottom-Right: "DIGITAL SMILE" -->
           <div id="tag-digital"
             onclick="triggerTagPulse('DIGITAL SMILE')"
-            class="video-pill-badge anim-tag-4 absolute bottom-8 sm:bottom-12 right-1 sm:right-4 z-30">
-            DIGITAL SMILE
+            class="video-pill-badge anim-tag-4 absolute bottom-7 sm:bottom-11 right-1 sm:right-4 z-30">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            <span>DIGITAL SMILE</span>
           </div>
 
         </div>
@@ -371,9 +426,9 @@
 
     <!-- ── RIGHT EDGE: 3 Vertical Pagination Dots (Exact Video Match) ── -->
     <div class="hidden lg:flex flex-col items-center gap-3 absolute right-0 top-1/2 -translate-y-1/2">
-      <div class="pager-dot active cursor-pointer" onclick="scrollToTop()"></div>
-      <div class="pager-dot inactive cursor-pointer" onclick="openPackagesModal()"></div>
-      <div class="pager-dot inactive cursor-pointer" onclick="openContactModal()"></div>
+      <div class="pager-dot active cursor-pointer" onclick="scrollToTop()" title="Slide 1"></div>
+      <div class="pager-dot inactive cursor-pointer" onclick="openPackagesModal()" title="Slide 2 (Packages)"></div>
+      <div class="pager-dot inactive cursor-pointer" onclick="openContactModal()" title="Slide 3 (Contact)"></div>
     </div>
 
   </main>
@@ -382,17 +437,16 @@
   <!-- ══════════════════════════════════════════════════════════
        BOTTOM BAR & CHAT ICON (Exact Video Match)
        ══════════════════════════════════════════════════════════ -->
-  <footer class="w-full pb-4 sm:pb-6 pt-2 px-4 sm:px-12 max-w-[1440px] mx-auto flex items-center justify-between text-[11px] text-slate-400">
+  <footer class="w-full pb-4 sm:pb-6 pt-2 px-5 sm:px-14 max-w-[1440px] mx-auto flex items-center justify-between text-[11px] text-slate-400 z-30">
     <div>
-      <!-- Clean Minimal Subtext -->
       <span>&copy; 2026 Precision Dentistry • DHA Phase 6 Karachi</span>
     </div>
 
     <!-- Bottom-Right Chat Bubble Button (Exact Video Match) -->
     <a href="https://wa.me/923001234567?text=Assalam-o-Alaikum%20Precision%20Dentistry!%20I%20want%20to%20inquire%20about%20dental%20care."
       target="_blank" rel="noopener noreferrer"
-      class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0d3b82] hover:bg-[#092c64] text-white flex items-center justify-center text-sm sm:text-base shadow-lg transition-transform hover:scale-105"
-      title="Chat with Precision Dentistry Concierge">
+      class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0c3878] hover:bg-[#082855] text-white flex items-center justify-center text-sm sm:text-base shadow-lg transition-transform hover:scale-105 active:scale-95"
+      title="Chat with Precision Dentistry Concierge on WhatsApp">
       <!-- Chat message bubble icon from video -->
       <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
@@ -406,18 +460,18 @@
        ══════════════════════════════════════════════════════════ -->
   <div id="packages-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto">
-      <button onclick="closePackagesModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800">
+      <button onclick="closePackagesModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800" title="Close">
         <i class="fa fa-xmark text-lg"></i>
       </button>
 
       <div class="mb-6">
-        <span class="text-xs font-bold uppercase tracking-widest text-blue-700 block mb-1">Precision Clinical Care</span>
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0c3878] block mb-1">Precision Clinical Care</span>
         <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-950">Advanced Dental Packages</h2>
         <p class="text-xs sm:text-sm text-slate-500 mt-1">DHA Phase 6 Karachi transparent rates with computer-guided technology.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <!-- 1 -->
+        <!-- Package 1 -->
         <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
           <div>
             <span class="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Veneers</span>
@@ -432,7 +486,7 @@
             class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
         </div>
 
-        <!-- 2 -->
+        <!-- Package 2 -->
         <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
           <div>
             <span class="text-[10px] font-bold uppercase text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded">Implants</span>
@@ -447,7 +501,7 @@
             class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
         </div>
 
-        <!-- 3 -->
+        <!-- Package 3 -->
         <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
           <div>
             <span class="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Aligners</span>
@@ -462,7 +516,7 @@
             class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
         </div>
 
-        <!-- 4 -->
+        <!-- Package 4 -->
         <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
           <div>
             <span class="text-[10px] font-bold uppercase text-teal-700 bg-teal-50 px-2 py-0.5 rounded">Spa Clean</span>
@@ -486,24 +540,24 @@
        ══════════════════════════════════════════════════════════ -->
   <div id="contact-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-auto">
-      <button onclick="closeContactModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800">
+      <button onclick="closeContactModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800" title="Close">
         <i class="fa fa-xmark text-lg"></i>
       </button>
 
-      <span class="text-xs font-bold uppercase tracking-widest text-blue-700 block mb-1">DHA Phase 6 Karachi</span>
+      <span class="text-xs font-bold uppercase tracking-widest text-[#0c3878] block mb-1">DHA Phase 6 Karachi</span>
       <h3 class="font-display font-extrabold text-2xl text-slate-950 mb-4">Contact Precision Clinic</h3>
 
       <div class="space-y-3.5 text-xs text-slate-600 mb-6">
         <div class="flex items-start gap-3">
-          <i class="fa fa-location-dot text-blue-600 mt-0.5"></i>
-          <span>Main Shahbaz Commercial, DHA Phase 6, Karachi (Complimentary Valet at entrance)</span>
+          <i class="fa fa-location-dot text-[#0c3878] mt-0.5"></i>
+          <span>Main Shahbaz Commercial, DHA Phase 6, Karachi (Complimentary Valet parking at entrance)</span>
         </div>
         <div class="flex items-center gap-3">
-          <i class="fa fa-phone text-blue-600"></i>
+          <i class="fa fa-phone text-[#0c3878]"></i>
           <span>+92 300 1234567 • Desk Line: 021-35849201</span>
         </div>
         <div class="flex items-center gap-3">
-          <i class="fa fa-clock text-blue-600"></i>
+          <i class="fa fa-clock text-[#0c3878]"></i>
           <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
         </div>
       </div>
@@ -521,16 +575,16 @@
 
 
   <!-- ══════════════════════════════════════════════════════════
-       BOOKING MODAL (Connects directly to ClinicStore & Admin)
+       BOOKING MODAL (Connected to ClinicStore & Admin Desk)
        ══════════════════════════════════════════════════════════ -->
   <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto max-h-[92dvh] overflow-y-auto">
-      <button onclick="closeBookingModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800">
+      <button onclick="closeBookingModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800" title="Close">
         <i class="fa fa-xmark text-lg"></i>
       </button>
 
       <div class="mb-5">
-        <span class="text-xs uppercase tracking-widest font-bold text-blue-700 block mb-1">Online Reception Desk</span>
+        <span class="text-xs uppercase tracking-widest font-bold text-[#0c3878] block mb-1">Online Reception Desk</span>
         <h3 class="font-display font-extrabold text-2xl text-slate-950">Book Your Visit</h3>
         <p class="text-xs text-slate-500 mt-1">Direct sequential voucher token with automated calendar alert.</p>
       </div>
@@ -604,7 +658,7 @@
       <!-- Booking Result -->
       <div id="booking-success-view" class="hidden space-y-4 pt-3">
         <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-center space-y-1">
-          <div class="w-10 h-10 rounded-full bg-[#0d3b82] text-white flex items-center justify-center mx-auto text-base">
+          <div class="w-10 h-10 rounded-full bg-[#0c3878] text-white flex items-center justify-center mx-auto text-base">
             <i class="fa fa-check"></i>
           </div>
           <h4 class="font-display font-bold text-lg text-slate-900">Voucher Issued!</h4>
@@ -640,43 +694,50 @@
 
 
   <!-- ══════════════════════════════════════════════════════════
-       JAVASCRIPT: THREE.JS TOOTH + LASER RING + ANATOMY
+       JAVASCRIPT: THREE.JS 3D TOOTH + LASER SCANNER + ANATOMY
        ══════════════════════════════════════════════════════════ -->
   <script>
-    let scene, camera, renderer, toothGroup, laserRing, laserBeam;
+    let scene, camera, renderer, toothGroup, laserRing, laserBeam, outerHaloRing;
     let isAnatomyRevealed = false;
     let isUserDragging = false;
     let prevMouse = { x: 0, y: 0 };
+    let scanSpeedMult = 1.0;
+    let targetRotationY = 0;
 
     function initThreeScene() {
       const container = document.getElementById('tooth-3d-canvas');
       if (!container) return;
 
-      const width = container.clientWidth || 440;
-      const height = container.clientHeight || 400;
+      const width = container.clientWidth || 450;
+      const height = container.clientHeight || 420;
 
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-      camera.position.set(0, 0, 7.5);
+      camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+      camera.position.set(0, 0, 7.8);
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       container.innerHTML = '';
       container.appendChild(renderer.domElement);
 
-      // Studio Lighting for Glossy Ceramic Porcelain
-      const ambLight = new THREE.AmbientLight(0xffffff, 0.8);
+      // Studio Lighting
+      const ambLight = new THREE.AmbientLight(0xffffff, 0.95);
       scene.add(ambLight);
 
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1.1);
-      dirLight.position.set(5, 8, 6);
-      scene.add(dirLight);
+      const keyLight = new THREE.DirectionalLight(0xffffff, 1.3);
+      keyLight.position.set(5, 9, 6);
+      scene.add(keyLight);
 
-      const rimLight = new THREE.DirectionalLight(0x00d2ff, 0.9);
-      rimLight.position.set(-4, -2, -3);
+      const fillLight = new THREE.DirectionalLight(0xe2e8f0, 0.65);
+      fillLight.position.set(-6, 3, 4);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.2);
+      rimLight.position.set(-3, -3, -4);
       scene.add(rimLight);
 
       toothGroup = new THREE.Group();
@@ -688,21 +749,8 @@
       // Build Cyan Glowing Laser Ring (Matching Video)
       buildCyanLaserRing();
 
-      // Mouse drag controls
-      container.addEventListener('mousedown', (e) => {
-        isUserDragging = true;
-        prevMouse = { x: e.clientX, y: e.clientY };
-      });
-      window.addEventListener('mouseup', () => { isUserDragging = false; });
-      window.addEventListener('mousemove', (e) => {
-        if (isUserDragging && toothGroup) {
-          const dx = e.clientX - prevMouse.x;
-          const dy = e.clientY - prevMouse.y;
-          toothGroup.rotation.y += dx * 0.012;
-          toothGroup.rotation.x += dy * 0.012;
-          prevMouse = { x: e.clientX, y: e.clientY };
-        }
-      });
+      // Interactive Mouse Orbit & Parallax
+      setupMouseInteraction(container);
 
       // Animation Loop
       animateScene();
@@ -711,30 +759,34 @@
     }
 
     function buildCeramicTooth() {
+      // High-Gloss Translucent Ceramic Porcelain Enamel
       const enamelMat = new THREE.MeshPhysicalMaterial({
-        color: 0xfcfdfd,
-        roughness: 0.12,
-        metalness: 0.04,
-        clearcoat: 0.9,
-        clearcoatRoughness: 0.08,
-        reflectivity: 0.75
+        color: 0xfcfdff,
+        roughness: 0.07,
+        metalness: 0.01,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.04,
+        reflectivity: 0.88
       });
 
-      // Anatomical Crown with 4 cusps
-      const crownGeo = new THREE.CylinderGeometry(1.22, 1.02, 1.35, 36, 16);
+      // 1. Anatomical Crown with 4 Cusps & Marginal Ridges
+      const crownGeo = new THREE.CylinderGeometry(1.26, 1.02, 1.4, 48, 24);
       const pos = crownGeo.attributes.position;
       for (let i = 0; i < pos.count; i++) {
         let x = pos.getX(i);
         let y = pos.getY(i);
         let z = pos.getZ(i);
 
-        if (y > 0.3) {
-          // 4 natural anatomical cusps
-          const cuspBump = Math.sin(x * 3.4) * Math.cos(z * 3.4) * 0.24;
-          const groove = (1 - (x * x + z * z) * 0.4) * 0.1;
-          pos.setY(i, y + cuspBump - groove);
-        } else if (y < -0.3) {
-          // Cervical neck taper
+        if (y > 0.28) {
+          // 4 Natural Anatomical Cusps
+          const cuspBump = Math.sin(x * 3.3) * Math.cos(z * 3.3) * 0.26;
+          const centralFossa = (1 - (x * x + z * z) * 0.4) * 0.13;
+          pos.setY(i, y + cuspBump - centralFossa);
+          // Rounded outer shoulder
+          pos.setX(i, x * 1.04);
+          pos.setZ(i, z * 1.04);
+        } else if (y < -0.28) {
+          // Cervical margin neck taper
           pos.setX(i, x * 0.92);
           pos.setZ(i, z * 0.92);
         }
@@ -742,41 +794,71 @@
       crownGeo.computeVertexNormals();
 
       const crown = new THREE.Mesh(crownGeo, enamelMat);
-      crown.position.y = 0.7;
+      crown.position.y = 0.72;
       toothGroup.add(crown);
 
-      // Root 1 (Tapered left root)
-      const root1Geo = new THREE.ConeGeometry(0.5, 1.65, 28);
+      // 2. Anatomical Furcation Bridge (Saddle between roots)
+      const furcationGeo = new THREE.CylinderGeometry(0.75, 0.45, 0.4, 24);
+      const furcation = new THREE.Mesh(furcationGeo, enamelMat);
+      furcation.position.set(0, -0.05, 0);
+      toothGroup.add(furcation);
+
+      // 3. Mesial Root (Left Curved Anatomical Root)
+      const root1Geo = new THREE.ConeGeometry(0.52, 1.8, 36, 16);
+      const pos1 = root1Geo.attributes.position;
+      for (let i = 0; i < pos1.count; i++) {
+        let rx = pos1.getX(i);
+        let ry = pos1.getY(i);
+        let rz = pos1.getZ(i);
+        // Curve apex gently towards center
+        const curveFactor = (ry + 0.9) / 1.8;
+        pos1.setX(i, rx - Math.sin(curveFactor * Math.PI) * 0.12);
+        // Flatten mesiodistally for natural root morphology
+        pos1.setZ(i, rz * 0.85);
+      }
+      root1Geo.computeVertexNormals();
+
       const root1 = new THREE.Mesh(root1Geo, enamelMat);
       root1.rotation.z = Math.PI;
       root1.rotation.x = -0.1;
-      root1.position.set(-0.46, -0.75, 0);
+      root1.position.set(-0.48, -0.84, 0);
       toothGroup.add(root1);
 
-      // Root 2 (Tapered right root)
-      const root2Geo = new THREE.ConeGeometry(0.5, 1.65, 28);
+      // 4. Distal Root (Right Curved Anatomical Root)
+      const root2Geo = new THREE.ConeGeometry(0.52, 1.8, 36, 16);
+      const pos2 = root2Geo.attributes.position;
+      for (let i = 0; i < pos2.count; i++) {
+        let rx = pos2.getX(i);
+        let ry = pos2.getY(i);
+        let rz = pos2.getZ(i);
+        const curveFactor = (ry + 0.9) / 1.8;
+        pos2.setX(i, rx + Math.sin(curveFactor * Math.PI) * 0.12);
+        pos2.setZ(i, rz * 0.85);
+      }
+      root2Geo.computeVertexNormals();
+
       const root2 = new THREE.Mesh(root2Geo, enamelMat);
       root2.rotation.z = Math.PI;
       root2.rotation.x = 0.1;
-      root2.position.set(0.46, -0.75, 0);
+      root2.position.set(0.48, -0.84, 0);
       toothGroup.add(root2);
 
-      // Soft ground ambient occlusion shadow
-      const shadowGeo = new THREE.CircleGeometry(1.6, 32);
-      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.15 });
+      // 5. Soft Ground Ambient Shadow Disc
+      const shadowGeo = new THREE.CircleGeometry(1.7, 36);
+      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.16 });
       const shadow = new THREE.Mesh(shadowGeo, shadowMat);
       shadow.rotation.x = -Math.PI / 2;
-      shadow.position.y = -1.85;
+      shadow.position.y = -1.95;
       toothGroup.add(shadow);
     }
 
     function buildCyanLaserRing() {
-      // 1. Neon Cyan Torus Ring
-      const ringGeo = new THREE.TorusGeometry(2.0, 0.038, 16, 100);
+      // 1. Primary Neon Cyan Torus Ring
+      const ringGeo = new THREE.TorusGeometry(2.05, 0.038, 20, 120);
       const ringMat = new THREE.MeshBasicMaterial({
-        color: 0x00d2ff,
+        color: 0x00f0ff,
         transparent: true,
-        opacity: 0.92
+        opacity: 0.95
       });
       laserRing = new THREE.Mesh(ringGeo, ringMat);
       laserRing.rotation.x = Math.PI / 2.3;
@@ -784,10 +866,23 @@
       laserRing.position.y = 0.2;
       scene.add(laserRing);
 
-      // 2. Faint Laser Disc Scanner
-      const discGeo = new THREE.RingGeometry(0.2, 1.95, 32);
+      // 2. Outer Subtle Halo Ring
+      const haloGeo = new THREE.TorusGeometry(2.18, 0.012, 16, 100);
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: 0x00f0ff,
+        transparent: true,
+        opacity: 0.35
+      });
+      outerHaloRing = new THREE.Mesh(haloGeo, haloMat);
+      outerHaloRing.rotation.x = Math.PI / 2.3;
+      outerHaloRing.rotation.y = 0.22;
+      outerHaloRing.position.y = 0.2;
+      scene.add(outerHaloRing);
+
+      // 3. Faint Laser Disc Scanner Plane
+      const discGeo = new THREE.RingGeometry(0.15, 2.02, 36);
       const discMat = new THREE.MeshBasicMaterial({
-        color: 0x00d2ff,
+        color: 0x00f0ff,
         transparent: true,
         opacity: 0.1,
         side: THREE.DoubleSide
@@ -798,24 +893,69 @@
       scene.add(laserBeam);
     }
 
+    function setupMouseInteraction(domElement) {
+      domElement.addEventListener('mousedown', (e) => {
+        isUserDragging = true;
+        prevMouse = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mouseup', () => { isUserDragging = false; });
+
+      domElement.addEventListener('mousemove', (e) => {
+        if (!isUserDragging && toothGroup) {
+          const rect = domElement.getBoundingClientRect();
+          const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          const normY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+          toothGroup.rotation.y += (normX * 0.35 - toothGroup.rotation.y) * 0.05;
+          toothGroup.rotation.x += (-normY * 0.2 - toothGroup.rotation.x) * 0.05;
+        } else if (isUserDragging && toothGroup) {
+          const dx = e.clientX - prevMouse.x;
+          const dy = e.clientY - prevMouse.y;
+          toothGroup.rotation.y += dx * 0.012;
+          toothGroup.rotation.x += dy * 0.012;
+          prevMouse = { x: e.clientX, y: e.clientY };
+        }
+      });
+
+      // Touch for mobile
+      domElement.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isUserDragging = true;
+          prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => { isUserDragging = false; });
+
+      domElement.addEventListener('touchmove', (e) => {
+        if (isUserDragging && toothGroup && e.touches.length === 1) {
+          const dx = e.touches[0].clientX - prevMouse.x;
+          toothGroup.rotation.y += dx * 0.014;
+          prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+    }
+
     let clock = new THREE.Clock();
 
     function animateScene() {
       requestAnimationFrame(animateScene);
       const elapsed = clock.getElapsedTime();
 
-      // Idle smooth continuous rotation
+      // Smooth idle rotation
       if (toothGroup && !isUserDragging) {
-        toothGroup.rotation.y += 0.0035;
+        toothGroup.rotation.y += 0.0035 * scanSpeedMult;
       }
 
       // Laser Scanner Ring vertical oscillation & rotation
       if (laserRing && laserBeam) {
-        laserRing.rotation.z += 0.007;
-        const scanY = Math.sin(elapsed * 1.8) * 0.85;
+        laserRing.rotation.z += 0.008 * scanSpeedMult;
+        if (outerHaloRing) outerHaloRing.rotation.z -= 0.005;
+        const scanY = Math.sin(elapsed * 1.8 * scanSpeedMult) * 0.88;
         laserRing.position.y = scanY;
         laserBeam.position.y = scanY;
-        laserBeam.material.opacity = 0.06 + Math.abs(Math.sin(elapsed * 2)) * 0.1;
+        if (outerHaloRing) outerHaloRing.position.y = scanY;
+        laserBeam.material.opacity = (0.06 + Math.abs(Math.sin(elapsed * 2)) * 0.12) * Math.min(scanSpeedMult, 2.5);
       }
 
       renderer.render(scene, camera);
@@ -832,7 +972,7 @@
     }
 
     // Toggle Anatomy Cutaway Mode (Matching 00:03 in Video)
-    function handleToothClick() {
+    function handleToothToggle() {
       isAnatomyRevealed = !isAnatomyRevealed;
       setAnatomyCutawayVisibility(isAnatomyRevealed);
     }
@@ -855,7 +995,7 @@
         if (visible) {
           cutaway.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
           cutaway.classList.add('opacity-100', 'scale-100');
-          if (canvasDom) canvasDom.style.opacity = '0.15';
+          if (canvasDom) canvasDom.style.opacity = '0.12';
         } else {
           cutaway.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
           cutaway.classList.remove('opacity-100', 'scale-100');
@@ -865,10 +1005,53 @@
     }
 
     function triggerTagPulse(tagText) {
-      setAnatomyCutawayVisibility(true);
-      setTimeout(() => {
-        if (!isAnatomyRevealed) setAnatomyCutawayVisibility(false);
-      }, 2500);
+      // Highlight badge
+      const badgeMap = {
+        '3D SCAN': 'tag-3dscan',
+        'ADVANCED CARE': 'tag-advanced',
+        'PERSONALIZED CARE': 'tag-personalized',
+        'DIGITAL SMILE': 'tag-digital'
+      };
+      const badgeId = badgeMap[tagText];
+      if (badgeId) {
+        const el = document.getElementById(badgeId);
+        if (el) {
+          el.classList.add('active-pulse');
+          setTimeout(() => el.classList.remove('active-pulse'), 1200);
+        }
+      }
+
+      // Action based on clicked feature
+      if (tagText === '3D SCAN') {
+        scanSpeedMult = 3.2;
+        if (laserRing) laserRing.scale.set(1.2, 1.2, 1.2);
+        setTimeout(() => {
+          scanSpeedMult = 1.0;
+          if (laserRing) laserRing.scale.set(1, 1, 1);
+        }, 1800);
+      } else if (tagText === 'ADVANCED CARE') {
+        if (toothGroup) toothGroup.rotation.y += 0.8;
+        if (laserRing) {
+          laserRing.scale.set(1.15, 1.15, 1.15);
+          setTimeout(() => laserRing.scale.set(1, 1, 1), 500);
+        }
+      } else if (tagText === 'PERSONALIZED CARE') {
+        setAnatomyCutawayVisibility(true);
+        setTimeout(() => {
+          if (!isAnatomyRevealed) setAnatomyCutawayVisibility(false);
+        }, 3200);
+      } else if (tagText === 'DIGITAL SMILE') {
+        if (toothGroup) {
+          let startY = toothGroup.rotation.y;
+          let startTime = performance.now();
+          function spinTooth(now) {
+            let p = Math.min((now - startTime) / 800, 1);
+            toothGroup.rotation.y = startY + p * Math.PI * 2;
+            if (p < 1) requestAnimationFrame(spinTooth);
+          }
+          requestAnimationFrame(spinTooth);
+        }
+      }
     }
 
     // Modals
