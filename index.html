@@ -292,27 +292,27 @@
       <!-- CENTER COLUMN: Interactive 3D Tooth & Holographic Laser Scanner (Exact Video Centerpiece) -->
       <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[390px] sm:min-h-[500px] select-none">
 
-        <!-- The Tooth Stage (Prominently Larger & Realistic Showcase) -->
-        <div id="tooth-stage" class="stage-spotlight relative w-full max-w-[530px] sm:max-w-[620px] lg:max-w-[660px] h-[440px] sm:h-[530px] lg:h-[570px] flex items-center justify-center rounded-full">
+        <!-- The Tooth Stage (Normal Balanced Size & Glitch-Free Hover Handler) -->
+        <div id="tooth-stage"
+          onclick="handleToothToggle()"
+          onmouseenter="handleToothHover(true)"
+          onmouseleave="handleToothHover(false)"
+          class="stage-spotlight relative w-full max-w-[440px] sm:max-w-[490px] h-[380px] sm:h-[430px] flex items-center justify-center rounded-full cursor-pointer select-none"
+          title="Click or Hover to reveal internal anatomy cutaway">
 
           <!-- 3D Canvas Container -->
           <div id="tooth-3d-canvas"
-            onclick="handleToothToggle()"
-            onmouseenter="handleToothHover(true)"
-            onmouseleave="handleToothHover(false)"
-            class="w-full h-full relative z-10 flex items-center justify-center cursor-pointer"
-            title="Click or Hover to reveal internal anatomy cutaway">
+            class="w-full h-full relative z-10 flex items-center justify-center pointer-events-none">
             <!-- Three.js 3D Canvas Injected Dynamically -->
           </div>
 
           <!-- ── 2D/3D HIGH-RES ANATOMY CUTAWAY OVERLAY (Exact match to 00:03 in video) ── -->
           <div id="anatomy-cutaway-graphic"
-            onclick="handleToothToggle()"
             class="anatomy-cross-section opacity-0 pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center scale-95">
 
-            <!-- High-Res Cutaway Anatomical SVG Illustration matching 00:03 in Video (Scaled Larger) -->
+            <!-- High-Res Cutaway Anatomical SVG Illustration matching 00:03 in Video (Normal Size) -->
             <div class="relative flex flex-col items-center">
-              <svg class="w-[270px] sm:w-[340px] lg:w-[380px] h-auto drop-shadow-2xl" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="w-[215px] sm:w-[260px] h-auto drop-shadow-2xl" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Soft Ground Shadow Disc -->
                 <ellipse cx="140" cy="305" rx="90" ry="12" fill="#64748b" opacity="0.22"/>
 
@@ -398,32 +398,32 @@
 
           <!-- 1. Top-Left: "3D SCAN" -->
           <div id="tag-3dscan"
-            onclick="triggerTagPulse('3D SCAN')"
-            class="video-pill-badge anim-tag-1 absolute top-2 sm:top-5 left-1 sm:left-3 z-30">
+            onclick="event.stopPropagation(); triggerTagPulse('3D SCAN');"
+            class="video-pill-badge anim-tag-1 absolute top-4 sm:top-8 left-1 sm:left-4 z-30">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             <span>3D SCAN</span>
           </div>
 
           <!-- 2. Top-Right: "ADVANCED CARE" -->
           <div id="tag-advanced"
-            onclick="triggerTagPulse('ADVANCED CARE')"
-            class="video-pill-badge anim-tag-2 absolute top-2 sm:top-5 right-1 sm:right-3 z-30">
+            onclick="event.stopPropagation(); triggerTagPulse('ADVANCED CARE');"
+            class="video-pill-badge anim-tag-2 absolute top-4 sm:top-8 right-1 sm:right-4 z-30">
             <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
             <span>ADVANCED CARE</span>
           </div>
 
           <!-- 3. Bottom-Left: "PERSONALIZED CARE" -->
           <div id="tag-personalized"
-            onclick="triggerTagPulse('PERSONALIZED CARE')"
-            class="video-pill-badge anim-tag-3 absolute bottom-5 sm:bottom-8 left-1 sm:left-2 z-30">
+            onclick="event.stopPropagation(); triggerTagPulse('PERSONALIZED CARE');"
+            class="video-pill-badge anim-tag-3 absolute bottom-6 sm:bottom-10 left-1 sm:left-3 z-30">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             <span>PERSONALIZED CARE</span>
           </div>
 
           <!-- 4. Bottom-Right: "DIGITAL SMILE" -->
           <div id="tag-digital"
-            onclick="triggerTagPulse('DIGITAL SMILE')"
-            class="video-pill-badge anim-tag-4 absolute bottom-5 sm:bottom-8 right-1 sm:right-2 z-30">
+            onclick="event.stopPropagation(); triggerTagPulse('DIGITAL SMILE');"
+            class="video-pill-badge anim-tag-4 absolute bottom-6 sm:bottom-10 right-1 sm:right-3 z-30">
             <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             <span>DIGITAL SMILE</span>
           </div>
@@ -1328,20 +1328,19 @@
     let isUserDragging = false;
     let prevMouse = { x: 0, y: 0 };
     let scanSpeedMult = 1.0;
-    let targetRotationY = 0;
 
     function initThreeScene() {
       const container = document.getElementById('tooth-3d-canvas');
       if (!container) return;
 
-      const width = container.clientWidth || 550;
-      const height = container.clientHeight || 500;
+      const width = container.clientWidth || 450;
+      const height = container.clientHeight || 420;
 
       scene = new THREE.Scene();
 
-      // Camera positioned closer with optimized perspective for a larger, bolder tooth
+      // Camera positioned at normal balanced distance
       camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-      camera.position.set(0, 0, 5.85);
+      camera.position.set(0, 0, 7.2);
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(width, height);
@@ -1351,7 +1350,7 @@
       container.innerHTML = '';
       container.appendChild(renderer.domElement);
 
-      // Studio Lighting with Dynamic Key Highlights
+      // Studio Lighting
       const ambLight = new THREE.AmbientLight(0xffffff, 0.95);
       scene.add(ambLight);
 
@@ -1359,17 +1358,17 @@
       keyLight.position.set(5, 9, 6);
       scene.add(keyLight);
 
-      const fillLight = new THREE.DirectionalLight(0xe2e8f0, 0.7);
+      const fillLight = new THREE.DirectionalLight(0xe2e8f0, 0.65);
       fillLight.position.set(-6, 3, 4);
       scene.add(fillLight);
 
-      const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.35);
+      const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.25);
       rimLight.position.set(-3, -3, -4);
       scene.add(rimLight);
 
       toothGroup = new THREE.Group();
-      // Scaled up for prominent video-like showcase
-      toothGroup.scale.set(1.22, 1.22, 1.22);
+      // Normal balanced scale matching video
+      toothGroup.scale.set(1.0, 1.0, 1.0);
       scene.add(toothGroup);
 
       // Build Glossy Ceramic Tooth (Matching Video)
@@ -1378,8 +1377,9 @@
       // Build Cyan Glowing Laser Ring (Matching Video)
       buildCyanLaserRing();
 
-      // Interactive Mouse Orbit & Parallax
-      setupMouseInteraction(container);
+      // Interactive Mouse Orbit & Parallax on Stage
+      const stageEl = document.getElementById('tooth-stage') || container;
+      setupMouseInteraction(stageEl);
 
       // Animation Loop
       animateScene();
@@ -1388,18 +1388,18 @@
     }
 
     function buildCeramicTooth() {
-      // High-Gloss Translucent Ceramic Porcelain Enamel with Subsurface Emulation
+      // High-Gloss Translucent Ceramic Porcelain Enamel
       const enamelMat = new THREE.MeshPhysicalMaterial({
         color: 0xfcfdff,
-        roughness: 0.06,
+        roughness: 0.07,
         metalness: 0.01,
         clearcoat: 1.0,
-        clearcoatRoughness: 0.03,
-        reflectivity: 0.92
+        clearcoatRoughness: 0.04,
+        reflectivity: 0.9
       });
 
-      // 1. Anatomical Crown with 4 Cusps & Marginal Ridges (Enlarged & Refined)
-      const crownGeo = new THREE.CylinderGeometry(1.32, 1.06, 1.45, 52, 26);
+      // 1. Anatomical Crown with 4 Natural Cusps
+      const crownGeo = new THREE.CylinderGeometry(1.24, 1.02, 1.38, 44, 22);
       const pos = crownGeo.attributes.position;
       for (let i = 0; i < pos.count; i++) {
         let x = pos.getX(i);
@@ -1407,39 +1407,37 @@
         let z = pos.getZ(i);
 
         if (y > 0.28) {
-          // 4 Natural Anatomical Cusps + Central Fossa & Marginal Bevels
-          const cuspBump = Math.sin(x * 3.3) * Math.cos(z * 3.3) * 0.28;
-          const centralFossa = (1 - (x * x + z * z) * 0.38) * 0.14;
+          // 4 Natural Cusps with Central Fossa
+          const cuspBump = Math.sin(x * 3.3) * Math.cos(z * 3.3) * 0.24;
+          const centralFossa = (1 - (x * x + z * z) * 0.38) * 0.12;
           pos.setY(i, y + cuspBump - centralFossa);
-          pos.setX(i, x * 1.05);
-          pos.setZ(i, z * 1.05);
         } else if (y < -0.28) {
           // Cervical neck taper
-          pos.setX(i, x * 0.91);
-          pos.setZ(i, z * 0.91);
+          pos.setX(i, x * 0.92);
+          pos.setZ(i, z * 0.92);
         }
       }
       crownGeo.computeVertexNormals();
 
       const crown = new THREE.Mesh(crownGeo, enamelMat);
-      crown.position.y = 0.74;
+      crown.position.y = 0.72;
       toothGroup.add(crown);
 
       // 2. Anatomical Furcation Bridge (Saddle between roots)
-      const furcationGeo = new THREE.CylinderGeometry(0.8, 0.48, 0.42, 28);
+      const furcationGeo = new THREE.CylinderGeometry(0.75, 0.45, 0.38, 24);
       const furcation = new THREE.Mesh(furcationGeo, enamelMat);
       furcation.position.set(0, -0.05, 0);
       toothGroup.add(furcation);
 
       // 3. Mesial Root (Left Curved Anatomical Root)
-      const root1Geo = new THREE.ConeGeometry(0.55, 1.95, 36, 18);
+      const root1Geo = new THREE.ConeGeometry(0.52, 1.78, 32, 16);
       const pos1 = root1Geo.attributes.position;
       for (let i = 0; i < pos1.count; i++) {
         let rx = pos1.getX(i);
         let ry = pos1.getY(i);
         let rz = pos1.getZ(i);
-        const curveFactor = (ry + 0.98) / 1.95;
-        pos1.setX(i, rx - Math.sin(curveFactor * Math.PI) * 0.14);
+        const curveFactor = (ry + 0.89) / 1.78;
+        pos1.setX(i, rx - Math.sin(curveFactor * Math.PI) * 0.12);
         pos1.setZ(i, rz * 0.86);
       }
       root1Geo.computeVertexNormals();
@@ -1447,18 +1445,18 @@
       const root1 = new THREE.Mesh(root1Geo, enamelMat);
       root1.rotation.z = Math.PI;
       root1.rotation.x = -0.1;
-      root1.position.set(-0.5, -0.9, 0);
+      root1.position.set(-0.48, -0.84, 0);
       toothGroup.add(root1);
 
       // 4. Distal Root (Right Curved Anatomical Root)
-      const root2Geo = new THREE.ConeGeometry(0.55, 1.95, 36, 18);
+      const root2Geo = new THREE.ConeGeometry(0.52, 1.78, 32, 16);
       const pos2 = root2Geo.attributes.position;
       for (let i = 0; i < pos2.count; i++) {
         let rx = pos2.getX(i);
         let ry = pos2.getY(i);
         let rz = pos2.getZ(i);
-        const curveFactor = (ry + 0.98) / 1.95;
-        pos2.setX(i, rx + Math.sin(curveFactor * Math.PI) * 0.14);
+        const curveFactor = (ry + 0.89) / 1.78;
+        pos2.setX(i, rx + Math.sin(curveFactor * Math.PI) * 0.12);
         pos2.setZ(i, rz * 0.86);
       }
       root2Geo.computeVertexNormals();
@@ -1466,25 +1464,25 @@
       const root2 = new THREE.Mesh(root2Geo, enamelMat);
       root2.rotation.z = Math.PI;
       root2.rotation.x = 0.1;
-      root2.position.set(0.5, -0.9, 0);
+      root2.position.set(0.48, -0.84, 0);
       toothGroup.add(root2);
 
-      // 5. Dynamic Ground Ambient Shadow Disc (Responds to levitation)
-      const shadowGeo = new THREE.CircleGeometry(2.3, 40);
-      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.18 });
+      // 5. Fixed Ground Ambient Shadow Disc (Stationary on floor, no erratic rotation)
+      const shadowGeo = new THREE.CircleGeometry(1.65, 36);
+      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.16 });
       toothShadow = new THREE.Mesh(shadowGeo, shadowMat);
       toothShadow.rotation.x = -Math.PI / 2;
-      toothShadow.position.y = -2.05;
-      toothGroup.add(toothShadow);
+      toothShadow.position.set(0, -1.95, 0);
+      scene.add(toothShadow);
     }
 
     function buildCyanLaserRing() {
-      // 1. Primary Neon Cyan Torus Ring (Enlarged to fit larger tooth)
-      const ringGeo = new THREE.TorusGeometry(2.45, 0.045, 24, 140);
+      // 1. Primary Neon Cyan Torus Ring
+      const ringGeo = new THREE.TorusGeometry(2.05, 0.038, 20, 120);
       const ringMat = new THREE.MeshBasicMaterial({
         color: 0x00f0ff,
         transparent: true,
-        opacity: 0.96
+        opacity: 0.95
       });
       laserRing = new THREE.Mesh(ringGeo, ringMat);
       laserRing.rotation.x = Math.PI / 2.3;
@@ -1493,11 +1491,11 @@
       scene.add(laserRing);
 
       // 2. Outer Subtle Halo Ring
-      const haloGeo = new THREE.TorusGeometry(2.62, 0.015, 16, 120);
+      const haloGeo = new THREE.TorusGeometry(2.18, 0.012, 16, 100);
       const haloMat = new THREE.MeshBasicMaterial({
         color: 0x00f0ff,
         transparent: true,
-        opacity: 0.38
+        opacity: 0.35
       });
       outerHaloRing = new THREE.Mesh(haloGeo, haloMat);
       outerHaloRing.rotation.x = Math.PI / 2.3;
@@ -1505,16 +1503,18 @@
       outerHaloRing.position.y = 0.2;
       scene.add(outerHaloRing);
 
-      // 3. Faint Laser Disc Scanner Plane
-      const discGeo = new THREE.RingGeometry(0.18, 2.42, 40);
+      // 3. Faint Laser Disc Scanner Plane (depthWrite: false avoids Z-fighting glitches)
+      const discGeo = new THREE.RingGeometry(0.15, 2.02, 36);
       const discMat = new THREE.MeshBasicMaterial({
         color: 0x00f0ff,
         transparent: true,
         opacity: 0.1,
+        depthWrite: false,
         side: THREE.DoubleSide
       });
       laserBeam = new THREE.Mesh(discGeo, discMat);
       laserBeam.rotation.x = Math.PI / 2.3;
+      laserBeam.rotation.y = 0.22;
       laserBeam.position.y = 0.2;
       scene.add(laserBeam);
     }
@@ -1568,55 +1568,57 @@
       requestAnimationFrame(animateScene);
       const elapsed = clock.getElapsedTime();
 
-      // 1. Realistic Organic Breathing Levitation & Gentle Tilt
-      const hoverY = Math.sin(elapsed * 1.35) * 0.12;
-      const hoverPitch = Math.sin(elapsed * 0.95) * 0.04;
-      const hoverRoll = Math.cos(elapsed * 0.75) * 0.03;
+      // 1. Natural Organic Breathing Levitation & Subtle Tilt
+      const hoverY = Math.sin(elapsed * 1.35) * 0.09;
+      const hoverPitch = Math.sin(elapsed * 0.95) * 0.03;
+      const hoverRoll = Math.cos(elapsed * 0.75) * 0.025;
 
       if (toothGroup) {
         if (!isUserDragging) {
-          // Smooth continuous yaw drift + natural breathing oscillation
-          toothGroup.rotation.y += 0.0038 * scanSpeedMult;
+          toothGroup.rotation.y += 0.0035 * scanSpeedMult;
           toothGroup.position.y = hoverY;
           toothGroup.rotation.x += (hoverPitch - toothGroup.rotation.x) * 0.04;
           toothGroup.rotation.z += (hoverRoll - toothGroup.rotation.z) * 0.04;
         } else {
-          toothGroup.position.y = hoverY * 0.4;
+          toothGroup.position.y = hoverY * 0.3;
         }
 
-        // 2. Dynamic Ground Shadow Response
+        // 2. Dynamic Ground Shadow (Stationary on floor, scales with tooth height)
         if (toothShadow) {
-          const shadowScale = 1.0 - (hoverY * 0.4);
+          const shadowScale = 1.0 - (hoverY * 0.5);
           toothShadow.scale.set(shadowScale, shadowScale, shadowScale);
-          toothShadow.material.opacity = Math.max(0.12, 0.18 - hoverY * 0.07);
+          toothShadow.material.opacity = Math.max(0.11, 0.16 - hoverY * 0.05);
         }
       }
 
-      // 3. Realistic Laser Scanner Ring Precession & Sweep
+      // 3. Synchronized Laser Scanner Sweep & Rotation
       if (laserRing && laserBeam) {
-        laserRing.rotation.z += 0.011 * scanSpeedMult;
-        laserRing.rotation.y = 0.22 + Math.sin(elapsed * 0.7) * 0.07;
+        laserRing.rotation.z += 0.009 * scanSpeedMult;
+        laserRing.rotation.y = 0.22 + Math.sin(elapsed * 0.7) * 0.05;
+        laserBeam.rotation.z = laserRing.rotation.z;
+        laserBeam.rotation.y = laserRing.rotation.y;
+
         if (outerHaloRing) {
-          outerHaloRing.rotation.z -= 0.007 * scanSpeedMult;
-          outerHaloRing.rotation.y = 0.22 - Math.sin(elapsed * 0.7) * 0.07;
+          outerHaloRing.rotation.z -= 0.006 * scanSpeedMult;
+          outerHaloRing.rotation.y = 0.22 - Math.sin(elapsed * 0.7) * 0.05;
         }
 
-        // Vertical scan sweep traversing crown down to root tips
-        const scanCycle = Math.sin(elapsed * 1.55 * scanSpeedMult);
-        const scanY = scanCycle * 1.35;
+        // Smooth vertical scan sweep traversing crown and roots
+        const scanCycle = Math.sin(elapsed * 1.6 * scanSpeedMult);
+        const scanY = scanCycle * 0.95;
         laserRing.position.y = scanY;
         laserBeam.position.y = scanY;
         if (outerHaloRing) outerHaloRing.position.y = scanY;
 
-        // Laser beam intensity pulse when passing through the tooth body
-        const scanIntensity = 0.08 + Math.pow(Math.abs(scanCycle), 2) * 0.15;
-        laserBeam.material.opacity = scanIntensity * Math.min(scanSpeedMult, 2.6);
+        // Faint laser beam intensity pulse
+        const scanIntensity = 0.06 + Math.pow(Math.abs(scanCycle), 2) * 0.12;
+        laserBeam.material.opacity = scanIntensity * Math.min(scanSpeedMult, 2.5);
       }
 
-      // 4. Studio Key Light subtle motion for realistic specular reflections across cusps
+      // 4. Subtle Key Light highlight motion
       if (keyLight) {
-        keyLight.position.x = 5 + Math.cos(elapsed * 0.4) * 1.6;
-        keyLight.position.y = 9 + Math.sin(elapsed * 0.5) * 1.1;
+        keyLight.position.x = 5 + Math.cos(elapsed * 0.4) * 1.2;
+        keyLight.position.y = 9 + Math.sin(elapsed * 0.5) * 0.8;
       }
 
       renderer.render(scene, camera);
@@ -1648,17 +1650,18 @@
       }
     }
 
+    // Glitch-free visibility handler (never removes pointer-events-none, preventing mouseleave oscillations)
     function setAnatomyCutawayVisibility(visible) {
       const cutaway = document.getElementById('anatomy-cutaway-graphic');
       const canvasDom = renderer ? renderer.domElement : null;
 
       if (cutaway) {
         if (visible) {
-          cutaway.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+          cutaway.classList.remove('opacity-0', 'scale-95');
           cutaway.classList.add('opacity-100', 'scale-100');
-          if (canvasDom) canvasDom.style.opacity = '0.12';
+          if (canvasDom) canvasDom.style.opacity = '0.08';
         } else {
-          cutaway.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+          cutaway.classList.add('opacity-0', 'scale-95');
           cutaway.classList.remove('opacity-100', 'scale-100');
           if (canvasDom) canvasDom.style.opacity = '1';
         }
