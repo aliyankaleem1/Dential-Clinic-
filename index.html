@@ -1,2307 +1,723 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>PRECISION DENTISTRY • Modern Dental Care</title>
-  <meta name="description"
-    content="An individual dental Care provided by modern technology. Precision Dentistry, 3D guided scans, and advanced dental architecture." />
-
-  <!-- Google Fonts: Inter & Outfit -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              blue: '#0c3878',
-              blueHover: '#082855',
-              cyan: '#00f0ff',
-              bg: '#f3f4f6',
-              dark: '#111827'
-            }
-          },
-          fontFamily: {
-            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
-            display: ['"Outfit"', '"Inter"', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Three.js 3D Engine via CDN -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRECISION DENTISTRY — Ethical Dental Care Powered by Modern Technology</title>
+  <meta name="description" content="Advanced dental care powered by modern 3D scanning, digital smile design, and painless ethical technology.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Three.js & OrbitControls for 3D Interactive Tooth -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-      overflow-x: hidden;
-      background-color: #f3f4f6;
-      color: #111827;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* ── Precise Floating Badges (Exact match to 00:06-00:08 in Video) ── */
-    .video-pill-badge {
-      background: #ffffff;
-      border: 1px solid rgba(229, 231, 235, 0.95);
-      border-radius: 9999px;
-      padding: 7px 15px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #111827;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-      white-space: nowrap;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .video-pill-badge:hover, .video-pill-badge.active-pulse {
-      border-color: #00f0ff;
-      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
-      transform: translateY(-3px) scale(1.04);
-      color: #0c3878;
-    }
-
-    /* Floating keyframes matching video */
-    @keyframes floatTag1 {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-7px); }
-    }
-
-    @keyframes floatTag2 {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(7px); }
-    }
-
-    .anim-tag-1 { animation: floatTag1 4.2s ease-in-out infinite; }
-    .anim-tag-2 { animation: floatTag2 4.8s ease-in-out infinite 0.6s; }
-    .anim-tag-3 { animation: floatTag1 4.5s ease-in-out infinite 1.2s; }
-    .anim-tag-4 { animation: floatTag2 5.1s ease-in-out infinite 1.8s; }
-
-    /* Laser Ring Glow Animation */
-    @keyframes laserPulseGlow {
-      0%, 100% {
-        opacity: 0.88;
-        filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.85));
-      }
-      50% {
-        opacity: 1;
-        filter: drop-shadow(0 0 25px rgba(0, 240, 255, 1));
-      }
-    }
-
-    .laser-glow {
-      animation: laserPulseGlow 2.4s ease-in-out infinite;
-    }
-
-    /* Vertical Pager Dots on Right Edge */
-    .pager-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      transition: all 0.25s ease;
-    }
-    .pager-dot.active {
-      background-color: #0c3878;
-      transform: scale(1.35);
-    }
-    .pager-dot.inactive {
-      border: 1.5px solid #9ca3af;
-      background: transparent;
-    }
-    .pager-dot.inactive:hover {
-      border-color: #0c3878;
-      transform: scale(1.15);
-    }
-
-    /* Royal Blue CTA Button matching Video */
-    .btn-video-blue {
-      background-color: #0c3878;
-      color: #ffffff;
-      border-radius: 9999px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 4px 16px rgba(12, 56, 120, 0.28);
-    }
-    .btn-video-blue:hover {
-      background-color: #082855;
-      box-shadow: 0 8px 24px rgba(12, 56, 120, 0.42);
-      transform: translateY(-2px);
-    }
-    .btn-video-blue:active {
-      transform: translateY(0);
-    }
-
-    /* Anatomy Cross-Section Overlay */
-    .anatomy-cross-section {
-      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    /* Ambient Spotlight Background behind Tooth */
-    .stage-spotlight {
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 0%, rgba(243, 244, 246, 0) 70%);
-    }
-
-    /* Tech HUD Line & Callouts */
-    .hud-callout {
-      opacity: 0;
-      transform: translateY(4px);
-      transition: all 0.3s ease 0.1s;
-    }
-    .opacity-100 .hud-callout {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-100 selection:text-cyan-900">
-
-  <!-- ══════════════════════════════════════════════════════════
-       TOP HEADER (Sticky Navigation: Home, Services, Doctors, Booking)
-       ══════════════════════════════════════════════════════════ -->
-  <header class="sticky top-0 w-full pt-3 pb-3 px-5 sm:px-14 bg-[#f3f4f6]/92 backdrop-blur-md border-b border-slate-200/70 z-40 transition-all">
-    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
-
-      <!-- Left: Logo & Title (Matching "PRECISION DENTISTRY") -->
-      <a href="#hero" class="flex items-center gap-2.5 group">
-        <!-- Minimalist Tooth Outline Logo from Video -->
-        <div class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-slate-900 group-hover:text-blue-700 transition-colors">
-          <svg class="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 3C4.24 3 2 5.24 2 8c0 3.2 1.6 6.8 2.5 9 .8 2 2.5 4 4.5 4 1.8 0 2.5-1.5 3-3 .5 1.5 1.2 3 3 3 2 0 3.7-2 4.5-4 .9-2.2 2.5-5.8 2.5-9 0-2.76-2.24-5-5-5-2 0-3.5 1-4.5 2.5C10.5 4 9 3 7 3z"/>
+  <!-- SITE HEADER (Exact Match to Video 00:00) -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo">
+        <div class="logo-icon-wrap">
+          <svg viewBox="0 0 36 36" class="logo-tooth-svg">
+            <path d="M18 4 C11 4, 7 8, 7 14 C7 19, 10 24, 12 30 C13 33, 15 33, 16 29 C17 25, 17 22, 18 22 C19 22, 19 25, 20 29 C21 33, 23 33, 24 30 C26 24, 29 19, 29 14 C29 8, 25 4, 18 4 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div>
-          <span class="font-display font-extrabold text-xs sm:text-sm text-slate-900 tracking-wider uppercase block leading-tight">
-            PRECISION DENTISTRY
-          </span>
+        <div class="logo-text">
+          <span class="logo-main">PRECISION</span>
+          <span class="logo-sub">DENTISTRY</span>
         </div>
       </a>
 
-      <!-- Center: Links (HOME, SERVICES, DOCTORS, BOOKING, LOGIN) -->
-      <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-[11px] lg:text-xs font-semibold text-slate-600">
-        <a href="#hero" class="text-slate-950 font-bold hover:text-blue-700 transition-colors">
-          HOME
-        </a>
-        <a href="#services" class="hover:text-slate-950 transition-colors">
-          SERVICES
-        </a>
-        <a href="#doctors" class="hover:text-slate-950 transition-colors">
-          DOCTORS
-        </a>
-        <a href="#booking" class="hover:text-slate-950 transition-colors">
-          BOOK VISIT
-        </a>
-        <a href="admin.html" class="hover:text-blue-800 transition-colors flex items-center gap-1.5 text-[#0c3878]" title="Reception Staff Login">
-          <i class="fa fa-lock text-[10px]"></i> LOGIN
-        </a>
+      <!-- Center Navigation Links -->
+      <nav class="nav-menu">
+        <a href="#home" class="nav-link active">HOME</a>
+        <a href="#services" class="nav-link">SERVICES</a>
+        <a href="#doctors" class="nav-link">DOCTORS</a>
+        <a href="#packages" class="nav-link">PACKAGES</a>
+        <a href="#contact" class="nav-link">CONTACT US</a>
+        <a href="#login" class="nav-link" onclick="openLoginModal(event)">LOGIN</a>
       </nav>
 
-      <!-- Right: Blue Pill Button (Matching "BOOK YOUR VISIT ➔") -->
-      <div class="flex items-center gap-3">
-        <a href="#booking"
-          class="btn-video-blue px-4 sm:px-6 py-2 sm:py-2.5 text-[11px] sm:text-xs flex items-center gap-2">
+      <!-- Right Action CTA -->
+      <div class="header-actions">
+        <button class="btn-book-visit" onclick="openBookingModal('Header')">
           <span>BOOK YOUR VISIT</span>
-          <span class="text-xs">➔</span>
-        </a>
+          <i data-lucide="arrow-right" class="icon-sm"></i>
+        </button>
 
-        <!-- Mobile Hamburger -->
-        <button onclick="toggleMobileNav()" class="md:hidden p-2 text-slate-700 hover:text-slate-950" title="Toggle menu">
-          <i class="fa fa-bars text-sm"></i>
+        <!-- Mobile Menu Hamburger -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
-
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div id="mob-drawer" class="hidden md:hidden bg-white/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 text-xs font-semibold space-y-3 z-40">
-    <a href="#hero" onclick="toggleMobileNav();" class="block py-1 text-slate-950 font-bold">HOME</a>
-    <a href="#services" onclick="toggleMobileNav();" class="block py-1 text-slate-600">SERVICES</a>
-    <a href="#doctors" onclick="toggleMobileNav();" class="block py-1 text-slate-600">DOCTORS</a>
-    <a href="#booking" onclick="toggleMobileNav();" class="block py-1 text-slate-600">BOOK VISIT</a>
-    <a href="admin.html" class="block py-1 text-blue-700 font-bold">STAFF LOGIN (ADMIN)</a>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <span class="logo-main">PRECISION DENTISTRY</span>
+      <button class="drawer-close" id="drawerClose"><i data-lucide="x"></i></button>
+    </div>
+    <div class="mobile-links">
+      <a href="#home" class="mobile-link">HOME</a>
+      <a href="#services" class="mobile-link">SERVICES</a>
+      <a href="#doctors" class="mobile-link">DOCTORS</a>
+      <a href="#packages" class="mobile-link">PACKAGES</a>
+      <a href="#contact" class="mobile-link">CONTACT US</a>
+      <a href="#login" class="mobile-link" onclick="openLoginModal(event)">LOGIN</a>
+    </div>
+    <div class="mobile-drawer-footer">
+      <button class="btn-book-visit full-width" onclick="openBookingModal('Mobile Menu')">
+        <span>BOOK YOUR VISIT</span>
+        <i data-lucide="arrow-right" class="icon-sm"></i>
+      </button>
+    </div>
   </div>
 
+  <main>
+    <!-- HERO SECTION (Exact Match to Video 00:00 - 00:09) -->
+    <section class="hero-section" id="home">
+      <div class="hero-container">
+        
+        <!-- Left Content Column -->
+        <div class="hero-text-col">
+          <h1 class="hero-headline">
+            <span class="headline-line">YOUR SMILE.</span>
+            <span class="headline-line">OUR PRECISION.</span>
+          </h1>
 
-  <!-- ══════════════════════════════════════════════════════════
-       MAIN HERO SECTION (Exact 1:1 match to video on laptop)
-       ══════════════════════════════════════════════════════════ -->
-  <section id="hero" class="min-h-[calc(100vh-80px)] max-w-[1440px] w-full mx-auto px-5 sm:px-14 flex items-center relative py-8 lg:py-0">
-
-    <div class="w-full grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-0">
-
-      <!-- LEFT COLUMN: Headline, Subheadline & Button (Exact Video Match) -->
-      <div class="lg:col-span-5 text-left space-y-4 sm:space-y-6 z-10 sm:pl-1">
-
-        <!-- Headline: "YOUR SMILE. OUR PRECISION." -->
-        <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-slate-950 leading-[1.06] tracking-tight uppercase">
-          YOUR SMILE.<br />
-          <span class="text-slate-950">OUR PRECISION.</span>
-        </h1>
-
-        <!-- Subheadline: "An individual dental Care provided by modern technology" -->
-        <p class="text-slate-500 font-normal text-xs sm:text-sm md:text-base max-w-sm leading-relaxed">
-          An individual dental Care provided by modern technology
-        </p>
-
-        <!-- Button: "BOOK YOUR VISIT ➔" -->
-        <div class="pt-1 sm:pt-2">
-          <a href="#booking"
-            class="btn-video-blue px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm inline-flex items-center gap-2.5 group">
-            <span>BOOK YOUR VISIT</span>
-            <span class="text-xs sm:text-sm transition-transform duration-200 group-hover:translate-x-1">➔</span>
-          </a>
-        </div>
-
-      </div>
-
-      <!-- CENTER COLUMN: Interactive 3D Tooth & Holographic Laser Scanner (Exact Video Centerpiece) -->
-      <div class="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[390px] sm:min-h-[500px] select-none">
-
-        <!-- The Tooth Stage (Normal Balanced Size & Glitch-Free Hover Handler) -->
-        <div id="tooth-stage"
-          onclick="handleToothToggle()"
-          onmouseenter="handleToothHover(true)"
-          onmouseleave="handleToothHover(false)"
-          class="stage-spotlight relative w-full max-w-[440px] sm:max-w-[490px] h-[380px] sm:h-[430px] flex items-center justify-center rounded-full cursor-pointer select-none"
-          title="Click or Hover to reveal internal anatomy cutaway">
-
-          <!-- 3D Canvas Container -->
-          <div id="tooth-3d-canvas"
-            class="w-full h-full relative z-10 flex items-center justify-center pointer-events-none">
-            <!-- Three.js 3D Canvas Injected Dynamically -->
-          </div>
-
-          <!-- ── 2D/3D HIGH-RES ANATOMY CUTAWAY OVERLAY (Exact match to 00:03 in video) ── -->
-          <div id="anatomy-cutaway-graphic"
-            class="anatomy-cross-section opacity-0 pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center scale-95">
-
-            <!-- High-Res Medical 3D Cutaway Anatomical SVG Illustration (Photorealistic Depth & Shading) -->
-            <div class="relative flex flex-col items-center">
-              <svg class="w-[220px] sm:w-[265px] h-auto drop-shadow-2xl" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Drop Shadow Filter & Volumetric Gradients -->
-                <defs>
-                  <!-- Enamel Ceramic Volumetric Reflection Gradient -->
-                  <linearGradient id="realEnamelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="25%" stop-color="#f8fafc"/>
-                    <stop offset="70%" stop-color="#e2e8f0"/>
-                    <stop offset="100%" stop-color="#cbd5e1"/>
-                  </linearGradient>
-
-                  <!-- Cut Surface Pearlescent Enamel Rim -->
-                  <linearGradient id="enamelCutRim" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="45%" stop-color="#f1f5f9"/>
-                    <stop offset="90%" stop-color="#e2e8f0"/>
-                    <stop offset="100%" stop-color="#cbd5e1"/>
-                  </linearGradient>
-
-                  <!-- Realistic Biological Dentin Gradient with Radial Depth -->
-                  <radialGradient id="dentinVolumetric" cx="45%" cy="35%" r="65%">
-                    <stop offset="0%" stop-color="#fffbeb"/>
-                    <stop offset="35%" stop-color="#fef3c7"/>
-                    <stop offset="70%" stop-color="#fde68a"/>
-                    <stop offset="95%" stop-color="#f59e0b"/>
-                    <stop offset="100%" stop-color="#d97706"/>
-                  </radialGradient>
-
-                  <!-- Warm Sub-Enamel Dentin Trunk -->
-                  <linearGradient id="rootDentinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#fef3c7"/>
-                    <stop offset="60%" stop-color="#fde68a"/>
-                    <stop offset="100%" stop-color="#d97706"/>
-                  </linearGradient>
-
-                  <!-- Realistic Hyper-Vascular Pulp Core with Glowing Capillaries -->
-                  <linearGradient id="pulpArterialGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#f87171"/>
-                    <stop offset="20%" stop-color="#ef4444"/>
-                    <stop offset="60%" stop-color="#dc2626"/>
-                    <stop offset="100%" stop-color="#991b1b"/>
-                  </linearGradient>
-
-                  <!-- Soft Specular Reflection Curve -->
-                  <linearGradient id="specularGlint" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
-                    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
-                  </linearGradient>
-
-                  <!-- Ambient Shadow Filter -->
-                  <filter id="pulpGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ef4444" flood-opacity="0.6"/>
-                  </filter>
-                  <filter id="innerDepth" x="-10%" y="-10%" width="120%" height="120%">
-                    <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#78350f" flood-opacity="0.25"/>
-                  </filter>
-                </defs>
-
-                <!-- Ground Ambient Occlusion Shadow -->
-                <ellipse cx="140" cy="306" rx="92" ry="11" fill="#475569" opacity="0.22"/>
-
-                <!-- 1. Outer Ceramic Enamel Full Silhouette (Anatomical Molar Contour) -->
-                <!-- Left Enamel Wall & Roots -->
-                <path d="M76 44C50 64 44 104 46 146C48 184 64 200 80 232C90 252 96 284 102 290C108 284 116 242 124 200C128 170 136 155 140 148V44C118 35 96 34 76 44Z"
-                  fill="url(#realEnamelGrad)" stroke="#cbd5e1" stroke-width="1.6"/>
-
-                <!-- Outer Specular Enamel Highlight Shimmer (Left Lobe) -->
-                <path d="M68 62C54 84 52 118 53 148C55 174 65 192 76 216"
-                  stroke="url(#specularGlint)" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
-
-                <!-- 2. Right Cutaway Surface: Exposed Enamel Beveled Rim -->
-                <path d="M140 38C170 35 208 42 228 54C240 90 240 142 238 158C234 186 210 224 194 262C184 284 178 290 174 290C170 284 164 246 158 204C154 178 144 156 140 148V38Z"
-                  fill="url(#enamelCutRim)" stroke="#cbd5e1" stroke-width="1.6"/>
-
-                <!-- 3. Dentino-Enamel Junction (DEJ) Boundary Layer -->
-                <path d="M140 48C164 46 198 54 218 68C228 102 226 145 224 160C220 186 200 222 186 256C178 274 174 280 171 278C167 252 160 210 154 178C148 154 144 142 140 138V48Z"
-                  fill="#fef3c7" stroke="#fbbf24" stroke-width="1" opacity="0.9"/>
-
-                <!-- 4. Volumetric Dentin Core (Natural Warm Ivory with Radial Depth) -->
-                <path d="M140 52C162 50 192 60 210 76C218 108 217 146 214 162C208 188 192 226 178 258C172 274 169 276 167 274C163 250 156 208 150 178C146 156 142 142 140 138V52Z"
-                  fill="url(#dentinVolumetric)" filter="url(#innerDepth)"/>
-
-                <!-- Left Side Internal Dentin Ambient Glow -->
-                <path d="M86 64C68 78 64 114 66 146C68 172 80 194 92 220C100 242 104 268 106 272C109 256 116 210 123 178C127 156 134 142 138 138V64C122 56 104 56 86 64Z"
-                  fill="url(#rootDentinGrad)" opacity="0.4"/>
-
-                <!-- 5. Anatomical Pulp Chamber Cavity Border (Odontoblast Layer) -->
-                <path d="M140 76C156 76 178 86 184 104C187 124 179 144 175 156C170 170 164 202 157 240C154 260 152 268 150 268C148 260 145 236 143 206C140 178 136 156 139 146V76Z"
-                  fill="#7f1d1d" opacity="0.35"/>
-
-                <!-- 6. Ruby-Red Vascular Pulp & Primary Distal Root Canal -->
-                <path d="M140 80C154 80 174 90 180 106C183 126 176 144 172 155C168 168 162 200 155 238C152 258 150 266 149 266C147 260 145 234 143 206C140 178 136 156 139 146V80Z"
-                  fill="url(#pulpArterialGrad)" filter="url(#pulpGlow)"/>
-
-                <!-- Secondary Mesial Root Canal -->
-                <path d="M139 108C128 108 116 118 114 134C112 150 116 172 118 194C120 216 121 246 122 256C124 256 126 224 130 196C133 168 137 148 139 143V108Z"
-                  fill="url(#pulpArterialGrad)" opacity="0.95"/>
-
-                <!-- 7. Micro-Capillary Arterioles & Neural Nerve Branches -->
-                <path d="M150 120Q162 145 158 175Q154 205 152 236" stroke="#fca5a5" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M162 135Q168 150 164 168" stroke="#fecaca" stroke-width="1" stroke-linecap="round"/>
-                <path d="M126 132Q120 165 122 222" stroke="#fca5a5" stroke-width="1.3" stroke-linecap="round"/>
-                <!-- Venule Capillary (Subtle Blue) -->
-                <path d="M146 130Q142 165 146 200" stroke="#93c5fd" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-                <!-- Neural Filament (Subtle Golden Yellow) -->
-                <path d="M154 110Q158 135 154 165Q150 195 150 245" stroke="#fde047" stroke-width="0.9" stroke-linecap="round" opacity="0.9"/>
-
-                <!-- 8. Polish Bevel Highlight (Glossy Medical Specular Reflection Arc) -->
-                <path d="M142 42C172 40 205 48 222 60"
-                  stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
-
-                <!-- 9. Tech HUD Pointer Diagnostic Leader Lines -->
-                <!-- Enamel HUD -->
-                <line x1="46" y1="110" x2="14" y2="110" stroke="#00f0ff" stroke-width="1.2" stroke-dasharray="2 2"/>
-                <circle cx="46" cy="110" r="2.5" fill="#00f0ff"/>
-                <circle cx="46" cy="110" r="4.5" stroke="#00f0ff" stroke-width="0.8" opacity="0.5"/>
-
-                <!-- Dentin HUD -->
-                <line x1="216" y1="120" x2="262" y2="120" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="2 2"/>
-                <circle cx="216" cy="120" r="2.5" fill="#f59e0b"/>
-                <circle cx="216" cy="120" r="4.5" stroke="#f59e0b" stroke-width="0.8" opacity="0.5"/>
-
-                <!-- Pulp & Canal HUD -->
-                <line x1="168" y1="180" x2="258" y2="180" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2 2"/>
-                <circle cx="168" cy="180" r="2.5" fill="#ef4444"/>
-                <circle cx="168" cy="180" r="4.5" stroke="#ef4444" stroke-width="0.8" opacity="0.5"/>
-              </svg>
-
-              <!-- Diagnostic Labels (HUD) -->
-              <span class="hud-callout absolute -left-6 sm:-left-12 top-[98px] text-[9px] font-bold text-slate-800 bg-white/95 backdrop-blur-sm px-2 py-0.5 rounded shadow-sm border border-cyan-200 flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span> ENAMEL
-              </span>
-              <span class="hud-callout absolute -right-6 sm:-right-12 top-[108px] text-[9px] font-bold text-amber-800 bg-amber-50/95 backdrop-blur-sm px-2 py-0.5 rounded shadow-sm border border-amber-300 flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> DENTIN
-              </span>
-              <span class="hud-callout absolute -right-8 sm:-right-16 top-[168px] text-[9px] font-bold text-rose-800 bg-rose-50/95 backdrop-blur-sm px-2 py-0.5 rounded shadow-sm border border-rose-300 flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span> PULP & CANAL
-              </span>
-            </div>
-
-            <!-- Pill Badge Under Tooth (Matching "PRECISION DENTISTRY" in 00:03 of video) -->
-            <div class="mt-2 sm:mt-3 bg-white px-4 py-1.5 rounded-full border border-slate-200/90 shadow-sm text-[10px] sm:text-[11px] font-bold text-slate-800 tracking-wider">
-              PRECISION DENTISTRY
-            </div>
-
-          </div>
-
-          <!-- ── 4 FLOATING BADGES (Exact text & placement from 00:06-00:08 in Video) ── -->
-
-          <!-- 1. Top-Left: "3D SCAN" -->
-          <div id="tag-3dscan"
-            onclick="event.stopPropagation(); triggerTagPulse('3D SCAN');"
-            class="video-pill-badge anim-tag-1 absolute top-4 sm:top-8 left-1 sm:left-4 z-30">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-            <span>3D SCAN</span>
-          </div>
-
-          <!-- 2. Top-Right: "ADVANCED CARE" -->
-          <div id="tag-advanced"
-            onclick="event.stopPropagation(); triggerTagPulse('ADVANCED CARE');"
-            class="video-pill-badge anim-tag-2 absolute top-4 sm:top-8 right-1 sm:right-4 z-30">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-            <span>ADVANCED CARE</span>
-          </div>
-
-          <!-- 3. Bottom-Left: "PERSONALIZED CARE" -->
-          <div id="tag-personalized"
-            onclick="event.stopPropagation(); triggerTagPulse('PERSONALIZED CARE');"
-            class="video-pill-badge anim-tag-3 absolute bottom-6 sm:bottom-10 left-1 sm:left-3 z-30">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>PERSONALIZED CARE</span>
-          </div>
-
-          <!-- 4. Bottom-Right: "DIGITAL SMILE" -->
-          <div id="tag-digital"
-            onclick="event.stopPropagation(); triggerTagPulse('DIGITAL SMILE');"
-            class="video-pill-badge anim-tag-4 absolute bottom-6 sm:bottom-10 right-1 sm:right-3 z-30">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-            <span>DIGITAL SMILE</span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    </div>
-
-    <!-- ── RIGHT EDGE: 4 Vertical Navigation Dots (Fixed on Desktop) ── -->
-    <div class="hidden xl:flex flex-col items-center gap-3.5 fixed right-6 top-1/2 -translate-y-1/2 z-30 bg-white/80 backdrop-blur-md py-4 px-2.5 rounded-full border border-slate-200/80 shadow-md">
-      <a href="#hero" id="dot-hero" class="pager-dot active cursor-pointer" title="Hero Overview"></a>
-      <a href="#services" id="dot-services" class="pager-dot inactive cursor-pointer" title="Clinical Services"></a>
-      <a href="#doctors" id="dot-doctors" class="pager-dot inactive cursor-pointer" title="Specialist Faculty"></a>
-      <a href="#booking" id="dot-booking" class="pager-dot inactive cursor-pointer" title="Online Booking Desk"></a>
-    </div>
-
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       SECTION 1: CLINICAL SERVICES & 3D ARCHITECTURE
-       ══════════════════════════════════════════════════════════ -->
-  <section id="services" class="w-full py-20 sm:py-28 px-5 sm:px-14 max-w-[1440px] mx-auto border-t border-slate-200/80">
-    <div class="max-w-3xl mb-12 sm:mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/90 text-[#0c3878] text-[11px] font-bold uppercase tracking-wider mb-3">
-        <i class="fa fa-microchip text-cyan-500"></i> Clinical Services & 3D Architecture
-      </div>
-      <h2 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-950 tracking-tight leading-tight">
-        Modern Dental Services & Restorations
-      </h2>
-      <p class="text-slate-500 text-xs sm:text-sm md:text-base mt-2.5 leading-relaxed">
-        Individualized dental care powered by digital intraoral 3D scanning, Zeiss surgical microscope optics, and non-invasive laser photonics.
-      </p>
-    </div>
-
-    <!-- Services Grid (6 Core Specialized Clinical Treatments) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-
-      <!-- Service 1: Veneers -->
-      <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#0c3878] flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
-            <i class="fa fa-gem"></i>
-          </div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Veneers</span>
-            <span class="text-[10px] font-semibold text-slate-400">3D CAD/CAM</span>
-          </div>
-          <h3 class="font-display font-extrabold text-lg text-slate-950 mb-2">
-            Swiss E.max Porcelain Veneers
-          </h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-4">
-            0.3mm handcrafted ultra-thin porcelain veneers with natural light refraction. Preserves 98% of natural enamel without invasive tooth reduction.
+          <p class="hero-subtext">
+            An ethical dental care powered by modern technology.
           </p>
-          <ul class="text-[11px] text-slate-600 space-y-1.5 mb-6">
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> AI Digital Smile Design Preview</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Stain-proof Swiss biocompatible ceramic</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> 10-Year Comprehensive Clinical Warranty</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">Investment</span>
-            <span class="font-display font-bold text-base text-slate-900">PKR 210,000</span>
-          </div>
-          <button onclick="selectTreatmentBooking('Hollywood Smile Porcelain Veneers', 'PKR 210,000', 'dr-sophia')"
-            class="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#0c3878] text-slate-800 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
-            <span>Book Visit</span> <i class="fa fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
 
-      <!-- Service 2: Implants -->
-      <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-700 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
-            <i class="fa fa-cube"></i>
-          </div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-800 bg-cyan-50 px-2 py-0.5 rounded">Implants</span>
-            <span class="text-[10px] font-semibold text-slate-400">CBCT Stent</span>
-          </div>
-          <h3 class="font-display font-extrabold text-lg text-slate-950 mb-2">
-            Computer-Guided Titanium Implants
-          </h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-4">
-            Medical Grade-5 titanium biocompatible root replacement placed via 3D CBCT surgical stent for sub-millimeter angular accuracy and lifetime bone fusion.
-          </p>
-          <ul class="text-[11px] text-slate-600 space-y-1.5 mb-6">
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Flapless keyhole robotic placement</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Immediate provisional aesthetics available</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Lifetime Osseointegration Guarantee</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">Investment</span>
-            <span class="font-display font-bold text-base text-slate-900">PKR 140,000</span>
-          </div>
-          <button onclick="selectTreatmentBooking('Computer-Guided Titanium Implant', 'PKR 140,000', 'dr-ahmed')"
-            class="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#0c3878] text-slate-800 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
-            <span>Book Visit</span> <i class="fa fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Service 3: Whitening -->
-      <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
-            <i class="fa fa-wand-magic-sparkles"></i>
-          </div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-800 bg-amber-50 px-2 py-0.5 rounded">Laser Whitening</span>
-            <span class="text-[10px] font-semibold text-slate-400">Photonic</span>
-          </div>
-          <h3 class="font-display font-extrabold text-lg text-slate-950 mb-2">
-            Laser Enamel Spa Whitening
-          </h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-4">
-            Non-thermal cold-blue photonic activation breaking deep organic tea, coffee, and nicotine discoloration in a single 45-minute suite session.
-          </p>
-          <ul class="text-[11px] text-slate-600 space-y-1.5 mb-6">
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Up to 8 shades lighter in 45 minutes</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Zero dentin sensitivity desensitizer</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> High-gloss enamel mineral luster finish</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">Investment</span>
-            <span class="font-display font-bold text-base text-slate-900">PKR 35,000</span>
-          </div>
-          <button onclick="selectTreatmentBooking('Laser Enamel Whitening', 'PKR 35,000', 'dr-sophia')"
-            class="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#0c3878] text-slate-800 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
-            <span>Book Visit</span> <i class="fa fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Service 4: Root Canal -->
-      <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
-            <i class="fa fa-tooth"></i>
-          </div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-rose-800 bg-rose-50 px-2 py-0.5 rounded">Endodontics</span>
-            <span class="text-[10px] font-semibold text-slate-400">Zeiss Optics</span>
-          </div>
-          <h3 class="font-display font-extrabold text-lg text-slate-950 mb-2">
-            Microscopic Root Canal Therapy
-          </h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-4">
-            High-magnification Zeiss surgical microscope root treatment ensuring 100% canal eradication, digital apex location, and 3D thermoplastic seal.
-          </p>
-          <ul class="text-[11px] text-slate-600 space-y-1.5 mb-6">
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Pain-free single-sitting completion</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Ultrasonic 3D bacterial disinfection</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Preserves natural root anatomy</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">Investment</span>
-            <span class="font-display font-bold text-base text-slate-900">PKR 28,000</span>
-          </div>
-          <button onclick="selectTreatmentBooking('Microscopic Root Canal Therapy', 'PKR 28,000', 'dr-ahmed')"
-            class="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#0c3878] text-slate-800 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
-            <span>Book Visit</span> <i class="fa fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Service 5: Aligners -->
-      <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
-            <i class="fa fa-layer-group"></i>
-          </div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-purple-800 bg-purple-50 px-2 py-0.5 rounded">Orthodontics</span>
-            <span class="text-[10px] font-semibold text-slate-400">AI Modeling</span>
-          </div>
-          <h3 class="font-display font-extrabold text-lg text-slate-950 mb-2">
-            Digital Invisible Clear Aligners
-          </h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-4">
-            Custom transparent medical-grade thermoplastic aligners correcting crowding, gaps, and bite alignment invisibly in 6–12 months with zero metal wires.
-          </p>
-          <ul class="text-[11px] text-slate-600 space-y-1.5 mb-6">
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> 100% discreet & removable for meals</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Complete 3D tooth movement video</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Includes free post-treatment retainers</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">Investment</span>
-            <span class="font-display font-bold text-base text-slate-900">PKR 180,000</span>
-          </div>
-          <button onclick="selectTreatmentBooking('Invisible Clear Aligners', 'PKR 180,000', 'dr-sara')"
-            class="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#0c3878] text-slate-800 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
-            <span>Book Visit</span> <i class="fa fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Service 6: 3D Consultation -->
-      <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
-            <i class="fa fa-stethoscope"></i>
-          </div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">Diagnostic</span>
-            <span class="text-[10px] font-semibold text-slate-400">Full-Mouth HD</span>
-          </div>
-          <h3 class="font-display font-extrabold text-lg text-slate-950 mb-2">
-            Comprehensive 3D Biomapping & Scan
-          </h3>
-          <p class="text-xs text-slate-500 leading-relaxed mb-4">
-            Full intraoral digital 3D model, bite balance measurement, oral cancer screening, and custom multidisciplinary treatment blueprint.
-          </p>
-          <ul class="text-[11px] text-slate-600 space-y-1.5 mb-6">
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Instant 3D digital tooth reconstruction</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Early micro-cavity laser detection</li>
-            <li class="flex items-center gap-2"><i class="fa fa-check text-cyan-600 text-[10px]"></i> Transparent written treatment quotation</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-slate-400 block font-semibold">Investment</span>
-            <span class="font-display font-bold text-base text-slate-900">PKR 5,000</span>
-          </div>
-          <button onclick="selectTreatmentBooking('Comprehensive 3D Consultation', 'PKR 5,000', 'dr-ahmed')"
-            class="px-4 py-2 rounded-full bg-slate-100 hover:bg-[#0c3878] text-slate-800 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
-            <span>Book Visit</span> <i class="fa fa-arrow-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       SECTION 2: MEDICAL FACULTY (DOCTOR IMAGE, NAME & TIMING)
-       ══════════════════════════════════════════════════════════ -->
-  <section id="doctors" class="w-full py-20 sm:py-28 px-5 sm:px-14 max-w-[1440px] mx-auto border-t border-slate-200/80">
-    <div class="text-center max-w-2xl mx-auto mb-14 sm:mb-20">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/90 text-[#0c3878] text-[11px] font-bold uppercase tracking-wider mb-3">
-        <i class="fa fa-user-doctor text-cyan-500"></i> Board-Certified Medical Faculty
-      </div>
-      <h2 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-950 tracking-tight leading-tight">
-        Masters of Aesthetic Dentistry & Surgery
-      </h2>
-      <p class="text-slate-500 text-xs sm:text-sm md:text-base mt-2.5">
-        Each surgical suite is headed by an internationally credentialed clinician dedicated to pain-free biological precision.
-      </p>
-    </div>
-
-    <!-- Doctors 3-Column Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <!-- Doctor 1: Dr. Ahmed Khan -->
-      <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <!-- Doctor Image with Badge -->
-          <div class="h-72 overflow-hidden relative bg-slate-100">
-            <img
-              src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&h=700&fit=crop&q=90"
-              alt="Dr. Ahmed Khan"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-[10px] font-bold text-blue-700 flex items-center gap-1.5 shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> Suite 1 Ready
-            </div>
-            <div class="absolute bottom-3 left-3 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-cyan-300 font-bold border border-white/10">
-              ★ 4.99 Rating • 5,400+ Smiles
-            </div>
+          <div class="hero-cta-wrap">
+            <button class="btn-book-visit btn-hero-cta" onclick="openBookingModal('Hero Button')">
+              <span>BOOK YOUR VISIT</span>
+              <i data-lucide="arrow-right" class="icon-sm"></i>
+            </button>
           </div>
 
-          <!-- Doctor Info -->
-          <div class="p-6">
-            <h3 class="font-display font-extrabold text-xl text-slate-950">
-              Dr. Ahmed Khan
-            </h3>
-            <p class="text-xs font-bold text-blue-700 mt-0.5">
-              Head of Aesthetic Dentistry & Veneers
-            </p>
+          <!-- Interactive Tooth Controls Helper -->
+          <div class="tooth-mode-helper">
+            <span class="helper-label">Interactive View:</span>
+            <button class="mode-pill-btn active" id="btnEnamelMode" onclick="setToothMode('enamel')">
+              <i data-lucide="sparkles" class="icon-xs"></i> 3D Enamel
+            </button>
+            <button class="mode-pill-btn" id="btnXrayMode" onclick="setToothMode('xray')">
+              <i data-lucide="scan" class="icon-xs"></i> Internal Roots View
+            </button>
+          </div>
+        </div>
 
-            <!-- Timings & Suite Highlight Box -->
-            <div class="mt-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
-                <span class="flex items-center gap-1.5 text-slate-600"><i class="fa fa-door-open text-blue-600"></i> Surgical Suite:</span>
-                <span class="font-bold text-slate-950">Suite 1 (Digital Smile)</span>
-              </div>
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
-                <span class="flex items-center gap-1.5 text-slate-600"><i class="fa fa-clock text-blue-600"></i> Available Hours:</span>
-                <span class="font-bold text-emerald-700">09:00 AM – 02:00 PM</span>
-              </div>
-              <div class="text-[10px] text-slate-400 font-medium">Monday through Saturday</div>
+        <!-- Center 3D Interactive Tooth Stage (Photorealistic Real Image with Holographic Animations) -->
+        <div class="hero-tooth-col">
+          <div class="tooth-stage-wrap" id="toothStageWrap">
+            
+            <!-- Soft Ambient Ground Shadow -->
+            <div class="tooth-ground-shadow"></div>
+
+            <!-- Photorealistic Tooth Stack (Real Tooth + Anatomical Internal Roots) -->
+            <div class="tooth-media-card" id="toothMediaCard" onclick="toggleToothScan()" title="Click to reveal internal roots & canals">
+              <img src="assets/tooth_ai_real.png" alt="Real Dental Molar Tooth" class="tooth-real-img" id="toothRealImg">
+              <img src="assets/tooth_roots_clean.png" alt="Anatomical Internal Roots of Tooth" class="tooth-xray-img" id="toothXrayImg">
+              <div class="tooth-scan-beam" id="toothScanBeam"></div>
             </div>
 
-            <!-- Credentials -->
-            <div class="mt-4 text-[11px] text-slate-600 leading-relaxed">
-              <strong class="text-slate-900">Credentials:</strong> BDS, RDS, Master in Aesthetic Dentistry (New York University, USA), Fellow AACD.
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 pt-0">
-          <button onclick="selectDoctorBooking('dr-ahmed')"
-            class="btn-video-blue w-full py-2.5 text-xs flex items-center justify-center gap-2">
-            <i class="fa fa-calendar-check"></i> <span>Book with Dr. Ahmed</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Doctor 2: Dr. Sophia Vance -->
-      <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <!-- Doctor Image with Badge -->
-          <div class="h-72 overflow-hidden relative bg-slate-100">
-            <img
-              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=700&fit=crop&q=90"
-              alt="Dr. Sophia Vance"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-[10px] font-bold text-cyan-700 flex items-center gap-1.5 shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span> Suite 2 Ready
-            </div>
-            <div class="absolute bottom-3 left-3 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-cyan-300 font-bold border border-white/10">
-              ★ 5.0 Rating • 3,200+ Implants
-            </div>
-          </div>
-
-          <!-- Doctor Info -->
-          <div class="p-6">
-            <h3 class="font-display font-extrabold text-xl text-slate-950">
-              Dr. Sophia Vance
-            </h3>
-            <p class="text-xs font-bold text-cyan-700 mt-0.5">
-              Director of Implantology & Oral Rehabilitation
-            </p>
-
-            <!-- Timings & Suite Highlight Box -->
-            <div class="mt-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
-                <span class="flex items-center gap-1.5 text-slate-600"><i class="fa fa-door-open text-cyan-600"></i> Surgical Suite:</span>
-                <span class="font-bold text-slate-950">Suite 2 (Implantology)</span>
-              </div>
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
-                <span class="flex items-center gap-1.5 text-slate-600"><i class="fa fa-clock text-cyan-600"></i> Available Hours:</span>
-                <span class="font-bold text-emerald-700">02:00 PM – 07:00 PM</span>
-              </div>
-              <div class="text-[10px] text-slate-400 font-medium">Monday through Saturday</div>
-            </div>
-
-            <!-- Credentials -->
-            <div class="mt-4 text-[11px] text-slate-600 leading-relaxed">
-              <strong class="text-slate-900">Credentials:</strong> DDS, Fellow ICOI (USA), Diplomat Implant Dentistry (Frankfurt), GDC UK Registered.
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 pt-0">
-          <button onclick="selectDoctorBooking('dr-sophia')"
-            class="btn-video-blue w-full py-2.5 text-xs flex items-center justify-center gap-2">
-            <i class="fa fa-calendar-check"></i> <span>Book with Dr. Sophia</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Doctor 3: Dr. Sara Malik -->
-      <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all flex flex-col justify-between group">
-        <div>
-          <!-- Doctor Image with Badge -->
-          <div class="h-72 overflow-hidden relative bg-slate-100">
-            <img
-              src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&h=700&fit=crop&q=90"
-              alt="Dr. Sara Malik"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-200 text-[10px] font-bold text-purple-700 flex items-center gap-1.5 shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Suite 3 Ready
-            </div>
-            <div class="absolute bottom-3 left-3 bg-slate-900/85 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-purple-300 font-bold border border-white/10">
-              ★ 4.98 Rating • 3,800+ Aligners
-            </div>
-          </div>
-
-          <!-- Doctor Info -->
-          <div class="p-6">
-            <h3 class="font-display font-extrabold text-xl text-slate-950">
-              Dr. Sara Malik
-            </h3>
-            <p class="text-xs font-bold text-purple-700 mt-0.5">
-              Chief Orthodontist & Aligner Specialist
-            </p>
-
-            <!-- Timings & Suite Highlight Box -->
-            <div class="mt-4 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1.5">
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
-                <span class="flex items-center gap-1.5 text-slate-600"><i class="fa fa-door-open text-purple-600"></i> Surgical Suite:</span>
-                <span class="font-bold text-slate-950">Suite 3 (Orthodontic)</span>
-              </div>
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
-                <span class="flex items-center gap-1.5 text-slate-600"><i class="fa fa-clock text-purple-600"></i> Available Hours:</span>
-                <span class="font-bold text-emerald-700">04:00 PM – 09:00 PM</span>
-              </div>
-              <div class="text-[10px] text-slate-400 font-medium">Monday through Saturday</div>
-            </div>
-
-            <!-- Credentials -->
-            <div class="mt-4 text-[11px] text-slate-600 leading-relaxed">
-              <strong class="text-slate-900">Credentials:</strong> BDS, FCPS Orthodontics, Certified Platinum Invisalign® Provider (USA).
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 pt-0">
-          <button onclick="selectDoctorBooking('dr-sara')"
-            class="btn-video-blue w-full py-2.5 text-xs flex items-center justify-center gap-2">
-            <i class="fa fa-calendar-check"></i> <span>Book with Dr. Sara</span>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       SECTION 3: INLINE BOOKING DESK & DIGITAL VOUCHER
-       ══════════════════════════════════════════════════════════ -->
-  <section id="booking" class="w-full py-20 sm:py-28 px-5 sm:px-14 max-w-[1440px] mx-auto border-t border-slate-200/80">
-    <div class="max-w-3xl mb-12 sm:mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/90 text-[#0c3878] text-[11px] font-bold uppercase tracking-wider mb-3">
-        <i class="fa fa-calendar-check text-cyan-500"></i> Online Reservation Desk
-      </div>
-      <h2 class="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-slate-950 tracking-tight leading-tight">
-        Reserve Your Clinical Suite
-      </h2>
-      <p class="text-slate-500 text-xs sm:text-sm md:text-base mt-2.5 leading-relaxed">
-        Select your specialist, preferred treatment, and appointment slot. An instant digital queue voucher (SPA-00X) is generated in real-time.
-      </p>
-    </div>
-
-    <!-- Booking Card Container -->
-    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-lg">
-
-      <!-- Form View -->
-      <form id="inline-booking-form" onsubmit="handleInlineBookingSubmit(event)" class="space-y-6">
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-
-          <!-- Left Column: Doctor & Treatment & Time -->
-          <div class="space-y-4">
-            <h3 class="font-display font-bold text-sm uppercase tracking-wider text-slate-400">
-              1. Treatment & Doctor Details
-            </h3>
-
-            <!-- Doctor Selector -->
-            <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1.5">Attending Specialist & Suite</label>
-              <select id="book-doc-inline" onchange="updateInlineDoctorNotice()"
-                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition-all">
-                <option value="dr-ahmed">Dr. Ahmed Khan — Suite 1 (Aesthetic Dentistry • 09:00 AM - 02:00 PM)</option>
-                <option value="dr-sophia">Dr. Sophia Vance — Suite 2 (Implantology • 02:00 PM - 07:00 PM)</option>
-                <option value="dr-sara">Dr. Sara Malik — Suite 3 (Orthodontics & Aligners • 04:00 PM - 09:00 PM)</option>
-              </select>
-              <div id="inline-doc-timing-notice" class="mt-2 text-[11px] text-blue-700 bg-blue-50/80 px-3 py-1.5 rounded-xl border border-blue-200/80 font-medium">
-                <i class="fa fa-circle-info"></i> Suite 1 is active: Mon - Sat 09:00 AM – 02:00 PM
+            <!-- Holographic Glowing Laser Scanning Ring (Exact Match to Video 00:01 - 00:05) -->
+            <div class="holographic-laser-orbit" id="laserOrbit">
+              <div class="laser-ring-loop">
+                <div class="laser-beam-ring"></div>
+                <div class="laser-scanner-badge">
+                  <span class="badge-dot"></span>
+                  <span class="badge-title" id="badgeLabel">PRECISION DENTISTRY</span>
+                </div>
               </div>
             </div>
 
-            <!-- Treatment Selector -->
-            <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1.5">Clinical Treatment</label>
-              <select id="book-treatment-inline"
-                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition-all">
-                <option value="Hollywood Smile Porcelain Veneers|PKR 210,000">Swiss E.max Porcelain Veneers — PKR 210,000</option>
-                <option value="Computer-Guided Titanium Implant|PKR 140,000">Computer-Guided Titanium Implant — PKR 140,000</option>
-                <option value="Laser Enamel Whitening|PKR 35,000">Laser Enamel Whitening (45 Mins) — PKR 35,000</option>
-                <option value="Microscopic Root Canal Therapy|PKR 28,000">Microscopic Root Canal Therapy — PKR 28,000</option>
-                <option value="Invisible Clear Aligners|PKR 180,000">Invisible Clear Aligners (Full Arch) — PKR 180,000</option>
-                <option value="Comprehensive 3D Consultation|PKR 5,000">Comprehensive 3D Consultation & Biomapping — PKR 5,000</option>
-              </select>
+            <!-- Floating Feature Pills Attached to Tooth (Exact Match to Video 00:06 - 00:07) -->
+            <div class="floating-pill-node pill-top-left" onclick="triggerPillAction('3dscan')">
+              <div class="pill-dot"></div>
+              <span class="pill-text">3D SCAN</span>
             </div>
 
-            <!-- Date & Slot Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-800 mb-1.5">Preferred Date</label>
-                <input id="book-date-inline" type="date" required
-                  class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white" />
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-800 mb-1.5">Time Window</label>
-                <select id="book-slot-inline"
-                  class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white">
-                  <option value="10:00 AM">10:00 AM (Morning Slot)</option>
-                  <option value="11:30 AM">11:30 AM (Morning Slot)</option>
-                  <option value="02:30 PM">02:30 PM (Afternoon Slot)</option>
-                  <option value="04:00 PM">04:00 PM (Evening Slot)</option>
-                  <option value="05:30 PM">05:30 PM (Evening Slot)</option>
-                  <option value="07:00 PM">07:00 PM (Night Slot)</option>
-                </select>
-              </div>
+            <div class="floating-pill-node pill-top-right" onclick="triggerPillAction('advanced')">
+              <div class="pill-dot"></div>
+              <span class="pill-text">ADVANCED CARE</span>
             </div>
 
+            <div class="floating-pill-node pill-bottom-left" onclick="triggerPillAction('personalized')">
+              <div class="pill-dot"></div>
+              <span class="pill-text">PERSONALIZED CARE</span>
+            </div>
+
+            <div class="floating-pill-node pill-bottom-right" onclick="triggerPillAction('digital')">
+              <div class="pill-dot"></div>
+              <span class="pill-text">DIGITAL SMILE</span>
+            </div>
+
+            <!-- Center Bottom Badge (Exact Match to Video 00:01 - 00:03) -->
+            <div class="tooth-center-badge" id="toothCenterBadge" onclick="toggleToothScan()">
+              <span class="badge-pulse"></span>
+              <span class="badge-text" id="badgeLabel">PRECISION DENTISTRY</span>
+              <span class="badge-hint">Click Tooth to Toggle Scan</span>
+            </div>
+
+            <!-- Interactive Hint -->
+            <div class="drag-hint-pill">
+              <i data-lucide="scan" class="icon-xs"></i>
+              <span>Click Tooth to Toggle Anatomical Cross-Section • Move Mouse for 3D Tilt</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side Slider Pagination Dots (Exact Match to Video 00:00) -->
+        <div class="hero-pagination-col">
+          <div class="v-dots">
+            <span class="v-dot active" title="Slide 1"></span>
+            <span class="v-dot" title="Slide 2"></span>
+            <span class="v-dot" title="Slide 3"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICES & ADVANCED PROCEDURES SECTION -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-kicker">OUR CLINICAL EXPERTISE</span>
+          <h2 class="section-title">High-Precision Dental Care</h2>
+          <p class="section-lead">Combining biological ethics with cutting-edge 3D dentistry for natural, long-lasting smiles.</p>
+        </div>
+
+        <div class="services-grid">
+          
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i data-lucide="scan-face"></i>
+            </div>
+            <h3 class="service-title">Digital Smile Design</h3>
+            <p class="service-desc">3D facial aesthetic mapping and AI simulation allowing you to preview your new smile before treatment starts.</p>
+            <ul class="service-features">
+              <li>Intraoral 3D color scanning</li>
+              <li>Virtual aesthetic mockup</li>
+            </ul>
           </div>
 
-          <!-- Right Column: Patient Credentials & Security -->
-          <div class="space-y-4">
-            <h3 class="font-display font-bold text-sm uppercase tracking-wider text-slate-400">
-              2. Patient Contact & Identity
-            </h3>
-
-            <!-- Name -->
-            <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1.5">Full Name</label>
-              <input id="book-name-inline" type="text" required placeholder="e.g. Zainab Tariq"
-                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition-all" />
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i data-lucide="sparkles"></i>
             </div>
+            <h3 class="service-title">Ceramic Veneers & Whitening</h3>
+            <p class="service-desc">Ultra-thin handcrafted porcelain laminates and laser whitening for a radiant, biocompatible smile.</p>
+            <ul class="service-features">
+              <li>Minimal preparation</li>
+              <li>Natural enamel translucency</li>
+            </ul>
+          </div>
 
-            <!-- WhatsApp Phone -->
-            <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1.5">WhatsApp Mobile (For Digital Pass Alert)</label>
-              <input id="book-phone-inline" type="tel" required placeholder="0300 1234567"
-                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition-all" />
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i data-lucide="shield-check"></i>
             </div>
+            <h3 class="service-title">Precision Dental Implants</h3>
+            <p class="service-desc">Computer-guided titanium and zirconia implants placed with sub-millimeter surgical robotic accuracy.</p>
+            <ul class="service-features">
+              <li>CBCT 3D bone mapping</li>
+              <li>Same-day immediate load teeth</li>
+            </ul>
+          </div>
 
-            <!-- Email -->
-            <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1.5">Email Address</label>
-              <input id="book-email-inline" type="email" placeholder="patient@gmail.com"
-                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition-all" />
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i data-lucide="activity"></i>
             </div>
+            <h3 class="service-title">Microscopic Root Canal</h3>
+            <p class="service-desc">Painless endodontic therapy under high-magnification Carl Zeiss dental microscopes preserving natural roots.</p>
+            <ul class="service-features">
+              <li>99% natural tooth retention</li>
+              <li>Single-visit comfort procedure</li>
+            </ul>
+          </div>
 
-            <!-- Notes -->
-            <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1.5">Clinical Notes or Smile Goals (Optional)</label>
-              <input id="book-notes-inline" type="text" placeholder="e.g. Wedding cosmetic consult, tooth sensitivity..."
-                class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-600 focus:bg-white transition-all" />
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i data-lucide="smile"></i>
             </div>
+            <h3 class="service-title">Clear Aligners (Invisalign)</h3>
+            <p class="service-desc">Virtually invisible orthodontic therapy engineered to straighten teeth without metal wires or brackets.</p>
+            <ul class="service-features">
+              <li>Discreet & comfortable</li>
+              <li>Removable for meals</li>
+            </ul>
+          </div>
 
+          <div class="service-card">
+            <div class="service-icon-box">
+              <i data-lucide="heart-pulse"></i>
+            </div>
+            <h3 class="service-title">Preventative & Ethical Hygiene</h3>
+            <p class="service-desc">Ultrasonic airflow biofilm removal and remineralization treatments safeguarding systemic oral health.</p>
+            <ul class="service-features">
+              <li>Zero enamel abrasion</li>
+              <li>Early cavity detection laser</li>
+            </ul>
           </div>
 
         </div>
+      </div>
+    </section>
 
-        <!-- Submit & Security Guarantee Bar -->
-        <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-3 text-xs text-slate-500">
-            <i class="fa fa-shield-halved text-cyan-600 text-base"></i>
-            <span>PMC Licensed • DHA Phase 6 Karachi Valet Parking Included</span>
-          </div>
-
-          <button type="submit"
-            class="btn-video-blue px-8 py-3.5 text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 w-full sm:w-auto">
-            <span>GENERATE DIGITAL VOUCHER & CONFIRM</span>
-            <span>➔</span>
-          </button>
+    <!-- DOCTORS & SPECIALISTS SECTION -->
+    <section class="doctors-section" id="doctors">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-kicker">BOARD-CERTIFIED CLINICIANS</span>
+          <h2 class="section-title">Meet Our Lead Dental Specialists</h2>
+          <p class="section-lead">World-class dental surgeons dedicated to painless precision, ethical patient care, and bespoke digital smile design.</p>
         </div>
 
-      </form>
-
-      <!-- Instant Digital Voucher Pass (Revealed After Submission) -->
-      <div id="inline-booking-success" class="hidden py-6 space-y-6">
-
-        <div class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white relative overflow-hidden border border-cyan-400/40 shadow-2xl">
-          <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-cyan-500/10 blur-2xl pointer-events-none"></div>
-
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
-            <div>
-              <span class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-400 block mb-1">
-                Aura Precision Dentistry • Digital VIP Pass
-              </span>
-              <h3 id="res-inline-name" class="font-display font-extrabold text-2xl text-white">Patient Name</h3>
-              <p id="res-inline-treatment" class="text-xs text-slate-400 mt-0.5">Clinical Treatment</p>
+        <div class="doctors-grid">
+          
+          <!-- Doctor 1: Dr. Sarah Al-Mansoor -->
+          <div class="doctor-card">
+            <div class="doctor-img-wrap">
+              <img src="assets/doctor1.jpg" alt="Dr. Sarah Al-Mansoor - Lead Aesthetic & Smile Specialist" loading="lazy">
+              <div class="doctor-badge-overlay">
+                <i data-lucide="award" class="icon-xs"></i>
+                <span>14+ YRS CLINICAL EXP</span>
+              </div>
             </div>
-            <div class="text-left sm:text-right">
-              <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Voucher ID</span>
-              <span id="res-inline-token" class="font-display font-extrabold text-2xl sm:text-3xl text-cyan-400 font-mono">SPA-00X</span>
-              <span id="res-inline-queue" class="text-xs text-emerald-400 font-semibold block mt-0.5">#X in Queue</span>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 text-xs text-slate-300">
-            <div>
-              <span class="text-[10px] uppercase text-slate-400 block">Attending Doctor & Suite</span>
-              <strong id="res-inline-doc" class="text-white text-sm">Dr. Ahmed Khan (Suite 1)</strong>
-            </div>
-            <div>
-              <span class="text-[10px] uppercase text-slate-400 block">Scheduled Time</span>
-              <strong id="res-inline-time" class="text-white text-sm">Today at 10:00 AM</strong>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
-            <span class="text-[11px] text-slate-400 flex items-center gap-1.5">
-              <i class="fa fa-location-dot text-cyan-400"></i> Main Shahbaz Commercial, DHA Phase 6, Karachi
-            </span>
-            <div class="flex items-center gap-2">
-              <a id="res-inline-gcal" href="#" target="_blank" rel="noopener noreferrer"
-                class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-[11px] font-bold flex items-center gap-1.5 transition-colors">
-                <i class="fa fa-calendar text-cyan-400"></i> Google Cal
-              </a>
-              <button id="res-inline-wa" type="button"
-                class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold flex items-center gap-1.5 transition-colors">
-                <i class="fab fa-whatsapp"></i> WhatsApp Alert
+            <div class="doctor-info">
+              <span class="doctor-role">COSMETIC & DIGITAL SMILE MASTER</span>
+              <h3 class="doctor-name">Dr. Sarah Al-Mansoor</h3>
+              <p class="doctor-bio">Specializing in ultra-thin porcelain veneers, biomimetic smile reconstruction, and minimally invasive aesthetic harmony.</p>
+              <div class="doctor-credentials">
+                <span class="credential-tag">BDS, MSc (London)</span>
+                <span class="credential-tag">RCS Certified (UK)</span>
+                <span class="credential-tag">DSD Master</span>
+              </div>
+              <button class="btn-book-doctor" onclick="openBookingModal('Dr. Sarah Al-Mansoor')">
+                <span>Consult Specialist</span>
+                <i data-lucide="arrow-right" class="icon-xs"></i>
               </button>
             </div>
           </div>
+
+          <!-- Doctor 2: Dr. Marcus Vance -->
+          <div class="doctor-card">
+            <div class="doctor-img-wrap">
+              <img src="assets/doctor2.jpg" alt="Dr. Marcus Vance - Master Implantologist & Oral Surgeon" loading="lazy">
+              <div class="doctor-badge-overlay">
+                <i data-lucide="shield-check" class="icon-xs"></i>
+                <span>CHIEF IMPLANT SURGEON</span>
+              </div>
+            </div>
+            <div class="doctor-info">
+              <span class="doctor-role">IMPLANTOLOGY & ORAL SURGERY</span>
+              <h3 class="doctor-name">Dr. Marcus Vance</h3>
+              <p class="doctor-bio">Pioneer in guided computerized 3D implant placement, immediate loading All-on-4 restorations, and painless bone grafting.</p>
+              <div class="doctor-credentials">
+                <span class="credential-tag">DDS, FICOI (USA)</span>
+                <span class="credential-tag">Fellow ICOI</span>
+                <span class="credential-tag">16+ Yrs Exp</span>
+              </div>
+              <button class="btn-book-doctor" onclick="openBookingModal('Dr. Marcus Vance')">
+                <span>Consult Specialist</span>
+                <i data-lucide="arrow-right" class="icon-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Doctor 3: Dr. Elena Rostova -->
+          <div class="doctor-card">
+            <div class="doctor-img-wrap">
+              <img src="assets/doctor3.jpg" alt="Dr. Elena Rostova - Orthodontist & Clear Aligner Specialist" loading="lazy">
+              <div class="doctor-badge-overlay">
+                <i data-lucide="sparkles" class="icon-xs"></i>
+                <span>DIAMOND APEX SPECIALIST</span>
+              </div>
+            </div>
+            <div class="doctor-info">
+              <span class="doctor-role">ORTHODONTICS & CLEAR ALIGNERS</span>
+              <h3 class="doctor-name">Dr. Elena Rostova</h3>
+              <p class="doctor-bio">Expert in zero-impression 3D digital bite correction, Invisalign Diamond treatment plans, and invisible aesthetic alignment.</p>
+              <div class="doctor-credentials">
+                <span class="credential-tag">DDS Orthodontics</span>
+                <span class="credential-tag">Invisalign Apex</span>
+                <span class="credential-tag">11+ Yrs Exp</span>
+              </div>
+              <button class="btn-book-doctor" onclick="openBookingModal('Dr. Elena Rostova')">
+                <span>Consult Specialist</span>
+                <i data-lucide="arrow-right" class="icon-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Doctor 4: Dr. Tariq Lodhi -->
+          <div class="doctor-card">
+            <div class="doctor-img-wrap">
+              <img src="assets/doctor4.jpg" alt="Dr. Tariq Lodhi - Microscopic Endodontist" loading="lazy">
+              <div class="doctor-badge-overlay">
+                <i data-lucide="microscope" class="icon-xs"></i>
+                <span>99.4% TOOTH RETENTION</span>
+              </div>
+            </div>
+            <div class="doctor-info">
+              <span class="doctor-role">MICROSCOPIC ENDODONTICS</span>
+              <h3 class="doctor-name">Dr. Tariq Lodhi</h3>
+              <p class="doctor-bio">Preserving natural teeth through high-magnification Carl Zeiss microsurgery and gentle, 100% painless single-visit root canal therapy.</p>
+              <div class="doctor-credentials">
+                <span class="credential-tag">BDS, FCPS Endodontics</span>
+                <span class="credential-tag">Zeiss Certified</span>
+                <span class="credential-tag">12+ Yrs Exp</span>
+              </div>
+              <button class="btn-book-doctor" onclick="openBookingModal('Dr. Tariq Lodhi')">
+                <span>Consult Specialist</span>
+                <i data-lucide="arrow-right" class="icon-xs"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES SECTION -->
+    <section class="packages-section" id="packages">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-kicker">TRANSPARENT ETHICAL CARE</span>
+          <h2 class="section-title">Curated Dental Packages</h2>
+          <p class="section-lead">All-inclusive pricing with zero hidden fees. Personalized financing plans available.</p>
         </div>
 
-        <div class="text-center">
-          <button onclick="resetInlineBookingView()"
-            class="text-xs font-bold text-blue-700 hover:text-blue-900 underline">
-            Book Another Patient or Consult
-          </button>
-        </div>
+        <div class="packages-grid">
+          
+          <div class="pkg-card">
+            <div class="pkg-badge">ESSENTIAL</div>
+            <h3 class="pkg-name">Comprehensive Checkup</h3>
+            <p class="pkg-desc">Ideal for routine maintenance, early diagnosis, and deep professional cleaning.</p>
+            <div class="pkg-price">
+              <span class="price-val">$149</span>
+              <span class="price-term">/ session</span>
+            </div>
+            <ul class="pkg-list">
+              <li><i data-lucide="check"></i> 3D Intraoral High-Res Scan</li>
+              <li><i data-lucide="check"></i> Digital Low-Dose X-Rays</li>
+              <li><i data-lucide="check"></i> Airflow Ultrasonic Cleaning</li>
+              <li><i data-lucide="check"></i> Oral Cancer Screening</li>
+              <li><i data-lucide="check"></i> Personalized Treatment Plan</li>
+            </ul>
+            <button class="btn-pkg" onclick="openBookingModal('Essential Checkup')">Select Package</button>
+          </div>
 
+          <div class="pkg-card featured">
+            <div class="pkg-badge featured-badge">MOST POPULAR</div>
+            <h3 class="pkg-name">Digital Smile Makeover</h3>
+            <p class="pkg-desc">Complete aesthetic transformation using porcelain veneers and laser contouring.</p>
+            <div class="pkg-price">
+              <span class="price-val">$1,299</span>
+              <span class="price-term">/ customized</span>
+            </div>
+            <ul class="pkg-list">
+              <li><i data-lucide="check"></i> Full 3D AI Smile Design Preview</li>
+              <li><i data-lucide="check"></i> Handcrafted Ceramic Veneers</li>
+              <li><i data-lucide="check"></i> Gum Symmetry Laser Contouring</li>
+              <li><i data-lucide="check"></i> In-Clinic Laser Whitening</li>
+              <li><i data-lucide="check"></i> 5-Year Clinical Warranty</li>
+            </ul>
+            <button class="btn-pkg featured-btn" onclick="openBookingModal('Smile Makeover')">Select Package</button>
+          </div>
+
+          <div class="pkg-card">
+            <div class="pkg-badge">ORTHODONTIC</div>
+            <h3 class="pkg-name">Invisalign Clear Alignment</h3>
+            <p class="pkg-desc">Straighten teeth comfortably with bespoke custom clear aligner sets.</p>
+            <div class="pkg-price">
+              <span class="price-val">$2,450</span>
+              <span class="price-term">/ complete plan</span>
+            </div>
+            <ul class="pkg-list">
+              <li><i data-lucide="check"></i> ClinCheck 3D Movement Plan</li>
+              <li><i data-lucide="check"></i> All Custom Aligner Sets Included</li>
+              <li><i data-lucide="check"></i> Regular Orthodontist Reviews</li>
+              <li><i data-lucide="check"></i> Complimentary Teeth Whitening</li>
+              <li><i data-lucide="check"></i> Final Retention Set (Vivera)</li>
+            </ul>
+            <button class="btn-pkg" onclick="openBookingModal('Invisalign Package')">Select Package</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & CLINIC HOURS -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-box-grid">
+          <div>
+            <span class="section-kicker">REACH OUT</span>
+            <h2 class="section-title">Schedule Your Consultation</h2>
+            <p class="contact-sub">Experience gentle, high-precision dentistry in our calming modern environment.</p>
+
+            <div class="contact-details-list">
+              <div class="contact-item">
+                <i data-lucide="map-pin" class="contact-icon"></i>
+                <div>
+                  <strong>Clinic Location</strong>
+                  <p>Suite 400, Grand Plaza Medical Wing, Metropolitan Blvd</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <i data-lucide="phone" class="contact-icon"></i>
+                <div>
+                  <strong>Direct Line & WhatsApp</strong>
+                  <p>+1 (800) 456-7890 • Emergency Hotline 24/7</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <i data-lucide="clock" class="contact-icon"></i>
+                <div>
+                  <strong>Hours of Care</strong>
+                  <p>Mon - Fri: 8:00 AM – 7:00 PM | Sat: 9:00 AM – 4:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-wrap">
+            <h3 class="form-title">Quick Appointment Request</h3>
+            <form onsubmit="handleQuickBooking(event)">
+              <div class="form-group">
+                <label>Your Name *</label>
+                <input type="text" required placeholder="e.g. Sarah Jenkins" class="form-input" id="quickName">
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" required placeholder="+1 (555) 000-0000" class="form-input" id="quickPhone">
+              </div>
+              <div class="form-group">
+                <label>Select Doctor / Specialist *</label>
+                <select class="form-input" id="quickDoctor" required onchange="handleQuickDoctorChange(this.value)">
+                  <option value="Any Available Specialist">Any Available Specialist</option>
+                  <option value="Dr. Sarah Al-Mansoor">Dr. Sarah Al-Mansoor (Cosmetic & Smile)</option>
+                  <option value="Dr. Marcus Vance">Dr. Marcus Vance (Implants & Surgery)</option>
+                  <option value="Dr. Elena Rostova">Dr. Elena Rostova (Invisalign & Ortho)</option>
+                  <option value="Dr. Tariq Lodhi">Dr. Tariq Lodhi (Microscopic Root Canal)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Available Time Slot *</label>
+                <select class="form-input" id="quickTimeSlot" required>
+                  <option value="09:30 AM">09:30 AM (Available)</option>
+                  <option value="10:15 AM">10:15 AM (Available)</option>
+                  <option value="11:00 AM">11:00 AM (Available)</option>
+                  <option value="02:00 PM">02:00 PM (Available)</option>
+                  <option value="03:15 PM">03:15 PM (Available)</option>
+                  <option value="04:30 PM">04:30 PM (Available)</option>
+                  <option value="05:45 PM">05:45 PM (Available)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Desired Service</label>
+                <select class="form-input" id="quickService">
+                  <option>3D Dental Scan & Checkup</option>
+                  <option>Digital Smile Makeover</option>
+                  <option>Invisalign Clear Aligners</option>
+                  <option>Dental Implants</option>
+                  <option>Teeth Whitening</option>
+                  <option>Emergency Tooth Pain</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-book-visit full-width">
+                <span>REQUEST APPOINTMENT</span>
+                <i data-lucide="arrow-right" class="icon-sm"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CLINIC FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-icon-wrap">
+            <svg viewBox="0 0 36 36" class="logo-tooth-svg">
+              <path d="M18 4 C11 4, 7 8, 7 14 C7 19, 10 24, 12 30 C13 33, 15 33, 16 29 C17 25, 17 22, 18 22 C19 22, 19 25, 20 29 C21 33, 23 33, 24 30 C26 24, 29 19, 29 14 C29 8, 25 4, 18 4 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="logo-main">PRECISION DENTISTRY</span>
+        </div>
+        <p class="footer-motto">Your Smile. Our Precision. Advanced ethical dentistry powered by 3D technology.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
       </div>
 
+      <div class="footer-bottom">
+        <p>© 2026 PRECISION DENTISTRY CLINIC. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Patient Rights</a>
+          <a href="#">HIPAA Compliance</a>
+        </div>
+      </div>
     </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       BOTTOM BAR & CHAT ICON (Exact Video Match)
-       ══════════════════════════════════════════════════════════ -->
-  <footer class="w-full pb-4 sm:pb-6 pt-2 px-5 sm:px-14 max-w-[1440px] mx-auto flex items-center justify-between text-[11px] text-slate-400 z-30">
-    <div>
-      <span>&copy; 2026 Precision Dentistry • DHA Phase 6 Karachi</span>
-    </div>
-
-    <!-- Bottom-Right Chat Bubble Button (Exact Video Match) -->
-    <a href="https://wa.me/923001234567?text=Assalam-o-Alaikum%20Precision%20Dentistry!%20I%20want%20to%20inquire%20about%20dental%20care."
-      target="_blank" rel="noopener noreferrer"
-      class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0c3878] hover:bg-[#082855] text-white flex items-center justify-center text-sm sm:text-base shadow-lg transition-transform hover:scale-105 active:scale-95"
-      title="Chat with Precision Dentistry Concierge on WhatsApp">
-      <!-- Chat message bubble icon from video -->
-      <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-      </svg>
-    </a>
   </footer>
 
-
-  <!-- ══════════════════════════════════════════════════════════
-       PACKAGES OVERLAY MODAL ("PACKAGES" link in navbar)
-       ══════════════════════════════════════════════════════════ -->
-  <div id="packages-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative my-auto max-h-[90vh] overflow-y-auto">
-      <button onclick="closePackagesModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800" title="Close">
-        <i class="fa fa-xmark text-lg"></i>
-      </button>
-
-      <div class="mb-6">
-        <span class="text-xs font-bold uppercase tracking-widest text-[#0c3878] block mb-1">Precision Clinical Care</span>
-        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-slate-950">Advanced Dental Packages</h2>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">DHA Phase 6 Karachi transparent rates with computer-guided technology.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <!-- Package 1 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
-          <div>
-            <span class="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Veneers</span>
-            <h3 class="font-display font-bold text-base text-slate-900 mt-2">Hollywood Smile Porcelain Veneers</h3>
-            <p class="text-xs text-slate-500 mt-1">0.3mm handcrafted Swiss E.max ultra-thin porcelain veneers. No natural tooth grinding.</p>
-            <div class="mt-3">
-              <span class="text-xs text-slate-400 block">Investment</span>
-              <span class="font-display font-bold text-lg text-slate-900">PKR 210,000</span>
-            </div>
-          </div>
-          <button onclick="selectPackageBooking('Hollywood Smile Porcelain Veneers', 'PKR 210,000', 'dr-sophia')"
-            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
-        </div>
-
-        <!-- Package 2 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
-          <div>
-            <span class="text-[10px] font-bold uppercase text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded">Implants</span>
-            <h3 class="font-display font-bold text-base text-slate-900 mt-2">Straumann® Guided Implants</h3>
-            <p class="text-xs text-slate-500 mt-1">Swiss Titanium fixture placed with 3D robotic guides. Pain-free, no cuts, no stitches.</p>
-            <div class="mt-3">
-              <span class="text-xs text-slate-400 block">Investment</span>
-              <span class="font-display font-bold text-lg text-slate-900">PKR 85,000</span>
-            </div>
-          </div>
-          <button onclick="selectPackageBooking('Straumann® Dental Implant', 'PKR 85,000', 'dr-ahmed')"
-            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
-        </div>
-
-        <!-- Package 3 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
-          <div>
-            <span class="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Aligners</span>
-            <h3 class="font-display font-bold text-base text-slate-900 mt-2">Invisalign® Clear Braces</h3>
-            <p class="text-xs text-slate-500 mt-1">3D intraoral digital scanned clear aligners series. Invisible and comfortable.</p>
-            <div class="mt-3">
-              <span class="text-xs text-slate-400 block">Investment</span>
-              <span class="font-display font-bold text-lg text-slate-900">PKR 280,000</span>
-            </div>
-          </div>
-          <button onclick="selectPackageBooking('Invisalign® Clear Braces', 'PKR 280,000', 'dr-sara')"
-            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
-        </div>
-
-        <!-- Package 4 -->
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between">
-          <div>
-            <span class="text-[10px] font-bold uppercase text-teal-700 bg-teal-50 px-2 py-0.5 rounded">Spa Clean</span>
-            <h3 class="font-display font-bold text-base text-slate-900 mt-2">EMS Airflow® Spa Cleaning</h3>
-            <p class="text-xs text-slate-500 mt-1">Warm water Swiss Airflow biofilm therapy. Eliminates all tea and coffee stains gently.</p>
-            <div class="mt-3">
-              <span class="text-xs text-slate-400 block">Investment</span>
-              <span class="font-display font-bold text-lg text-slate-900">PKR 6,500</span>
-            </div>
-          </div>
-          <button onclick="selectPackageBooking('EMS Airflow® Spa Cleaning', 'PKR 6,500', 'dr-sophia')"
-            class="btn-video-blue mt-4 w-full py-2.5 text-xs">Book Package ➔</button>
-        </div>
-      </div>
+  <!-- FLOATING CHAT / QUICK CONTACT WIDGET (Matching Video 00:00 Bottom Right) -->
+  <div class="floating-chat-widget" onclick="openBookingModal('Floating Chat')">
+    <div class="chat-pulse"></div>
+    <div class="chat-btn">
+      <i data-lucide="message-square" class="chat-icon"></i>
     </div>
   </div>
 
-
-  <!-- ══════════════════════════════════════════════════════════
-       CONTACT OVERLAY MODAL ("CONTACT US" link in navbar)
-       ══════════════════════════════════════════════════════════ -->
-  <div id="contact-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-auto">
-      <button onclick="closeContactModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800" title="Close">
-        <i class="fa fa-xmark text-lg"></i>
-      </button>
-
-      <span class="text-xs font-bold uppercase tracking-widest text-[#0c3878] block mb-1">DHA Phase 6 Karachi</span>
-      <h3 class="font-display font-extrabold text-2xl text-slate-950 mb-4">Contact Precision Clinic</h3>
-
-      <div class="space-y-3.5 text-xs text-slate-600 mb-6">
-        <div class="flex items-start gap-3">
-          <i class="fa fa-location-dot text-[#0c3878] mt-0.5"></i>
-          <span>Main Shahbaz Commercial, DHA Phase 6, Karachi (Complimentary Valet parking at entrance)</span>
+  <!-- BOOKING VISIT MODAL -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal-dialog">
+      <button class="modal-close" onclick="closeBookingModal()"><i data-lucide="x"></i></button>
+      
+      <div class="modal-header">
+        <div class="logo-icon-wrap modal-logo">
+          <svg viewBox="0 0 36 36" class="logo-tooth-svg">
+            <path d="M18 4 C11 4, 7 8, 7 14 C7 19, 10 24, 12 30 C13 33, 15 33, 16 29 C17 25, 17 22, 18 22 C19 22, 19 25, 20 29 C21 33, 23 33, 24 30 C26 24, 29 19, 29 14 C29 8, 25 4, 18 4 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
         </div>
-        <div class="flex items-center gap-3">
-          <i class="fa fa-phone text-[#0c3878]"></i>
-          <span>+92 300 1234567 • Desk Line: 021-35849201</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <i class="fa fa-clock text-[#0c3878]"></i>
-          <span>Mon – Sat: 10:00 AM – 8:00 PM</span>
-        </div>
+        <h3 class="modal-title">Book Your Visit</h3>
+        <p class="modal-subtitle" id="modalSub">Select your desired appointment slot and care specialist.</p>
       </div>
 
-      <div class="flex gap-2">
-        <button onclick="closeContactModal(); openBookingModal();" class="btn-video-blue flex-1 py-3 text-xs">
-          Book Visit ➔
+      <form onsubmit="handleBookingSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Patient Full Name *</label>
+            <input type="text" required placeholder="e.g. Alex Morgan" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp *</label>
+            <input type="tel" required placeholder="+1 (555) 000-0000" class="form-input">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="name@domain.com" class="form-input">
+          </div>
+          <div class="form-group">
+            <label>Preferred Date *</label>
+            <input type="date" required class="form-input" id="bookDate">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Preferred Doctor / Specialist *</label>
+            <select class="form-input" id="doctorSelect" onchange="handleModalDoctorChange(this.value)">
+              <option value="Any Available Specialist">Any Available Specialist</option>
+              <option value="Dr. Sarah Al-Mansoor">Dr. Sarah Al-Mansoor (Cosmetic & Smile)</option>
+              <option value="Dr. Marcus Vance">Dr. Marcus Vance (Implants & Surgery)</option>
+              <option value="Dr. Elena Rostova">Dr. Elena Rostova (Invisalign & Ortho)</option>
+              <option value="Dr. Tariq Lodhi">Dr. Tariq Lodhi (Microscopic Root Canal)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Service Required</label>
+            <select class="form-input" id="serviceSelect">
+              <option>3D Scan & Comprehensive Checkup</option>
+              <option>Digital Smile Makeover Preview</option>
+              <option>Invisalign Consultation</option>
+              <option>Dental Implants 3D Mapping</option>
+              <option>Emergency Tooth Pain Relief</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Available Timings & Interactive Slots Section -->
+        <div class="form-group time-slots-group">
+          <div class="slots-header-bar">
+            <label class="form-label-bold">Available Time Slots *</label>
+            <span class="slot-live-indicator" id="slotLiveStatus">
+              <span class="pulse-dot"></span> <span id="slotCountText">8 Slots Available</span>
+            </span>
+          </div>
+
+          <div class="doctor-timing-badge" id="doctorTimingNotice">
+            <i data-lucide="clock" class="icon-xs"></i>
+            <span id="doctorTimingText">General Clinic Hours: Mon - Sat • 09:30 AM – 06:30 PM</span>
+          </div>
+
+          <div class="slots-chips-grid" id="slotsChipsGrid">
+            <!-- Dynamic Slot Chips Generated by JS -->
+          </div>
+          <input type="hidden" id="selectedTimeSlot" name="selectedTimeSlot" value="09:30 AM">
+        </div>
+
+        <button type="submit" class="btn-book-visit full-width modal-btn">
+          <span>CONFIRM APPOINTMENT</span>
+          <i data-lucide="check-circle" class="icon-sm"></i>
         </button>
-        <a href="admin.html" class="px-4 py-3 rounded-full border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5">
-          <i class="fa fa-lock text-[10px]"></i> Staff Desk
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══════════════════════════════════════════════════════════
-       BOOKING MODAL (Connected to ClinicStore & Admin Desk)
-       ══════════════════════════════════════════════════════════ -->
-  <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-auto max-h-[92dvh] overflow-y-auto">
-      <button onclick="closeBookingModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-800" title="Close">
-        <i class="fa fa-xmark text-lg"></i>
-      </button>
-
-      <div class="mb-5">
-        <span class="text-xs uppercase tracking-widest font-bold text-[#0c3878] block mb-1">Online Reception Desk</span>
-        <h3 class="font-display font-extrabold text-2xl text-slate-950">Book Your Visit</h3>
-        <p class="text-xs text-slate-500 mt-1">Direct sequential voucher token with automated calendar alert.</p>
-      </div>
-
-      <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4 text-xs font-semibold text-slate-700">
-        <div>
-          <label class="block mb-1 text-slate-600">Patient Full Name *</label>
-          <input id="book-name" type="text" required placeholder="e.g. Ayesha Tariq"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block mb-1 text-slate-600">WhatsApp / Mobile *</label>
-            <input id="book-phone" type="tel" required placeholder="03218492019"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
-          </div>
-          <div>
-            <label class="block mb-1 text-slate-600">Email Address *</label>
-            <input id="book-email" type="email" required placeholder="patient@gmail.com"
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block mb-1 text-slate-600">Specialist *</label>
-            <select id="book-doc" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600">
-              <option value="dr-ahmed">Dr. Ahmed Khan (Suite 1 - Implants)</option>
-              <option value="dr-sophia">Dr. Sophia Vance (Suite 2 - Veneers)</option>
-              <option value="dr-sara">Dr. Sara Malik (Suite 3 - Aligners)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block mb-1 text-slate-600">Treatment *</label>
-            <select id="book-treatment" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600">
-              <option value="Hollywood Smile Porcelain Veneers|PKR 210,000">Hollywood Smile Veneers (PKR 210,000)</option>
-              <option value="Straumann® Dental Implant|PKR 85,000">Straumann® Implants (PKR 85,000)</option>
-              <option value="Invisalign® Clear Braces|PKR 280,000">Invisalign® Clear Braces (PKR 280,000)</option>
-              <option value="EMS Airflow® Spa Cleaning|PKR 6,500">EMS Airflow® Spa Cleaning (PKR 6,500)</option>
-              <option value="Comprehensive 3D Scan & Consultation|PKR 3,500">3D Scan &amp; Consultation (PKR 3,500)</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block mb-1 text-slate-600">Date *</label>
-            <input id="book-date" type="date" required
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600" />
-          </div>
-          <div>
-            <label class="block mb-1 text-slate-600">Time Slot *</label>
-            <select id="book-slot" class="w-full px-3 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-blue-600">
-              <option value="10:00 AM">10:00 AM</option>
-              <option value="11:30 AM">11:30 AM</option>
-              <option value="02:00 PM">02:00 PM</option>
-              <option value="03:30 PM">03:30 PM</option>
-              <option value="05:00 PM">05:00 PM</option>
-              <option value="06:30 PM">06:30 PM</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="pt-2 flex gap-3">
-          <button type="button" onclick="closeBookingModal()" class="w-1/3 py-3.5 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50">Cancel</button>
-          <button type="submit" class="btn-video-blue w-2/3 py-3.5 text-xs">Confirm Visit ➔</button>
-        </div>
       </form>
-
-      <!-- Booking Result -->
-      <div id="booking-success-view" class="hidden space-y-4 pt-3">
-        <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-center space-y-1">
-          <div class="w-10 h-10 rounded-full bg-[#0c3878] text-white flex items-center justify-center mx-auto text-base">
-            <i class="fa fa-check"></i>
-          </div>
-          <h4 class="font-display font-bold text-lg text-slate-900">Voucher Issued!</h4>
-          <p class="text-xs text-slate-600" id="res-token-sub">Sequential Voucher Generated</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
-          <div class="flex justify-between"><span class="text-slate-400">Token ID:</span><strong id="res-token" class="font-mono text-blue-700">SPA-006</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Queue Order:</span><strong id="res-queue" class="text-slate-900">#6 in line</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Patient:</span><strong id="res-name" class="text-slate-900">Patient Name</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Treatment:</span><strong id="res-treatment" class="text-slate-900">Treatment</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Specialist:</span><strong id="res-doc" class="text-slate-900">Doctor</strong></div>
-          <div class="flex justify-between"><span class="text-slate-400">Schedule:</span><strong id="res-time" class="text-slate-900">Slot</strong></div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2 pt-1">
-          <a id="res-gcal-btn" href="#" target="_blank" rel="noopener noreferrer"
-            class="py-2.5 px-3 rounded-xl bg-white border border-slate-200 hover:border-blue-500 text-slate-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
-            <i class="fa fa-calendar text-blue-600"></i> Google Cal
-          </a>
-          <button id="res-wa-btn" type="button"
-            class="py-2.5 px-3 rounded-xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-800 text-[11px] font-bold flex items-center justify-center gap-1.5 shadow-xs">
-            <i class="fab fa-whatsapp text-emerald-600"></i> WhatsApp
-          </button>
-        </div>
-
-        <button onclick="closeBookingModal(); location.reload();"
-          class="btn-video-blue w-full py-3 text-xs mt-2">Done</button>
-      </div>
-
     </div>
   </div>
 
-
-  <!-- ══════════════════════════════════════════════════════════
-       JAVASCRIPT: THREE.JS 3D TOOTH + LASER SCANNER + ANATOMY
-       ══════════════════════════════════════════════════════════ -->
-  <script>
-    let scene, camera, renderer, toothGroup, laserRing, laserBeam, outerHaloRing, toothShadow, keyLight;
-    let isAnatomyRevealed = false;
-    let isUserDragging = false;
-    let prevMouse = { x: 0, y: 0 };
-    let scanSpeedMult = 1.0;
-
-    function initThreeScene() {
-      const container = document.getElementById('tooth-3d-canvas');
-      if (!container) return;
-
-      const width = container.clientWidth || 450;
-      const height = container.clientHeight || 420;
-
-      scene = new THREE.Scene();
-
-      // Camera positioned at normal balanced distance
-      camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-      camera.position.set(0, 0, 7.2);
-
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.16;
-      container.innerHTML = '';
-      container.appendChild(renderer.domElement);
-
-      // Studio Dental Clinical Photography Lighting
-      const ambLight = new THREE.AmbientLight(0xffffff, 0.88);
-      scene.add(ambLight);
-
-      keyLight = new THREE.DirectionalLight(0xfffcf5, 1.45);
-      keyLight.position.set(5, 9, 6);
-      scene.add(keyLight);
-
-      const fillLight = new THREE.DirectionalLight(0xe0f2fe, 0.75);
-      fillLight.position.set(-6, 3, 4);
-      scene.add(fillLight);
-
-      const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.35);
-      rimLight.position.set(-3, -3, -4);
-      scene.add(rimLight);
-
-      const dentalSpot = new THREE.SpotLight(0xffffff, 0.75, 25, Math.PI / 5, 0.35);
-      dentalSpot.position.set(0, 6, 4.5);
-      dentalSpot.target.position.set(0, 0.4, 0);
-      scene.add(dentalSpot);
-      scene.add(dentalSpot.target);
-
-      toothGroup = new THREE.Group();
-      // Normal balanced scale matching video
-      toothGroup.scale.set(1.0, 1.0, 1.0);
-      scene.add(toothGroup);
-
-      // Build Photorealistic Ceramic Anatomical Tooth
-      buildCeramicTooth();
-
-      // Build Cyan Glowing Laser Ring (Matching Video)
-      buildCyanLaserRing();
-
-      // Interactive Mouse Orbit & Parallax on Stage
-      const stageEl = document.getElementById('tooth-stage') || container;
-      setupMouseInteraction(stageEl);
-
-      // Animation Loop
-      animateScene();
-
-      window.addEventListener('resize', onWindowResize);
-    }
-
-    function buildCeramicTooth() {
-      // 1. Physically Based Translucent Ceramic Porcelain Enamel
-      const enamelMat = new THREE.MeshPhysicalMaterial({
-        color: 0xfbfdff,
-        emissive: 0x071e33,
-        emissiveIntensity: 0.05,
-        roughness: 0.08,
-        metalness: 0.02,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.03,
-        transmission: 0.22,
-        thickness: 2.2,
-        ior: 1.54,
-        reflectivity: 0.95
-      });
-
-      // 2. Warm Natural Root Cementum Material
-      const rootMat = new THREE.MeshPhysicalMaterial({
-        color: 0xf7f1de,
-        roughness: 0.28,
-        metalness: 0.02,
-        clearcoat: 0.4,
-        clearcoatRoughness: 0.15,
-        transmission: 0.05,
-        thickness: 1.4,
-        ior: 1.50
-      });
-
-      // 3. Sub-surface Dentin Core (Warm ivory that subtly scatters light from within)
-      const dentinMat = new THREE.MeshStandardMaterial({
-        color: 0xfef08a,
-        roughness: 0.45,
-        metalness: 0.0
-      });
-
-      // ── A. Realistic Anatomical Molar Crown ──
-      const crownGeo = new THREE.CylinderGeometry(1.24, 1.06, 1.42, 64, 32);
-      const pos = crownGeo.attributes.position;
-      for (let i = 0; i < pos.count; i++) {
-        let x = pos.getX(i);
-        let y = pos.getY(i);
-        let z = pos.getZ(i);
-
-        // Natural rounded rectangular cross-section of a human molar
-        const distFromCenter = Math.sqrt(x * x + z * z);
-        const angle = Math.atan2(z, x);
-        const rectFactor = 1.0 + 0.08 * Math.cos(4 * angle);
-        x *= rectFactor;
-        z *= rectFactor;
-
-        if (y > 0.2) {
-          // Occlusal Surface: 4 Distinct Anatomical Cusps
-          const cuspMB = Math.exp(-((x + 0.52)**2 + (z - 0.46)**2) / 0.16) * 0.36;
-          const cuspDB = Math.exp(-((x - 0.50)**2 + (z - 0.44)**2) / 0.15) * 0.32;
-          const cuspML = Math.exp(-((x + 0.50)**2 + (z + 0.48)**2) / 0.16) * 0.40;
-          const cuspDL = Math.exp(-((x - 0.48)**2 + (z + 0.46)**2) / 0.15) * 0.34;
-
-          // Central Fossa and Cruciate Developmental Grooves
-          const centralGroove = Math.exp(-(z * z) / 0.07) * 0.18 + Math.exp(-(x * x) / 0.07) * 0.15;
-          // Marginal ridge elevation
-          const marginalRidge = Math.exp(-((distFromCenter - 0.95)**2) / 0.05) * 0.14;
-
-          y += (cuspMB + cuspDB + cuspML + cuspDL + marginalRidge - centralGroove);
-        } else {
-          // Cervical Third Contours & CEJ Inward Curvature
-          const neckFactor = 1.0 - 0.14 * Math.sin((0.2 - y) / 0.9 * (Math.PI / 2));
-          x *= neckFactor;
-          z *= neckFactor;
-        }
-
-        pos.setXYZ(i, x, y, z);
-      }
-      crownGeo.computeVertexNormals();
-      const crown = new THREE.Mesh(crownGeo, enamelMat);
-      crown.position.y = 0.72;
-      toothGroup.add(crown);
-
-      // Inner Dentin Core
-      const innerDentinGeo = new THREE.CylinderGeometry(0.92, 0.78, 1.05, 32, 16);
-      const innerDentin = new THREE.Mesh(innerDentinGeo, dentinMat);
-      innerDentin.position.y = 0.65;
-      toothGroup.add(innerDentin);
-
-      // ── B. Smooth Anatomical Furcation Bridge ──
-      const furcationGeo = new THREE.CylinderGeometry(0.88, 0.62, 0.42, 32, 8);
-      const fPos = furcationGeo.attributes.position;
-      for (let i = 0; i < fPos.count; i++) {
-        let fx = fPos.getX(i);
-        let fy = fPos.getY(i);
-        let fz = fPos.getZ(i);
-        if (fy < 0) {
-          fy += Math.exp(-(fx * fx) / 0.08) * 0.12;
-        }
-        fPos.setXYZ(i, fx, fy, fz);
-      }
-      furcationGeo.computeVertexNormals();
-      const furcation = new THREE.Mesh(furcationGeo, rootMat);
-      furcation.position.set(0, -0.06, 0);
-      toothGroup.add(furcation);
-
-      // ── C. Mesial Root (Left Anatomically Curved Root) ──
-      const root1Geo = new THREE.CylinderGeometry(0.50, 0.12, 1.95, 32, 32);
-      const pos1 = root1Geo.attributes.position;
-      for (let i = 0; i < pos1.count; i++) {
-        let rx = pos1.getX(i);
-        let ry = pos1.getY(i);
-        let rz = pos1.getZ(i);
-        const normY = (ry + 0.975) / 1.95;
-        const taper = 0.28 + 0.72 * Math.pow(normY, 0.75);
-        rx *= taper * 0.88;
-        rz *= taper * 1.15;
-        rx -= Math.sin((1.0 - normY) * Math.PI * 0.85) * 0.22;
-        const flankIndent = Math.exp(-(rz * rz) / 0.06) * 0.04 * normY;
-        if (rx < 0) rx += flankIndent; else rx -= flankIndent;
-        pos1.setXYZ(i, rx, ry, rz);
-      }
-      root1Geo.computeVertexNormals();
-      const root1 = new THREE.Mesh(root1Geo, rootMat);
-      root1.position.set(-0.46, -1.02, 0);
-      toothGroup.add(root1);
-
-      // ── D. Distal Root (Right Anatomically Curved Root) ──
-      const root2Geo = new THREE.CylinderGeometry(0.48, 0.12, 1.88, 32, 32);
-      const pos2 = root2Geo.attributes.position;
-      for (let i = 0; i < pos2.count; i++) {
-        let rx = pos2.getX(i);
-        let ry = pos2.getY(i);
-        let rz = pos2.getZ(i);
-        const normY = (ry + 0.94) / 1.88;
-        const taper = 0.28 + 0.72 * Math.pow(normY, 0.75);
-        rx *= taper * 0.92;
-        rz *= taper * 1.05;
-        rx += Math.sin((1.0 - normY) * Math.PI * 0.85) * 0.18;
-        pos2.setXYZ(i, rx, ry, rz);
-      }
-      root2Geo.computeVertexNormals();
-      const root2 = new THREE.Mesh(root2Geo, rootMat);
-      root2.position.set(0.46, -0.98, 0);
-      toothGroup.add(root2);
-
-      // ── E. Fixed Ground Ambient Shadow Disc (Stationary on floor, no erratic rotation) ──
-      const shadowGeo = new THREE.CircleGeometry(1.65, 36);
-      const shadowMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.18 });
-      toothShadow = new THREE.Mesh(shadowGeo, shadowMat);
-      toothShadow.rotation.x = -Math.PI / 2;
-      toothShadow.position.set(0, -1.95, 0);
-      scene.add(toothShadow);
-    }
-
-    function buildCyanLaserRing() {
-      // 1. Primary Neon Cyan Torus Ring
-      const ringGeo = new THREE.TorusGeometry(2.05, 0.038, 20, 120);
-      const ringMat = new THREE.MeshBasicMaterial({
-        color: 0x00f0ff,
-        transparent: true,
-        opacity: 0.95
-      });
-      laserRing = new THREE.Mesh(ringGeo, ringMat);
-      laserRing.rotation.x = Math.PI / 2.3;
-      laserRing.rotation.y = 0.22;
-      laserRing.position.y = 0.2;
-      scene.add(laserRing);
-
-      // 2. Outer Subtle Halo Ring
-      const haloGeo = new THREE.TorusGeometry(2.18, 0.012, 16, 100);
-      const haloMat = new THREE.MeshBasicMaterial({
-        color: 0x00f0ff,
-        transparent: true,
-        opacity: 0.35
-      });
-      outerHaloRing = new THREE.Mesh(haloGeo, haloMat);
-      outerHaloRing.rotation.x = Math.PI / 2.3;
-      outerHaloRing.rotation.y = 0.22;
-      outerHaloRing.position.y = 0.2;
-      scene.add(outerHaloRing);
-
-      // 3. Faint Laser Disc Scanner Plane (depthWrite: false avoids Z-fighting glitches)
-      const discGeo = new THREE.RingGeometry(0.15, 2.02, 36);
-      const discMat = new THREE.MeshBasicMaterial({
-        color: 0x00f0ff,
-        transparent: true,
-        opacity: 0.1,
-        depthWrite: false,
-        side: THREE.DoubleSide
-      });
-      laserBeam = new THREE.Mesh(discGeo, discMat);
-      laserBeam.rotation.x = Math.PI / 2.3;
-      laserBeam.rotation.y = 0.22;
-      laserBeam.position.y = 0.2;
-      scene.add(laserBeam);
-    }
-
-    function setupMouseInteraction(domElement) {
-      domElement.addEventListener('mousedown', (e) => {
-        isUserDragging = true;
-        prevMouse = { x: e.clientX, y: e.clientY };
-      });
-
-      window.addEventListener('mouseup', () => { isUserDragging = false; });
-
-      domElement.addEventListener('mousemove', (e) => {
-        if (!isUserDragging && toothGroup) {
-          const rect = domElement.getBoundingClientRect();
-          const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-          const normY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-          toothGroup.rotation.y += (normX * 0.35 - toothGroup.rotation.y) * 0.05;
-          toothGroup.rotation.x += (-normY * 0.2 - toothGroup.rotation.x) * 0.05;
-        } else if (isUserDragging && toothGroup) {
-          const dx = e.clientX - prevMouse.x;
-          const dy = e.clientY - prevMouse.y;
-          toothGroup.rotation.y += dx * 0.012;
-          toothGroup.rotation.x += dy * 0.012;
-          prevMouse = { x: e.clientX, y: e.clientY };
-        }
-      });
-
-      // Touch for mobile
-      domElement.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-          isUserDragging = true;
-          prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        }
-      }, { passive: true });
-
-      window.addEventListener('touchend', () => { isUserDragging = false; });
-
-      domElement.addEventListener('touchmove', (e) => {
-        if (isUserDragging && toothGroup && e.touches.length === 1) {
-          const dx = e.touches[0].clientX - prevMouse.x;
-          toothGroup.rotation.y += dx * 0.014;
-          prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        }
-      }, { passive: true });
-    }
-
-    let clock = new THREE.Clock();
-
-    function animateScene() {
-      requestAnimationFrame(animateScene);
-      const elapsed = clock.getElapsedTime();
-
-      // 1. Natural Organic Breathing Levitation & Subtle Tilt
-      const hoverY = Math.sin(elapsed * 1.35) * 0.09;
-      const hoverPitch = Math.sin(elapsed * 0.95) * 0.03;
-      const hoverRoll = Math.cos(elapsed * 0.75) * 0.025;
-
-      if (toothGroup) {
-        if (!isUserDragging) {
-          toothGroup.rotation.y += 0.0035 * scanSpeedMult;
-          toothGroup.position.y = hoverY;
-          toothGroup.rotation.x += (hoverPitch - toothGroup.rotation.x) * 0.04;
-          toothGroup.rotation.z += (hoverRoll - toothGroup.rotation.z) * 0.04;
-        } else {
-          toothGroup.position.y = hoverY * 0.3;
-        }
-
-        // 2. Dynamic Ground Shadow (Stationary on floor, scales with tooth height)
-        if (toothShadow) {
-          const shadowScale = 1.0 - (hoverY * 0.5);
-          toothShadow.scale.set(shadowScale, shadowScale, shadowScale);
-          toothShadow.material.opacity = Math.max(0.11, 0.16 - hoverY * 0.05);
-        }
-      }
-
-      // 3. Synchronized Laser Scanner Sweep & Rotation
-      if (laserRing && laserBeam) {
-        laserRing.rotation.z += 0.009 * scanSpeedMult;
-        laserRing.rotation.y = 0.22 + Math.sin(elapsed * 0.7) * 0.05;
-        laserBeam.rotation.z = laserRing.rotation.z;
-        laserBeam.rotation.y = laserRing.rotation.y;
-
-        if (outerHaloRing) {
-          outerHaloRing.rotation.z -= 0.006 * scanSpeedMult;
-          outerHaloRing.rotation.y = 0.22 - Math.sin(elapsed * 0.7) * 0.05;
-        }
-
-        // Smooth vertical scan sweep traversing crown and roots
-        const scanCycle = Math.sin(elapsed * 1.6 * scanSpeedMult);
-        const scanY = scanCycle * 0.95;
-        laserRing.position.y = scanY;
-        laserBeam.position.y = scanY;
-        if (outerHaloRing) outerHaloRing.position.y = scanY;
-
-        // Faint laser beam intensity pulse
-        const scanIntensity = 0.06 + Math.pow(Math.abs(scanCycle), 2) * 0.12;
-        laserBeam.material.opacity = scanIntensity * Math.min(scanSpeedMult, 2.5);
-      }
-
-      // 4. Subtle Key Light highlight motion
-      if (keyLight) {
-        keyLight.position.x = 5 + Math.cos(elapsed * 0.4) * 1.2;
-        keyLight.position.y = 9 + Math.sin(elapsed * 0.5) * 0.8;
-      }
-
-      renderer.render(scene, camera);
-    }
-
-    function onWindowResize() {
-      const container = document.getElementById('tooth-3d-canvas');
-      if (!container || !renderer || !camera) return;
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
-    }
-
-    // Toggle Anatomy Cutaway Mode (Matching 00:03 in Video)
-    function handleToothToggle() {
-      isAnatomyRevealed = !isAnatomyRevealed;
-      setAnatomyCutawayVisibility(isAnatomyRevealed);
-    }
-
-    function handleToothHover(isHovering) {
-      if (isHovering) {
-        setAnatomyCutawayVisibility(true);
-      } else {
-        if (!isAnatomyRevealed) {
-          setAnatomyCutawayVisibility(false);
-        }
-      }
-    }
-
-    // Glitch-free visibility handler (never removes pointer-events-none, preventing mouseleave oscillations)
-    function setAnatomyCutawayVisibility(visible) {
-      const cutaway = document.getElementById('anatomy-cutaway-graphic');
-      const canvasDom = renderer ? renderer.domElement : null;
-
-      if (cutaway) {
-        if (visible) {
-          cutaway.classList.remove('opacity-0', 'scale-95');
-          cutaway.classList.add('opacity-100', 'scale-100');
-          if (canvasDom) canvasDom.style.opacity = '0.08';
-        } else {
-          cutaway.classList.add('opacity-0', 'scale-95');
-          cutaway.classList.remove('opacity-100', 'scale-100');
-          if (canvasDom) canvasDom.style.opacity = '1';
-        }
-      }
-    }
-
-    function triggerTagPulse(tagText) {
-      // Highlight badge
-      const badgeMap = {
-        '3D SCAN': 'tag-3dscan',
-        'ADVANCED CARE': 'tag-advanced',
-        'PERSONALIZED CARE': 'tag-personalized',
-        'DIGITAL SMILE': 'tag-digital'
-      };
-      const badgeId = badgeMap[tagText];
-      if (badgeId) {
-        const el = document.getElementById(badgeId);
-        if (el) {
-          el.classList.add('active-pulse');
-          setTimeout(() => el.classList.remove('active-pulse'), 1200);
-        }
-      }
-
-      // Action based on clicked feature
-      if (tagText === '3D SCAN') {
-        scanSpeedMult = 3.2;
-        if (laserRing) laserRing.scale.set(1.2, 1.2, 1.2);
-        setTimeout(() => {
-          scanSpeedMult = 1.0;
-          if (laserRing) laserRing.scale.set(1, 1, 1);
-        }, 1800);
-      } else if (tagText === 'ADVANCED CARE') {
-        if (toothGroup) toothGroup.rotation.y += 0.8;
-        if (laserRing) {
-          laserRing.scale.set(1.15, 1.15, 1.15);
-          setTimeout(() => laserRing.scale.set(1, 1, 1), 500);
-        }
-      } else if (tagText === 'PERSONALIZED CARE') {
-        setAnatomyCutawayVisibility(true);
-        setTimeout(() => {
-          if (!isAnatomyRevealed) setAnatomyCutawayVisibility(false);
-        }, 3200);
-      } else if (tagText === 'DIGITAL SMILE') {
-        if (toothGroup) {
-          let startY = toothGroup.rotation.y;
-          let startTime = performance.now();
-          function spinTooth(now) {
-            let p = Math.min((now - startTime) / 800, 1);
-            toothGroup.rotation.y = startY + p * Math.PI * 2;
-            if (p < 1) requestAnimationFrame(spinTooth);
-          }
-          requestAnimationFrame(spinTooth);
-        }
-      }
-
-    }
-
-    // Modals
-    function openBookingModal() {
-      const modal = document.getElementById('booking-modal');
-      const form = document.getElementById('booking-form');
-      const resView = document.getElementById('booking-success-view');
-      const dateInput = document.getElementById('book-date');
-
-      if (dateInput && !dateInput.value) {
-        dateInput.value = new Date().toISOString().split('T')[0];
-        dateInput.min = new Date().toISOString().split('T')[0];
-      }
-
-      if (form) form.classList.remove('hidden');
-      if (resView) resView.classList.add('hidden');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closeBookingModal() {
-      const modal = document.getElementById('booking-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    function openPackagesModal(e) {
-      if (e) e.preventDefault();
-      const modal = document.getElementById('packages-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closePackagesModal() {
-      const modal = document.getElementById('packages-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    function openContactModal(e) {
-      if (e) e.preventDefault();
-      const modal = document.getElementById('contact-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closeContactModal() {
-      const modal = document.getElementById('contact-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    function selectPackageBooking(pkgName, pkgCost, docKey) {
-      closePackagesModal();
-      openBookingModal();
-      const treatSelect = document.getElementById('book-treatment');
-      const docSelect = document.getElementById('book-doc');
-      if (treatSelect) {
-        for (let opt of treatSelect.options) {
-          if (opt.value.includes(pkgName)) {
-            treatSelect.value = opt.value;
-            break;
-          }
-        }
-      }
-      if (docSelect && docKey) docSelect.value = docKey;
-    }
-
-    function toggleMobileNav() {
-      const drawer = document.getElementById('mob-drawer');
-      if (drawer) drawer.classList.toggle('hidden');
-    }
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Initialize 3D tooth when ready
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(initThreeScene, 100);
-    });
-  </script>
-
-  <!-- ══════════════════════════════════════════════════════════
-       CLINIC STORE & REAL-TIME BOOKING ENGINE (Sync with admin.html)
-       ══════════════════════════════════════════════════════════ -->
-  <script>
-    const DEFAULT_APPOINTMENTS = [
-      {
-        id: "SPA-001",
-        queueNumber: 1,
-        name: "Ayesha Tariq",
-        phone: "+92 321 8492019",
-        email: "ayesha.t@gmail.com",
-        treatment: "Hollywood Smile Porcelain Veneers",
-        doctor: "Dr. Sophia Vance",
-        date: "Today",
-        time: "10:30 AM (Suite 2)",
-        status: "Completed",
-        urgency: "Normal",
-        notes: "Requested Vita Shade B1 Natural White • 6 Upper Veneers Bonded",
-        cost: "PKR 210,000"
-      },
-      {
-        id: "SPA-002",
-        queueNumber: 2,
-        name: "Hamza Farooq",
-        phone: "+92 300 4567891",
-        email: "h.farooq@outlook.com",
-        treatment: "Straumann® Dental Implant",
-        doctor: "Dr. Ahmed Khan",
-        date: "Today",
-        time: "11:45 AM (Suite 1)",
-        status: "In-Chair",
-        urgency: "High",
-        notes: "Tooth #19 replacement with Swiss Titanium fixture in progress",
-        cost: "PKR 85,000"
-      },
-      {
-        id: "SPA-003",
-        queueNumber: 3,
-        name: "Zainab Noor",
-        phone: "+92 333 7819203",
-        email: "zainab.noor@yahoo.com",
-        treatment: "Invisalign® Clear Braces",
-        doctor: "Dr. Sara Malik",
-        date: "Today",
-        time: "02:15 PM (Suite 3)",
-        status: "Confirmed",
-        urgency: "Normal",
-        notes: "3D Digital Scan review & tray fitting",
-        cost: "PKR 280,000"
-      },
-      {
-        id: "SPA-004",
-        queueNumber: 4,
-        name: "Bilal Sheikh",
-        phone: "+92 345 9012345",
-        email: "bilal.s@gmail.com",
-        treatment: "EMS Airflow® Spa Cleaning",
-        doctor: "Dr. Sophia Vance",
-        date: "Today",
-        time: "04:30 PM (Suite 2)",
-        status: "Pending",
-        urgency: "Normal",
-        notes: "Tea/coffee stain removal & polish",
-        cost: "PKR 6,500"
-      },
-      {
-        id: "SPA-005",
-        queueNumber: 5,
-        name: "Fatima Bilal",
-        phone: "+92 312 6543210",
-        email: "fatima.b@live.com",
-        treatment: "Laser Teeth Whitening",
-        doctor: "Dr. Ahmed Khan",
-        date: "Tomorrow",
-        time: "10:00 AM (Suite 1)",
-        status: "Confirmed",
-        urgency: "Normal",
-        notes: "Pre-wedding cosmetic smile preparation",
-        cost: "PKR 25,000"
-      }
-    ];
-
-    window.ClinicStore = window.ClinicStore || {
-      getAppointments() {
-        try {
-          const raw = localStorage.getItem('smilecare_appointments');
-          if (!raw || raw === '[]') {
-            localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
-            localStorage.setItem('smilecare_token_seq', '5');
-            return [...DEFAULT_APPOINTMENTS];
-          }
-          let parsed = JSON.parse(raw);
-          if (!Array.isArray(parsed) || parsed.length === 0) {
-            localStorage.setItem('smilecare_appointments', JSON.stringify(DEFAULT_APPOINTMENTS));
-            return [...DEFAULT_APPOINTMENTS];
-          }
-          return parsed;
-        } catch (e) {
-          return [...DEFAULT_APPOINTMENTS];
-        }
-      },
-      getNextToken() {
-        let seq = parseInt(localStorage.getItem('smilecare_token_seq') || '0', 10);
-        if (!seq || seq < 5) {
-          const list = this.getAppointments();
-          let maxNum = 0;
-          list.forEach(a => {
-            if (a.queueNumber && a.queueNumber > maxNum) maxNum = a.queueNumber;
-            const match = a.id && a.id.match(/\d+/);
-            if (match) {
-              const n = parseInt(match[0], 10);
-              if (n > maxNum && n < 9000) maxNum = n;
-            }
-          });
-          seq = Math.max(maxNum, list.length, 5);
-        }
-        seq += 1;
-        localStorage.setItem('smilecare_token_seq', seq.toString());
-        return {
-          tokenId: `SPA-${String(seq).padStart(3, '0')}`,
-          queueNumber: seq
-        };
-      },
-      addAppointment(apt) {
-        const list = this.getAppointments();
-        let next = this.getNextToken();
-        const newApt = {
-          status: 'Confirmed',
-          createdAt: new Date().toISOString(),
-          ...apt,
-          id: apt.id || next.tokenId,
-          queueNumber: apt.queueNumber || next.queueNumber
-        };
-        list.unshift(newApt);
-        localStorage.setItem('smilecare_appointments', JSON.stringify(list));
-        window.dispatchEvent(new Event('storage'));
-        return newApt;
-      }
-    };
-
-    function handleBookingSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('book-name').value.trim();
-      const rawPhone = document.getElementById('book-phone').value.trim();
-      const email = document.getElementById('book-email').value.trim();
-      const docKey = document.getElementById('book-doc').value;
-      const rawTreatment = document.getElementById('book-treatment').value;
-      const [treatmentName, treatmentCost] = rawTreatment.split('|');
-      const dateVal = document.getElementById('book-date').value;
-      const slotVal = document.getElementById('book-slot').value;
-
-      const doctorsMap = {
-        'dr-ahmed': { name: 'Dr. Ahmed Khan', suite: 'Suite 1' },
-        'dr-sophia': { name: 'Dr. Sophia Vance', suite: 'Suite 2' },
-        'dr-sara': { name: 'Dr. Sara Malik', suite: 'Suite 3' }
-      };
-      const docInfo = doctorsMap[docKey] || { name: 'Dr. Ahmed Khan', suite: 'Suite 1' };
-
-      const cleanPhone = rawPhone.replace(/[\s-]/g, '');
-      const formattedPhone = cleanPhone.startsWith('92') && !cleanPhone.startsWith('+') ? '+' + cleanPhone : (cleanPhone.startsWith('03') ? '+92' + cleanPhone.slice(1) : cleanPhone);
-
-      const newRecord = {
-        name: name,
-        phone: formattedPhone,
-        email: email,
-        doctor: docInfo.name,
-        treatment: treatmentName,
-        cost: treatmentCost || 'PKR 25,000',
-        date: dateVal,
-        time: `${slotVal} (${docInfo.suite})`,
-        status: 'Confirmed',
-        urgency: 'Normal',
-        notes: 'Online Booking • Precision Platform'
-      };
-
-      const saved = window.ClinicStore.addAppointment(newRecord);
-
-      document.getElementById('booking-form').classList.add('hidden');
-      const resView = document.getElementById('booking-success-view');
-      resView.classList.remove('hidden');
-
-      document.getElementById('res-token').textContent = saved.id;
-      document.getElementById('res-token-sub').textContent = `Sequential Voucher Generated: ${saved.id}`;
-      document.getElementById('res-queue').textContent = `#${saved.queueNumber} in line`;
-      document.getElementById('res-name').textContent = saved.name;
-      document.getElementById('res-treatment').textContent = saved.treatment;
-      document.getElementById('res-doc').textContent = `${saved.doctor} (${docInfo.suite})`;
-      document.getElementById('res-time').textContent = `${saved.date} at ${saved.time}`;
-
-      const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Aura Dental Spa: ' + saved.treatment)}&dates=20261125T100000Z/20261125T110000Z&details=${encodeURIComponent('Voucher ' + saved.id + ' for ' + saved.name + ' with ' + saved.doctor)}&location=${encodeURIComponent('Main Shahbaz Commercial, DHA Phase 6, Karachi')}`;
-      const gcalBtn = document.getElementById('res-gcal-btn');
-      if (gcalBtn) gcalBtn.href = gcalUrl;
-
-      const waMsg = encodeURIComponent(`Assalam-o-Alaikum! I have booked voucher ${saved.id} (Turn #${saved.queueNumber}) for ${saved.treatment} with ${saved.doctor} at Aura Dental Spa DHA Phase 6 Karachi.`);
-      const waBtn = document.getElementById('res-wa-btn');
-      if (waBtn) waBtn.onclick = () => window.open(`https://wa.me/923001234567?text=${waMsg}`, '_blank');
-    }
-
-    // ── Inline Booking Handlers & Doctor Selectors ──
-    const doctorsMeta = {
-      'dr-ahmed': { name: 'Dr. Ahmed Khan', suite: 'Suite 1 (Digital Smile)', timeNotice: 'Suite 1 is active: Mon - Sat 09:00 AM – 02:00 PM' },
-      'dr-sophia': { name: 'Dr. Sophia Vance', suite: 'Suite 2 (Implantology)', timeNotice: 'Suite 2 is active: Mon - Sat 02:00 PM – 07:00 PM' },
-      'dr-sara': { name: 'Dr. Sara Malik', suite: 'Suite 3 (Orthodontics & Aligners)', timeNotice: 'Suite 3 is active: Mon - Sat 04:00 PM – 09:00 PM' }
-    };
-
-    function updateInlineDoctorNotice() {
-      const select = document.getElementById('book-doc-inline');
-      const notice = document.getElementById('inline-doc-timing-notice');
-      if (!select || !notice) return;
-      const info = doctorsMeta[select.value] || doctorsMeta['dr-ahmed'];
-      notice.innerHTML = `<i class="fa fa-circle-info"></i> ${info.timeNotice}`;
-    }
-
-    function selectDoctorBooking(docKey) {
-      const select = document.getElementById('book-doc-inline');
-      if (select) {
-        select.value = docKey;
-        updateInlineDoctorNotice();
-      }
-      const bookingSec = document.getElementById('booking');
-      if (bookingSec) {
-        bookingSec.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    function selectTreatmentBooking(treatmentName, cost, docKey) {
-      const treatSelect = document.getElementById('book-treatment-inline');
-      if (treatSelect) {
-        for (let i = 0; i < treatSelect.options.length; i++) {
-          if (treatSelect.options[i].value.includes(treatmentName) || treatSelect.options[i].text.includes(treatmentName)) {
-            treatSelect.selectedIndex = i;
-            break;
-          }
-        }
-      }
-      if (docKey) {
-        selectDoctorBooking(docKey);
-      } else {
-        const bookingSec = document.getElementById('booking');
-        if (bookingSec) bookingSec.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    function handleInlineBookingSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('book-name-inline').value.trim();
-      const rawPhone = document.getElementById('book-phone-inline').value.trim();
-      const email = document.getElementById('book-email-inline').value.trim();
-      const docKey = document.getElementById('book-doc-inline').value;
-      const rawTreatment = document.getElementById('book-treatment-inline').value;
-      const [treatmentName, treatmentCost] = rawTreatment.split('|');
-      const dateVal = document.getElementById('book-date-inline').value;
-      const slotVal = document.getElementById('book-slot-inline').value;
-      const notesVal = document.getElementById('book-notes-inline').value.trim();
-
-      const docInfo = doctorsMeta[docKey] || doctorsMeta['dr-ahmed'];
-
-      const cleanPhone = rawPhone.replace(/[\s-]/g, '');
-      const formattedPhone = cleanPhone.startsWith('92') && !cleanPhone.startsWith('+') ? '+' + cleanPhone : (cleanPhone.startsWith('03') ? '+92' + cleanPhone.slice(1) : cleanPhone);
-
-      const newRecord = {
-        name: name,
-        phone: formattedPhone,
-        email: email || 'patient@spa.com',
-        doctor: docInfo.name,
-        treatment: treatmentName,
-        cost: treatmentCost || 'PKR 25,000',
-        date: dateVal,
-        time: `${slotVal} (${docInfo.suite})`,
-        status: 'Confirmed',
-        urgency: 'Normal',
-        notes: notesVal || 'Online Booking • Precision Website'
-      };
-
-      const saved = window.ClinicStore.addAppointment(newRecord);
-
-      // Hide form, show voucher pass
-      document.getElementById('inline-booking-form').classList.add('hidden');
-      const successCard = document.getElementById('inline-booking-success');
-      successCard.classList.remove('hidden');
-
-      document.getElementById('res-inline-token').textContent = saved.id;
-      document.getElementById('res-inline-queue').textContent = `#${saved.queueNumber} in line`;
-      document.getElementById('res-inline-name').textContent = saved.name;
-      document.getElementById('res-inline-treatment').textContent = saved.treatment;
-      document.getElementById('res-inline-doc').textContent = `${saved.doctor} (${docInfo.suite})`;
-      document.getElementById('res-inline-time').textContent = `${saved.date} at ${saved.time}`;
-
-      // Google Calendar link
-      const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Precision Dentistry: ' + saved.treatment)}&dates=20261125T100000Z/20261125T110000Z&details=${encodeURIComponent('Voucher ' + saved.id + ' for ' + saved.name + ' with ' + saved.doctor)}&location=${encodeURIComponent('Main Shahbaz Commercial, DHA Phase 6, Karachi')}`;
-      const gcalBtn = document.getElementById('res-inline-gcal');
-      if (gcalBtn) gcalBtn.href = gcalUrl;
-
-      // WhatsApp link
-      const waMsg = encodeURIComponent(`Assalam-o-Alaikum! I have booked voucher ${saved.id} (Queue #${saved.queueNumber}) for ${saved.treatment} with ${saved.doctor} at Precision Dentistry DHA Phase 6 Karachi.`);
-      const waBtn = document.getElementById('res-inline-wa');
-      if (waBtn) waBtn.onclick = () => window.open(`https://wa.me/923001234567?text=${waMsg}`, '_blank');
-    }
-
-    function resetInlineBookingView() {
-      document.getElementById('inline-booking-form').reset();
-      document.getElementById('inline-booking-form').classList.remove('hidden');
-      document.getElementById('inline-booking-success').classList.add('hidden');
-      initDefaultBookingDate();
-    }
-
-    function initDefaultBookingDate() {
-      const today = new Date().toISOString().split('T')[0];
-      const inlineDate = document.getElementById('book-date-inline');
-      if (inlineDate && !inlineDate.value) {
-        inlineDate.min = today;
-        inlineDate.value = today;
-      }
-    }
-
-    // Initialize date and scroll spy
-    document.addEventListener('DOMContentLoaded', () => {
-      initDefaultBookingDate();
-      setupScrollSpy();
-    });
-
-    function setupScrollSpy() {
-      const sections = [
-        { id: 'hero', dot: 'dot-hero' },
-        { id: 'services', dot: 'dot-services' },
-        { id: 'doctors', dot: 'dot-doctors' },
-        { id: 'booking', dot: 'dot-booking' }
-      ];
-
-      window.addEventListener('scroll', () => {
-        let currentSectionId = 'hero';
-        const scrollPosition = window.scrollY + 250;
-
-        sections.forEach(sec => {
-          const el = document.getElementById(sec.id);
-          if (el && el.offsetTop <= scrollPosition) {
-            currentSectionId = sec.id;
-          }
-        });
-
-        sections.forEach(sec => {
-          const dot = document.getElementById(sec.dot);
-          if (dot) {
-            if (sec.id === currentSectionId) {
-              dot.classList.add('active');
-              dot.classList.remove('inactive');
-            } else {
-              dot.classList.remove('active');
-              dot.classList.add('inactive');
-            }
-          }
-        });
-      }, { passive: true });
-    }
-  </script>
-
+  <!-- PATIENT LOGIN MODAL -->
+  <div class="modal-backdrop" id="loginModal">
+    <div class="modal-dialog login-dialog">
+      <button class="modal-close" onclick="closeLoginModal()"><i data-lucide="x"></i></button>
+      <div class="modal-header">
+        <h3 class="modal-title">Patient Portal Login</h3>
+        <p class="modal-subtitle">Access your 3D scans, treatment plans, and appointment records.</p>
+      </div>
+      <form onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label>Patient ID or Email</label>
+          <input type="text" required placeholder="PT-9821 or email" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" required placeholder="••••••••" class="form-input">
+        </div>
+        <button type="submit" class="btn-book-visit full-width modal-btn">
+          <span>LOGIN TO PORTAL</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notification" id="toastNotice">
+    <i data-lucide="check-circle" class="toast-icon"></i>
+    <div class="toast-content">
+      <strong class="toast-title" id="toastTitle">Appointment Confirmed</strong>
+      <span class="toast-desc" id="toastDesc">We have received your visit request and dispatched an SMS confirmation.</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-
 </html>

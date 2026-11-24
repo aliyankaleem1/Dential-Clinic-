@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" width="100%" height="100%">
+  <defs>
+    <!-- Enamel Gradient -->
+    <linearGradient id="enamelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#d9e2ec"/>
+    </linearGradient>
+
+    <!-- Dentin Layer Gradient (Warm Ivory / Golden Dentin) -->
+    <linearGradient id="dentinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde8bb"/>
+      <stop offset="40%" stop-color="#f7d492"/>
+      <stop offset="100%" stop-color="#ebbe72"/>
+    </linearGradient>
+
+    <!-- Pulp & Nerve Gradient (Vascular Red / Coral) -->
+    <linearGradient id="pulpGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="40%" stop-color="#dc2626"/>
+      <stop offset="85%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </linearGradient>
+
+    <!-- Nerve / Blood Vessels -->
+    <linearGradient id="nerveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Soft Ambient Glow Filter -->
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Cyan Laser Scan Filter -->
+    <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ground Ambient Shadow -->
+  <ellipse cx="300" cy="670" rx="190" ry="22" fill="#0b2545" opacity="0.12" filter="url(#glowFilter)"/>
+
+  <!-- 1. TOOTH ENAMEL OUTER CONTOUR (Glossy White Shell) -->
+  <path d="M 170 180 
+           C 160 140, 195 90, 240 100 
+           C 270 105, 290 130, 300 130 
+           C 310 130, 330 105, 360 100 
+           C 405 90, 440 140, 430 180 
+           C 425 210, 440 250, 435 290 
+           C 430 330, 410 380, 400 420 
+           C 390 460, 405 530, 400 600 
+           C 395 650, 365 655, 355 615 
+           C 340 540, 330 460, 320 420 
+           C 315 400, 305 390, 300 390 
+           C 295 390, 285 400, 280 420 
+           C 270 460, 260 540, 245 615 
+           C 235 655, 205 650, 200 600 
+           C 195 530, 210 460, 200 420 
+           C 190 380, 170 330, 165 290 
+           C 160 250, 175 210, 170 180 Z" 
+        fill="url(#enamelGrad)" stroke="#c5d3e0" stroke-width="3"/>
+
+  <!-- Enamel Specular Highlights -->
+  <path d="M 195 140 C 215 118, 245 118, 255 125 C 230 130, 205 145, 195 170 Z" fill="#ffffff" opacity="0.85"/>
+  <path d="M 405 140 C 385 118, 355 118, 345 125 C 370 130, 395 145, 405 170 Z" fill="#ffffff" opacity="0.85"/>
+
+  <!-- 2. DENTIN CROSS-SECTION LAYER (Warm Ivory / Yellow Bone Layer) -->
+  <path d="M 190 190 
+           C 185 160, 210 120, 245 125 
+           C 275 130, 290 148, 300 148 
+           C 310 148, 325 130, 355 125 
+           C 390 120, 415 160, 410 190 
+           C 405 220, 415 260, 410 295 
+           C 405 330, 390 375, 380 415 
+           C 370 455, 385 520, 380 580 
+           C 375 615, 360 615, 355 585 
+           C 340 515, 330 445, 320 410 
+           C 315 390, 305 380, 300 380 
+           C 295 380, 285 390, 280 410 
+           C 270 445, 260 515, 245 585 
+           C 240 615, 225 615, 220 580 
+           C 215 520, 230 455, 220 415 
+           C 210 375, 195 330, 190 295 
+           C 185 260, 195 220, 190 190 Z" 
+        fill="url(#dentinGrad)" stroke="#e2b96a" stroke-width="2"/>
+
+  <!-- Dentin Fine Striations / Tubules -->
+  <g stroke="#d8a855" stroke-width="1" opacity="0.45" stroke-dasharray="2,3">
+    <line x1="220" y1="160" x2="250" y2="200"/>
+    <line x1="380" y1="160" x2="350" y2="200"/>
+    <line x1="210" y1="240" x2="250" y2="250"/>
+    <line x1="390" y1="240" x2="350" y2="250"/>
+    <line x1="220" y1="340" x2="260" y2="340"/>
+    <line x1="380" y1="340" x2="340" y2="340"/>
+  </g>
+
+  <!-- 3. PULP CHAMBER & ROOT CANALS (Vibrant Red Vascular Chamber) -->
+  <path d="M 235 220 
+           C 230 190, 255 170, 275 180 
+           C 285 185, 295 190, 300 190 
+           C 305 190, 315 185, 325 180 
+           C 345 170, 370 190, 365 220 
+           C 360 250, 350 280, 345 310 
+           C 340 340, 350 420, 350 480 
+           C 350 535, 345 565, 340 565 
+           C 335 565, 332 535, 332 480 
+           C 332 430, 325 360, 320 330 
+           C 315 310, 308 300, 300 300 
+           C 292 300, 285 310, 280 330 
+           C 275 360, 268 430, 268 480 
+           C 268 535, 265 565, 260 565 
+           C 255 565, 250 535, 250 480 
+           C 250 420, 260 340, 255 310 
+           C 250 280, 240 250, 235 220 Z" 
+        fill="url(#pulpGrad)" stroke="#b91c1c" stroke-width="2"/>
+
+  <!-- 4. NERVES & BLOOD VESSELS (Branching Dental Plexus) -->
+  <g stroke="url(#nerveGrad)" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <!-- Left Root Canal Nerve -->
+    <path d="M 260 550 Q 257 480 258 410 Q 260 350 270 310 Q 280 270 285 240 Q 288 215 285 195"/>
+    <path d="M 265 340 Q 255 310 248 270 Q 245 240 255 210"/>
+    
+    <!-- Right Root Canal Nerve -->
+    <path d="M 340 550 Q 343 480 342 410 Q 340 350 330 310 Q 320 270 315 240 Q 312 215 315 195"/>
+    <path d="M 335 340 Q 345 310 352 270 Q 355 240 345 210"/>
+  </g>
+
+  <!-- Soft Cross-Section Slice Glass Edge -->
+  <path d="M 170 180 C 160 140, 195 90, 240 100 C 270 105, 290 130, 300 130 C 310 130, 330 105, 360 100 C 405 90, 440 140, 430 180" 
+        fill="none" stroke="#00f0ff" stroke-width="2" opacity="0.65" filter="url(#cyanGlow)"/>
+</svg>
