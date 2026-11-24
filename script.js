@@ -136,15 +136,19 @@ let scanAutoRevertTimer = null;
 
 function initToothInteractiveStage() {
   const toothCard = document.getElementById('toothMediaCard');
-  const stageWrap = document.getElementById('toothStageWrap');
+  const tapIndicator = document.getElementById('toothTapIndicator');
 
-  if (toothCard && stageWrap) {
-    // Click on tooth toggles between real tooth and anatomical X-Ray
-    toothCard.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleToothScan();
-    });
-  }
+  // Both elements have inline onclick, but we also ensure touchstart provides immediate feedback
+  [toothCard, tapIndicator].forEach(el => {
+    if (!el) return;
+    el.addEventListener('touchstart', (e) => {
+      // Allow fast responsive tap
+      el.classList.add('touch-active');
+    }, { passive: true });
+    el.addEventListener('touchend', (e) => {
+      el.classList.remove('touch-active');
+    }, { passive: true });
+  });
 }
 
 /* ==========================================================================
@@ -206,6 +210,7 @@ function setToothMode(mode, autoRevert = false) {
   const btnEnamel = document.getElementById('btnEnamelMode');
   const btnXray = document.getElementById('btnXrayMode');
   const badgeLabel = document.getElementById('badgeLabel');
+  const toothTapText = document.getElementById('toothTapText');
 
   // Cancel any pending auto-revert timer to avoid race conditions
   if (scanAutoRevertTimer) {
@@ -218,10 +223,11 @@ function setToothMode(mode, autoRevert = false) {
     if (btnXray) btnXray.classList.add('active');
     if (btnEnamel) btnEnamel.classList.remove('active');
     if (badgeLabel) badgeLabel.textContent = "INTERNAL ROOTS VIEW";
+    if (toothTapText) toothTapText.textContent = "Tap Tooth to View 3D Enamel";
 
     showToast(
       "Internal Root Anatomy Revealed",
-      "Displaying inner pulp chamber, root canal nerves, and dentin. Click tooth again to return to 3D Enamel."
+      "Displaying inner pulp chamber, root canal nerves, and dentin. Tap tooth again to return to 3D Enamel."
     );
 
     if (autoRevert) {
@@ -238,20 +244,26 @@ function setToothMode(mode, autoRevert = false) {
     if (btnEnamel) btnEnamel.classList.add('active');
     if (btnXray) btnXray.classList.remove('active');
     if (badgeLabel) badgeLabel.textContent = "PRECISION DENTISTRY";
+    if (toothTapText) toothTapText.textContent = "Tap Tooth to View Roots";
 
     showToast(
       "3D Real Tooth View",
-      "Pristine enamel exterior. Click tooth to inspect internal roots & canals."
+      "Pristine enamel exterior. Tap tooth to inspect internal roots & canals."
     );
   }
 }
 
+let lastToggleTime = 0;
 function toggleToothScan() {
+  const now = Date.now();
+  if (now - lastToggleTime < 250) return; // Prevent double trigger from click/touch
+  lastToggleTime = now;
+
   if (currentToothMode === 'enamel') {
-    // Click 1: Switch to internal roots view and stay there
+    // Tap 1: Switch to internal roots view and stay there
     setToothMode('xray', false);
   } else {
-    // Click 2: Switch back to 3D tooth view and stay there
+    // Tap 2: Switch back to 3D tooth view and stay there
     setToothMode('enamel', false);
   }
 }
@@ -386,6 +398,18 @@ function handleQuickDoctorChange(doctorVal) {
 /* ==========================================================================
    BOOKING & LOGIN MODALS
    ========================================================================== */
+function handleBackdropClick(e, modalType) {
+  // Check if click/tap occurred directly on the backdrop container (outside modal-dialog)
+  if (e && e.target && (e.target.classList.contains('modal-backdrop') || e.target.id === 'bookingModal' || e.target.id === 'loginModal')) {
+    e.stopPropagation();
+    if (modalType === 'booking') {
+      closeBookingModal();
+    } else {
+      closeLoginModal();
+    }
+  }
+}
+
 function openBookingModal(source = 'General') {
   const modal = document.getElementById('bookingModal');
   const sub = document.getElementById('modalSub');

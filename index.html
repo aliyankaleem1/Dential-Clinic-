@@ -50,8 +50,9 @@
 
       <!-- Right Action CTA -->
       <div class="header-actions">
-        <button class="btn-book-visit" onclick="openBookingModal('Header')">
-          <span>BOOK YOUR VISIT</span>
+        <button class="btn-book-visit btn-header-cta" onclick="openBookingModal('Header')">
+          <span class="btn-text-desktop">BOOK YOUR VISIT</span>
+          <span class="btn-text-mobile">BOOK</span>
           <i data-lucide="arrow-right" class="icon-sm"></i>
         </button>
 
@@ -130,10 +131,16 @@
             <div class="tooth-ground-shadow"></div>
 
             <!-- Photorealistic Tooth Stack (Real Tooth + Anatomical Internal Roots) -->
-            <div class="tooth-media-card" id="toothMediaCard" onclick="toggleToothScan()" title="Click to reveal internal roots & canals">
+            <div class="tooth-media-card" id="toothMediaCard" onclick="toggleToothScan()" title="Tap tooth to toggle internal roots">
               <img src="assets/tooth_ai_real.png" alt="Real Dental Molar Tooth" class="tooth-real-img" id="toothRealImg">
               <img src="assets/tooth_roots_clean.png" alt="Anatomical Internal Roots of Tooth" class="tooth-xray-img" id="toothXrayImg">
               <div class="tooth-scan-beam" id="toothScanBeam"></div>
+            </div>
+
+            <!-- Tap Interaction Badge for Mobile & Desktop -->
+            <div class="tooth-tap-indicator" id="toothTapIndicator" onclick="toggleToothScan()">
+              <i data-lucide="sparkles" class="icon-xs tap-pulse-icon"></i>
+              <span id="toothTapText">Tap Tooth to View Roots</span>
             </div>
 
             <!-- Holographic Glowing Laser Scanning Ring (Exact Match to Video 00:01 - 00:05) -->
@@ -597,8 +604,8 @@
   </div>
 
   <!-- BOOKING VISIT MODAL -->
-  <div class="modal-backdrop" id="bookingModal">
-    <div class="modal-dialog">
+  <div class="modal-backdrop" id="bookingModal" onclick="handleBackdropClick(event, 'booking')">
+    <div class="modal-dialog" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeBookingModal()"><i data-lucide="x"></i></button>
       
       <div class="modal-header">
@@ -686,8 +693,8 @@
   </div>
 
   <!-- PATIENT LOGIN MODAL -->
-  <div class="modal-backdrop" id="loginModal">
-    <div class="modal-dialog login-dialog">
+  <div class="modal-backdrop" id="loginModal" onclick="handleBackdropClick(event, 'login')">
+    <div class="modal-dialog login-dialog" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeLoginModal()"><i data-lucide="x"></i></button>
       <div class="modal-header">
         <h3 class="modal-title">Patient Portal Login</h3>
