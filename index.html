@@ -55,38 +55,9 @@
           <span class="btn-text-mobile">BOOK</span>
           <i data-lucide="arrow-right" class="icon-sm"></i>
         </button>
-
-        <!-- Mobile Menu Hamburger -->
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
     </div>
   </header>
-
-  <!-- Mobile Drawer Menu -->
-  <div class="mobile-drawer" id="mobileDrawer">
-    <div class="mobile-drawer-header">
-      <span class="logo-main">PRECISION DENTISTRY</span>
-      <button class="drawer-close" id="drawerClose"><i data-lucide="x"></i></button>
-    </div>
-    <div class="mobile-links">
-      <a href="#home" class="mobile-link">HOME</a>
-      <a href="#services" class="mobile-link">SERVICES</a>
-      <a href="#doctors" class="mobile-link">DOCTORS</a>
-      <a href="#packages" class="mobile-link">PACKAGES</a>
-      <a href="#contact" class="mobile-link">CONTACT US</a>
-      <a href="#login" class="mobile-link" onclick="openLoginModal(event)">LOGIN</a>
-    </div>
-    <div class="mobile-drawer-footer">
-      <button class="btn-book-visit full-width" onclick="openBookingModal('Mobile Menu')">
-        <span>BOOK YOUR VISIT</span>
-        <i data-lucide="arrow-right" class="icon-sm"></i>
-      </button>
-    </div>
-  </div>
 
   <main>
     <!-- HERO SECTION (Exact Match to Video 00:00 - 00:09) -->
@@ -111,36 +82,20 @@
             </button>
           </div>
 
-          <!-- Interactive Tooth Controls Helper -->
-          <div class="tooth-mode-helper">
-            <span class="helper-label">Interactive View:</span>
-            <button class="mode-pill-btn active" id="btnEnamelMode" onclick="setToothMode('enamel')">
-              <i data-lucide="sparkles" class="icon-xs"></i> 3D Enamel
-            </button>
-            <button class="mode-pill-btn" id="btnXrayMode" onclick="setToothMode('xray')">
-              <i data-lucide="scan" class="icon-xs"></i> Internal Roots View
-            </button>
-          </div>
         </div>
 
-        <!-- Center 3D Interactive Tooth Stage (Photorealistic Real Image with Holographic Animations) -->
+        <!-- Center 3D Interactive Tooth Stage (Photorealistic Real Image with Automatic Scanning Animation) -->
         <div class="hero-tooth-col">
           <div class="tooth-stage-wrap" id="toothStageWrap">
             
             <!-- Soft Ambient Ground Shadow -->
             <div class="tooth-ground-shadow"></div>
 
-            <!-- Photorealistic Tooth Stack (Real Tooth + Anatomical Internal Roots) -->
-            <div class="tooth-media-card" id="toothMediaCard" onclick="toggleToothScan()" title="Tap tooth to toggle internal roots">
+            <!-- Photorealistic Tooth Stack (Real Tooth + Automatic Scanning Roots Reveal) -->
+            <div class="tooth-media-card" id="toothMediaCard">
               <img src="assets/tooth_ai_real.png" alt="Real Dental Molar Tooth" class="tooth-real-img" id="toothRealImg">
               <img src="assets/tooth_roots_clean.png" alt="Anatomical Internal Roots of Tooth" class="tooth-xray-img" id="toothXrayImg">
-              <div class="tooth-scan-beam" id="toothScanBeam"></div>
-            </div>
-
-            <!-- Tap Interaction Badge for Mobile & Desktop -->
-            <div class="tooth-tap-indicator" id="toothTapIndicator" onclick="toggleToothScan()">
-              <i data-lucide="sparkles" class="icon-xs tap-pulse-icon"></i>
-              <span id="toothTapText">Tap Tooth to View Roots</span>
+              <div class="auto-scan-line" id="autoScanLine"></div>
             </div>
 
             <!-- Holographic Glowing Laser Scanning Ring (Exact Match to Video 00:01 - 00:05) -->
@@ -152,40 +107,6 @@
                   <span class="badge-title" id="badgeLabel">PRECISION DENTISTRY</span>
                 </div>
               </div>
-            </div>
-
-            <!-- Floating Feature Pills Attached to Tooth (Exact Match to Video 00:06 - 00:07) -->
-            <div class="floating-pill-node pill-top-left" onclick="triggerPillAction('3dscan')">
-              <div class="pill-dot"></div>
-              <span class="pill-text">3D SCAN</span>
-            </div>
-
-            <div class="floating-pill-node pill-top-right" onclick="triggerPillAction('advanced')">
-              <div class="pill-dot"></div>
-              <span class="pill-text">ADVANCED CARE</span>
-            </div>
-
-            <div class="floating-pill-node pill-bottom-left" onclick="triggerPillAction('personalized')">
-              <div class="pill-dot"></div>
-              <span class="pill-text">PERSONALIZED CARE</span>
-            </div>
-
-            <div class="floating-pill-node pill-bottom-right" onclick="triggerPillAction('digital')">
-              <div class="pill-dot"></div>
-              <span class="pill-text">DIGITAL SMILE</span>
-            </div>
-
-            <!-- Center Bottom Badge (Exact Match to Video 00:01 - 00:03) -->
-            <div class="tooth-center-badge" id="toothCenterBadge" onclick="toggleToothScan()">
-              <span class="badge-pulse"></span>
-              <span class="badge-text" id="badgeLabel">PRECISION DENTISTRY</span>
-              <span class="badge-hint">Click Tooth to Toggle Scan</span>
-            </div>
-
-            <!-- Interactive Hint -->
-            <div class="drag-hint-pill">
-              <i data-lucide="scan" class="icon-xs"></i>
-              <span>Click Tooth to Toggle Anatomical Cross-Section • Move Mouse for 3D Tilt</span>
             </div>
           </div>
         </div>

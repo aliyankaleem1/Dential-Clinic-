@@ -409,7 +409,7 @@ button {
   50% { transform: translateX(-50%) scale(0.85); opacity: 0.6; }
 }
 
-/* Photorealistic Tooth Media Card */
+/* Photorealistic Tooth Media Card with Automatic Laser Scanning */
 .tooth-media-card {
   position: relative;
   width: 320px;
@@ -417,60 +417,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transform-style: preserve-3d;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   animation: levitateTooth 4.5s infinite ease-in-out;
   z-index: 10;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.tooth-media-card:active {
-  transform: scale(0.97);
-}
-
-/* Floating Tap Indicator for Mobile & Desktop */
-.tooth-tap-indicator {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: rgba(11, 37, 69, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #00f0ff;
-  padding: 0.45rem 1.05rem;
-  border-radius: var(--radius-full);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  z-index: 15;
+  pointer-events: none;
   user-select: none;
-  transition: all 0.25s ease;
-  white-space: nowrap;
-  border: 1px solid rgba(0, 240, 255, 0.35);
-}
-
-.tooth-tap-indicator:hover, .tooth-tap-indicator:active {
-  background: var(--primary-blue);
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 6px 22px rgba(0, 240, 255, 0.4);
-}
-
-.tap-pulse-icon {
-  animation: tapPulse 1.8s infinite ease-in-out;
-  color: #00f0ff;
-}
-
-@keyframes tapPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.7; }
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes levitateTooth {
@@ -482,75 +436,98 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
   max-width: 90%;
   max-height: 90%;
   width: auto;
   height: auto;
   object-fit: contain;
   pointer-events: none;
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease;
+  user-select: none;
 }
 
+/* Layer 1: Real Photorealistic 3D Tooth (Base Layer) */
 .tooth-real-img {
+  z-index: 1;
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
   filter: drop-shadow(0 22px 34px rgba(11, 37, 69, 0.22)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
 }
 
+/* Layer 2: Anatomical Internal Roots (Revealed dynamically as laser sweeps down, restored as laser sweeps up) */
 .tooth-xray-img {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.96);
-  filter: drop-shadow(0 15px 30px rgba(11, 37, 69, 0.18)) drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
-}
-
-/* Internal Roots & Anatomical Form Active State */
-.tooth-stage-wrap.is-xray .tooth-real-img {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1.04);
-}
-
-.tooth-stage-wrap.is-xray .tooth-xray-img {
+  z-index: 2;
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-  filter: drop-shadow(0 22px 38px rgba(11, 37, 69, 0.28)) drop-shadow(0 0 30px rgba(0, 240, 255, 0.7));
+  filter: drop-shadow(0 22px 38px rgba(11, 37, 69, 0.28)) drop-shadow(0 0 25px rgba(0, 240, 255, 0.65));
+  clip-path: inset(0 0 100% 0);
+  animation: autoRootsReveal 5.5s infinite ease-in-out;
+  will-change: clip-path;
 }
 
-/* Tooth Scan Laser Beam running across the surface */
-.tooth-scan-beam {
+/* Layer 3: Automatic Glowing Blue Scanning Laser Line */
+.auto-scan-line {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  left: 5%;
+  width: 90%;
+  height: 3.5px;
+  background: #ffffff;
+  border-radius: 9999px;
+  z-index: 3;
+  box-shadow:
+    0 0 8px 2px #ffffff,
+    0 0 18px 4px #00f0ff,
+    0 0 35px 8px rgba(0, 240, 255, 0.9),
+    0 0 60px 14px rgba(0, 240, 255, 0.5);
+  animation: autoLaserSweep 5.5s infinite ease-in-out;
   pointer-events: none;
-  overflow: hidden;
-  border-radius: 20px;
+  will-change: top, opacity;
 }
 
-.tooth-scan-beam::after {
+.auto-scan-line::before {
   content: '';
   position: absolute;
-  top: -100%;
+  top: -16px;
   left: 0;
   width: 100%;
-  height: 40px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 240, 255, 0.55) 50%,
-    rgba(255, 255, 255, 0.9) 70%,
-    transparent 100%
-  );
-  filter: drop-shadow(0 0 12px #00f0ff);
-  animation: beamScanSweep 3.2s infinite ease-in-out;
+  height: 35px;
+  background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.28) 50%, transparent);
+  pointer-events: none;
 }
 
-@keyframes beamScanSweep {
-  0% { top: 15%; opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { top: 85%; opacity: 0; }
+/* Keyframes: Down sweep reveals internal roots; Up sweep restores original 3D tooth */
+@keyframes autoRootsReveal {
+  0%, 4% {
+    clip-path: inset(0 0 100% 0);
+  }
+  45%, 54% {
+    clip-path: inset(0 0 0% 0);
+  }
+  95%, 100% {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+/* Keyframes: Laser line sweeps from top to bottom, pauses briefly, then sweeps back up */
+@keyframes autoLaserSweep {
+  0%, 4% {
+    top: 5%;
+    opacity: 0;
+  }
+  6% {
+    top: 8%;
+    opacity: 1;
+  }
+  45%, 54% {
+    top: 92%;
+    opacity: 1;
+  }
+  93% {
+    top: 8%;
+    opacity: 1;
+  }
+  96%, 100% {
+    top: 5%;
+    opacity: 0;
+  }
 }
 
 /* ==========================================================================
@@ -1744,12 +1721,56 @@ section {
 }
 
 @media (max-width: 900px) {
-  .nav-menu { display: none; }
-  .mobile-toggle { display: flex; }
+  /* Hide side drawer & hamburger completely — desktop navbar appears directly */
+  .mobile-toggle { display: none !important; }
+  .mobile-drawer { display: none !important; }
+
   .header-inner {
-    padding: 0 1.25rem;
-    height: 68px;
+    padding: 0.6rem 1.25rem !important;
+    height: auto !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
   }
+
+  .brand-logo {
+    order: 1;
+  }
+
+  .header-actions {
+    order: 2;
+  }
+
+  /* Desktop-style capsule nav menu rendered directly in header */
+  .nav-menu {
+    order: 3;
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.45rem;
+    padding: 0.35rem 0.6rem;
+    margin: 0.2rem 0 0;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 0.74rem;
+    padding: 0.38rem 0.75rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .hero-section {
+    padding-top: 110px;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1770,12 +1791,17 @@ section {
 }
 
 @media (max-width: 680px) {
-  /* Header: Compact booking button & logo balance */
+  /* Header: Compact booking button & desktop-style navbar */
   .header-inner {
-    padding: 0 0.85rem !important;
-    height: 60px !important;
+    padding: 0.5rem 0.85rem !important;
+    height: auto !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
   }
   .brand-logo {
+    order: 1;
     gap: 0.5rem;
     min-width: 0;
   }
@@ -1796,6 +1822,7 @@ section {
     font-size: 0.55rem;
   }
   .header-actions {
+    order: 2;
     gap: 0.5rem;
   }
   .btn-text-desktop {
@@ -1812,15 +1839,42 @@ section {
     border-radius: 6px;
     flex-shrink: 0;
   }
+
+  /* Desktop-style navbar on mobile — horizontally scrollable sleek glass capsule */
+  .nav-menu {
+    order: 3;
+    display: flex !important;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.35rem;
+    padding: 0.3rem 0.45rem;
+    margin: 0.15rem 0 0;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.65rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
   .mobile-toggle {
-    width: 36px;
-    height: 36px;
-    padding: 6px;
+    display: none !important;
+  }
+  .mobile-drawer {
+    display: none !important;
   }
 
   /* Hero Section */
   .hero-section {
-    padding-top: 80px;
+    padding-top: 105px;
     padding-bottom: 2.5rem;
   }
   .hero-badge-pill {
@@ -1837,63 +1891,22 @@ section {
     margin-bottom: 1.5rem;
   }
 
-  /* Interactive Tooth Stage on Mobile */
+  /* Tooth Stage on Mobile */
   .hero-tooth-col {
-    height: 390px;
+    height: 420px;
     margin-top: 0.5rem;
   }
   .tooth-stage-wrap {
-    max-width: 300px;
-    height: 360px;
+    max-width: 320px;
+    height: 380px;
   }
   .tooth-media-card {
-    width: 230px;
-    height: 295px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    width: 250px;
+    height: 320px;
   }
   .holographic-laser-orbit {
-    width: 270px;
-    height: 115px;
-  }
-  .tooth-mode-helper {
-    display: none !important;
-  }
-  .tooth-tap-indicator {
-    display: inline-flex !important;
-    bottom: 4px;
-    font-size: 0.72rem;
-    padding: 0.38rem 0.85rem;
-  }
-
-  /* Floating Pills scaled & positioned for mobile */
-  .floating-pill-node {
-    padding: 0.35rem 0.65rem;
-    font-size: 0.68rem;
-    gap: 0.4rem;
-  }
-  .pill-icon-wrap {
-    width: 22px;
-    height: 22px;
-  }
-  .pill-text {
-    font-size: 0.68rem;
-  }
-  .pill-top-left {
-    top: 2%;
-    left: 0%;
-  }
-  .pill-top-right {
-    top: 2%;
-    right: 0%;
-  }
-  .pill-bottom-left {
-    bottom: 12%;
-    left: 0%;
-  }
-  .pill-bottom-right {
-    bottom: 12%;
-    right: 0%;
+    width: 290px;
+    height: 120px;
   }
 
   /* Cards & Grids on Mobile */
@@ -1965,13 +1978,12 @@ section {
     width: 32px;
     height: 32px;
   }
-  .mobile-drawer {
-    width: 85vw;
-    max-width: 320px;
-  }
 }
 
 @media (max-width: 400px) {
+  .header-inner {
+    padding: 0.45rem 0.65rem !important;
+  }
   .hero-headline {
     font-size: 1.85rem;
   }
@@ -1982,24 +1994,28 @@ section {
     padding: 0.4rem 0.65rem !important;
     font-size: 0.68rem !important;
   }
+  .nav-menu {
+    padding: 0.25rem 0.35rem;
+    gap: 0.25rem;
+  }
+  .nav-link {
+    font-size: 0.66rem;
+    padding: 0.3rem 0.52rem;
+  }
+  .hero-section {
+    padding-top: 100px;
+  }
   .tooth-stage-wrap {
-    max-width: 255px;
-    height: 320px;
+    max-width: 270px;
+    height: 340px;
   }
   .tooth-media-card {
-    width: 195px;
-    height: 255px;
+    width: 215px;
+    height: 275px;
   }
   .holographic-laser-orbit {
-    width: 235px;
-    height: 100px;
-  }
-  .floating-pill-node {
-    padding: 0.3rem 0.5rem;
-    font-size: 0.62rem;
-  }
-  .pill-text {
-    font-size: 0.62rem;
+    width: 250px;
+    height: 105px;
   }
   .stats-strip {
     grid-template-columns: 1fr;

@@ -135,20 +135,7 @@ let currentToothMode = 'enamel'; // 'enamel' or 'xray'
 let scanAutoRevertTimer = null;
 
 function initToothInteractiveStage() {
-  const toothCard = document.getElementById('toothMediaCard');
-  const tapIndicator = document.getElementById('toothTapIndicator');
-
-  // Both elements have inline onclick, but we also ensure touchstart provides immediate feedback
-  [toothCard, tapIndicator].forEach(el => {
-    if (!el) return;
-    el.addEventListener('touchstart', (e) => {
-      // Allow fast responsive tap
-      el.classList.add('touch-active');
-    }, { passive: true });
-    el.addEventListener('touchend', (e) => {
-      el.classList.remove('touch-active');
-    }, { passive: true });
-  });
+  // Tooth scanning is 100% automatic via synchronized laser scan line & anatomical roots reveal
 }
 
 /* ==========================================================================
@@ -158,7 +145,6 @@ function initTooth3dParallax() {
   const heroSection = document.getElementById('home');
   const toothCard = document.getElementById('toothMediaCard');
   const laserOrbit = document.getElementById('laserOrbit');
-  const pills = document.querySelectorAll('.floating-pill-node');
 
   if (!heroSection || !toothCard) return;
 
@@ -182,12 +168,6 @@ function initTooth3dParallax() {
     if (laserOrbit) {
       laserOrbit.style.transform = `translate(-50%, -50%) rotateX(${68 - dy * 8}deg) rotateZ(${-12 + dx * 10}deg)`;
     }
-
-    // Parallax depth shift on floating pills
-    pills.forEach((pill, idx) => {
-      const factor = (idx + 1) * 3;
-      pill.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
-    });
   });
 
   heroSection.addEventListener('mouseleave', () => {
@@ -195,9 +175,6 @@ function initTooth3dParallax() {
     if (laserOrbit) {
       laserOrbit.style.transform = `translate(-50%, -50%) rotateX(68deg) rotateZ(-12deg)`;
     }
-    pills.forEach(pill => {
-      pill.style.transform = `translate(0px, 0px)`;
-    });
   });
 }
 
